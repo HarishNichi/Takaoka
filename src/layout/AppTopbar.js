@@ -25,7 +25,6 @@ import { useAppDispatch } from "@/redux/hooks";
 import { setAdminValue, setStaffValue, setHeadquaterValue } from "@/redux/auth";
 import { urlRegister } from "@/utils/constant";
 import { setStaffEditedStockpile } from "@/redux/stockpile";
-import { Badge } from 'primereact/badge';
 
 
 const AppTopbar = forwardRef((props, ref) => {
@@ -490,12 +489,6 @@ const AppTopbar = forwardRef((props, ref) => {
      */
     const topBarRight = (
         <div ref={topbarmenuRef} className="header-details-second">
-          {(url.startsWith("/admin") && userName && layoutReducer?.layout?.line_management_status) ? (
-                    <i className="pi pi-bell p-overlay-badge mr-3 flex align-items-end header-details-second-date-time-picker cursor-pointer" onClick={() => router.push("/admin/line/history")} style={{ fontSize: '1.5rem' }}>
-                        <Badge value={messageCount}></Badge>
-                    </i>
-                  
-              ):null}
         <div className='header-details-second-date-time-picker mr-3'>
             <DateTimeDisplay/>
             </div>

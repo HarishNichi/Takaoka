@@ -28,28 +28,6 @@ const AppMenu = () => {
     // Admin side bar information
     const adminModel = [
         {
-            label: translate(localeJson, 'event_information_'),
-            icon: <MdSettings size={16} />,
-            class: "without-top-element",
-            visible: layoutReducer?.layout?.config?.ADMIN_EVENT_STATUS_LIST && layoutReducer?.layout?.config?.ADMIN_EVENT_ATTENDEES_LIST,
-            items: [
-                {
-                    label: translate(localeJson, 'event_status_list'),
-                    icon: <BsHouseGearFill size={16} />,
-                    to: '/admin/event-status-list',
-                    active: router.pathname.startsWith('/admin/event-status-list'),
-                    visible: layoutReducer?.layout?.config?.ADMIN_EVENT_STATUS_LIST,
-                },
-                {
-                    label: translate(localeJson, 'attendee_list'),
-                    icon: <BiSolidAddToQueue size={16} />,
-                    to: '/admin/event-attendees-list',
-                    active: router.pathname.startsWith('/admin/event-attendees-list'),
-                    visible: layoutReducer?.layout?.config?.ADMIN_EVENT_ATTENDEES_LIST,
-                },
-            ]
-        },
-        {
             label: translate(localeJson, 'vault_info'),
             icon: <RiHome5Fill size={16} />,
             items: [
@@ -71,37 +49,6 @@ const AppMenu = () => {
                     to: '/admin/evacuation',
                     active: router.pathname.startsWith('/admin/evacuation')
                 },
-                {
-                    label: translate(localeJson, 'list_of_temp_registrants_title'),
-                    icon: <PiUserListFill size={16} />,
-                    to: '/admin/temp-registration',
-                    active: router.pathname.startsWith('/admin/temp-registration')
-                },
-                {
-                    label: translate(localeJson, 'external_evecuee_list_header'),
-                    icon: <FaPeopleGroup size={16} />,
-                    to: '/admin/external/family/list',
-                    active: router.pathname.startsWith('/admin/external/family/list')
-                },
-                {
-                    label: translate(localeJson, 'shortage_supplies_list'),
-                    icon: <HiArchiveBoxXMark size={16} />,
-                    to: '/admin/shortage-supplies',
-                    active: router.pathname.startsWith('/admin/shortage-supplies')
-                },
-                {
-                    label: translate(localeJson, 'stockpile_summary'),
-                    icon: <FaBoxes size={16} />,
-                    to: '/admin/stockpile/summary',
-                    active: router.pathname.startsWith('/admin/stockpile/summary'),
-                    visible: layoutReducer?.layout?.stockpile_management_status||false
-                },
-                {
-                    label: translate(localeJson, 'statistics'),
-                    icon: <FaChartPie size={16} />,
-                    to: '/admin/statistics',
-                    active: router.pathname.startsWith('/admin/statistics')
-                }
             ]
         },
         {
@@ -134,65 +81,16 @@ const AppMenu = () => {
                 },
             ]
         },
-         {
-            label: translate(localeJson, 'line_management'),
-            icon: <IoIosNotifications size={16} />,
-            visible: layoutReducer?.layout?.line_management_status || false,
-            items: [
-                 {
-                    label: translate(localeJson, 'line_linked_users'),
-                    icon: <PiNotification size={16} />,
-                    to: '/admin/push/notification',
-                    active: router.pathname.startsWith('/admin/push/notification')
-                }, {
-                    label: translate(localeJson, 'line_notification_history'),
-                    icon: <PiNotification size={16} />,
-                    to: '/admin/line/history',
-                    active: router.pathname.startsWith('/admin/line/history')
-                },
-            ]
-        },
         {
             label: translate(localeJson, 'setting'),
             icon: <MdSettings size={16} />,
             items: [
                 {
-                    label: translate(localeJson, 'events_management'),
-                    icon: <BiSolidAddToQueue size={16} />,
-                    to: '/admin/event',
-                    active: router.pathname.startsWith('/admin/event'),
-                    visible: layoutReducer?.layout?.config?.ADMIN_EVENT,
-                },
-                {
-                    label: translate(localeJson, 'interview_management'),
-                    icon: <FaBoxes size={16} />,
-                    to: '/admin/questionnaire',
-                    active: router.pathname.startsWith('/admin/questionnaire')
-                },
-                {
                     label: translate(localeJson, 'places'),
                     icon: <BsHouseGearFill size={16} />,
                     to: '/admin/place',
                     active: router.pathname.startsWith('/admin/place'),
-                },
-                {
-                    label: translate(localeJson, 'material'),
-                    icon: <FaLuggageCart size={16} />,
-                    to: '/admin/material',
-                    active: router.pathname.startsWith('/admin/material')
-                },
-                {
-                    label: translate(localeJson, 'stockpile_master_management'),
-                    icon: <FaBoxes size={16} />,
-                    to: '/admin/stockpile/master',
-                    active: router.pathname.startsWith('/admin/stockpile/master'),
-                    visible: layoutReducer?.layout?.stockpile_management_status||false
                 }, {
-                    label: translate(localeJson, 'special_care_list'),
-                    icon: <PiHandTapFill size={16} />,
-                    to: '/admin/special/care',
-                    active: router.pathname.startsWith('/admin/special/care')
-                },{
                     label: translate(localeJson, 'setting_systems'),
                     icon: <RiFileSettingsFill size={16} />,
                     to: '/admin/setting',
@@ -221,82 +119,10 @@ const AppMenu = () => {
                     to: '/staff/family',
                     active: router.pathname.startsWith('/staff/family')
                 },
-                {
-                    label: translate(localeJson, 'temporary_registrants'),
-                    icon: <BiSolidTime size={16} />,
-                    to: '/staff/temporary/family',
-                    active: router.pathname.startsWith('/staff/temporary/family')
-                },
-                {
-                    label: translate(localeJson, 'external_evacuees_list'),
-                    icon: <FaPeopleGroup size={16} />,
-                    to: '/staff/external/family-list',
-                    active: router.pathname.startsWith('/staff/external/family-list')
-                },
-            ]
-        },
-        {
-            label: translate(localeJson, 'staff_stockpile_management'),
-            icon: <FaBoxes size={16} />,
-            visible: layoutReducer?.layout?.stockpile_management_status||false,
-            items: [
-                {
-                    label: translate(localeJson, 'stockpile_list'),
-                    icon: <IoIosPaper size={16} />,
-                    to: '/staff/stockpile/dashboard',
-                    active: router.pathname.startsWith('/staff/stockpile/dashboard'),
-                    visible: layoutReducer?.layout?.stockpile_management_status||false
-                },
-                {
-                    label: translate(localeJson, 'stockpile_history'),
-                    icon: <RiFileHistoryFill size={16} />,
-                    to: '/staff/stockpile/history',
-                    active: router.pathname.startsWith('/staff/stockpile/history'),
-                    visible: layoutReducer?.layout?.stockpile_management_status||false
-                }
-            ]
-        },
-        {
-            label: translate(localeJson, 'send_to_hq'),
-            icon: <img src="/layout/images/hq_icon.svg" width={16} height={16} />,
-            items: [
-                {
-                    label: translate(localeJson, 'necessary_supplies_registration'),
-                    icon: <MdAddCircle size={16} />,
-                    to: '/staff/supplies',
-                    active: router.pathname.startsWith('/staff/supplies')
-                },
-                {
-                    label: translate(localeJson, 'manual_registration_of_evacuees'),
-                    icon: <BsFillPersonPlusFill size={16} />,
-                    to: '/staff/register/check-in',
-                    active: router.pathname.startsWith('/staff/register/check-in')
-                },
             ]
         },
     ];
-    // Staff(Event) side bar information
-    const eventStaffModel = [
-        {
-            label: translate(localeJson, 'top_page'),
-            icon: <MdSpaceDashboard size={16} />,
-            to: '/staff/event-staff/dashboard',
-            top: true,
-            class: "top-element",
-            active: router.pathname.startsWith('/staff/event-staff/dashboard')
-        }, {
-            label: translate(localeJson, 'event_information_staff'),
-            icon: <HiInformationCircle size={16} />,
-            items: [
-                {
-                    label: translate(localeJson, 'event_list'),
-                    icon: <BsPeopleFill size={16} />,
-                    to: '/staff/event-staff/family',
-                    active: router.pathname.startsWith('/staff/event-staff/family')
-                }
-            ]
-        },
-    ]
+
     // HQ side bar information
     const hqModel = [
         {
@@ -322,37 +148,6 @@ const AppMenu = () => {
                     to: '/hq-staff/evacuation',
                     active: router.pathname.startsWith('/hq-staff/evacuation')
                 },
-                {
-                    label: translate(localeJson, 'list_of_temp_registrants_title'),
-                    icon: <PiUserListFill size={16} />,
-                    to: '/hq-staff/temp-registration',
-                    active: router.pathname.startsWith('/hq-staff/temp-registration')
-                },
-                {
-                    label: translate(localeJson, 'external_evecuee_list_header'),
-                    icon: <FaPeopleGroup size={16} />,
-                    to: '/hq-staff/external/family/list',
-                    active: router.pathname.startsWith('/hq-staff/external/family/list')
-                },
-                {
-                    label: translate(localeJson, 'shortage_supplies_list'),
-                    icon: <HiArchiveBoxXMark size={16} />,
-                    to: '/hq-staff/shortage-supplies',
-                    active: router.pathname.startsWith('/hq-staff/shortage-supplies')
-                },
-                {
-                    label: translate(localeJson, 'stockpile_summary'),
-                    icon: <FaBoxes size={16} />,
-                    to: '/hq-staff/stockpile/summary',
-                    active: router.pathname.startsWith('/hq-staff/stockpile/summary'),
-                    visible: layoutReducer?.layout?.stockpile_management_status||false
-                },
-                {
-                    label: translate(localeJson, 'statistics'),
-                    icon: <FaChartPie size={16} />,
-                    to: '/hq-staff/statistics',
-                    active: router.pathname.startsWith('/hq-staff/statistics')
-                }
             ]
         },
         {
@@ -364,12 +159,6 @@ const AppMenu = () => {
                     icon: <BsHouseGearFill size={16} />,
                     to: '/hq-staff/place',
                     active: router.pathname.startsWith('/hq-staff/place'),
-                },
-                {
-                    label: translate(localeJson, 'material'),
-                    icon: <FaLuggageCart size={16} />,
-                    to: '/hq-staff/material',
-                    active: router.pathname.startsWith('/hq-staff/material')
                 },
 
             ]
@@ -412,11 +201,7 @@ const AppMenu = () => {
                                 staffModel.map((item, i) => {
                                     return !item.seperator ? <AppMenuitem item={item} root={true} active={item.active} index={i} key={i} /> : <li className="menu-separator"></li>;
                                 })
-                            ) : (
-                                eventStaffModel.map((item, i) => {
-                                    return !item.seperator ? <AppMenuitem item={item} root={true} active={item.active} index={i} key={i} /> : <li className="menu-separator"></li>;
-                                })
-                            )
+                            ) : <></>
                         ) :
                             (
                                 hqModel.map((item, i) => {
