@@ -1,0 +1,12 @@
+.input_file{
+    font-size: $fileUploadFontSize;
+}
+
+.input-parent-file-border{
+    border: 1px solid #ced4da;
+    appearance: none;
+    -webkit-appearance: none;
+}
+.input-parent-file-border:hover{
+    border: 1px solid var(--primary-color);
+}

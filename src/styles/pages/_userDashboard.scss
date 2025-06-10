@@ -1,0 +1,159 @@
+@media screen and (min-width: 990px) {
+    .userDashboard {
+        height: $userDashBoardHeight;
+        width: $fullWidth;
+        font-size: $userDashBoardFontSize;
+        border-radius: 18rem !important;
+
+        .p-button-label {
+            font-size: $userDashBoardFontSize;
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .userDashboard {
+        height: $userDashboardHeightSm;
+        width: $fullWidth;
+        font-size: $userDashBoardFontSize;
+        border-radius: 8rem !important;
+
+        .p-button-label {
+            font-size: $userDashBoardFontSize;
+        }
+    }
+
+    .userParentDashboard {
+        width: $fullWidth;
+    }
+}
+
+@media screen and (min-width: 990px) {
+    .user_Dashboard {
+        height: $userDashBoardHeight;
+        width: $fullWidth;
+        font-size: 45px;
+        border-radius: 18rem !important;
+
+        .icon-dashboard {
+            font-size: 45px;
+        }
+
+        .p-button-label {
+            font-weight: $buttonFontWeight;
+            font-size: 45px;
+            flex: none;
+            margin-left: 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 991px) and (min-width:768px) {
+    .user_Dashboard {
+        height: $userDashboardHeightSm;
+        width: $fullWidth;
+        font-size: 45px;
+        border-radius: 8rem !important;
+
+        .icon-dashboard {
+            font-size: 45px;
+        }
+
+        .p-button-label {
+            font-weight: $buttonFontWeight;
+            font-size: 45px;
+            flex: none;
+            margin-left: 10px;
+        }
+    }
+
+    .user_Parent_Dashboard {
+        width: $fullWidth;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .user_Dashboard {
+        height: 120px;
+        width: $fullWidth;
+        font-size: 35px;
+        border-radius: 8rem !important;
+
+        .icon-dashboard {
+            font-size: 35px;
+        }
+
+        .p-button-label {
+            font-weight: $buttonFontWeight;
+            font-size: 35px;
+            flex: none;
+            margin-left: 10px;
+        }
+    }
+
+    .user_Parent_Dashboard {
+        width: $fullWidth;
+    }
+}
+
+.header_clr {
+    color: var(--primary-color);
+}
+
+@media screen and (min-width: 576px) {
+    .tempRegister {
+        height: 150px;
+        width: 250px;
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .tempRegister {
+        height: 200px;
+        width: $fullWidth;
+        font-size: 25px;
+    }
+
+    .tempRegisterParent {
+        width: $fullWidth;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .userDashboard-c {
+        height: $userDashBoardHeight-c;
+        width: $userDashBoardWidth;
+        font-size: $userDashBoardFontSize;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .userDashboard-c {
+        height: $userDashboardHeightSm-c;
+        width: $fullWidth;
+        font-size: $userDashBoardFontSize;
+    }
+
+    .userParentDashboard-c {
+        width: $fullWidth;
+    }
+}
+
+.user-dashboard-header {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+.user-dashboard-margin{
+    margin-bottom: 40px;
+}
+.user-dashboard-height{
+    line-height: 45px;
+}
+.dashboard-height{
+    line-height: 32px;
+}
+.dashboard-align{
+    justify-content: center;
+}

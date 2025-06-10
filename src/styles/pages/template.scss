@@ -1,0 +1,39 @@
+/* Responsive */
+
+/***** Laptops / Large-Devices || Extra-Large-Devices *****/
+
+/* ----------- Extra Large Devices ----------- */
+@media (min-width: 1599.98px) {}
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen and (min-width: 1200px) and (max-width: 1600px) {}
+
+/* ----------- Retina Screens ----------- */
+@media screen and (min-width: 1200px) and (max-width: 1600px) {}
+
+/***** Tablets / Medium-Devices *****/
+
+/* Portrait and Landscape */
+@media only screen and (min-width: 768px) and (max-width: 1199.98px) {}
+
+/* Portrait */
+@media only screen and (min-width: 768px) and (max-width: 1199.98px) and (orientation: portrait) {}
+
+/* Landscape */
+@media only screen and (min-width: 768px) and (max-width: 1199.98px) and (orientation: landscape) {}
+
+/***** Phones / Small-Device || Extra-Small-Devices *****/
+
+/* Portrait and Landscape */
+@media only screen and (min-width: 576px) and (max-width: 767.98px) {}
+
+/* Portrait */
+@media only screen and (min-width: 576px) and (max-width: 767.98px) and (orientation: portrait) {}
+
+/* Landscape */
+@media only screen and (min-width: 576px) and (max-width: 767.98px) and (orientation: landscape) {}
+
+/***** Phones / Extra-Nested-Small-Devices *****/
+
+/* Portrait and Landscape */
+@media (max-width: 575.98px) {}

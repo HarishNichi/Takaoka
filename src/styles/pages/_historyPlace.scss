@@ -1,0 +1,26 @@
+.history-list.p-datatable.p-datatable-gridlines:has(.p-datatable-thead):has(.p-datatable-tbody) .p-datatable-tbody>tr>td:last-child {
+    border-width: 0px 1px 1px 1px;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
+.text-alignment {
+    .p-inputtext {
+        padding-top: 12px;
+    }
+}
+
+.input-align {
+    .p-inputtext {
+        padding-top: 12px;
+    }
+}
+
+.custom_dropdownPanel{
+.p-dropdown-items-wrapper{
+    overflow-x: hidden;
+}
+}

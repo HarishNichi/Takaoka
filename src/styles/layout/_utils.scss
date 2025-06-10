@@ -1,0 +1,84 @@
+/* Utils */
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+}
+
+.card {
+    // background: var(--surface-card);
+    background: var(--primary-background);
+    padding: .5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+    border-radius: 0.5px solid var(--surface-border);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.custom-card-info {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: var(--Primitive-Color-White, #FFF);
+    line-height: 24px;
+}
+
+.custom-card-info-with-zIndex {
+    display: flex;
+    // padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: var(--Primitive-Color-White, #FFF);
+    word-break: keep-all;
+}
+
+.custom-card-info-with-spinner {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    padding: 40px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: var(--Primitive-Color-White, #FFF);
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(242, 243, 242, 0.6); // Overlay color and transparency
+        transition-duration: 0.2s; // Transition duration
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        i {
+            font-size: 2rem;
+        }
+    }
+}
+
+.p-toast {
+
+    &.p-toast-top-right,
+    &.p-toast-top-left,
+    &.p-toast-top-center {
+        top: 100px;
+    }
+}

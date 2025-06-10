@@ -1,0 +1,30 @@
+.auth-bg {
+    background-color: var(--primary-color);
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+// Media queries
+@media only screen and (max-width: $mobile) {
+    .auth_view {
+        width: 20rem;
+    }
+}
+
+@media only screen and (min-width: $tablet) and (max-width: $desktop) and (orientation: portrait) {
+    .auth_view {
+        width: 30rem;
+    }
+}
+
+@media only screen and (min-width: $tablet) and (max-width: $desktop) and (orientation: landscape) {
+    .auth_view {
+        width: 30rem;
+    }
+}
+
+@media only screen and (min-width: $desktop) {
+    .auth_view {
+        width: 30rem;
+    }
+}

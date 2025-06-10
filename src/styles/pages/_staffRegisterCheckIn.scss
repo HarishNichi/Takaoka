@@ -1,0 +1,114 @@
+.staff_register_checkIn_counter {
+    .p-inputgroup-addon {
+        background-color: $updateButtonBgColor;
+        color: $updateButtonTextColor;
+        border-color: white;
+    }
+
+    .p-inputgroup-addon:hover {
+        background-color: $updateButtonHoverBgColor;
+        color: $updateButtonHoverTextColor;
+        border-color: white;
+    }
+}
+
+.custom-registerCheckIn-table {
+    .p-datatable .p-datatable-thead>tr>th {
+        font-size: $staffCheckinTableHeaderFontSize;
+        font-weight: $tableHeaderFontWeight;
+        background-color: transparent;
+    }
+
+    .p-datatable .p-datatable-tbody.p-datatable-frozen-tbody>tr>td {
+        font-size: $tableFrozenFontSize;
+        font-weight: $tableFrozenFontWeight;
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .p-datatable .p-datatable-tbody.p-datatable-frozen-tbody>tr>td:hover {
+        font-size: $tableFrozenFontSize;
+        font-weight: $tableFrozenFontWeight;
+        background-color: var(--primary-hover-color);
+        color: white;
+    }
+
+    .p-datatable .p-datatable-tbody>tr {
+        background-color: transparent;
+    }
+
+    .p-datatable .p-datatable-tbody>tr>td {
+        font-size: $tableDataFontSize;
+        font-weight: $commonFontWeight;
+    }
+
+    .p-datatable-frozen-tbody tr {
+        background-color: var(--primary-color);
+        color: white;
+
+        .input-switch-parent {
+            display: none;
+        }
+    }
+
+    .p-datatable.p-datatable-striped .p-datatable-frozen-tbody>tr.p-row-odd {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .p-datatable .p-datatable-tbody>tr.p-highlight {
+        color: var(--text-color);
+    }
+
+    .p-datatable {
+        border-radius: 10px;
+    }
+
+    .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead>tr>th {
+        background: #eff3f8;
+        border: none
+    }
+
+    .p-datatable .p-paginator-bottom {
+        border-radius: 10px;
+        background: transparent;
+    }
+
+    .p-datatable .p-datatable-tfoot>tr>td {
+        text-align: center;
+    }
+
+    .p-datatable .p-datatable-tfoot>tr>td:first-child {
+        text-align: start;
+    }
+
+    .p-datatable .p-datatable-tbody>tr:hover {
+        background: #E6E6E6;
+        color: #495057;
+        border-bottom: 0.5px solid #B4B6B4;
+    }
+    .p-datatable .p-datatable-tbody > tr > td:last-child{
+        border-right: 0px solid #dee2e6;
+    }
+}
+
+.register-checkIn-group-border {
+
+    .p-inputgroup-addon:first-child,
+    .p-inputgroup button:first-child,
+    .p-inputgroup input:first-child,
+    .p-inputgroup>.p-inputwrapper:first-child,
+    .p-inputgroup>.p-inputwrapper:first-child>.p-inputtext {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .p-inputgroup-addon:last-child,
+    .p-inputgroup button:last-child,
+    .p-inputgroup input:last-child,
+    .p-inputgroup>.p-inputwrapper:last-child,
+    .p-inputgroup>.p-inputwrapper:last-child>.p-inputtext {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+}

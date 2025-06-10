@@ -1,0 +1,36 @@
+.custom-switch {
+  /* Use PrimeReact 10 checked state */
+  .p-inputswitch.p-highlight:not(.p-disabled) .p-inputswitch-slider {
+    background: var(--primary-color);
+  }
+
+  /* Checked + hover */
+  .p-inputswitch.p-highlight:not(.p-disabled):hover .p-inputswitch-slider {
+    background: var(--primary-color);
+  }
+
+  /* Size of switch */
+  .p-inputswitch {
+    height: 18px;
+    width: 40px;
+  }
+
+  /* Adjust knob */
+  .p-inputswitch .p-inputswitch-slider:before {
+    width: 15px;
+    height: 12px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    top: 0;
+    right: 0rem;
+    left: 0.1rem;
+    margin-top: 0; /* remove vertical centering to align top */
+    border-radius: 50%; /* keep it round */
+    transition: transform 0.2s ease;
+  }
+
+  /* Make sure knob moves on checked */
+  .p-inputswitch.p-highlight .p-inputswitch-slider:before {
+    transform: translateX(20px); /* Move knob fully to right */
+  }
+}

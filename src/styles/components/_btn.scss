@@ -1,0 +1,600 @@
+.custom-button {
+    height: $commonHeight;
+    // border-radius: $commonRadius;
+
+    .p-button-icon {
+        font-size: $commonFontSize;
+    }
+
+    .p-button-label {
+        font-weight: $buttonFontWeight;
+        font-size: $commonFontSize;
+    }
+}
+
+.search-button {
+    .p-button {
+        background-color: $searchButtonBgColor;
+        color: $searchButtonTextColor;
+        border: 2px solid $searchButtonTextColor;
+    }
+
+    .p-button-label {
+        margin-left: 5px;
+        text-align: left;
+        line-height: 21px;
+    }
+}
+
+.search-button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $searchButtonHoverBgColor;
+        color: $searchButtonHoverTextColor;
+        border: 2px solid $searchButtonTextColor;
+    }
+}
+
+.import-button-white-bg {
+    .p-button {
+        background-color: $searchButtonBgColor;
+        color: $searchButtonTextColor;
+        border: 2px solid $searchButtonTextColor;
+    }
+
+    .p-button-label {
+        margin-left: 5px;
+        text-align: left;
+        line-height: 21px;
+    }
+}
+
+.import-button-white-bg {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $searchButtonHoverBgColor;
+        color: $searchButtonHoverTextColor;
+        border: 2px solid $searchButtonTextColor;
+    }
+}
+
+.export-button-white-bg {
+    .p-button {
+        background-color: $searchButtonBgColor;
+        color: $searchButtonTextColor;
+        border: 2px solid $searchButtonTextColor;
+    }
+
+    .p-button-label {
+        margin-left: 5px;
+        text-align: left;
+        line-height: 21px;
+    }
+}
+
+.export-button-white-bg {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $searchButtonHoverBgColor;
+        color: $searchButtonHoverTextColor;
+        border: 2px solid $searchButtonTextColor;
+    }
+}
+
+.create-button-primary-bg {
+    .p-button {
+        background-color: $exportButtonBgColor;
+        color: $exportButtonTextColor;
+        border-color: $exportButtonBgColor;
+    }
+
+    .p-button-label {
+        margin-left: 5px;
+        text-align: left;
+        line-height: 21px;
+    }
+}
+
+.create-button-primary-bg {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $exportButtonHoverBgColor;
+        color: $exportButtonTextColor;
+        border-color: $exportButtonHoverBgColor;
+    }
+}
+
+.delete-button {
+    .p-button {
+        background-color: $deleteButtonBgColor;
+        color: $deleteButtonTextColor;
+        border-color: $deleteButtonTextColor;
+    }
+}
+
+.delete-button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $deleteButtonHoverBgColor;
+        color: $deleteButtonHoverTextColor;
+        border-color: $deleteButtonHoverTextColor;
+    }
+}
+
+.delete-button-user {
+    .p-button {
+        background-color: $deleteButtonBgColorUser;
+        color: $deleteButtonTextColorUser;
+        border-color: $deleteButtonTextColorUser;
+    }
+}
+
+.delete-button-user {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $deleteButtonHoverBgColorUser;
+        color: $deleteButtonHoverTextColorUser;
+        border-color: $deleteButtonHoverTextColorUser;
+    }
+}
+
+/*Edit btn*/
+.edit-button-user {
+    .p-button {
+        background-color: $editButtonBgColor;
+        color: $editButtonTextColor;
+        border-color: $editButtonTextColor;
+    }
+}
+
+.edit-button-user {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $editButtonHoverBgColor;
+        color: $editButtonHoverTextColor;
+        border-color: $editButtonHoverTextColor;
+    }
+}
+
+.custom-icon-button {
+    font-size: $commonFontSize;
+    height: $commonHeight;
+    border-radius: $commonRadius;
+
+    .p-button-label {
+        font-weight: $buttonFontWeight;
+        flex: none;
+        margin-left: 10px;
+    }
+}
+
+.h_custom_white_button {
+    color: #2B3D51;
+    border-color: #2B3D51;
+}
+
+.h_custom_white_button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background: $customWhiteHoverBgColor !important;
+        border-color: #2B3D51;
+        color: #2B3D51;
+        border-radius: 1.5rem;
+    }
+}
+
+.h_custom_reg_white_button {
+    color: #2B3D51;
+    border-color: #2B3D51;
+    height: 80px;
+    border-radius: 5rem !important;
+}
+
+.h_custom_reg_white_button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background: $customWhiteRegHoverBgColor !important;
+        border-color: #2B3D51;
+        color: #2B3D51;
+        border-radius: 1.5rem;
+    }
+}
+
+.h_custom_reg_button {
+    color: #fff;
+    border-color: $customWhiteHoverBgColor !important;
+    background-color: $customWhiteHoverBgColor !important;
+}
+
+.h_custom_reg_button:hover {
+    color: white;
+    border-color: $customRegHoverBgColor !important;
+    background-color: $customRegHoverBgColor !important;
+}
+
+/*Import btn*/
+.import-button {
+    .p-button {
+        background-color: $importButtonBgColor;
+        color: $importButtonTextColor;
+        border-color: $importButtonBgColor;
+    }
+
+    .p-button-label {
+        padding-left: 5px;
+        text-align: left;
+    }
+}
+
+.import-button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $importButtonHoverBgColor;
+        color: $importButtonHoverTextColor;
+        border-color: $importButtonHoverBgColor;
+    }
+}
+
+/*Export btn*/
+.export-button {
+    .p-button {
+        background-color: $exportButtonBgColor;
+        color: $exportButtonTextColor;
+        border-color: $exportButtonBgColor;
+    }
+
+    .p-button-label {
+        padding-left: 5px;
+        text-align: left;
+    }
+}
+
+.export-button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $exportButtonHoverBgColor;
+        color: $exportButtonTextColor;
+        border-color: $exportButtonHoverBgColor;
+    }
+}
+
+/*Create btn*/
+.create-button {
+    .p-button {
+        background-color: $createButtonBgColor;
+        color: $createButtonTextColor;
+        border-color: $createButtonBgColor;
+    }
+
+    .p-button-label {
+        padding-left: 5px;
+        text-align: left;
+    }
+}
+
+.create-button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $createButtonHoverBgColor;
+        color: $createButtonHoverTextColor;
+        border-color: $createButtonHoverBgColor;
+    }
+}
+
+/*create-button-questionnaire*/
+.create-button-questionnaire {
+    .p-button {
+        background-color: $createButtonBgColor;
+        color: $createButtonTextColor;
+        border: 2px solid $createButtonTextColor;
+    }
+
+}
+
+.create-button-questionnaire {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $createButtonHoverBgColor;
+        color: $createButtonHoverTextColor;
+        border: 2px solid $createButtonHoverBgColor;
+    }
+}
+
+.p-dialog .p-dialog-footer button.back-button {
+    background-color: $backButtonBgColor;
+    color: $backButtonTextColor;
+    border-color: 2px solid $backButtonTextColor;
+}
+
+.p-dialog .p-dialog-footer button.back-button:enabled:hover {
+    background-color: $backButtonHoverBgColor;
+    color: $backButtonHoverTextColor;
+    border-color: 2px solid $backButtonTextColor;
+}
+
+/*Back or Cancel btn*/
+.back-button {
+    .p-button {
+        background-color: $backButtonBgColor;
+        color: $backButtonTextColor;
+        border: 2px solid $backButtonTextColor;
+    }
+}
+
+.back-button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $backButtonHoverBgColor;
+        color: $backButtonHoverTextColor;
+        border: 2px solid $backButtonTextColor;
+    }
+}
+
+/*Back or Cancel btn ( Transparent )*/
+.back-button-transparent {
+    .p-button {
+        background-color: transparent;
+        color: var(--primary-color);
+        border-color: transparent;
+    }
+}
+
+.back-button-transparent {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: transparent;
+        color: var(--primary-color);
+        border-color: transparent;
+    }
+}
+
+/*Update ,Save or Submit btn*/
+.update-button {
+    .p-button {
+        background-color: $updateButtonBgColor;
+        color: $updateButtonTextColor;
+        border: 2px solid $updateButtonBgColor;
+    }
+}
+
+/*primary button*/
+.primary-button {
+    .p-button {
+        background-color: $primaryButtonBgColor;
+        color: $primaryButtonTextColor;
+        border: 2px solid $primaryButtonBgColor;
+    }
+}
+
+.primary-button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $primaryButtonHoverBgColor;
+        color: $primaryButtonHoverTextColor;
+        border: 2px solid $primaryButtonHoverBgColor;
+    }
+}
+
+.update-button-white {
+    .p-button {
+        background-color: $updateButtonTextColor;
+        color: $updateButtonBgColor;
+        border-color: $updateButtonBgColor;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .p-button-label {
+        flex: none;
+    }
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        border: 1px solid #2B3D51;
+        background-color: #2b3d5117;
+        color:  #3C5069;
+    }
+}
+
+.update-button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $updateButtonHoverBgColor;
+        color: $updateButtonHoverTextColor;
+        border: 2px solid $updateButtonBgColor;
+    }
+}
+
+/*Edit btn*/
+.edit-button {
+    .p-button {
+        background-color: $editButtonBgColor;
+        color: $editButtonTextColor;
+        border-color: 2px solid $editButtonTextColor;
+    }
+}
+
+.edit-button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $editButtonHoverBgColor;
+        color: $editButtonHoverTextColor;
+        border-color: $editButtonHoverTextColor;
+    }
+}
+
+/*delete ok confirmation btn*/
+.del_ok-button {
+    .p-button {
+        background-color: $delOkButtonBgColor;
+        color: $delOkButtonTextColor;
+        border: 2px solid $delOkButtonBgColor;
+    }
+}
+
+.del_ok-button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $delOkButtonHoverBgColor;
+        color: $delOkButtonHoverTextColor;
+        border: 2px solid $delOkButtonBgColor;
+    }
+}
+
+/* Staff back to top or another screen navigtion*/
+.backStaff-button {
+    .p-button {
+        background-color: $backStaffButtonBgColor;
+        color: $backStaffButtonTextColor;
+        border-color: $backStaffButtonBgColor;
+    }
+}
+
+.backStaff-button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $backStaffButtonHoverBgColor;
+        color: $backStaffButtonHoverTextColor;
+        border-color: $backStaffButtonHoverTextColor;
+    }
+}
+
+.person-count-button {
+    height: 50px;
+    text-align: center;
+    width: 50px;
+
+    .p-button-icon {
+        font-size: $commonFontSize;
+    }
+
+    .p-button-label {
+        font-weight: $buttonFontWeight;
+        font-size: 24px;
+    }
+}
+
+.external-selector-button {
+    height: $commonHeight;
+    border-radius: $commonRadius;
+    text-overflow: ellipsis;
+    max-height: 80px;
+
+    .p-button-icon {
+        font-size: $commonFontSize;
+    }
+
+    .p-button-label {
+        font-weight: $buttonFontWeight;
+        font-size: 16px;
+    }
+}
+
+.border-radius-5rem {
+    border-radius: 5rem !important;
+}
+
+.buttonText .p-button-label {
+    font-size: 45px !important;
+}
+
+.successButtonText .p-button-label {
+    font-size: 40px !important;
+}
+
+.footerButtonText .p-button-label {
+    font-size: 30px !important;
+}
+
+.evacueeFooterButtonText .p-button-label {
+    font-size: 18px !important;
+}
+
+.custom-person-count-toggle {
+    .p-togglebutton.p-button.p-highlight:hover {
+        background-color: var(--primary--hover-color);
+    }
+}
+
+.exit-procedure-button {
+    .p-button {
+        background-color: #fff;
+        color: #d31720;
+        border: 2px solid  #d31720;
+    }
+}
+
+.exit-procedure-button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: #ffeaed;
+        color: #d31720;
+        border: 2px solid #d31720;
+    }
+}
+@media screen and (max-width: 769px) {
+    .footerButtonText .p-button-label {
+        font-size: 16px !important;
+    }
+    .successButtonText .p-button-label {
+    font-size: 20px !important;
+}
+    .custom-button .p-button-label {
+        font-size: 14px !important;
+    }
+}
+
+.qr-button {
+    .p-button {
+        background-color: $exportButtonBgColor;
+        color: $exportButtonTextColor;
+        border-color: $exportButtonBgColor;
+    }
+    .p-button-label {
+        padding-left: 5px;
+        text-align: left;
+        font-size: 20px;
+        font-family: 'Noto Sans JP', sans-serif;
+    }
+}
+
+.qr-button {
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: $exportButtonHoverBgColor;
+        color: $exportButtonTextColor;
+        border-color: $exportButtonHoverBgColor;
+    }
+}
+.display-inline{
+    display: inline;
+}
+.public-external-class{
+    font-size: 21px;
+    font-weight: bold;
+}
+.qr_submit{
+    font-size: 20px;
+    height: 54px;
+}

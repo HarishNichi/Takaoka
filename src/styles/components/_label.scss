@@ -1,0 +1,49 @@
+.custom-label {
+    font-size: $labelFontSize ;
+    font-weight: $labelFontWeight ;
+    line-height: $labelFontSize ;
+}
+
+.custom-align-label {
+
+    .p-float-label textarea~label,
+    .p-float-label .p-mention~label {
+        top: 50%;
+    }
+
+    .p-float-label input:focus~label,
+    .p-float-label input:-webkit-autofill~label,
+    .p-float-label input.p-filled~label,
+    .p-float-label textarea:focus~label,
+    .p-float-label textarea.p-filled~label,
+    .p-float-label .p-inputwrapper-focus~label,
+    .p-float-label .p-inputwrapper-filled~label,
+    .p-float-label .p-tooltip-target-wrapper~label {
+        top: -0.75rem;
+        left: 0;
+        font-size: $commonFloatLabelFontSize;
+    }
+}
+
+.custom-align-label-input-group {
+    .p-float-label{
+        display: flex;
+    }
+    .p-float-label textarea~label,
+    .p-float-label .p-mention~label {
+        top: 50%;
+    }
+
+    .p-float-label input:focus~label,
+    .p-float-label input:-webkit-autofill~label,
+    .p-float-label input.p-filled~label,
+    .p-float-label textarea:focus~label,
+    .p-float-label textarea.p-filled~label,
+    .p-float-label .p-inputwrapper-focus~label,
+    .p-float-label .p-inputwrapper-filled~label,
+    .p-float-label .p-tooltip-target-wrapper~label {
+        top: -0.75rem;
+        left: 0;
+        font-size: $commonFloatLabelFontSize;
+    }
+}

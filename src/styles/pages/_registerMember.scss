@@ -1,0 +1,14 @@
+// white-space-nowrap overflow-hidden text-overflow-ellipsis
+@media (max-width: 576px) {
+    .text-display {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (min-width:768px) {
+    .difference-border {
+        border-left: 1px solid #B4B6B4;
+    }
+}

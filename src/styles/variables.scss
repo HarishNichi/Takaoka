@@ -1,0 +1,145 @@
+/* Queries variables*/
+/* Mobile */
+$mobile: 576px;
+/* Tablet */
+$tablet: 768px;
+/* Desktop */
+$desktop: 1200px;
+
+/* Heights */
+$commonHeight: 40px;
+$userDashBoardHeight: 250px;
+$userDashboardHeightSm: 180px;
+$userDashBoardHeight-c: 350px;
+$userDashboardHeightSm-c: 280px;
+
+/* width */
+$sNoWidth: 60px;
+$actionEditDeleteWidth: 200px;
+$userDashBoardWidth: 500px;
+$fullWidth: 100%;
+
+/* Transition duration */
+$transitionDuration: .2s;
+
+/* Fonts sizes */
+$commonFontSize: 16px;
+$dialogHeaderFontSize: 21px;
+$tableHeaderFontSize: 12px;
+$staffCheckinTableHeaderFontSize: 16px;
+$tableDataFontSize: 16px;
+$tableFrozenFontSize: 16px;
+$labelFontSize: 16px;
+$labelFontWeight: 700;
+$pageHeaderFontSize1: 21px;
+$pageHeaderFontSize2: 20px;
+$pageHeaderFontSize3: 16px;
+$footerFontSize: 16px;
+$topHeaderFontSize: 14px;
+$fileUploadFontSize: 12px;
+$userDashBoardFontSize: 25px;
+$authHeaderFontSize: 18px;
+$subHeaderFontSize: 18px;
+$commonFloatLabelFontSize: 14px;
+$detailsHeaderFontSize: 18px;
+$detailsBodyFontSize: 16px;
+
+/* Fonts weights */
+$commonFontWeight: 500;
+$topHeaderFontWeight: 700;
+$dialogHeaderFontWeight: 500;
+$tableHeaderFontWeight: 700;
+$tableFrozenFontWeight: 700;
+$buttonFontWeight: 700;
+$pageHeadersFontWeight: 700;
+$authHeaderFontWeight: 700;
+$detailsHeaderFontWeight: 700;
+
+/* Radius */
+$commonRadius: 5px;
+$headerRadius: 10px;
+
+/* Border */
+$commonBorder: 1px solid var(--primary-color);
+
+/* Padding */
+$commonPadding: 0.5rem;
+
+/*color*/
+$customWhiteRegHoverBgColor: #2b3d5117;
+$customWhiteHoverBgColor: #2B3D51;
+
+/*color*/
+$customRegHoverBgColor: #0d4d33;
+
+/*Create button*/
+$createButtonBgColor: #16A34A;
+$createButtonHoverBgColor: #16A34A;
+$createButtonTextColor: #ffffff;
+$createButtonHoverTextColor: #ffff;
+
+/*Import button*/
+$importButtonBgColor: var(--primary-color);
+$importButtonHoverBgColor: var(--primary-hover-color);
+$importButtonTextColor: #ffffff;
+$importButtonHoverTextColor: #ffffff;
+
+/*Export button*/
+$exportButtonBgColor: var(--primary-color);
+$exportButtonHoverBgColor: var(--primary-hover-color);
+$exportButtonTextColor: #ffffff;
+$exportButtonHoverTextColor: #ffffff;
+
+/*Search button*/
+$searchButtonBgColor: var(--search-color);
+$searchButtonHoverBgColor: var(--search-hover-color);
+$searchButtonTextColor: var(--search-text-color);
+$searchButtonHoverTextColor: var(--search-hover-text);
+
+/*Back or cancel button*/
+$backButtonBgColor: var(--back-color);
+$backButtonHoverBgColor: var(--back-hover-color);
+$backButtonTextColor: var(--back-text);
+$backButtonHoverTextColor: var(--back-hover-text);
+
+/* Update,Save or submit button*/
+$updateButtonBgColor: var(--update-color);
+$updateButtonHoverBgColor: var(--update-hover-color);
+$updateButtonTextColor: var(--update-text-color);
+$updateButtonHoverTextColor: var(--update-hover-text);
+
+/*Edit action button*/
+$editButtonBgColor: var(--edit-color);
+$editButtonHoverBgColor: var(--edit-hover-color);
+$editButtonTextColor: var(--edit-text);
+$editButtonHoverTextColor: var(--edit-hover-text);
+
+/*Delete action button*/
+$deleteButtonBgColor: var(--delete-color);
+$deleteButtonHoverBgColor: var(--delete-hover-color);
+$deleteButtonTextColor: var(--delete-text);
+$deleteButtonHoverTextColor: var(--delete-hover-text);
+
+/*Delete action user button*/
+$deleteButtonBgColorUser: #ffff;
+$deleteButtonHoverBgColorUser: #FFEAED;
+$deleteButtonTextColorUser: #C70A18;
+$deleteButtonHoverTextColorUser: #C70A18;
+
+/*Delete -Ok button*/
+$delOkButtonBgColor: #D31720;
+$delOkButtonHoverBgColor: #e72932;
+$delOkButtonTextColor: #fff;
+$delOkButtonHoverTextColor: #fff;
+
+/* Staff back to top or previous screen button*/
+$backStaffButtonBgColor: var(--primary-color);
+$backStaffButtonHoverBgColor: #ffff;
+$backStaffButtonTextColor: #ffff;
+$backStaffButtonHoverTextColor: #000000;
+
+/* user primary button */
+$primaryButtonTextColor: #ffff;
+$primaryButtonHoverTextColor: #ffff;
+$primaryButtonBgColor: var(--primary-color);
+$primaryButtonHoverBgColor: var(--primary-hover-color);

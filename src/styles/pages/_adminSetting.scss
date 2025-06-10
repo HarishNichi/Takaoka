@@ -1,0 +1,10 @@
+.dragger-setting {
+    right: 20px;
+}
+
+@media (max-width: 576px) {
+    .dragger-setting {
+        right: 9px;
+        padding-top: 0.25rem;
+    }
+}

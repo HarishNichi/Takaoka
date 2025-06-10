@@ -1,0 +1,47 @@
+.staff-list {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    margin: 0 auto;
+    max-height: 400px;
+    overflow: auto;
+  }
+  
+  .staff-list li {
+    display: flex;
+  }
+  
+  .staff-list .label,
+  .staff-list .value {
+    border-bottom: 1px solid #B4B6B4;
+    padding: 7px;
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+  
+  .staff-list .label {
+    width: 60%;
+    color: #343a40;
+    font-weight: bold;
+    border-right: none; /* Remove right border for label */
+    display: flex;
+    align-items: center;
+  }
+  
+  .staff-list .value {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    word-break: break-all;
+    overflow: auto;
+    justify-content: flex-end;
+  }
+
+  .staff-list li:not(:first-child) .label,
+  .staff-list li:not(:first-child) .value {
+    border-top: none; /* Remove top border for labels except the first one */
+  }
+
+  .staff-list li:last-child .label,
+  .staff-list li:last-child .value {
+    border-bottom: none; /* Remove top border for labels except the first one */
+  }

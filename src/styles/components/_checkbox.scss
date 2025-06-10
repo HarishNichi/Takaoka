@@ -1,0 +1,12 @@
+.custom-checkbox{
+.p-checkbox.p-highlight  .p-checkbox-box {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+ .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+}

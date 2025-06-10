@@ -1,0 +1,257 @@
+.layout-sidebar {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    z-index: 999;
+    user-select: none;
+    top: 4rem;
+    transition: transform $transitionDuration, left $transitionDuration;
+    background: #E6E6E6;
+}
+
+.layout_sidebar_scroll {
+    height: calc(100vh - 4rem);
+    overflow-y: auto;
+    /* For Firefox */
+    scrollbar-width: thin;
+}
+
+.layout-menu {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    user-select: none;
+
+    .without-top-element {
+        margin-top: 16px;
+    }
+
+    .layout-root-menuitem {
+        margin-bottom: 24px;
+
+        >.layout-menuitem-root-text {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #515652;
+            margin: 0.40rem 0;
+            padding-left: 1rem;
+            display: flex;
+            align-items: center;
+
+            >.layout-menuitem-root-text-icon {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding-right: 0.25rem;
+                font-size: 16px;
+            }
+        }
+
+        >a.top-element {
+            display: flex;
+            align-items: center;
+            position: relative;
+            outline: 0 none;
+            color: black;
+            cursor: pointer;
+            padding: .40rem 0.50rem;
+            transition: background-color $transitionDuration, box-shadow $transitionDuration;
+            border-radius: 8px;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            margin-top: 16px;
+            font-weight: bold;
+
+            &:hover {
+                background-color: #CDCFCD;
+                color: #1F2620;
+            }
+
+            &.active-route {
+                font-weight: bold;
+                background-color: var(--primary-color);
+                color: white;
+                border: 0;
+
+                &:hover {
+                    background-color: var(--primary-color);
+                    color: white;
+                }
+            }
+        }
+    }
+
+    li.active-menuitem {
+        >a {
+            background-color: var(--primary-color);
+            color: white;
+
+            &:hover {
+                background-color: var(--primary-color);
+                color: white;
+            }
+
+            .layout-submenu-toggler {
+                transform: rotate(-180deg);
+            }
+        }
+
+        >a.top-element {
+            background-color: var(--primary-color);
+            color: white;
+
+            &:hover {
+                background-color: var(--primary-color);
+                color: white;
+            }
+        }
+
+        >ul {
+            max-height: auto;
+        }
+    }
+
+    .active-parent-menu {
+        margin-bottom: 0.25rem;
+        padding-left: 0.75rem;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        padding-left: 0rem;
+        list-style-type: none;
+
+        a {
+            display: flex;
+            align-items: center;
+            position: relative;
+            outline: 0 none;
+            color: black;
+            cursor: pointer;
+            padding: .40rem 0.50rem;
+            transition: background-color $transitionDuration, box-shadow $transitionDuration;
+            border-radius: 8px;
+            margin-bottom: 0.20rem;
+            margin-left: 1rem;
+            margin-right: 1rem;
+
+            .layout-menuitem-icon {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                margin-right: 1rem;
+            }
+
+            .layout-submenu-toggler {
+                font-size: 75%;
+                margin-left: auto;
+                transition: transform $transitionDuration;
+            }
+
+            &.rotated-icon {
+                .layout-menuitem-icon {
+                    transform: rotate(90deg);
+                }
+            }
+
+            &.active-route {
+                font-weight: bold;
+                background-color: var(--primary-color);
+                color: white;
+                border: 0;
+
+                &:hover {
+                    background-color: var(--primary-color);
+                    color: white;
+                }
+            }
+
+            &:hover {
+                background-color: #CDCFCD;
+                color: #1F2620;
+            }
+        }
+
+        ul {
+            overflow: hidden;
+            max-height: 0;
+
+            li {
+                a {
+                    margin-bottom: .25rem;
+                    margin-left: .25rem;
+                    margin-right: .25rem;
+                    border-radius: 8px;
+
+                    &:hover {
+                        background-color: #CDCFCD;
+                        color: #1F2620;
+                    }
+
+                    &:focus {
+                        background-color: var(--primary-color);
+                        color: white;
+                    }
+                }
+
+                li {
+                    a {
+                        margin-left: 2rem;
+                    }
+
+                    li {
+                        a {
+                            margin-left: 2.5rem;
+                        }
+
+                        li {
+                            a {
+                                margin-left: 3rem;
+                            }
+
+                            li {
+                                a {
+                                    margin-left: 3.5rem;
+                                }
+
+                                li {
+                                    a {
+                                        margin-left: 4rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.layout-submenu-enter-active {
+    max-height: 1000px !important;
+    transition: max-height 1s ease-in-out;
+}
+
+.layout-submenu-enter-done {
+    max-height: 1000px !important;
+}
+
+.layout-submenu-exit {
+    max-height: 1000px !important;
+}
+
+.layout-submenu-exit-active {
+    overflow: hidden;
+    max-height: 0 !important;
+    transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
+}
+
+.sidebar-bottom-fixed-view {
+    width: 300px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}

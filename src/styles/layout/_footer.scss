@@ -1,0 +1,21 @@
+.layout-footer {
+    width: 100%;
+    transition: margin-left $transitionDuration;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    font-size: $footerFontSize;
+    font-weight: $commonFontWeight;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    padding: 1rem;
+}
+
+// Responsive
+@media (max-width: $mobile) {
+    .layout-footer {
+        flex-direction: column;
+        justify-content: center;
+    }
+}

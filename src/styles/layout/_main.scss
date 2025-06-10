@@ -1,0 +1,55 @@
+/* Import the fonts using @font-face */
+@font-face {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    src: url('/public/fonts/NotoSansJP-Regular.ttf') format('truetype');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: 500;
+    color: var(--text-color);
+    background-color: var(--primary-background);
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+    scrollbar-color: var(--primary-color) rgb(210, 210, 210);
+    scrollbar-width: thin;
+}
+
+/* For WebKit browsers (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgb(210, 210, 210);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.layout-wrapper {
+    min-height: 100vh;
+}

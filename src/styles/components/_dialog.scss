@@ -1,0 +1,229 @@
+.custom-modal.p-dialog .p-dialog-header {
+    border-bottom: $commonBorder;
+    border-color: #e9ecef;
+    padding: $commonPadding;
+    border-top-left-radius: $commonRadius;
+    border-top-right-radius: $commonRadius;
+}
+
+.custom-modal.p-dialog .p-dialog-header .p-dialog-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.custom-modal.p-dialog .p-dialog-footer {
+    border-top: $commonBorder ;
+    border-color: #e9ecef;
+    padding: 1rem $commonPadding;
+    border-bottom-left-radius: $commonRadius;
+    border-bottom-right-radius: $commonRadius;
+}
+
+.custom-modal.p-dialog .p-dialog-content {
+    padding: $commonPadding;
+}
+
+.custom-modal {
+    border-radius: $commonRadius;
+}
+
+/**new cr modal className **/
+.new-custom-modal.p-dialog .p-dialog-header {
+    border-color: #e9ecef;
+    padding: $commonPadding;
+    border-top-left-radius: $headerRadius;
+    border-top-right-radius: $headerRadius;
+    background-color: var(--primary-background);
+    text-align: center;
+}
+
+.new-custom-modal.p-dialog .p-dialog-header .p-dialog-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+}
+
+.new-custom-modal.p-dialog .p-dialog-content .modal-header{
+    display: none;
+}
+
+.new-custom-modal.p-dialog .p-dialog-footer {
+    padding: 0px 90px 24px 90px;
+    display: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: var(--primary-background);
+}
+
+.new-custom-modal.p-dialog .p-dialog-content {
+    background-color: var(--primary-background);
+    padding: 24px 40px 24px 40px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.new-custom-modal {
+    width: 480px;
+    border-radius: $commonRadius;
+}
+
+.new-custom-modal .p-tabview-nav-next {
+    right: -10px;
+}
+
+.modal-content {
+    font-size: $commonFontSize;
+}
+
+/* Block scroll when the dialog is open */
+.dialog-open {
+    overflow: hidden;
+}
+
+.modal-import {
+    .p-dialog-content {
+        display: flex;
+    }
+}
+
+@media screen and (min-width: 576px) {
+    .importModal_width {
+        width: 40rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .new-custom-modal {
+        width: 100%;
+    }
+
+    .new-custom-modal.p-dialog .p-dialog-footer {
+        padding: 0px 30px 24px 30px;
+    }
+
+    .new-custom-modal.p-dialog .p-dialog-content {
+        padding: 24px 30px 24px 30px;
+    }
+}
+
+.staff_modal {
+    .p-tabview .p-tabview-panels {
+        background-color: var(--primary-background);
+        padding: 0.7rem 0rem 0.7rem 0rem;
+    }
+
+    .p-tabview .p-tabview-nav li .p-tabview-nav-link {
+        background-color: var(--primary-background);
+    }
+
+    .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+        background-color: var(--primary-background);
+    }
+
+    .p-tabview .p-tabview-nav {
+        background-color: var(--primary-background);
+    }
+    .p-tabview .p-tabview-nav li:hover{
+        background-color: var(--primary-background);
+    }
+    .p-tabview .p-tabview-nav-btn.p-link{
+        background-color: var(--primary-background);
+    }
+    .p-tabview .p-tabview-nav-btn.p-link{
+        width: 2rem;
+        box-shadow: none;
+    }
+    .p-tabview .p-tabview-nav-btn.p-link:focus{
+        box-shadow: none;
+    }
+}
+
+.modal-field-top-space {
+    margin-top: 0.7rem;
+}
+
+.modal-field-bottom-space {
+    margin-bottom: 0.7rem;
+}
+
+.modal-button-footer-space {
+    margin-top: 0.7rem;
+    margin-bottom: 0.7rem;
+}
+
+.modal-button-footer-space-back {
+    margin-top: 0.7rem;
+}
+
+.modal-label-field-space {
+    padding-bottom: 0.25rem;
+}
+
+.modal-header {
+    text-align: center;
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 1.25rem;
+}
+
+
+
+/**new cr modal className **/
+.new-custom-modal-person.p-dialog .p-dialog-header {
+    border-bottom: $commonBorder;
+    border-color: #e9ecef;
+    padding: $commonPadding;
+    border-top-left-radius: $commonRadius;
+    border-top-right-radius: $commonRadius;
+    display: none;
+}
+
+.new-custom-modal-person.p-dialog .p-dialog-header .p-dialog-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.new-custom-modal-person.p-dialog .p-dialog-footer {
+    padding: 0px 90px 24px 90px;
+    display: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: var(--primary-background);
+}
+
+.new-custom-modal-person.p-dialog .p-dialog-content {
+    background-color: var(--primary-background);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.new-custom-modal-person {
+    width: 480px;
+    border-radius: $commonRadius;
+}
+
+
+@media screen and (max-width: 576px) {
+
+    .new-custom-modal-person.p-dialog .p-dialog-footer {
+        padding: 0px 30px 24px 30px;
+    }
+
+    .new-custom-modal-person.p-dialog .p-dialog-content {
+        padding: 24px 30px 24px 30px;
+    }
+}
+
+.truncate-message {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.break-words {
+  word-break: break-word;
+}

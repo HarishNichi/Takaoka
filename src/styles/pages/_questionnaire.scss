@@ -1,0 +1,231 @@
+.question-block .custom-switch {
+    line-height: 0.5;
+}
+
+.questionnaire-table .dargDrop_view ol li:hover {
+    background-color: #E6E6E6
+}
+
+.questionnaire .dargDrop_view ol li {
+    background-color: #E6E6E6;
+    margin-bottom: 40px;
+}
+
+.questionnaire .dargDrop_view ol li a:hover {
+    color: #D31720;
+}
+
+.questionnaire .dargDrop_view ol li a {
+    color: #D31720;
+}
+
+.questionnaire .dargDrop_view .dargDrop_view-inner {
+    border: none;
+}
+
+.questionnaire .dargDrop_view ol li {
+    border-radius: 10px;
+}
+
+.questionnaire .p-button-group .p-button {
+    margin: 8px;
+    width: auto;
+    height: 40px;
+    margin-left: 0px;
+}
+
+.questionnaire .p-selectbutton .p-button {
+    border: 1px solid #ced4da;
+    color: #515652;
+    border-radius: 5px;
+}
+
+.questionnaire .p-selectbutton .p-button.p-highlight {
+    background: #D31720;
+    color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #D31720;
+}
+
+.questionnaire .p-selectbutton .p-button.p-highlight:hover {
+    background: #D31720;
+    color: #ffffff;
+    border-radius: 5px;
+    border: 1px solid #D31720;
+}
+
+.questionnaire .p-button-group .p-button:not(:first-of-type):not(:last-of-type) {
+    border-radius: 5px;
+}
+
+.questionnaire-table .p-datatable-row-expansion .rowExpansionTable .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody>tr:first-child>td:first-child {
+    border-top-left-radius: 0px;
+    border-top: 1px solid #dee2e6;
+}
+
+.questionnaire-table .p-datatable-row-expansion .rowExpansionTable .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody>tr:first-child>td:last-child {
+    border-top-right-radius: 0px;
+    border-top: 1px solid #dee2e6;
+}
+
+.questionnaire-table .p-datatable-row-expansion .rowExpansionTable .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody>tr:last-child>td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+.questionnaire-table .p-datatable-row-expansion .rowExpansionTable .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody>tr:last-child>td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+.questionnaire-table .rowExpansionTable .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody>tr>td:first-child {
+    border-left: 1px solid #dee2e6;
+    border-width: 0 0 1px 1px;
+}
+
+.p-datatable .p-datatable-tbody>tr>td:last-child {
+    border-right: 1px solid #dee2e6;
+}
+
+.questionnaire-table .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead>tr:first-child>th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom: 1px;
+}
+
+.questionnaire-table .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead>tr:first-child>th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.questionnaire .custom-checkbox .p-checkbox.p-highlight  .p-checkbox-box {
+    background: #ffffff;
+    border: 2px solid #B4B6B4;
+}
+
+.questionnaire .p-checkbox .p-checkbox-box .p-checkbox-icon {
+    color: #D31720;
+}
+
+.questionnaire .custom-checkbox .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+    background: #ffffff;
+    border: 2px solid #B4B6B4;
+}
+
+.questionnaire .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+    border: 2px solid #B4B6B4;
+}
+
+.questionnaire .create-button-questionnaire {
+    .p-button {
+        background-color: #ffffff;
+        color: #16A34A;
+        border: 2px solid #16A34A;
+    }
+
+}
+
+.questionnaire .create-button-questionnaire {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: #16A34A;
+        color: #ffffff;
+        border: 2px solid #16A34A;
+    }
+}
+
+.questionnaire .del_ok-button-questionnaire {
+    .p-button {
+        background-color: #ffffff;
+        color: #D31720;
+        border: 2px solid #D31720;
+    }
+
+    .p-button-label {
+        padding-top: 0.2rem;
+    }
+
+}
+
+.questionnaire .del_ok-button-questionnaire {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: #FFEAED;
+        color: #D31720;
+        border: 2px solid #D31720;
+    }
+}
+
+.questionnaire .update-button {
+    .p-button {
+        background-color: #D31720;
+        color: #ffffff;
+        border: 2px solid #D31720;
+    }
+
+}
+
+.questionnaire .update-button {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: #e72932;
+        color: #ffffff;
+        border: 2px solid #e72932;
+    }
+}
+
+.questionnaire ol {
+    padding-inline-start: inherit;
+}
+
+.questionnaire .list-border {
+    border-radius: 10px;
+    background-color: #E6E6E6;
+}
+
+/* Optional: Customize the panel content background and add custom padding */
+.questionnarie_panel {
+    .p-panel .p-panel-content {
+        padding: 0;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+    }
+
+    .panel-header {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        cursor: move;
+        background-color: #fff;
+        border-radius: 5px;
+    }
+
+    .toggle-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.5em;
+        margin-right: 0.5em;
+        margin-left: 0.5em;
+    }
+
+    .drag-handle {
+        margin-right: 0.5em;
+        margin-left: 0.5em;
+    }
+
+    .panel-title {
+        flex: 1;
+        /* Ensure title takes remaining space */
+        font-size: 18px;
+    }
+
+    .panel-body {
+        display: none;
+        /* Initially hide panel body */
+    }
+
+    .panel-body.expanded {
+        display: block;
+        /* Show panel body when expanded */
+    }
+}

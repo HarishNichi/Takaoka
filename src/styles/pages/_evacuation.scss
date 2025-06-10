@@ -1,0 +1,50 @@
+.evacuation_dropdown {
+    width: 250px;
+}
+
+.evacuation_label {
+    width: 150px;
+}
+
+.family-detail-data.p-dialog .p-dialog-content{
+    padding: 1.5rem;
+    padding-top: 0;
+}
+
+@media(max-width:450px) {
+    .evacuation_dropdown {
+        width: 170px;
+    }
+}
+
+@media (min-width:476px) {
+    .evacuation_form {
+        display: flex;
+    }
+}
+
+.evacuation_button_height {
+    height: 40px;
+    width: auto;
+}
+
+
+@media (max-width: 575px) {
+    .gap-2.mobile-input {
+        gap: 2rem !important;
+    }
+
+    .search-button.mobile-input {
+        margin-top: -1rem !important;
+    }
+}
+
+@media screen and (min-width: 476px) and (max-width: 575px) {
+    .mobile-input.p-float-label {
+        margin-left: 106px !important;
+    }
+
+    .mobile-input.custom-select {
+        margin-left: 106px !important;
+    }
+}

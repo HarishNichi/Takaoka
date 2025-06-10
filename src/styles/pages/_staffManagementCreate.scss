@@ -1,0 +1,16 @@
+.create_input_stock {
+    width: 350px;
+}
+
+@media (max-width:531px) and (min-width:432px) {
+    .create_input_stock {
+        width: 285px;
+    }
+}
+
+@media screen and (max-width:431px) {
+
+    .create_input_stock {
+        width: 180px;
+    }
+}

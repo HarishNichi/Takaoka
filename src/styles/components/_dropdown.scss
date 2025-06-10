@@ -1,0 +1,30 @@
+.p-dropdown:not(.p-disabled).p-focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem transparent;
+    border-color: #ced4da;
+}
+
+.custom-select {
+    .p-dropdown {
+        height: $commonHeight;
+        border-radius: $commonRadius;
+        font-weight: $commonFontWeight;
+        font-size: $commonFontSize;
+    }
+
+    .p-dropdown-trigger {
+        height: $commonHeight;
+    }
+
+    .p-dropdown-label {
+        font-weight: $commonFontWeight;
+    }
+
+    .p-disabled,
+    .p-component:disabled {
+        opacity: 1;
+        background-color: #f8f9fa;
+    }
+
+}

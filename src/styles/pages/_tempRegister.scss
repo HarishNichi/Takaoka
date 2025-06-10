@@ -1,0 +1,248 @@
+.header-border {
+    border-left: 0.5rem solid var(--primary-color);
+}
+
+.multistep-form .p-card-content,
+.multistep-form .p-card-body {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.multistep-form .p-card-body {
+    padding: 0;
+}
+
+.multi-form-submit.p-button {
+    height: 50px;
+}
+.multistep-form .custom-button .p-button-label{
+    font-size: 18px;
+}
+
+.custom-align-label .p-float-label input:focus~.post-label,
+.custom-align-label .p-float-label input.p-filled~.post-label {
+    margin-left: -1.1rem;
+}
+
+.custom-label.post-label {
+    margin-left: -1.1rem;
+}
+
+.abnormal-label {
+    margin-top: -2px;
+}
+
+
+.outer-label label {
+    padding-bottom: 0.25rem;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+}
+
+.year-select .p-inputtext {
+    text-align: right;
+}
+
+.set-zindex {
+    z-index: 1;
+}
+
+.year-select .p-dropdown .p-dropdown-trigger {
+    width: 2rem;
+}
+
+.multi-form-submit {
+    background-color: var(--primary-color);
+}
+
+.multi-form-submit.p-button:enabled:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.multi-form-submit.return {
+    background: #ffffff;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+
+.multi-form-submit.return.p-button:enabled:hover {
+    background: #2b3d5117;
+    color: var(--primary-hover-color);
+    border-color:var(--primary-hover-color);
+    border: 2px solid;
+}
+
+.multi-form-header .page-header1 {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.multi-form-card .p-steps .p-steps-item .p-menuitem-link {
+    background: transparent;
+}
+
+.multi-form-submit.p-button-rounded {
+    border-radius: 2rem;
+}
+
+.multi-form-card .p-icon-field-right>svg:last-of-type {
+    color: #000000;
+    stroke-width: 10px;
+}
+
+.approve-check.custom-checkbox .p-checkbox.p-highlight  .p-checkbox-box {
+    background: #ffffff;
+    border: 1px solid #B4B6B4;
+}
+
+.approve-check.custom-checkbox .p-checkbox .p-checkbox-box .p-checkbox-icon {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.approve-check a {
+    color: var(--primary-color);
+}
+
+.approve-check.custom-checkbox .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+    background: #ffffff;
+    border: 1px solid #B4B6B4;
+}
+
+.question .p-button.p-button-rounded {
+    border-radius: 5px;
+}
+
+.gender-view .p-button-group .p-button {
+    margin: 8px;
+    margin-top: 0px;
+    width: auto;
+    height: 40px;
+    margin-left: 0px;
+}
+
+.gender-view .p-selectbutton .p-button {
+    border: 1px solid #ced4da;
+    color: #515652;
+    border-radius: 5px;
+}
+
+.gender-view .p-selectbutton .p-button.p-highlight {
+    background: var(--primary-color);
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.gender-view .p-selectbutton .p-button:enabled:hover {
+    background:  var(--edit-hover-color);
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.gender-view .p-selectbutton .p-button:not(.p-disabled):not(.p-highlight):hover {
+    background: var(--edit-hover-color);
+    color: var(--primary-color);
+    border-radius: 5px;
+    border-color:var(--primary-color);
+    border: 1px solid ;
+}
+
+.gender-view .p-selectbutton .p-button.p-highlight:hover {
+    background: var(--primary-hover-color);
+    color: #ffffff;
+    border-radius: 5px;
+}
+
+.gender-view .p-button-group .p-button:not(:first-of-type):not(:last-of-type) {
+    border-radius: 5px;
+}
+
+.question .p-button.p-button-rounded {
+    border: 1px solid #ced4da;
+    background-color: #ffffff;
+    color: #515652;
+}
+
+.question .p-button.p-button-rounded:hover {
+    border: 1px solid;
+    border-color: var(--primary-color);
+    background-color: var(--edit-hover-color);
+    color: var(--edit-hover-text)
+}
+
+.question .p-button.p-button-rounded.p-button-outlined {
+    border: 1px solid;
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.question .p-button.p-button-rounded.p-button-outlined:hover {
+    border: 1px solid ;
+    border-color: var(--primary-hover-color);
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.hitachi-list .p-selectbutton {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hitachi-list .p-selectbutton .p-button {
+    width: 300px;
+}
+
+.hitachi-list .p-button-group .p-button {
+    margin: 0.5rem 0.5rem;
+    height: 50px;
+    border-radius: 5px;
+
+}
+
+.hitachi-list .p-selectbutton .p-button {
+    background: #ffffff;
+    border: 3px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 5px;
+}
+
+.hitachi-list .p-selectbutton .p-button.p-highlight {
+    background: var(--primary-color);
+    color: #ffffff;
+    border: 3px solid var(--primary-color);
+}
+
+.hitachi-list .p-button-group .p-button:not(:first-of-type):not(:last-of-type) {
+    border-radius: 5px;
+}
+
+.dark-green-btn {
+    background: rgb(0, 0, 0);
+    color: var(--primary-color);
+}
+
+.dark-green-btn:hover {
+    background: rgb(39, 39, 39);
+    color: var(--primary-color);
+}
+
+.barcode-reader-image-div {
+    background: url("/layout/images/barcode_reader.png") center/contain no-repeat;
+}
+
+.barcode-reader-div {
+    background-color: rgba(245, 245, 245, 0.90);
+}
+
+
+/* Mobile */
+@media only screen and (max-width: 767px) {
+    .hitachi-list .p-selectbutton .p-button {
+        width: 300px;
+    }
+}

@@ -1,0 +1,49 @@
+.person-count-btn {
+    background-color: #fff;
+    color: #2B3D51;
+    border-color: #2B3D51;
+}
+
+.person-count-btn {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: #2B3D51;
+        color: #fff;
+        border-color: #2B3D51;
+    }
+}
+
+.person-count-btn-continue {
+    background-color: #2B3D51;
+    color: #fff;
+    border-color: #2B3D51;
+}
+
+.person-count-btn-continue {
+
+    .p-button:enabled:hover,
+    .p-button:not(button):not(a):not(.p-disabled):hover {
+        background-color: #2B3D51;
+        color: #fff;
+        border-color: #2B3D51;
+    }
+}
+
+.buttonContainerPersons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.buttonContainerPersons>div {
+    width: 50%;
+    /* Set the width to 25% for each button, making 4 buttons per row */
+}
+
+.customPersonCount {
+    font-size: 22px;
+}
+
+.gap-person-count {
+    gap: 12px !important;
+}
