@@ -125,6 +125,12 @@ const AppMenu = () => {
                     to: '/staff/family',
                     active: router.pathname.startsWith('/staff/family')
                 },
+                {
+                    label: translate(localeJson, 'employee_list'),
+                    icon: <PiUserListFill size={16} />,
+                    to: '/staff/employee/list',
+                    active: router.pathname.startsWith('/staff/employee/list')
+                },
                    {
                     label: translate(localeJson, 'qr_scan'),
                     icon: <FaPeopleGroup size={16} />,
@@ -159,6 +165,12 @@ const AppMenu = () => {
                     icon: <PiUserListFill size={16} />,
                     to: '/hq-staff/evacuation',
                     active: router.pathname.startsWith('/hq-staff/evacuation')
+                },
+                {
+                    label: translate(localeJson, 'employee_list'),
+                    icon: <PiUserListFill size={16} />,
+                    to: '/hq-staff/employee/list',
+                    active: router.pathname.startsWith('/hq-staff/employee/list')
                 },
             ]
         },
