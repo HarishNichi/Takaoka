@@ -165,7 +165,12 @@ const withAuth = (WrappedComponent) => {
                                 pathname: '/staff/family',
                             });
                         }
-                        if (staffPublicPathsWithLogin.includes(path)) {
+                         if (staffPublicPathsWithLogin.includes(path)) {
+                            router.push({
+                                pathname: '/staff/family',
+                            });
+                        }
+                        else {
                             router.push({
                                 pathname: path,
                                 query: queryString

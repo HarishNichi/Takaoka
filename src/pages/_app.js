@@ -15,7 +15,6 @@ import withAuth from '@/middleware/withAuth';
 import 'primereact/resources/primereact.css';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
-import 'primeflex/primeflex.css';
 import '@/styles/layout/layout.scss';
 import '@/styles/components/components.scss';
 import '@/styles/pages/pages.scss';

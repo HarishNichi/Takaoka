@@ -409,39 +409,6 @@ const AppTopbar = forwardRef((props, ref) => {
         });
     };
 
-    const checkAndRedirectToEntranceExitScreen = () => {
-        let confirmUrl = [
-            "/user/person-count",
-            "/user/register/member",
-            "/user/checkout",
-            "/user/checkout/details",
-            "/user/register/member/details/",
-        ];
-        let dashboardUrl = '/user/dashboard'
-        let registerUrl = "/user/register";
-        let qrUrl = '/user/qr/app';
-        let qrUrl_ = '/user/qr/app/';
-        console.log(windowURL,qrUrl)
-        if (confirmUrl.includes(windowURL)) {
-            router.push("/user/dashboard");
-        } else if (windowURL == registerUrl) {
-            let result = window.confirm(
-                translate(localeJson, "do_you_want_to_return_to_main")
-            );
-            if (result) {
-                router.push("/user/dashboard");
-            }
-        }
-        else if (windowURL == dashboardUrl) {
-            console.log('dashboardUrl',dashboardUrl)
-            layoutReducer?.user?.place?.type == "place" ? router.push("/user/list") : router.push("/user/event-list")
-        }
-        else if (windowURL == qrUrl||windowURL == qrUrl_) {
-            console.log('qrUrlddd',qrUrl)
-            router.push("/user/qr/app/place-list");
-        }
-    };
-
     /**
      * Get place or event name from redux & display
      * @returns Name
@@ -457,8 +424,7 @@ const AppTopbar = forwardRef((props, ref) => {
         ];
         if (window.location.pathname.startsWith("/staff")) {
             if (
-                !URLS.includes(path) &&
-                window.location.pathname.startsWith("/staff/event-staff")
+                !URLS.includes(path) 
             ) {
                 return (
                     <div className="header-details-first text-sm">
@@ -468,19 +434,7 @@ const AppTopbar = forwardRef((props, ref) => {
                             }`}
                     </div>
                 );
-            } else {
-                if (!URLS.includes(path)) {
-                    return (
-                        <div className="header-details-first text-sm">
-                            {`${locale === "en" &&
-                                !_.isNull(layoutReducer?.user?.place?.name_en)
-                                ? layoutReducer?.user?.place?.name_en
-                                : layoutReducer?.user?.place?.name
-                                }`}
-                        </div>
-                    );
-                }
-            }
+            } 
         }
     };
 
@@ -615,12 +569,9 @@ const AppTopbar = forwardRef((props, ref) => {
                             >
                                 <div
                                     className={`text-base white-space-nowrap overflow-hidden text-overflow-ellipsis cursor-pointer`}
-                                    onClick={checkAndRedirectToEntranceExitScreen}
+                                    // onClick={checkAndRedirectToEntranceExitScreen}
                                 >
-                                    {layoutReducer?.user?.place?.type === "event" &&
-                                        eventHeaderTextStaticPaths.includes(currentPath) || window.location.pathname.startsWith("/user/event-list")
-                                        ? translate(localeJson, "event_management_system")
-                                        : locale === "ja"
+                                    {locale === "ja"
                                             ? settings_data?.system_name_ja
                                             : settings_data?.system_name_en}
                                 </div>

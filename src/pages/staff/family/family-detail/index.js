@@ -45,7 +45,7 @@ export default function StaffFamilyDetail() {
     const [individualQuestionnairesVisible, setIndividualQuestionnairesVisible] = useState(false);
 
     const param = {
-        place_id: !_.isNull(layoutReducer?.user?.place?.id) ? layoutReducer?.user?.place?.id : "",
+        place_id: localStorage.getItem("place_id"),
         family_id: useAppSelector((state) => state.familyReducer.family.family_id),
     };
 
