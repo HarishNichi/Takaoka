@@ -38,3 +38,4 @@ export * from "./user_dashboard.services";
 export * from "./user_event_list.services";
 export * from "./user_place_list.services";
 export * from "./user_qr.service";
+export * from "./employee.services";

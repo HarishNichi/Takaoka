@@ -1146,5 +1146,10 @@
   "sender":"sender",
   "line_management":"LINE Notification Management",
    "reply":"Reply",
-   "message_required":"Notification Message is required."
+   "message_required":"Notification Message is required.",
+   "employee_list":"Employee List",
+  "employee_code":"Employee Code",
+  "employee_name":"Employee Name",
+  "department":"Department",
+  "employee_status":"Employee Status"
   }
