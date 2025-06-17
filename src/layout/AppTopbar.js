@@ -462,10 +462,10 @@ const AppTopbar = forwardRef((props, ref) => {
             ) {
                 return (
                     <div className="header-details-first text-sm">
-                        {locale == "en"
+                        {`${locale === "en" 
                             ? localStorage.getItem("evacuationPlaceNameEnglish") 
                             : localStorage.getItem("evacuationPlaceName")
-                            }
+                            }`}
                     </div>
                 );
             } else {
