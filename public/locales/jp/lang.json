@@ -1147,5 +1147,7 @@
        "employee_code":"従業員コード",
        "employee_name":"従業員名",
        "department":"部署",
-       "employee_status":"従業員ステータス"
+       "employee_status":"従業員ステータス",
+       "person_in_charge": "担当者"
+       
 }

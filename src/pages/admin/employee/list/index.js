@@ -19,6 +19,10 @@ export default function EmployeeListPage() {
   const [tableLoading, setTableLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
   const [searchName, setSearchName] = useState('');
+  const [searchDepartment, setSearchDepartment] = useState('');
+const [searchInCharge, setSearchInCharge] = useState('');
+const [searchShelter, setSearchShelter] = useState('');
+
   const [getListPayload, setGetListPayload] = useState({
     filters: {
       start: 0,
@@ -26,6 +30,9 @@ export default function EmployeeListPage() {
       sort_by: '',
       order_by: 'desc',
       employee_name: '',
+       department: "",
+  person_in_charge: "",
+  evacuation_shelter: "",
     },
   });
 
@@ -43,6 +50,9 @@ export default function EmployeeListPage() {
       sortable: true,
     },
     { field: 'department', header: translate(localeJson, 'department'), sortable: true },
+    { field: 'person_in_charge', header: translate(localeJson, 'person_in_charge'), sortable: true },
+{ field: 'evacuation_shelter', header: translate(localeJson, 'evacuation_place'), sortable: true },
+
   ];
 
   const { getEmployeeList, exportEmployeeCSV } = EmployeeServices;
@@ -53,6 +63,9 @@ export default function EmployeeListPage() {
       filters: {
         ...getListPayload.filters,
         employee_name: searchName,
+         department: searchDepartment,
+  person_in_charge: searchInCharge,
+  evacuation_shelter: searchShelter,
       },
     };
     getEmployeeList(payload, handleResponse);
@@ -65,7 +78,9 @@ export default function EmployeeListPage() {
         employee_code: emp.code,
         employee_name: emp.name,
         dob: emp.dob,
-        department: emp.department,
+          department: emp.department,
+  person_in_charge: emp.person_in_charge,
+  evacuation_shelter: emp.evacuation_shelter,
       }));
       setEmployeeList(rows);
       setTotalCount(res.data.total);
@@ -124,31 +139,72 @@ export default function EmployeeListPage() {
             </div>
           </div>
 
-          <form>
-            <div className='modal-field-top-space modal-field-bottom-space flex flex-wrap float-right justify-content-end gap-3 lg:gap-2 md:gap-2 sm:gap-2 mobile-input'>
-              <Input
-                inputProps={{
-                  name: 'employee_name',
-                  inputClassName: 'w-full md:w-14rem',
-                  labelProps: {
-                    text: translate(localeJson, 'name'),
-                    inputLabelClassName: 'block',
-                  },
-                  value: searchName,
-                  onChange: (e) => setSearchName(e.target.value),
-                }}
-              />
-               <div className="flex align-items-end">
-                                                          <Button buttonProps={{
-                                                              buttonClass: "w-12 search-button",
-                                                              text: translate(localeJson, "search_text"),
-                                                              icon: "pi pi-search",
-                                                              type: "button",
-                                                              onClick: () => fetchEmployees()
-                                                          }} parentClass={"search-button"} />
-                                                      </div>
-            </div>
-          </form>
+        <form>
+  <div className="p-fluid formgrid grid">
+    <div className="field col-12 md:col-6 lg:col-3">
+      <Input inputProps={{
+        inputParentClassName: "w-full",
+        labelProps: {
+          text: translate(localeJson, 'name'),
+          inputLabelClassName: "block",
+        },
+        inputClassName: "w-full",
+        value: searchName,
+        onChange: (e) => setSearchName(e.target.value),
+      }} />
+    </div>
+
+    <div className="field col-12 md:col-6 lg:col-3">
+      <Input inputProps={{
+        inputParentClassName: "w-full",
+        labelProps: {
+          text: translate(localeJson, 'department'),
+          inputLabelClassName: "block",
+        },
+        inputClassName: "w-full",
+        value: searchDepartment,
+        onChange: (e) => setSearchDepartment(e.target.value),
+      }} />
+    </div>
+
+    <div className="field col-12 md:col-6 lg:col-3">
+      <Input inputProps={{
+        inputParentClassName: "w-full",
+        labelProps: {
+          text: translate(localeJson, 'person_in_charge'),
+          inputLabelClassName: "block",
+        },
+        inputClassName: "w-full",
+        value: searchInCharge,
+        onChange: (e) => setSearchInCharge(e.target.value),
+      }} />
+    </div>
+
+    <div className="field col-12 md:col-6 lg:col-3">
+      <Input inputProps={{
+        inputParentClassName: "w-full",
+        labelProps: {
+          text: translate(localeJson, 'evacuation_place'),
+          inputLabelClassName: "block",
+        },
+        inputClassName: "w-full",
+        value: searchShelter,
+        onChange: (e) => setSearchShelter(e.target.value),
+      }} />
+    </div>
+  </div>
+
+  {/* 🔘 Search Button - OUTSIDE the grid, aligned right */}
+  <div className="flex justify-content-end mt-3">
+    <Button buttonProps={{
+      buttonClass: "w-full lg:w-9rem md:w-9rem sm:w-9rem search-button block text-center p-0",
+      text: translate(localeJson, "filter"),
+      type: "button",
+      onClick: fetchEmployees,
+    }} parentClass={"search-button w-full flex justify-content-end mb-3"} />
+  </div>
+</form>
+
 
           <NormalTable
             lazy
