@@ -10,8 +10,9 @@ import {
   getValueByKeyRecursively as translate,
 } from '@/helper';
 import { LayoutContext } from '@/layout/context/layoutcontext';
-import { Button, CustomHeader, Input, NormalTable } from '@/components';
-import { EmployeeServices } from '@/services'; // <-- Make sure this service exists
+import { Button, CustomHeader, Input, InputDropdown, NormalTable } from '@/components';
+import { EmployeeServices, StaffManagementService } from '@/services'; // <-- Make sure this service exists
+import _ from 'lodash';
 
 export default function EmployeeListPage() {
   const { locale, localeJson } = useContext(LayoutContext);
@@ -20,8 +21,9 @@ export default function EmployeeListPage() {
   const [totalCount, setTotalCount] = useState(0);
   const [searchName, setSearchName] = useState('');
   const [searchDepartment, setSearchDepartment] = useState('');
-const [searchInCharge, setSearchInCharge] = useState('');
-const [searchShelter, setSearchShelter] = useState('');
+  const [searchInCharge, setSearchInCharge] = useState('');
+  const [searchShelter, setSearchShelter] = useState('');
+  const [evacuationPlaceList, setEvacuationPlaceList] = useState([]);
 
   const [getListPayload, setGetListPayload] = useState({
     filters: {
@@ -30,9 +32,9 @@ const [searchShelter, setSearchShelter] = useState('');
       sort_by: '',
       order_by: 'desc',
       employee_name: '',
-       department: "",
-  person_in_charge: "",
-  evacuation_shelter: "",
+      department: "",
+      person_in_charge: "",
+      evacuation_shelter: "",
     },
   });
 
@@ -51,7 +53,7 @@ const [searchShelter, setSearchShelter] = useState('');
     },
     { field: 'department', header: translate(localeJson, 'department'), sortable: true },
     { field: 'person_in_charge', header: translate(localeJson, 'person_in_charge'), sortable: true },
-{ field: 'evacuation_shelter', header: translate(localeJson, 'evacuation_place'), sortable: true },
+    { field: 'evacuation_shelter', header: translate(localeJson, 'evacuation_place'), sortable: true },
 
   ];
 
@@ -63,9 +65,9 @@ const [searchShelter, setSearchShelter] = useState('');
       filters: {
         ...getListPayload.filters,
         employee_name: searchName,
-         department: searchDepartment,
-  person_in_charge: searchInCharge,
-  evacuation_shelter: searchShelter,
+        department: searchDepartment,
+        person_in_charge: searchInCharge,
+        evacuation_shelter: searchShelter,
       },
     };
     getEmployeeList(payload, handleResponse);
@@ -78,9 +80,9 @@ const [searchShelter, setSearchShelter] = useState('');
         employee_code: emp.code,
         employee_name: emp.name,
         dob: emp.dob,
-          department: emp.department,
-  person_in_charge: emp.person_in_charge,
-  evacuation_shelter: emp.evacuation_shelter,
+        department: emp.department,
+        person_in_charge: emp.person_in_charge,
+        evacuation_shelter: emp.evacuation_shelter,
       }));
       setEmployeeList(rows);
       setTotalCount(res.data.total);
@@ -113,97 +115,131 @@ const [searchShelter, setSearchShelter] = useState('');
   useEffect(() => {
     fetchEmployees();
   }, [getListPayload, locale]);
+  useEffect(() => {
+    // Fetch evacuation places for dropdown
+    onGetHistoryPlaceDropdownListOnMounting();
+  }, []);
+  const onGetHistoryPlaceDropdownListOnMounting = () => {
+    StaffManagementService.getActivePlaceList(onGetHistoryPlaceDropdownList);
+  };
+
+  const onGetHistoryPlaceDropdownList = (response) => {
+    let historyPlaceCities = [
+      {
+        name: "--",
+        id: null,
+      },
+    ];
+    if (response.success && !_.isEmpty(response.data)) {
+      const data = response.data.model.list;
+      data.map((obj, i) => {
+        let placeDropdownList = {
+          name: response.locale == "ja" ? obj.name : (obj.name_en || obj.name),
+          name_en: obj.name_en || obj.name,
+          name_ja: obj.name,
+          id: obj.id,
+        };
+        historyPlaceCities.push(placeDropdownList);
+      });
+      setEvacuationPlaceList(historyPlaceCities);
+    }
+  };
 
   return (
     <div className="grid">
       <div className="col-12">
         <div className="card">
-         <div className="flex flex-wrap align-items-center justify-content-between">
-             <div className='flex align-items-center gap-2 mb-2'>
-            <CustomHeader
-              headerClass="page-header1"
-              customParentClassName="mb-0"
-              header={translate(localeJson, 'employee_list')}
-            />
+          <div className="flex flex-wrap align-items-center justify-content-between">
+            <div className='flex align-items-center gap-2 mb-2'>
+              <CustomHeader
+                headerClass="page-header1"
+                customParentClassName="mb-0"
+                header={translate(localeJson, 'employee_list')}
+              />
             </div>
             <div>
-            <Button
-              buttonProps={{
-                text: translate(localeJson, 'export'),
-                export: true,
-                onClick: handleExport,
-                buttonClass: 'export-button',
-              }}
-              parentClass="export-button"
-            />
+              <Button
+                buttonProps={{
+                  text: translate(localeJson, 'export'),
+                  export: true,
+                  onClick: handleExport,
+                  buttonClass: 'export-button',
+                }}
+                parentClass="export-button"
+              />
             </div>
           </div>
 
-        <form>
-  <div className="p-fluid formgrid grid">
-    <div className="field col-12 md:col-6 lg:col-3">
-      <Input inputProps={{
-        inputParentClassName: "w-full",
-        labelProps: {
-          text: translate(localeJson, 'name'),
-          inputLabelClassName: "block",
-        },
-        inputClassName: "w-full",
-        value: searchName,
-        onChange: (e) => setSearchName(e.target.value),
-      }} />
-    </div>
+          <form>
+            <div className="p-fluid formgrid grid">
+              <div className="field col-12 md:col-6 lg:col-3">
+                <Input inputProps={{
+                  inputParentClassName: "w-full",
+                  labelProps: {
+                    text: translate(localeJson, 'name'),
+                    inputLabelClassName: "block",
+                  },
+                  inputClassName: "w-full",
+                  value: searchName,
+                  onChange: (e) => setSearchName(e.target.value),
+                }} />
+              </div>
 
-    <div className="field col-12 md:col-6 lg:col-3">
-      <Input inputProps={{
-        inputParentClassName: "w-full",
-        labelProps: {
-          text: translate(localeJson, 'department'),
-          inputLabelClassName: "block",
-        },
-        inputClassName: "w-full",
-        value: searchDepartment,
-        onChange: (e) => setSearchDepartment(e.target.value),
-      }} />
-    </div>
+              <div className="field col-12 md:col-6 lg:col-3">
+                <Input inputProps={{
+                  inputParentClassName: "w-full",
+                  labelProps: {
+                    text: translate(localeJson, 'department'),
+                    inputLabelClassName: "block",
+                  },
+                  inputClassName: "w-full",
+                  value: searchDepartment,
+                  onChange: (e) => setSearchDepartment(e.target.value),
+                }} />
+              </div>
 
-    <div className="field col-12 md:col-6 lg:col-3">
-      <Input inputProps={{
-        inputParentClassName: "w-full",
-        labelProps: {
-          text: translate(localeJson, 'person_in_charge'),
-          inputLabelClassName: "block",
-        },
-        inputClassName: "w-full",
-        value: searchInCharge,
-        onChange: (e) => setSearchInCharge(e.target.value),
-      }} />
-    </div>
+              <div className="field col-12 md:col-6 lg:col-3">
+                <Input inputProps={{
+                  inputParentClassName: "w-full",
+                  labelProps: {
+                    text: translate(localeJson, 'person_in_charge'),
+                    inputLabelClassName: "block",
+                  },
+                  inputClassName: "w-full",
+                  value: searchInCharge,
+                  onChange: (e) => setSearchInCharge(e.target.value),
+                }} />
+              </div>
 
-    <div className="field col-12 md:col-6 lg:col-3">
-      <Input inputProps={{
-        inputParentClassName: "w-full",
-        labelProps: {
-          text: translate(localeJson, 'evacuation_place'),
-          inputLabelClassName: "block",
-        },
-        inputClassName: "w-full",
-        value: searchShelter,
-        onChange: (e) => setSearchShelter(e.target.value),
-      }} />
-    </div>
-  </div>
+              <div className="field col-12 md:col-6 lg:col-3">
+                <InputDropdown inputDropdownProps={{
+                  inputDropdownParentClassName: "w-full lg:w-14rem md:w-14rem sm:w-10rem",
+                  labelProps: {
+                    text: translate(localeJson, 'evacuation_site'),
+                    inputDropdownLabelClassName: "block"
+                  },
+                  inputDropdownClassName: "w-full lg:w-14rem md:w-14rem sm:w-10rem",
+                  customPanelDropdownClassName: "w-10rem",
+                  value: searchShelter,
+                  options: evacuationPlaceList,
+                  optionLabel: "name",
+                  onChange: (e) => setSearchShelter(e.value),
+                  emptyMessage: translate(localeJson, "data_not_found"),
+                }}
+                />
+              </div>
+            </div>
 
-  {/* 🔘 Search Button - OUTSIDE the grid, aligned right */}
-  <div className="flex justify-content-end mt-3">
-    <Button buttonProps={{
-      buttonClass: "w-full lg:w-9rem md:w-9rem sm:w-9rem search-button block text-center p-0",
-      text: translate(localeJson, "filter"),
-      type: "button",
-      onClick: fetchEmployees,
-    }} parentClass={"search-button w-full flex justify-content-end mb-3"} />
-  </div>
-</form>
+            {/* 🔘 Search Button - OUTSIDE the grid, aligned right */}
+            <div className="flex justify-content-end mt-3">
+              <Button buttonProps={{
+                buttonClass: "w-full lg:w-9rem md:w-9rem sm:w-9rem search-button block text-center p-0",
+                text: translate(localeJson, "filter"),
+                type: "button",
+                onClick: fetchEmployees,
+              }} parentClass={"search-button w-full flex justify-content-end mb-3"} />
+            </div>
+          </form>
 
 
           <NormalTable

@@ -49,6 +49,12 @@ const AppMenu = () => {
                     to: '/admin/evacuation',
                     active: router.pathname.startsWith('/admin/evacuation')
                 },
+                {
+                    label: translate(localeJson, 'employee_list'),
+                    icon: <PiUserListFill size={16} />,
+                    to: '/admin/employee/list',
+                    active: router.pathname.startsWith('/admin/employee/list')
+                },
             ]
         },
         {
