@@ -101,14 +101,14 @@ const AppMenu = () => {
     ];
     // Staff(Place) side bar information
     const staffModel = [
-        {
-            label: translate(localeJson, 'top_page'),
-            icon: <MdSpaceDashboard size={16} />,
-            to: '/staff/dashboard',
-            top: true,
-            class: "top-element",
-            active: router.pathname.startsWith('/staff/dashboard')
-        },
+        // {
+        //     label: translate(localeJson, 'top_page'),
+        //     icon: <MdSpaceDashboard size={16} />,
+        //     to: '/staff/dashboard',
+        //     top: true,
+        //     class: "top-element",
+        //     active: router.pathname.startsWith('/staff/dashboard')
+        // },
         {
             label: translate(localeJson, 'evacuee_information'),
             icon: <HiInformationCircle size={16} />,
@@ -118,6 +118,12 @@ const AppMenu = () => {
                     icon: <BsPeopleFill size={16} />,
                     to: '/staff/family',
                     active: router.pathname.startsWith('/staff/family')
+                },
+                   {
+                    label: translate(localeJson, 'qr_scan'),
+                    icon: <FaPeopleGroup size={16} />,
+                    to: '/staff/qr',
+                    active: router.pathname.startsWith('/staff/qr')
                 },
             ]
         },
@@ -196,12 +202,11 @@ const AppMenu = () => {
                             adminModel.map((item, i) => {
                                 return !item.seperator ? <AppMenuitem item={item} root={true} active={item.active} index={i} key={i} /> : <li className="menu-separator"></li>;
                             })
-                        ) : url.startsWith('/staff') ? (
-                            layoutReducer?.user?.place?.type === "place" ? (
+                        ) : url.startsWith('/staff') ? ( (
                                 staffModel.map((item, i) => {
                                     return !item.seperator ? <AppMenuitem item={item} root={true} active={item.active} index={i} key={i} /> : <li className="menu-separator"></li>;
                                 })
-                            ) : <></>
+                            ) 
                         ) :
                             (
                                 hqModel.map((item, i) => {
@@ -209,7 +214,7 @@ const AppMenu = () => {
                                 })
                             )}
             </ul>
-            {url.startsWith('/staff') && (layoutReducer?.user?.place?.type === "place" || layoutReducer?.user?.place?.type == "event") &&
+            {/* {url.startsWith('/staff') && (layoutReducer?.user?.place?.type === "place" || layoutReducer?.user?.place?.type == "event") &&
                 <div className='sidebar-bottom-fixed-view pt-1 px-3 bottom-0 fixed'>
                     <Button buttonProps={{
                         buttonClass: "w-auto back-button-transparent mb-2 p-0",
@@ -224,7 +229,7 @@ const AppMenu = () => {
                         },
                     }} parentClass={"back-button-transparent"} />
                 </div>
-            }
+            } */}
         </MenuProvider>
     );
 };

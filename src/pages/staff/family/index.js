@@ -34,8 +34,8 @@ function StaffFamily() {
   // Getting storage data with help of reducers
   const layoutReducer = useSelector((state) => state.layoutReducer);
   const [placeID, setPlaceID] = useState(
-    !_.isNull(layoutReducer?.user?.place?.id)
-      ? layoutReducer?.user?.place?.id
+    !_.isNull(localStorage.getItem("place_id"))
+      ? localStorage.getItem("place_id")
       : ""
   );
 
@@ -416,7 +416,7 @@ function StaffFamily() {
                   text: translate(localeJson, 'export'),
                   onClick: () => downloadEvacueesListCSV()
                 }} parentClass={"mr-1 export-button"} />
-                <Button
+                {/* <Button
                   buttonProps={{
                     type: "submit",
                     rounded: "true",
@@ -429,7 +429,7 @@ function StaffFamily() {
                     },
                   }}
                   parentClass={"primary-button"}
-                />
+                /> */}
               </div>
             </div>
             <div>

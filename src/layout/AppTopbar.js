@@ -52,8 +52,7 @@ const AppTopbar = forwardRef((props, ref) => {
     const path = router.asPath.split("?")[0];
     const windowURL = window.location.pathname;
     const windowURLSplitted = windowURL.split("/");
-    const staffLogoutKey =
-        layoutReducer?.user?.place?.type == "place" ? "place_id" : "event_id";
+    const staffLogoutKey = "place_id";
     const [defaultEventData, setDefaultEventData] = useState({
         topBarTitle: "",
         topBarTitle_en: "",
@@ -176,15 +175,16 @@ const AppTopbar = forwardRef((props, ref) => {
                                         router.push({
                                             pathname: "/staff/login",
                                         });
-                                    } else if (layoutReducer?.user?.place?.type === "place") {
-                                        router.push({
-                                            pathname: "/staff/dashboard",
-                                        });
                                     } else {
                                         router.push({
-                                            pathname: "/staff/event-staff/dashboard",
+                                            pathname: "/staff/family",
                                         });
-                                    }
+                                    } 
+                                    // else {
+                                    //     router.push({
+                                    //         pathname: "/staff/event-staff/dashboard",
+                                    //     });
+                                    // }
                                 }}
                             >
                                 <i className="pr-1">
@@ -267,7 +267,7 @@ const AppTopbar = forwardRef((props, ref) => {
                                     logout(
                                         "staff",
                                         {
-                                            [staffLogoutKey]: layoutReducer?.user?.place?.id,
+                                            [staffLogoutKey]: localStorage.getItem("place_id"),
                                         },
                                         onLogoutSuccess,
                                         staffLogoutKey
@@ -277,7 +277,7 @@ const AppTopbar = forwardRef((props, ref) => {
                                 logout(
                                     "staff",
                                     {
-                                        [staffLogoutKey]: layoutReducer?.user?.place?.id,
+                                        [staffLogoutKey]:  localStorage.getItem("place_id"),
                                     },
                                     onLogoutSuccess,
                                     staffLogoutKey
@@ -380,9 +380,9 @@ const AppTopbar = forwardRef((props, ref) => {
             localStorage.removeItem("staff");
             if (staffLogoutKey === "place_id") {
                 dispatch(setStaffEditedStockpile([]));
-                await router.push("/user/list");
-            } else {
-                await router.push("/user/event-list");
+                await router.push("/staff/login");
+            // } else {
+            //     await router.push("/user/event-list");
             }
         } else if (key === "headquaters") {
             localStorage.removeItem("hq-staff");
@@ -463,8 +463,8 @@ const AppTopbar = forwardRef((props, ref) => {
                 return (
                     <div className="header-details-first text-sm">
                         {`${locale === "en" && !_.isNull(layoutReducer?.user?.place?.name_en)
-                            ? layoutReducer?.user?.place?.name_en
-                            : layoutReducer?.user?.place?.name
+                            ? localStorage.getItem("evacuationPlaceNameEnglish") 
+                            : localStorage.getItem("evacuationPlaceName")
                             }`}
                     </div>
                 );
@@ -564,15 +564,9 @@ const AppTopbar = forwardRef((props, ref) => {
                                         text:"テレネット",
                                         onClick: () => {
                                             if (
-                                                url.startsWith("/staff") &&
-                                                layoutReducer?.user?.place?.type === "place"
+                                                url.startsWith("/staff") 
                                             ) {
-                                                router.push("/staff/dashboard");
-                                            } else if (
-                                                url.startsWith("/staff") &&
-                                                layoutReducer?.user?.place?.type === "event"
-                                            ) {
-                                                router.push("/staff/event-staff/dashboard");
+                                                router.push("/staff/family");
                                             } else if (url.startsWith("/hq-staff")) {
                                                 router.push("/hq-staff/dashboard");
                                             } else {

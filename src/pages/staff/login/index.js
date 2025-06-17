@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { classNames } from 'primereact/utils';
@@ -6,12 +6,13 @@ import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
 import { LayoutContext } from '@/layout/context/layoutcontext';
-import { AuthenticationAuthorizationService } from '@/services';
+import { AuthenticationAuthorizationService,StaffManagementService } from '@/services';
 import { toastDisplay, getValueByKeyRecursively as translate } from '@/helper'
 import { useAppDispatch } from '@/redux/hooks';
 import { setStaffValue } from '@/redux/auth';
-import { Button, CustomHeader, ValidationError, Password, InputGroup } from '@/components';
+import { Button, CustomHeader, ValidationError, Password, InputGroup, InputDropdown } from '@/components';
 import { setForgetPassword } from '@/redux/fwd_password';
+import _ from 'lodash';
 
 const LoginPage = () => {
     const { layoutConfig, localeJson } = useContext(LayoutContext);
@@ -19,6 +20,7 @@ const LoginPage = () => {
     const dispatch = useAppDispatch();
     // Getting storage data with help of reducers
     const layoutReducer = useSelector((state) => state.layoutReducer);
+      const [placeDropDown, setPlaceDropDown] = useState([]);
 
     const containerClassName = classNames('auth_surface_ground flex align-items-start justify-content-center overflow-hidden', { 'p-input-filled': layoutConfig.inputStyle === 'filled' });
     const schema = Yup.object().shape({
@@ -29,6 +31,7 @@ const LoginPage = () => {
             .required(translate(localeJson, 'password_required'))
             .min(8, translate(localeJson, 'password_atLeast_8_characters'))
             .max(15, translate(localeJson, 'password_max_15_characters')),
+        selectedCity: Yup.object().required(translate(localeJson, 'shelter_place_name_required'))
     });
 
     /* Services */
@@ -38,6 +41,7 @@ const LoginPage = () => {
         dispatch(setForgetPassword({
             username: ''
         }));
+        onGetHistoryPlaceDropdownListOnMounting();
     }, []);
 
     const onLoginSuccess = (values) => {
@@ -46,11 +50,11 @@ const LoginPage = () => {
             dispatch(setStaffValue({
                 staff: values.data
             }));
-            if (layoutReducer?.user?.place?.type === "place") {
-                router.push("/staff/dashboard");
-            } else {
-                router.push("/staff/event-staff/dashboard");
-            }
+            // if (layoutReducer?.user?.place?.type === "place") {
+                router.push("/staff/family");
+            // } else {
+            //     router.push("/staff/event-staff/dashboard");
+            // }
         }
     };
 
@@ -66,16 +70,66 @@ const LoginPage = () => {
         }
     }
 
+     const onGetHistoryPlaceDropdownListOnMounting = () => {
+    StaffManagementService.getActivePlaceList(onGetHistoryPlaceDropdownList);
+  };
+
+      const onGetHistoryPlaceDropdownList = (response) => {
+        let historyPlaceCities = [
+          {
+            name: "--",
+            code: null,
+          },
+        ];
+        if (response.success && !_.isEmpty(response.data)) {
+          const data = response.data.model.list;
+          data.map((obj, i) => {
+            let placeDropdownList = {
+              name: response.locale == "ja" ? obj.name : (obj.name_en||obj.name),
+              name_en: obj.name_en||obj.name,
+              name_ja: obj.name,
+              code: obj.id,
+            };
+            historyPlaceCities.push(placeDropdownList);
+          });
+          setPlaceDropDown(historyPlaceCities);
+        }
+      };
+
     return (
         <>
             <Formik
                 validationSchema={schema}
-                initialValues={{ username: "", password: "" }}
+                initialValues={{ username: "", password: "",selectedCity:""}}
                 onSubmit={(values) => {
                     let preparedPayload = values;
-                    let prepareKey = layoutReducer?.user?.place?.type == "place" ? "place_id" : "event_id";
-                    preparedPayload[prepareKey] = layoutReducer?.user?.place?.id;
-                    preparedPayload['username'] = preparedPayload.username.trim();
+                    let prepareKey = "place_id";
+                    preparedPayload[prepareKey] =
+                      preparedPayload.selectedCity?.code || null;
+                    preparedPayload["username"] =
+                      preparedPayload.username.trim();
+                    // Find the matching place in the dropdown list
+                    const matchedPlace = placeDropDown?.find(
+                      (obj) => obj.code == preparedPayload.selectedCity?.code
+                    );
+
+                    if (matchedPlace) {
+                      // Set place ID
+                      localStorage.setItem("place_id", matchedPlace.code);
+
+                      // Set Japanese name (or original)
+                      localStorage.setItem(
+                        "evacuationPlaceName",
+                        matchedPlace.name_ja
+                      );
+
+                      // Set English name, fallback to Japanese
+                      localStorage.setItem(
+                        "evacuationPlaceNameEnglish",
+                        matchedPlace.name_en || matchedPlace.name
+                      );
+                    }
+
                     login('staff', preparedPayload, onLoginSuccess, prepareKey);
                 }}
             >
@@ -86,6 +140,7 @@ const LoginPage = () => {
                     handleChange,
                     handleBlur,
                     handleSubmit,
+                    setFieldValue
                 }) => (
                     <div className={containerClassName}>
                         <div className="flex flex-column align-items-center justify-content-center">
@@ -132,6 +187,27 @@ const LoginPage = () => {
                                                 />
                                                 <ValidationError errorBlock={errors.password && touched.password && errors.password} />
                                             </div>
+                                               <div className="field custom_inputText">
+                                                <InputDropdown
+                                                                  inputDropdownProps={{
+                                                                    inputDropdownParentClassName:
+                                                                      "w-full",
+                                                                    labelProps: {
+                                                                      text: translate(localeJson, "shelter_place_name"),
+                                                                      inputDropdownLabelClassName: "block",
+                                                                    },
+                                                                    inputDropdownClassName:
+                                                                      "w-full ",
+                                                                    customPanelDropdownClassName: "",
+                                                                    value: values.selectedCity,
+                                                                    options: placeDropDown,
+                                                                    optionLabel: "name",
+                                                                    onChange: (e) => setFieldValue("selectedCity", e.value),
+                                                                    emptyMessage: translate(localeJson, "data_not_found"),
+                                                                  }}
+                                                                />
+                                                                  <ValidationError errorBlock={errors.selectedCity && touched.selectedCity && errors.selectedCity} />
+                                                                </div>
                                             <div className='flex justify-content-center mt-5'>
                                                 <Button buttonProps={{
                                                     type: 'submit',

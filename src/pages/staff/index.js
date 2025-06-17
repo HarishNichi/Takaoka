@@ -5,7 +5,7 @@ export default function Staff() {
     const router = useRouter();
 
     useEffect(() => {
-        router.push("/staff/dashboard");
+        router.push("/staff/family");
     }, []);
 
     return (

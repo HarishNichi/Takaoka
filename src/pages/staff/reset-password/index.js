@@ -33,7 +33,7 @@ const ResetPasswordPage = () => {
     const { reset } = AuthenticationAuthorizationService;
 
     const onResetSuccess = () => {
-        router.push("/user/list");
+        router.push("/staff/login");
     };
 
     return (

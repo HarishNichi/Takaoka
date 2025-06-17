@@ -162,14 +162,10 @@ const withAuth = (WrappedComponent) => {
                     } else if (path.startsWith('/staff')) {
                         if(path.includes('/staff/stockpile') && !data?.stockpile_management_status){
                             router.push({
-                                pathname: '/staff/dashboard',
+                                pathname: '/staff/family',
                             });
                         }
                         if (staffPublicPathsWithLogin.includes(path)) {
-                            router.push({
-                                pathname: '/user/list',
-                            });
-                        } else {
                             router.push({
                                 pathname: path,
                                 query: queryString
@@ -207,7 +203,7 @@ const withAuth = (WrappedComponent) => {
                         }
                     } else if (path.startsWith('/staff')) {
                         if (!staffPublicPathsWithoutLogin.includes(path)) {
-                            router.push('/user/list');
+                            router.push('/staff/login');
                         } else {
                             router.push({
                                 pathname: path,

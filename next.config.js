@@ -33,8 +33,8 @@ const nextConfig = {
 };
 
 // Conditionally add 'output: export' if the API URL matches
-if (apiUrl === 'https://rakurakuapi.nichi.in/api') {
-  nextConfig.output = 'export';
-}
+// if (apiUrl === 'https://rakurakuapi.nichi.in/api') {
+//   nextConfig.output = 'export';
+// }
 
 module.exports = nextConfig;
