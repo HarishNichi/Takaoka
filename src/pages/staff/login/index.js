@@ -75,12 +75,7 @@ const LoginPage = () => {
   };
 
       const onGetHistoryPlaceDropdownList = (response) => {
-        let historyPlaceCities = [
-          {
-            name: "--",
-            code: null,
-          },
-        ];
+        let historyPlaceCities = [];
         if (response.success && !_.isEmpty(response.data)) {
           const data = response.data.model.list;
           data.map((obj, i) => {
