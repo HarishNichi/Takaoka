@@ -214,7 +214,7 @@ export default function DepartmentanagementPage() {
       firstLabel: translate(localeJson, "name"),
       firstValue: rowdata.name,
       secondLabel: translate(localeJson, "department_id"),
-      secondValue: rowdata.username,
+      secondValue: rowdata.code,
     });
     setDeleteOpen(true);
     hideOverFlow();
