@@ -186,7 +186,7 @@ function FailedIconDiv() {
   return (
     <div>
       <div className="text-center">
-        <h5 className="text-center font-bold" style={{ marginTop: "-10px" }}>
+        <h5 className="text-center font-bold margin-top10">
           {translate(localeJson, "yapple_modal_end_icon_div_part_2")}
         </h5>
 
@@ -247,7 +247,6 @@ function SuccessDiv(props) {
               },
             }));
             setFamilyCode(regData.family_code)
-            // setRefugeeName(regData.refugee_name)
           }
           if (layoutReducer?.user?.place?.type === "place" && regData.is_registered != "1") {
             return setEventDisabled(false);
@@ -310,8 +309,8 @@ function SuccessDiv(props) {
 
       <div className='mt-2'>
         <div className='flex'>
-          <div className='page-header3' style={{ whiteSpace: 'nowrap' }}>{translate(localeJson, "address")}:</div>
-          <div className='page-header3-sub ml-1' style={{ whiteSpace: 'normal' }}>{regData.address}</div>
+          <div className='page-header3 white-space-nowrap'>{translate(localeJson, "address")}:</div>
+          <div className='page-header3-sub ml-1 white-space-normal'>{regData.address}</div>
         </div>
       </div>
       <div className='mt-2'>
@@ -343,10 +342,9 @@ function SuccessDiv(props) {
             rounded: "true",
             custom: "",
             buttonClass:
-              "mt-3 update-button border-round-3xl custom-icon-button flex justify-content-center",
+              "mt-3 update-button border-round-3xl custom-icon-button flex justify-content-center w-full",
             text: dynamicButtonText ? translate(localeJson, props.keyJson) : isCheckIn ? translate(localeJson, "admission_button_yapple") : translate(localeJson, "register_checkout_btn"),
             severity: "primary",
-            style: { width: "100%" },
             disabled: isEventDisabled,
             onClick: () => {
               let checkIsFromPlace = layoutReducer?.user?.place?.type === "place" ? true : false;
@@ -408,10 +406,9 @@ function SuccessDiv(props) {
             rounded: "true",
             custom: "",
             buttonClass:
-              "my-3 back-button border-round-3xl  flex justify-content-center",
+              "my-3 back-button border-round-3xl  flex justify-content-center w-full",
             text: translate(localeJson, "yapple_modal_success_div_white_btn"),
             severity: "primary",
-            style: { width: "100%" },
             onClick: () => {
               setCurrentDiv("start");
             },

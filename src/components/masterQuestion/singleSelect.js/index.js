@@ -19,10 +19,7 @@ const SingleSelectButtonGroup = ({ names, onSelectionChange, isModal, id, SNames
       {names.map((name, index) => (
         <Button
           key={index}
-          className={`p-button-rounded font-bold mr-2 mt-1 ${selectedName === name ? 'p-button-outlined' : ''}`}
-          style={{
-            height: "40px"
-          }}
+          className={`p-button-rounded font-bold mr-2 mt-1 height-40px ${selectedName === name ? 'p-button-outlined' : ''}`}
           onClick={() => handleButtonClick(name)}
           type='button'
         >

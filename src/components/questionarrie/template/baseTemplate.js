@@ -211,7 +211,7 @@ const BaseTemplate = React.forwardRef((props, ref) => {
                                             </div>
                                         )}
                                     </div>
-                                    <div className='mt-3 custom-switch flex gap-2 align-items-center justify-content-start' style={{ paddingRight: "54px", fontSize: "14px" }}>
+                                    <div className='mt-3 custom-switch flex gap-2 align-items-center justify-content-start pr-54px font-14px'>
                                         <InputSwitch inputSwitchProps={{
                                             checked: item.is_voice_type,
                                             onChange: (e) => updateFormChangeData(e.value, "voice"),
@@ -224,9 +224,7 @@ const BaseTemplate = React.forwardRef((props, ref) => {
                             {/* Questionnaires */}
                             <div className="mt-3" >
                                 <div className="flex font-bold align-items-center justify-content-start">
-                                    {translate(localeJson, 'item_title')}<span style={{
-                                        color: "red"
-                                    }}>*</span>
+                                    {translate(localeJson, 'item_title')}<span className='required-color' >*</span>
                                 </div>
                                 <div className="mt-2">
                                     <div className=''>

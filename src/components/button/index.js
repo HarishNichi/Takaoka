@@ -1,7 +1,7 @@
 import { Button as PrimeReactButton } from "primereact/button";
 
 export const Button = (props) => {
-  const { parentClass, parentStyle, buttonProps = {} } = props;
+  const { parentClass, buttonProps = {} } = props;
   const {
     hoverBg,
     custom,
@@ -29,7 +29,7 @@ export const Button = (props) => {
   }
 
   return (
-    <div className={`${parentClass}`} style={parentStyle}>
+    <div className={`${parentClass}`}>
       <PrimeReactButton
         className={`${bg} ${hoverBg} ${custom || "custom-button"
           }  ${buttonClass} font-medium`}
@@ -44,12 +44,12 @@ export const Button = (props) => {
 };
 
 export const ButtonRounded = (props) => {
-  const { parentClass, parentStyle, buttonProps = {} } = props;
+  const { parentClass, buttonProps = {} } = props;
   const { hoverBg, custom, buttonClass, text, icon, bg, ...restProps } =
     buttonProps;
 
   return (
-    <div className={`${parentClass}`} style={parentStyle}>
+    <div className={`${parentClass}`}>
       <PrimeReactButton
         className={`${bg} ${hoverBg} ${icon && "custom-icon-button"} ${custom || "custom-button"
           } ${buttonClass} font-medium border-round-3xl`}

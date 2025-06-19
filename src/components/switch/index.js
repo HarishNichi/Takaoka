@@ -5,14 +5,12 @@ import { ToggleButton } from 'primereact/togglebutton';
 export const InputSwitch = (props) => {
     const {
         parentClass,
-        parentStyle,
         custom,
         inputSwitchProps = {}
     } = props;
     const {
         switchClass,
         id,
-        style,
         checked,
         onChange,
         readOnly,
@@ -22,11 +20,10 @@ export const InputSwitch = (props) => {
     } = inputSwitchProps;
 
     return (
-        <div className={`${parentClass} ${custom || 'custom-switch'} `} style={parentStyle}>
+        <div className={`${parentClass} ${custom || 'custom-switch'} `}>
             <InputSwitcher className={` ${switchClass}`}
                 checked={checked}
                 id={id}
-                style={style}
                 onChange={onChange}
                 readOnly={readOnly}
                 disabled={disabled}
@@ -43,7 +40,6 @@ export const ToggleSwitch = (props) => {
         parentClass,
         custom,
         id,
-        style,
         onLabel,
         offLabel,
         onIcon,
@@ -58,7 +54,6 @@ export const ToggleSwitch = (props) => {
         <div>
             <ToggleButton className={`${bgColor} ${parentClass} ${custom || 'person-count-button'}`}
                 id={id}
-                style={style}
                 onLabel={onLabel}
                 offLabel={offLabel}
                 onIcon={onIcon}

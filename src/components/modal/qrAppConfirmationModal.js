@@ -10,13 +10,12 @@ const QrAppConfirmDialog = (props) => {
 
     return (
         <Dialog
-            className="custom-modal w-10 sm:w-8 md:w-5 lg:w-4"
+            className="custom-modal w-10 sm:w-8 md:w-5 lg:w-4 width-400px"
             header={props.header}
             visible={props.visible}
             draggable={false}
             blockScroll={true}
             onHide={() => props.setVisible(false)}
-            style={{ width: '400px' }}
         >
             <div className="text-center mt-4">
                 <div>

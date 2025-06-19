@@ -23,7 +23,7 @@ export default function AdminManagementDeleteModal(props) {
                 blockScroll={true}
                 onHide={() => close()}
             >
-                <div className={`modal-content`} style={{ padding: "0 0" }}>
+                <div className={`modal-content p-0`}>
                     <div className="flex flex-column justify-center">
                         <div className="modal-header">
                             {translate(localeJson, 'confirmation_information')}

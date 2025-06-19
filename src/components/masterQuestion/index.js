@@ -185,7 +185,7 @@ const QuestionList = ({
         <div key={index} className={`${isModal ? 'mb-4' : 'mb-4'}`}>
           <label className={`custom-label flex ${isModal ? "col-12 mb-0 pb-0" : "pb-0"} font-bold`}>
             {locale == 'ja' ? question.title : (question.title_en ? question.title_en : question.title)}
-            {question.isRequired == 1 && <span className="p-error scroll-check" style={{ display: "contents" }}>*</span>}
+            {question.isRequired == 1 && <span className="p-error scroll-check display-content">*</span>}
           </label>
           {question.type === 1 && (
             <div className="">
@@ -211,7 +211,7 @@ const QuestionList = ({
                 {question.isRequired === 1 &&
                   (!question.answer || question.answer?.length == 0 || question.answer[0] == "") &&
                   isFormSubmit && (
-                    <div style={{ fontSize: '13px' }} className="p-error scroll-check">{translate(localeJson, "c_required")}</div>
+                    <div className="p-error scroll-check font-13px">{translate(localeJson, "c_required")}</div>
                   )}
               </div>
             </div>
@@ -240,7 +240,7 @@ const QuestionList = ({
                 (!question.answer || question.answer?.length == 0 || question.answer[0] == "") &&
                 isFormSubmit && (
                   <>
-                    <div style={{ fontSize: '13px' }} className="p-error scroll-check">{translate(localeJson, "c_required")}</div>
+                    <div className="p-error scroll-check font-13px">{translate(localeJson, "c_required")}</div>
                   </>
                 )}
             </div>
@@ -288,7 +288,7 @@ const QuestionList = ({
               {question.isRequired === 1 &&
                 (!question.answer || question.answer?.length == 0 || question.answer[0] == "") &&
                 isFormSubmit && (
-                  <div style={{ fontSize: '13px' }} className="p-error scroll-check">{translate(localeJson, "c_required")}</div>
+                  <div className="p-error scroll-check font-13px">{translate(localeJson, "c_required")}</div>
                 )}
             </div>
           )}
@@ -338,7 +338,7 @@ const QuestionList = ({
               {question.isRequired === 1 &&
                 (!question.answer || question.answer?.length == 0 || question.answer[0] == "") &&
                 isFormSubmit && (
-                  <div style={{ fontSize: '13px' }} className="p-error scroll-check">{translate(localeJson, "c_required")}</div>
+                  <div className="p-error scroll-check font-13px">{translate(localeJson, "c_required")}</div>
                 )}
             </div>
           )}
@@ -361,7 +361,7 @@ const QuestionList = ({
               {question.isRequired === 1 &&
                 (!question.answer || question.answer?.length == 0 || question.answer[0] == "") &&
                 isFormSubmit && (
-                  <div style={{ fontSize: '13px' }} className="p-error scroll-check">{translate(localeJson, "c_required")}</div>
+                  <div className="p-error scroll-check font-13px">{translate(localeJson, "c_required")}</div>
                 )}
             </div>
           )}

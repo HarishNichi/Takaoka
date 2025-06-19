@@ -33,7 +33,6 @@ export default function AdminManagementDetailModal(props) {
     const [listPayload, setListPayload] = useState({
         "filters": {
             "start": 0,
-            // "limit": 10
         },
         "id": props.detailId
     });

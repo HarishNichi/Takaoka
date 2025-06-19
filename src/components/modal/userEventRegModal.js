@@ -808,14 +808,13 @@ export default function UserEventRegModal(props) {
                               <div className="flex align-items-baseline">
                                 <Input
                                   inputProps={{
-                                    inputParentClassName: `w-12 pr-2`,
+                                    inputParentClassName: `w-12 pr-2 line-height-18px`,
                                     labelProps: {
                                       text: "",
                                       inputLabelClassName: "block font-bold",
                                       spanText: "*",
                                       inputLabelSpanClassName: "p-error",
                                       labelMainClassName: "pb-1 pt-1",
-                                      parentStyle: { lineHeight: "18px" },
                                     },
                                     inputClassName: "w-full",
                                     id: "dob.year",
@@ -868,14 +867,13 @@ export default function UserEventRegModal(props) {
                               <div className="flex align-items-baseline">
                                 <Input
                                   inputProps={{
-                                    inputParentClassName: `w-12 pr-1`,
+                                    inputParentClassName: `w-12 pr-1 line-height-18px`,
                                     labelProps: {
                                       text: "",
                                       inputLabelClassName: "block font-bold",
                                       spanText: "*",
                                       inputLabelSpanClassName: "p-error",
                                       labelMainClassName: "pb-1 pt-1",
-                                      parentStyle: { lineHeight: "18px" },
                                     },
                                     inputClassName: "w-full",
                                     id: "dob.month",
@@ -936,14 +934,13 @@ export default function UserEventRegModal(props) {
                               <div className="flex align-items-baseline">
                                 <Input
                                   inputProps={{
-                                    inputParentClassName: `w-12 pr-2`,
+                                    inputParentClassName: `w-12 pr-2 line-height-18px`,
                                     labelProps: {
                                       text: "",
                                       inputLabelClassName: "block font-bold",
                                       spanText: "*",
                                       inputLabelSpanClassName: "p-error",
                                       labelMainClassName: "pb-1 pt-1",
-                                      parentStyle: { lineHeight: "18px" },
                                     },
                                     inputClassName: "w-full",
                                     id: "dob.date",

@@ -9,7 +9,6 @@ import { NormalLabel } from "@/components";
 export const DateTime = (props) => {
     const {
         dateTimeParentClassName,
-        dateTimeParentStyle,
         labelProps,
         dateTimeClass,
         value,
@@ -33,7 +32,7 @@ export const DateTime = (props) => {
     });
 
     return (
-        <div className={`custom_input ${dateTimeParentClassName} ${float ? 'p-float-label' : ''}`} style={dateTimeParentStyle}>
+        <div className={`custom_input ${dateTimeParentClassName} ${float ? 'p-float-label' : ''}`}>
             {labelProps?.text && (
                 <div className={`${labelProps.labelMainClassName || 'pb-1'}`}>
                     <NormalLabel
@@ -71,7 +70,6 @@ export const DateTime = (props) => {
 export const Calendar = (props) => {
     const {
         calendarParentClassName,
-        calendarParentStyle,
         labelProps,
         calendarClassName,
         value,
@@ -101,7 +99,7 @@ export const Calendar = (props) => {
     });
 
     return (
-        <div className={`custom_input ${calendarParentClassName} ${float ? 'p-float-label' : ''}`} style={calendarParentStyle}>
+        <div className={`custom_input ${calendarParentClassName} ${float ? 'p-float-label' : ''}`}>
             {labelProps?.text && (
                 <div className={`${labelProps.labelMainClassName || 'pb-1'}`}>
                     <NormalLabel
@@ -141,7 +139,6 @@ export const DateTimeDisplay = (props) => {
         fontWeight,
         parentClass,
         id,
-        parentStyle,
     } = props;
 
     const { locale } = useContext(LayoutContext);
@@ -174,7 +171,7 @@ export const DateTimeDisplay = (props) => {
     const displayDateTime1 = formattedDateTime1.replace(/(\d+)年(\d+)月(\d+)日,/, '$1年$2月$3日 ');
 
     return (
-        <div className={`${fontsize} ${bgColor} ${fontWeight} ${parentClass}`} id={id} style={parentStyle}>
+        <div className={`${fontsize} ${bgColor} ${fontWeight} ${parentClass}`} id={id}>
             { locale=="ja" ? displayDateTime1 : displayDateTime}
         </div>
     );

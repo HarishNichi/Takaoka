@@ -30,7 +30,7 @@ const BarcodeDialog = (props) => {
                             <h5 className="text-center font-bold">{props.title ? props.title : translate(localeJson, "barcode_dialog_main_title")}</h5>
                         </div>
                         <div>
-                            <h6 className="text-center mt-2" style={{ "color": "rgb(157 157 157)" }}>{props.subTitle ? props.subTitle : translate(localeJson, "barcode_dialog_sub_title")}</h6>
+                            <h6 className="text-center mt-2 text-gray-custom">{props.subTitle ? props.subTitle : translate(localeJson, "barcode_dialog_sub_title")}</h6>
                         </div>
                     </div>
                     <div className="col mt-5">
@@ -43,10 +43,9 @@ const BarcodeDialog = (props) => {
                                     spanText: "*",
                                     inputLabelSpanClassName: "p-error"
                                 },
-                                inputClassName: "w-full",
+                                inputClassName: "w-full width-200px",
                                 id: "barcode_value",
                                 name: "barcode_value",
-                                style: { width: "200px" },
                                 value: selfID,
                                 onChange: (e) => {
                                     setSelfID(e.target.value)

@@ -9,7 +9,7 @@ import { LayoutContext } from "@/layout/context/layoutcontext";
 
 export default function AdminManagementImportModal(props) {
     const { localeJson } = useContext(LayoutContext);
-    const { open, close, importFile, modalHeaderText, style } = props && props;
+    const { open, close, importFile, modalHeaderText } = props && props;
 
     const fileInputRef = useRef(null);
     const initialValues = { file: null };
@@ -61,7 +61,6 @@ export default function AdminManagementImportModal(props) {
                                     </div>
                                 }
                                 visible={open}
-                                style={style}
                                 draggable={false}
                                 blockScroll={true}
                                 onHide={() => {

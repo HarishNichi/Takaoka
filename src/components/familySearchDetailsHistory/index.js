@@ -225,10 +225,7 @@ const EvacueeFamilyDetailHistory = ( {data, header} )=> {
             <CommonDialog
                 open={individualQuestionnairesVisible}
                 dialogClassName={"p-0"}
-                dialogBodyClassName=""
-                dialogBodyStyle={{
-                    background: "var(--primary-background)"
-                }}
+                dialogBodyClassName="modal-bg"
                 footerButtonsArray={[
                     {
                         buttonProps: {

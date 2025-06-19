@@ -94,7 +94,6 @@ const RegisterConfirmDialog = (props) => {
             draggable={false}
             blockScroll={true}
             onHide={() => props.setVisible(false)}
-            // style={{ width: '600px' }} // Adjusted width for the table
         >
             <div className="flex flex-column justify-content-start mb-4">
                 <div className="p-2">

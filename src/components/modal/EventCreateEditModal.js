@@ -367,21 +367,6 @@ export default function EventCreateEditModal(props) {
                                             }} />
                                             <ValidationError errorBlock={errors.remarks && touched.remarks && errors.remarks} />
                                         </div>
-                                        {/* Future */}
-                                        {/* <div className="">
-                                            <NormalCheckBox
-                                                checkBoxProps={{
-                                                    name: 'auto_checkin_flag',
-                                                    checked: values.auto_checkin_flag == 1 ? true : false,
-                                                    labelClass: 'ml-2',
-                                                    value: translate(localeJson, 'automatic_entry_exit'),
-                                                    onChange: (e) => {
-                                                        setFieldValue('auto_checkin_flag', e.checked ? 1 : 0);
-                                                    }
-                                                }}
-                                            />
-                                            <ValidationError errorBlock={errors.auto_checkin_flag && touched.auto_checkin_flag && errors.auto_checkin_flag} />
-                                        </div> */}
                                         <div className="text-center">
                                             <div className="modal-button-footer-space">
                                                 <Button buttonProps={{

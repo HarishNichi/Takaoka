@@ -235,7 +235,8 @@ export default function StockpileCreateEditModal(props) {
                                                     setFieldValue("image_logo", event.currentTarget.files[0]);
                                                 },
                                                 inputClass: "w-full",
-                                                inputFileStyle: { fontSize: "12px" },
+                                                inputFileClass:"font-size-12px",
+
                                                 placeholder: getImageFileName() ? getImageFileName() : translate(localeJson, 'default_file_placeholder')
                                             }} parentClass={"w-full bg-white input-parent-file"} />
                                             <ValidationError errorBlock={errors.image_logo && touched.image_logo && errors.image_logo} />

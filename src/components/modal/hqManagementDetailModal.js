@@ -118,10 +118,10 @@ export default function HqManagementDetailModal(props) {
                             </div>
                             <div className="modal-field-bottom-space">
                                 <NormalTable
+                                className={"w-full"}
                                     loading={tableLoading}
-                                    tableStyle={{ maxWidth: "w-full" }}
                                     showGridlines={"true"}
-                                    columnStyle={{ textAlign: 'center' }}
+                                    rowClassName={"text-center"}
                                     customActionsField="actions"
                                     emptyMessage={translate(localeJson, "data_not_found")}
                                     value={values}
@@ -131,9 +131,8 @@ export default function HqManagementDetailModal(props) {
                             <div >
                                 <div>
                                     <NormalTable
-                                        tableStyle={{ maxWidth: "w-full" }}
                                         stripedRows={true}
-                                        className={"custom-table-cell"}
+                                        className={"custom-table-cell w-full"}
                                         showGridlines={"true"}
                                         columns={columnNames}
                                         value={columnValues}

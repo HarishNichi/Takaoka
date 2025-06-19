@@ -58,7 +58,7 @@ export default function DbResetModal(props) {
                         resetForm({ values: initialValues });
                         close()}}
             >
-                <div className={`modal-content`} style={{ padding: "0 0" }}>
+                <div className={`modal-content p-0`}>
                     <div className="flex flex-column justify-center">
                         <div className="modal-header">
                             {translate(localeJson, 'db_reset')}

@@ -42,12 +42,11 @@ export const ImageComponent = (props) => {
     }
 
     return (
-        <div className={`${parentClass}`} style={parentStyle}>
+        <div className={`${parentClass}`}>
             <ImageData
                 src={imageLoader({ src })}
                 width={custom ? (dimensions.width > maxWidth ? maxWidth : dimensions.width) : width}
                 alt={alt}
-                style={style}
                 height={custom ? dimensions.height : height}
                 maxWidth={custom ? maxWidth : ''}
                 onError={handleImageError}

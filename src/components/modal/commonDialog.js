@@ -9,7 +9,6 @@ const CommonDialog = (props) => {
     close,
     dialogParentClassName,
     dialogBodyClassName,
-    dialogBodyStyle,
     position,
     header,
     content,
@@ -52,7 +51,7 @@ const CommonDialog = (props) => {
         footer={footer()}
       >
 
-        <div className={dialogBodyClassName} style={dialogBodyStyle}>
+        <div className={dialogBodyClassName}>
           <div className="modal-header">
             {header}
           </div>

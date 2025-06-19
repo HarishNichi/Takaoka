@@ -71,9 +71,8 @@ const PersonCountModal = (props) => {
 
     return (
         <Dialog
-            className="new-custom-modal-person"
+            className="new-custom-modal-person width-95 h-full p-0"
             header={header}
-            style={{ width: "95%", height: "100%", padding: "0px important" }}
             visible={open}
             draggable={false}
             blockScroll={true}
@@ -86,12 +85,12 @@ const PersonCountModal = (props) => {
                     <div className='card h-full'>
                         <CustomHeader headerClass={"page-header1"} header={header} />
                         <div className="flex flex-column h-full align-items-center justify-content-center text-2xl" >
-                            <div style={{ maxWidth: "330px" }}>
+                            <div className="max-w-330px">
                                 <div className=''>
                                     <CustomHeader customParentClassName={"mb-0"} headerClass={`${locale == "en" ? "pt-4" : "pt-0"} font-bold`} header={translate(localeJson, "evacuee_count")} />
                                 </div>
                                 <div className=''>
-                                    <p className='pb-0' style={{ fontSize: "16px" }}>{translate(localeJson, "person_count_evacuated")}
+                                    <p className='pb-0 font-16px'>{translate(localeJson, "person_count_evacuated")}
                                     </p>
                                 </div>
 

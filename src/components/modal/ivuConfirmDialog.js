@@ -10,7 +10,7 @@ const IvuConfirmDialog = (props) => {
   const router = useRouter();
   return (
     <Dialog
-      className="custom-modal w-10 sm:w-8 md:w-6 lg:w-5"
+      className="custom-modal w-10 sm:w-8 md:w-6 lg:w-5 width-375px"
       header={<div>
         <CustomHeader
           headerClass={"page-header1"}
@@ -22,8 +22,6 @@ const IvuConfirmDialog = (props) => {
       draggable={false}
       blockScroll={true}
       onHide={() => props.setIvuVisible(false)}
-      style={{ width: "375px" }}
-      // footer={footer()}
     >
       <div className="col flex justify-content-center mt-4">
         <div className="">

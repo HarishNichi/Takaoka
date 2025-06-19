@@ -20,15 +20,14 @@ export default function QrScannerModal(props) {
     return (
         <div>
             <Dialog
-                className="custom-modal fade-in"
+                className="custom-modal fade-in width-400px"
                 visible={open}
                 header={translate(localeJson, 'qr_scanner_popup_dialog')}
                 draggable={false}
                 blockScroll={true}
-                style={{ width: "400px" }}
                 onHide={() => close()}
             >
-                <div style={{ position: "relative", overflow: "hidden" }}>
+                <div className="relative overflow-hidden">
                     <QrScanner
                         onScan={(result) => {
                             if (result && result !== localStorage.getItem('user_qr')) {

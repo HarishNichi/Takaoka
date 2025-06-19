@@ -20,7 +20,6 @@ const DetailModal = (props) => {
         position,
         onHide,
         visible,
-        style,
         ...restProps
     } = detailModalProps;
 
@@ -32,7 +31,6 @@ const DetailModal = (props) => {
                 header={headerContent}
                 visible={visible}
                 onHide={onHide}
-                style={style}
                 blockScroll={true}
                 {...restProps}
             >

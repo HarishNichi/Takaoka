@@ -177,7 +177,7 @@ export default function EmailSettings(props) {
 
                                             </div>
                                             <div className='modal-field-top-space ml-1 w-full '>
-                                                <NormalLabel text={translate(localeJson, 'history_mail_message')} style={{ fontSize: "13px" }} />
+                                                <NormalLabel labelClass={"font-13px"} text={translate(localeJson, 'history_mail_message')} />
                                             </div>
                                         </div>
                                     </form>

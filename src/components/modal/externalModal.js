@@ -160,25 +160,24 @@ export default function External(props) {
                     </div>
                     <div className="mt-4 ">
                       <div className="grid">
-                        <div className="col-12" style={{ padding: "0 0.5rem" }}>
+                        <div className="col-12 py-0 px-2">
                           <div className="custom-label pb-1 w-12">
                             <label>{translate(localeJson, "c_dob")}</label>
                             <span className="p-error">*</span>
                           </div>
                         </div>
-                        <div className="flex col-12 pb-0 " style={{ padding: "0 0.5rem" }}>
+                        <div className="flex col-12 pb-0 py-0 px-2 ">
                           <div className="pl-0 col-6 pt-0 sm:col-6 md:col-6 lg:col-6 xl:col-6">
                             <div className="flex align-items-baseline">
                               <Input
                                 inputProps={{
-                                  inputParentClassName: `w-12 pr-2`,
+                                  inputParentClassName: `w-12 pr-2 line-height-18px`,
                                   labelProps: {
                                     text: "",
                                     inputLabelClassName: "block font-bold",
                                     spanText: "*",
                                     inputLabelSpanClassName: "p-error",
                                     labelMainClassName: "pb-1 pt-1",
-                                    parentStyle: { lineHeight: "18px" },
                                   },
                                   inputClassName: "w-full",
                                   id: "year",
@@ -231,14 +230,13 @@ export default function External(props) {
                             <div className="flex align-items-baseline">
                               <Input
                                 inputProps={{
-                                  inputParentClassName: `w-12 pr-1`,
+                                  inputParentClassName: `w-12 pr-1 line-height-18px`,
                                   labelProps: {
                                     text: "",
                                     inputLabelClassName: "block font-bold",
                                     spanText: "*",
                                     inputLabelSpanClassName: "p-error",
                                     labelMainClassName: "pb-1 pt-1",
-                                    parentStyle: { lineHeight: "18px" },
                                   },
                                   inputClassName: "w-full",
                                   id: "month",
@@ -298,14 +296,13 @@ export default function External(props) {
                             <div className="flex align-items-baseline">
                               <Input
                                 inputProps={{
-                                  inputParentClassName: `w-12 pr-2`,
+                                  inputParentClassName: `w-12 pr-2 line-height-18px`,
                                   labelProps: {
                                     text: "",
                                     inputLabelClassName: "block font-bold",
                                     spanText: "*",
                                     inputLabelSpanClassName: "p-error",
                                     labelMainClassName: "pb-1 pt-1",
-                                    parentStyle: { lineHeight: "18px" },
                                   },
                                   inputClassName: "w-full",
                                   id: "date",

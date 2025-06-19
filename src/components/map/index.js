@@ -319,34 +319,12 @@ export const GoogleMapMultiMarkerComponent = ({
                           zIndex: "99999"
                         }}
                       >
-                        <div
-                          style={{
-                            position: "absolute",
-                            background: "white ",
-                            marginTop: "-138px", // Adjust as needed
-                            padding: "15px",
-                            marginLeft: "-80px",
-                            borderRadius: "5px",
-                            minWidth: "150px",
-                            maxWidth: "150px",
-                            boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-                          }}
+                        <div className="absolute bg-white p-3 border-round shadow-2 custom-popup"
                         >
-                          <div
-                            style={{
-                              position: "absolute",
-                              top: "100%",
-                              left: "45%",
-                              width: "0",
-                              height: "0",
-                              borderLeft: "10px solid transparent",
-                              borderRight: "10px solid transparent",
-                              borderTop: "10px solid white",
-                            }}
+                          <div className="triangle-arrow-up"
                           ></div>
                           <div
-                            className="text-base"
-                            style={{ wordWrap: "break-word" }}
+                            className="text-base break-word"
                           >
                             {marker.content}
                           </div>

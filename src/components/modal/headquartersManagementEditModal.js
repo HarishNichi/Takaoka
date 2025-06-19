@@ -192,8 +192,7 @@ export default function HqEditModal(props) {
                                                     value: values.password,
                                                     onChange: handleChange,
                                                     onBlur: handleBlur,
-                                                    style: { width: "100%" },
-                                                    passwordClass: "w-full"
+                                                    passwordClassName: "w-full"
                                                 }}
                                             />
                                             <ValidationError errorBlock={errors.password && touched.password && errors.password} />

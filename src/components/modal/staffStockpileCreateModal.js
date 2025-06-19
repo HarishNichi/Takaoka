@@ -229,7 +229,7 @@ export default function StaffStockpileCreateModal(props) {
                                                     setFieldValue("image_logo", event.currentTarget.files[0]);
                                                 },
                                                 inputClass: "w-full",
-                                                inputFileStyle: { fontSize: "12px" },
+                                                inputFileClass:"font-size-12",
                                                 placeholder: translate(localeJson, 'default_file_placeholder')
                                             }} parentClass={"create_input_stock w-full"} />
                                             <ValidationError errorBlock={errors.image_logo && touched.image_logo && errors.image_logo} />

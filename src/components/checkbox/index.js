@@ -6,7 +6,6 @@ import { NormalLabel } from "@/components";
 const NormalCheckBox = (props) => {
     const {
         parentClass,
-        parentStyle,
         custom,
         checkBoxProps = {}
     } = props;
@@ -18,14 +17,13 @@ const NormalCheckBox = (props) => {
         onChange,
         checked,
         disabled,
-        style,
         labelClass,
         linkLabel,
         ...restProps
     } = checkBoxProps;
 
     return (
-        <div className={`${parentClass} ${custom || 'custom-checkbox'}`} style={parentStyle}>
+        <div className={`${parentClass} ${custom || 'custom-checkbox'}`}>
             <Checkbox className={`${checkboxClass} `}
                 inputId={id}
                 name={name}
@@ -33,7 +31,6 @@ const NormalCheckBox = (props) => {
                 onChange={onChange}
                 checked={checked}
                 disabled={disabled}
-                style={style}
                 {...restProps}
             />
             {!linkLabel &&

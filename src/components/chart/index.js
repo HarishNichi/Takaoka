@@ -48,7 +48,7 @@ const Doughnut = ({ labels, data, bgClr, hvrClr, type }) => {
     };
 
     return (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '440px' }}>
+        <div className='flex align-items-center justify-content-center min-h-440'>
             {data && data.every(value => value === 0) ? (
                 <div>{translate(localeJson, "no_data_available")}</div>
             ) : (

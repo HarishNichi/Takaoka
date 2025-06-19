@@ -38,7 +38,7 @@ const CommonPage = ({
 
               <div>
                 <div className="mt-3">
-                  <div className="flex" style={{ justifyContent: "center" }}>
+                  <div className="flex justify-content-center">
                     <div className="grid w-full">
                       <div className="col-12 lg:col-6 md:col-6">
                         <ButtonRounded
