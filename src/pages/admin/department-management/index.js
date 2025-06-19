@@ -103,7 +103,7 @@ export default function DepartmentanagementPage() {
             buttonProps={{
               text: translate(localeJson, "delete"),
               buttonClass: "delete-button ml-2",
-              disabled: rowData?.id === AuthReducer?.admin?.user?.id,
+              // disabled: rowData?.id === AuthReducer?.admin?.user?.id,
               onClick: () => openDeleteDialog(rowData),
             }}
             parentClass="delete-button inline"
