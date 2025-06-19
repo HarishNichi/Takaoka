@@ -454,6 +454,8 @@
       "notes": "上記に加えて考慮すべき事があれば記入してください",
       "external_popup_name_kanji": "名前は最大100文字までです。",
       "admin_name_required": "管理者名が必要です。",
+      "department_name_required": "部署名が必要です。",
+      "department_code_required":" 部署コードが必要です。",
       "opening_required_when_closing_available": "開設日時は必要です。",
       "staff_name_required": "スタッフ名が必要です。",
       "head_staff_name_required": "本部スタッフ名が必要です。",

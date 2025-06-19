@@ -18,11 +18,9 @@ export default function DepartmentCreateEditModal(props) {
   /* -------------------- Validation Schema -------------------- */
   const schema = Yup.object().shape({
     name: Yup.string()
-      .required(translate(localeJson, "admin_name_required"))
-      .max(100, translate(localeJson, "staff_name_max_required")),
+      .required(translate(localeJson, "department_name_required")),
     code: Yup.string()
-      .required(translate(localeJson, "user_id_required"))
-      .max(20, translate(localeJson, "user_id_max_100")),
+      .required(translate(localeJson, "department_code_required"))
   });
 
   /* -------------------- Render -------------------- */
