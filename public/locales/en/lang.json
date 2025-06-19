@@ -83,6 +83,7 @@
     "confirmation": "Confirmation",
     "staff_management_import": "Staff CSV import",
     "admin_management_import": "Administrator CSV import",
+    "department_management_import": "Department CSV import",
     "hq_stockpile_summary_import": "Stockpile Summary CSV import",
     "hq_stockpile_export_title_modal": "Please use the stockpile details exported file format for import.",
     "add_admin_management": "Add Admin Information",

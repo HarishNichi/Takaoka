@@ -83,6 +83,7 @@
       "confirmation": "確認情報",
       "staff_management_import": "スタッフ管理CSVインポート",
       "admin_management_import": "管理者管理CSVインポート",
+      "department_management_import": "部署管理CSVインポート",
       "hq_stockpile_summary_import": "備蓄品CSVインポート",
       "hq_stockpile_export_title_modal": "インポートに備蓄品の詳細エクスポートしたファイル形式を使用してください。",
       "add_admin_management": "管理者情報登録",

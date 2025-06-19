@@ -241,7 +241,7 @@ export default function DepartmentanagementPage() {
         open={importModalOpen}
         close={onImportModalClose}
         importFile={importFileApi}
-        modalHeaderText={translate(localeJson, "admin_management_import")}
+        modalHeaderText={translate(localeJson, "department_management_import")}
       />
       <AdminManagementDeleteModal
         open={deleteOpen}
