@@ -85,6 +85,13 @@ const AppMenu = () => {
                     to: '/admin/admin-management',
                     active: router.pathname.startsWith('/admin/admin-management')
                 },
+                {
+                    label: translate(localeJson, 'department_management'),
+                    icon: <FaUserTie size={16} />,
+                    to: '/admin/department-management',
+                    active: router.pathname.startsWith('/admin/department-management')
+                },
+
             ]
         },
         {

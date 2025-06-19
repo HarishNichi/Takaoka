@@ -29,3 +29,4 @@ export { default as QrScannerModal } from '@/components/modal/qrScannerModal';
 export { default as StockpileCreateEditModal } from '@/components/modal/stockpileCreateEditModal';
 export { default as UserEventRegModal } from '@/components/modal/userEventRegModal';
 export { default as YaburuModal } from '@/components/modal/userYaburuCardModal';
+export {default as DepartmentCreateEditModal} from "@/components/modal/departmentManagementCreateEditModal";

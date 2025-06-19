@@ -15,6 +15,7 @@
       "qr_code_create": "QRコード作成",
       "staff_management": "スタッフ管理",
       "admin_management": "管理者管理",
+      "department_management": "部署管理",
       "setting": "設定",
       "places": "避難所マスタ管理",
       "material": "物資マスタ管理",
@@ -85,6 +86,8 @@
       "hq_stockpile_summary_import": "備蓄品CSVインポート",
       "hq_stockpile_export_title_modal": "インポートに備蓄品の詳細エクスポートしたファイル形式を使用してください。",
       "add_admin_management": "管理者情報登録",
+      "add_department": "部署情報登録",
+      "edit_department":" 部署情報編集",
       "history_login_staff_management": "ログイン履歴",
       "confirmation_information": "削除しますか？",
       "toggle_place": "確認情報",
@@ -409,6 +412,7 @@
       "do_you_want_to_change_status_of_the_questionnaire": "イベントの状態を変更しますか？",
       "staff_information": "スタッフ情報",
       "userId": "ユーザーID",
+      "department_id":" 部署ID",
       "headquarter_staff_registration": "本部スタッフ情報登録",
       "headquarter_staff_edit": "本部スタッフ管理編集",
       "headquarters_staff_management_csv_import": "本部スタッフ管理CSVインポート",
@@ -538,6 +542,7 @@
       "submit": "登録する",
       "create_admin": "新規登録",
       "create_staff": "新規登録",
+      "create_department": "新規登録",
       "download": "ダウンロード",
       "create_special_care": "新規登録",
       "create_place": "新規登録",
@@ -1142,12 +1147,5 @@
        "sender":"送信者",
        "line_management":"LINE通知関連",
        "reply":"返信",
-       "message_required":"通知メッセージを入力してください。",
-       "employee_list":"従業員一覧",
-       "employee_code":"従業員コード",
-       "employee_name":"従業員名",
-       "department":"部署",
-       "employee_status":"従業員ステータス",
-       "person_in_charge": "担当者"
-       
+       "message_required":"通知メッセージを入力してください。"
 }

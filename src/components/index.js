@@ -34,7 +34,8 @@ import {
   QrScannerModal,
   StockpileCreateEditModal,
   UserEventRegModal,
-  YaburuModal
+  YaburuModal,
+  DepartmentCreateEditModal
 } from "@/components/modal";
 import { ImageComponent } from "@/components/image";
 import { NormalCheckBox } from "@/components/checkbox";
@@ -58,7 +59,6 @@ import { BaseTemplate } from "@/components/questionarrie";
 import Doughnut from "@/components/chart";
 import CustomHeader from "@/components/customHeader";
 import { DateTime, Calendar, DateTimeDisplay } from "@/components/date&time";
-
 export {
   NormalTable,
   RowExpansionTable,
@@ -132,4 +132,5 @@ export {
   UserEventRegModal,
   YaburuModal,
   DateTimeDisplay,
+  DepartmentCreateEditModal
 }
