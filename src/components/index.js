@@ -32,7 +32,6 @@ import { BarcodeScanner } from "@/components/qr";
 import { InputFile } from "@/components/upload";
 import { CardSpinner } from "@/components/spinner";
 import { Input, TextArea, InputNumber, InputGroup, InputDropdown, MultiSelect, DropdownSelect, InputGroups, Password } from "@/components/input";
-import { NotFound } from "@/components/dataNotFound";
 import AudioRecorder from "@/components/audio";
 import CommonPage from "@/components/eventCheck";
 import FamilyListComponent from "@/components/familySearchResult";
@@ -74,7 +73,6 @@ export {
   MultiSelect,
   DropdownSelect,
   InputGroups,
-  NotFound,
   AudioRecorder,
   CommonPage,
   FamilyListComponent,
