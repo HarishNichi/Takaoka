@@ -21,7 +21,6 @@ import {
   CustomHeader,
   NormalTable,
   Input,
-  PersonCountModal,
 } from "@/components";
 import { useAppDispatch } from "@/redux/hooks";
 import { setFamily } from "@/redux/family";
@@ -354,43 +353,6 @@ function StaffFamily() {
 
   return (
     <>
-      <PersonCountModal
-        open={staffFamilyDialogVisible}
-        dialogBodyClassName="flex justify-content-center item-center mt-5"
-        header={translate(
-          localeJson,
-          "evacuee_registration_for_household_family"
-        )}
-        content={""}
-        position={"center"}
-        footerParentClassName={
-          "flex flex-column items-center justify-content-center"
-        }
-        footerButtonsArray={[
-          {
-            buttonProps: {
-              buttonClass: "w-full update-button",
-              type: "submit",
-              text: translate(localeJson, "continue"),
-              onClick: () => onClickOkButton(),
-            },
-            parentClass:
-              "block w-full update-button text-center modal-button-footer-space",
-          },
-          {
-            buttonProps: {
-              buttonClass: "w-full back-button",
-              text: translate(localeJson, "cancel"),
-              onClick: () => onClickCancelButton(),
-            },
-            parentClass: "block w-full back-button text-center ",
-          },
-        ]}
-        close={() => {
-          setStaffFamilyDialogVisible(false);
-          showOverFlow();
-        }}
-      />
       <div className="grid">
         <div className="col-12">
           <div className="card">
