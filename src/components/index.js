@@ -1,6 +1,5 @@
 import { NormalTable, RowExpansionTable } from "@/components/datatable";
 import { ValidationError } from "@/components/error";
-import { Counter, CounterSupplies } from "@/components/incrementDecrement";
 import { NormalLabel } from "@/components/label";
 import {
   DeleteModal,
@@ -42,8 +41,6 @@ export {
   NormalTable,
   RowExpansionTable,
   ValidationError,
-  Counter,
-  CounterSupplies,
   NormalLabel,
   DeleteModal,
   EmailSettings,
