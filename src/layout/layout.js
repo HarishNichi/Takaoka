@@ -13,6 +13,7 @@ import { zipDownloadWithURL, getValueByKeyRecursively as translate, } from '@/he
 import { QRCodeCreateServices } from '@/services';
 import toast from 'react-hot-toast';
 import Head from 'next/head'; // Import Head for SEO-friendly title updates
+import { Analytics } from "@vercel/analytics/next"
 
 const Layout = (props) => {
     const { layoutConfig, layoutState, setLayoutState, loader, localeJson, locale } = useContext(LayoutContext);
@@ -388,6 +389,7 @@ const Layout = (props) => {
                 <div className="layout-main-container">
                     <div className="layout-main">
                         {props.children}
+                         <Analytics />
                     </div>
                     {!URLS.includes(path) && (
                         <AppFooter />
