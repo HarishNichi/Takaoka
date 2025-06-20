@@ -1,6 +1,5 @@
 export { default as DeleteModal } from '@/components/modal/deleteModal';
 export { default as AdminManagementCreateEditModal } from '@/components/modal/adminManagementCreateEditModal';
-export { default as DetailModal } from '@/components/modal/detailModal';
 export { default as EmailSettings } from '@/components/modal/emailSettings';
 export { default as StockpileSummaryImageModal } from '@/components/modal/stockpileSummaryImageModal';
 export { default as StockPileSummaryMailSettingsModal } from '@/components/modal/stockPileSummaryMailSettingsModal';
@@ -20,8 +19,6 @@ export { default as HqEditModal } from '@/components/modal/headquartersManagemen
 export { default as HqManagementDetailModal } from '@/components/modal/hqManagementDetailModal';
 export { default as PlaceEventBulkCheckOut } from '@/components/modal/placeEventBulkCheckOut';
 export { default as YappleModal } from '@/components/modal/yappleModal';
-export { default as BarcodeDialog } from '@/components/modal/barcodeDialog';
-export { default as EventCreateEditModal } from '@/components/modal/EventCreateEditModal';
 export { default as External } from '@/components/modal/externalModal';
 export { default as MaterialCreateEditModal } from '@/components/modal/materialCreateEditModal';
 export { default as PreRegisterConfirmDialog } from '@/components/modal/preRegisterConfirmDialog';
