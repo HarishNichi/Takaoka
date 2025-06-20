@@ -378,20 +378,6 @@ function StaffFamily() {
                   text: translate(localeJson, 'export'),
                   onClick: () => downloadEvacueesListCSV()
                 }} parentClass={"mr-1 export-button"} />
-                {/* <Button
-                  buttonProps={{
-                    type: "submit",
-                    rounded: "true",
-                    create: true,
-                    buttonClass: "evacuation_button_height create-button",
-                    text: translate(localeJson, "signup"),
-                    onClick: () => {
-                      setStaffFamilyDialogVisible(true);
-                      hideOverFlow();
-                    },
-                  }}
-                  parentClass={"primary-button"}
-                /> */}
               </div>
             </div>
             <div>
