@@ -13,7 +13,6 @@ export { default as SpecialCareEditModal } from '@/components/modal/SpecialCareE
 export { default as StaffStockpileCreateModal } from '@/components/modal/staffStockpileCreateModal';
 export { default as StaffStockpileEditModal } from '@/components/modal/staffStockpileEditModal';
 export { default as PersonCountModal } from '@/components/modal/personCountModal';
-export { default as QuestionnairesCreateEditModal } from '@/components/modal/questionariesCreateEditModal';
 export { default as HqEditModal } from '@/components/modal/headquartersManagementEditModal';
 export { default as HqManagementDetailModal } from '@/components/modal/hqManagementDetailModal';
 export { default as PlaceEventBulkCheckOut } from '@/components/modal/placeEventBulkCheckOut';
