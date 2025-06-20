@@ -1156,5 +1156,6 @@
        "employee_name":"従業員名",
        "department":"部署",
        "employee_status":"従業員ステータス",
-       "person_in_charge": "担当者"
+       "person_in_charge": "担当者",
+        "employee_id": "従業員コード"
 }
