@@ -31,8 +31,6 @@ import { InputFile } from "@/components/upload";
 import { CardSpinner } from "@/components/spinner";
 import { Input, TextArea, InputNumber, InputGroup, InputDropdown, MultiSelect, DropdownSelect, InputGroups, Password } from "@/components/input";
 import AudioRecorder from "@/components/audio";
-import QuestionList from "@/components/masterQuestion";
-import { MultiStepForm } from "@/components/multiForm";
 import PersonCountButton from "@/components/personCountButtons";
 import { BaseTemplate } from "@/components/questionarrie";
 import CustomHeader from "@/components/customHeader";
@@ -68,8 +66,6 @@ export {
   DropdownSelect,
   InputGroups,
   AudioRecorder,
-  QuestionList,
-  MultiStepForm,
   PersonCountButton,
   BaseTemplate,
   CustomHeader,
