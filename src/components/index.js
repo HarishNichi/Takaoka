@@ -18,7 +18,6 @@ import {
   PlaceEventBulkCheckOut,
   EvacueeTempRegModal,
   QrScannerModal,
-  UserEventRegModal,
   DepartmentCreateEditModal
 } from "@/components/modal";
 import { ImageComponent } from "@/components/image";
@@ -94,7 +93,6 @@ export {
   HqManagementDetailModal,
   PlaceEventBulkCheckOut,
   QrScannerModal,
-  UserEventRegModal,
   DateTimeDisplay,
   DepartmentCreateEditModal
 }
