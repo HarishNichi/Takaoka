@@ -40,7 +40,6 @@ import QuestionList from "@/components/masterQuestion";
 import { MultiStepForm } from "@/components/multiForm";
 import PersonCountButton from "@/components/personCountButtons";
 import { BaseTemplate } from "@/components/questionarrie";
-import Doughnut from "@/components/chart";
 import CustomHeader from "@/components/customHeader";
 import { DateTime, Calendar, DateTimeDisplay } from "@/components/date&time";
 export {
@@ -83,7 +82,6 @@ export {
   MultiStepForm,
   PersonCountButton,
   BaseTemplate,
-  Doughnut,
   CustomHeader,
   DateTime,
   Calendar,
