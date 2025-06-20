@@ -1,7 +1,6 @@
 export { default as DeleteModal } from '@/components/modal/deleteModal';
 export { default as AdminManagementCreateEditModal } from '@/components/modal/adminManagementCreateEditModal';
 export { default as EmailSettings } from '@/components/modal/emailSettings';
-export { default as StockPileSummaryMailSettingsModal } from '@/components/modal/stockPileSummaryMailSettingsModal';
 export { default as AdminManagementDetailModal } from '@/components/modal/adminManagementDetailModal';
 export { default as AdminManagementDeleteModal } from '@/components/modal/adminManagementDeleteModal';
 export { default as AdminManagementImportModal } from '@/components/modal/adminManagementImportModal';
