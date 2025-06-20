@@ -14,6 +14,7 @@ import { QRCodeCreateServices } from '@/services';
 import toast from 'react-hot-toast';
 import Head from 'next/head'; // Import Head for SEO-friendly title updates
 import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const Layout = (props) => {
     const { layoutConfig, layoutState, setLayoutState, loader, localeJson, locale } = useContext(LayoutContext);
@@ -390,6 +391,7 @@ const Layout = (props) => {
                     <div className="layout-main">
                         {props.children}
                          <Analytics />
+                          <SpeedInsights />
                     </div>
                     {!URLS.includes(path) && (
                         <AppFooter />
