@@ -1158,5 +1158,6 @@
        "employee_status":"従業員ステータス",
        "person_in_charge": "担当者",
         "employee_id": "従業員コード",
-        "placeholder_please_enter_id": "従業員コードを入力してください"
+        "placeholder_please_enter_id": "従業員コードを入力してください",
+        "placeholder_please_enter_employee_name": "従業員名を入力してください"
 }

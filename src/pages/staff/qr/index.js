@@ -125,7 +125,7 @@ export default function App() {
         <CustomHeader
           headerClass="page-header1"
           customParentClassName="mb-0"
-          header={translate(localeJson, "employee_list")}
+          header={translate(localeJson, "qr_scan")}
         />
       </div>
 
@@ -240,7 +240,7 @@ export default function App() {
                     onBlur: handleBlur,
                     placeholder: translate(
                       localeJson,
-                      "placeholder_please_enter_name"
+                      "placeholder_please_enter_employee_name"
                     ),
                     hasIcon: false,
                     inputRightIconProps: {
