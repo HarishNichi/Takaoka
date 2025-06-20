@@ -11,8 +11,6 @@ export { default as PersonCountModal } from '@/components/modal/personCountModal
 export { default as HqEditModal } from '@/components/modal/headquartersManagementEditModal';
 export { default as HqManagementDetailModal } from '@/components/modal/hqManagementDetailModal';
 export { default as PlaceEventBulkCheckOut } from '@/components/modal/placeEventBulkCheckOut';
-export { default as YappleModal } from '@/components/modal/yappleModal';
 export { default as QrScannerModal } from '@/components/modal/qrScannerModal';
 export { default as UserEventRegModal } from '@/components/modal/userEventRegModal';
-export { default as YaburuModal } from '@/components/modal/userYaburuCardModal';
 export {default as DepartmentCreateEditModal} from "@/components/modal/departmentManagementCreateEditModal";

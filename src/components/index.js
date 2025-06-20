@@ -16,11 +16,9 @@ import {
   HqEditModal,
   HqManagementDetailModal,
   PlaceEventBulkCheckOut,
-  YappleModal,
   EvacueeTempRegModal,
   QrScannerModal,
   UserEventRegModal,
-  YaburuModal,
   DepartmentCreateEditModal
 } from "@/components/modal";
 import { ImageComponent } from "@/components/image";
@@ -99,10 +97,8 @@ export {
   HqEditModal,
   HqManagementDetailModal,
   PlaceEventBulkCheckOut,
-  YappleModal,
   QrScannerModal,
   UserEventRegModal,
-  YaburuModal,
   DateTimeDisplay,
   DepartmentCreateEditModal
 }
