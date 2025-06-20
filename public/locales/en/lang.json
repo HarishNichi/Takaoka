@@ -1161,6 +1161,7 @@
   "department":"Department",
   "employee_status":"Employee Status",
    "person_in_charge": "Person in Charge",
-    "employee_id": "Employee ID"
+    "employee_id": "Employee ID",
+     "placeholder_please_enter_id": "Please enter ID"
 
   }

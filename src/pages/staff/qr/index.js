@@ -209,10 +209,10 @@ export default function App() {
                       localeJson,
                       "placeholder_please_enter_id"
                     ),
-                    hasIcon: true,
+                    hasIcon: false,
                     inputRightIconProps: {
-                      display: true,
-                      audio: { display: true },
+                      display: false,
+                      audio: { display: false },
                       icon: "",
                     },
                   }}
@@ -242,10 +242,10 @@ export default function App() {
                       localeJson,
                       "placeholder_please_enter_name"
                     ),
-                    hasIcon: true,
+                    hasIcon: false,
                     inputRightIconProps: {
-                      display: true,
-                      audio: { display: true },
+                      display: false,
+                      audio: { display: false },
                       icon: "",
                     },
                   }}
