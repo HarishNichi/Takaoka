@@ -12,5 +12,4 @@ export { default as HqEditModal } from '@/components/modal/headquartersManagemen
 export { default as HqManagementDetailModal } from '@/components/modal/hqManagementDetailModal';
 export { default as PlaceEventBulkCheckOut } from '@/components/modal/placeEventBulkCheckOut';
 export { default as QrScannerModal } from '@/components/modal/qrScannerModal';
-export { default as UserEventRegModal } from '@/components/modal/userEventRegModal';
 export {default as DepartmentCreateEditModal} from "@/components/modal/departmentManagementCreateEditModal";
