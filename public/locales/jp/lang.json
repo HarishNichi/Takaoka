@@ -1151,6 +1151,7 @@
        "line_management":"LINE通知関連",
        "reply":"返信",
           "message_required":"通知メッセージを入力してください。",
+            "employee_list":"従業員一覧",
        "employee_code":"従業員コード",
        "employee_name":"従業員名",
        "department":"部署",

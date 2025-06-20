@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 
-import { Button, PreRegisterConfirmDialog, QrScannerModal } from "@/components";
+import { Button, QrScannerModal } from "@/components";
 import { getValueByKeyRecursively as translate } from "@/helper";
 import { LayoutContext } from "@/layout/context/layoutcontext";
 import { UserQrService } from "@/services";
