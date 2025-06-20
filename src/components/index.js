@@ -14,7 +14,6 @@ import {
   AdminManagementImportModal,
   StaffManagementDetailModal,
   StaffManagementEditModal,
-  StaffStockpileEditModal,
   PersonCountModal,
   HqEditModal,
   HqManagementDetailModal,
@@ -101,8 +100,6 @@ export {
   AdminManagementImportModal,
   StaffManagementDetailModal,
   StaffManagementEditModal,
-
-  StaffStockpileEditModal,
   PersonCountModal,
   HqEditModal,
   HqManagementDetailModal,
