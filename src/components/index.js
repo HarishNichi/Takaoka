@@ -21,7 +21,6 @@ import {
   YappleModal,
   EvacueeTempRegModal,
   QrScannerModal,
-  StockpileCreateEditModal,
   UserEventRegModal,
   YaburuModal,
   DepartmentCreateEditModal
@@ -106,7 +105,6 @@ export {
   PlaceEventBulkCheckOut,
   YappleModal,
   QrScannerModal,
-  StockpileCreateEditModal,
   UserEventRegModal,
   YaburuModal,
   DateTimeDisplay,
