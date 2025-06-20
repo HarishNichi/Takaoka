@@ -1,1 +1,0 @@
-export {default as BaseTemplate} from '@/components/questionarrie/template/baseTemplate'

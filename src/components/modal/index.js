@@ -7,7 +7,6 @@ export { default as AdminManagementImportModal } from '@/components/modal/adminM
 export { default as StaffManagementDetailModal } from '@/components/modal/staffManagementDetailModal';
 export { default as StaffManagementEditModal } from '@/components/modal/StaffManagementEditModal';
 export { default as CommonDialog } from '@/components/modal/commonDialog';
-export { default as PersonCountModal } from '@/components/modal/personCountModal';
 export { default as HqEditModal } from '@/components/modal/headquartersManagementEditModal';
 export { default as HqManagementDetailModal } from '@/components/modal/hqManagementDetailModal';
 export { default as PlaceEventBulkCheckOut } from '@/components/modal/placeEventBulkCheckOut';
