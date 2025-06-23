@@ -79,7 +79,6 @@ export default function HeadQuartersPage() {
             body: (rowData) => (
                 <div>
                     <Button
-                        parentStyle={{ display: "inline" }}
                         buttonProps={{
                             text: translate(localeJson, 'edit'),
                             buttonClass: "edit-button",
@@ -89,7 +88,7 @@ export default function HeadQuartersPage() {
                                 setEditStaffOpen(true);
                                 hideOverFlow();
                             }
-                        }} parentClass={"edit-button"} />
+                        }} parentClass={"edit-button inline"} />
                     <Button
                         parentStyle={{ display: "inline" }}
                         buttonProps={{
@@ -98,7 +97,7 @@ export default function HeadQuartersPage() {
                             onClick: () => {
                                 openDeleteDialog(rowData)
                             }
-                        }} parentClass={"delete-button"} />
+                        }} parentClass={"delete-button inline"} />
                 </div>
             ),
         }

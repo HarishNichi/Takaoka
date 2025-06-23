@@ -103,7 +103,6 @@ export default function StaffManagementPage() {
             body: (rowData) => (
                 <div>
                     <Button
-                        parentStyle={{ display: "inline" }}
                         buttonProps={{
                             text: translate(localeJson, 'edit'),
                             buttonClass: "edit-button",
@@ -124,14 +123,13 @@ export default function StaffManagementPage() {
                                 setEditStaffOpen(true)
                                 hideOverFlow();
                             }
-                        }} parentClass={"edit-button"} />
+                        }} parentClass={"edit-button inline"} />
                     <Button
-                        parentStyle={{ display: "inline" }}
                         buttonProps={{
                             text: translate(localeJson, 'delete'),
                             buttonClass: "delete-button ml-2",
                             onClick: () => openDeleteDialog(rowData)
-                        }} parentClass={"delete-button"} />
+                        }} parentClass={"delete-button inline"} />
                 </div>
             ),
         }

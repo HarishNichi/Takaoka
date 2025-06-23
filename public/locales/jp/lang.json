@@ -28,6 +28,8 @@
       "setting_systems": "環境設定",
       "headquarters_staff_management": "本部スタッフ管理",
       "event_information_": "イベント情報",
+      "department_information":" 部署情報",
+      "department_list_column_header_name":" 部署名",
       "event_status_list": "イベント状況一覧",
       "attendee_list": "出席者一覧",
       "attendee_list_detail_back": "出席者一覧に戻る",

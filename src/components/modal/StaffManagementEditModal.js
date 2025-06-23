@@ -2,9 +2,9 @@ import React, { useContext, useState, useEffect } from "react"
 import { Dialog } from 'primereact/dialog';
 import { Formik } from "formik";
 import * as Yup from "yup";
-import _ from "lodash";
+// import _ from "lodash";
 import { TabView, TabPanel } from 'primereact/tabview';
-
+import { DepartmentManagementServices } from "@/services/dept_management_services";
 import { Button, NormalTable, Input, Password, ValidationError } from "@/components";
 import {
     convertToSingleByte,
@@ -22,14 +22,14 @@ export default function StaffManagementEditModal(props) {
 
     const columnsData = [
         {
-            selectionMode: "multiple",
+            selectionMode: "single",
             textAlign: "center",
             alignHeader: "center",
             minWidth: "4rem",
             maxWidth: "4rem",
             className: "action_class",
         },
-        { field: 'name', header: translate(localeJson, 'questionnaire_name'), headerClassName: "custom-header", minWidth: "12rem", maxWidth: "12rem" },
+        { field: 'name', header: translate(localeJson, 'department_list_column_header_name'), headerClassName: "custom-header", minWidth: "12rem", maxWidth: "12rem" },
     ]
     const columnsData2 = [
         {
@@ -140,63 +140,39 @@ export default function StaffManagementEditModal(props) {
     }
 
     const fetchData = () => {
-        getStaffEventListWithActiveStatus({}, (response) => {
-            if (response?.success && !_.isEmpty(response.data)) {
-                const data = response.data.model;
-                var additionalColumnsArrayWithOldData = [...columnsData];
-                let preparedList = [];
-                // Sort such that active items are on top
-                const sortedData = data.sort((a, b) => b.is_active - a.is_active);
-                sortedData.map((obj, i) => {
-                    let preparedObj = {
-                        index: getPayload.filters.start + i,
-                        id: obj.id,
-                        name: locale === "en" && !_.isNull(obj.name_en) ? obj.name_en : obj.name,
-                        is_active: obj.is_active,
-                    };
-                    preparedList.push(preparedObj);
-                });
-                setEventList(preparedList);
-                setColumns(additionalColumnsArrayWithOldData);
-                setTotalCount(response.data.model.total);
-                setTableLoading(false);
-            }
-            else {
-                setEventList([]);
-                setTotalCount(0);
-                setTableLoading(false);
-            }
-        })
+  setTableLoading(true);
 
-        getActivePlaceList((response) => {
-            if (response?.success && !_.isEmpty(response.data)) {
-                const data = response.data.model.list;
-                // const filteredData = data.filter(item => item.active_flg == 1);
-                var additionalColumnsArrayWithOldData = [...columnsData2];
-                let preparedList = [];
-                // Sort such that active items are on top
-                const sortedData = data.sort((a, b) => b.active_flg - a.active_flg);
-                sortedData.map((obj, i) => {
-                    let preparedObj = {
-                        index: getPayload.filters.start + i,
-                        id: obj.id,
-                        name: locale === "en" && !_.isNull(obj.name_en) ? obj.name_en : obj.name,
-                        is_active: obj.is_active,
-                        active_flg: obj.active_flg,
-                    };
-                    preparedList.push(preparedObj);
-                });
-                setPlaceList(preparedList);
-                setColumns1(additionalColumnsArrayWithOldData);
-                setTableLoading(false);
-            }
-            else {
-                setPlaceList([]);
+  const payload = {
+    filters: {
+      start: 0,
+      limit: 10,
+    },
+  };
 
-                setTableLoading(false);
-            }
-        })
+  DepartmentManagementServices.getDeptList(payload, (response) => {
+    if (response?.success && response.data?.list?.length) {
+      const data = response.data.list;
+
+      // Optional: sort if needed (based on property like `is_active`)
+      // const sortedData = data.sort((a, b) => b.is_active - a.is_active);
+
+      const preparedList = data.map((obj, i) => ({
+        index: payload.filters.start + i + 1,
+        id: obj.id,
+        name: obj.name,
+        code: obj.code,
+      }));
+
+      setEventList(preparedList); // rename if necessary, like setDeptList
+      setTotalCount(response.data.total);
+    } else {
+      setEventList([]);
+      setTotalCount(0);
     }
+
+    setTableLoading(false);
+  });
+};
 
     const findPlaceById = (id) => {
         return placeList.find(place => place.id === id);
@@ -374,7 +350,7 @@ export default function StaffManagementEditModal(props) {
                                             </div>
                                         </TabPanel>
                                         {layoutReducer?.layout?.config?.ADMIN_STAFF_MANAGAMENT_EVENT_MAP && (
-                                            <TabPanel header={translate(localeJson, 'event_information')}>
+                                            <TabPanel header={translate(localeJson, 'department_information')}>
                                                 <div className="">
                                                     <div className="">
                                                         <NormalTable
