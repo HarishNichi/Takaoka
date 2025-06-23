@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useMemo } from 'react';
 import _ from "lodash";
 import {
   hideOverFlow,
@@ -46,72 +47,74 @@ export default function DepartmentanagementPage() {
     },
     search: "",
   });
-  const columnNames = [
-    {
-      field: "slno",
-      header: translate(localeJson, "header_slno"),
-      headerClassName: "sno_class",
-      textAlign: "center",
-    },
-    {
-      field: "name",
-      header: translate(localeJson, "name"),
-      minWidth: "5rem",
-      maxWidth: "5rem",
-      body: (rowData) => (
-        <p
-          className="text-link-class clickable-row"
-          onClick={(e) => {
-            e.preventDefault();
-            setDetailId(rowData.id);
-            setDetailOpen(true);
-            hideOverFlow();
+  const columnNames = useMemo(() => [
+  {
+    field: "slno",
+    header: translate(localeJson, "header_slno"),
+    headerClassName: "sno_class",
+    textAlign: "center",
+  },
+  {
+    field: "name",
+    header: translate(localeJson, "name"),
+    minWidth: "5rem",
+    maxWidth: "5rem",
+    body: (rowData) => (
+      <p
+        className="text-link-class clickable-row"
+        onClick={(e) => {
+          e.preventDefault();
+          setDetailId(rowData.id);
+          setDetailOpen(true);
+          hideOverFlow();
+        }}
+      >
+        {rowData.name}
+      </p>
+    ),
+  },
+  {
+    field: "code",
+    header: translate(localeJson, "department_id"),
+    minWidth: "5rem",
+    maxWidth: "5rem",
+  },
+  {
+    field: "actions",
+    header: translate(localeJson, "common_action"),
+    textAlign: "center",
+    alignHeader: "center",
+    className: "action_class",
+    body: (rowData) => (
+      <div>
+        <Button
+          buttonProps={{
+            text: translate(localeJson, "edit"),
+            buttonClass: "edit-button",
+            onClick: () => {
+              setCurrentObj(rowData);
+              setRegisterModalAction("edit");
+              setEditStaffOpen(true);
+              hideOverFlow();
+            },
           }}
-        >
-          {rowData.name}
-        </p>
-      ),
-    },
-    {
-      field: "code",
-      header: translate(localeJson, "department_id"),
-      minWidth: "5rem",
-      maxWidth: "5rem",
-    },
-    {
-      field: "actions",
-      header: translate(localeJson, "common_action"),
-      textAlign: "center",
-      alignHeader: "center",
-      className: "action_class",
-      body: (rowData) => (
-        <div>
-          <Button
-            buttonProps={{
-              text: translate(localeJson, "edit"),
-              buttonClass: "edit-button",
-              onClick: () => {
-                setCurrentObj(rowData);
-                setRegisterModalAction("edit");
-                setEditStaffOpen(true);
-                hideOverFlow();
-              },
-            }}
-            parentClass="edit-button inline"
-          />
-          <Button
-            buttonProps={{
-              text: translate(localeJson, "delete"),
-              buttonClass: "delete-button ml-2",
-              // disabled: rowData?.id === AuthReducer?.admin?.user?.id,
-              onClick: () => openDeleteDialog(rowData),
-            }}
-            parentClass="delete-button inline"
-          />
-        </div>
-      ),
-    },
-  ];
+          parentClass="edit-button inline"
+        />
+        <Button
+          buttonProps={{
+            text: translate(localeJson, "delete"),
+            buttonClass: "delete-button ml-2",
+            onClick: () => openDeleteDialog(rowData),
+          }}
+          parentClass="delete-button inline"
+        />
+      </div>
+    ),
+  },
+], [localeJson, locale]);
+
+
+
   const onImportModalClose = () => {
     setImportModalOpen(false);
     showOverFlow();
@@ -385,6 +388,7 @@ export default function DepartmentanagementPage() {
               </div>
               <div className="mt-3">
                 <NormalTable
+                key={locale}
                   stripedRows={true}
                   className={"custom-table-cell"}
                   showGridlines={"true"}
