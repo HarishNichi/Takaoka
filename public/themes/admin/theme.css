@@ -4,38 +4,18 @@
   font-variation-settings: normal;
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+   /* 🔵 Brand Primary Theme - Aisin Blue */
+  --primary-color: #19388B;
+  --primary-hover-color: #2745A1;
+  --primary-color-text: #ffffff;
+
+  /* ⚪ Surface Colors */
   --surface-a: #ffffff;
   --surface-b: #f8f9fa;
   --surface-c: #e9ecef;
   --surface-d: #dee2e6;
   --surface-e: #ffffff;
   --surface-f: #ffffff;
-  --text-color: #495057;
-  --text-color-secondary: #6b7280;
-  --primary-color: #D31720;
-  --primary-hover-color: #e72932;
-  --back-color: #ffff;
-  --back-text: var(--primary-color);
-  --back-hover-color: #FFEAED;
-  --back-hover-text: var(--primary-color);
-  --primary-color-text: #ffffff;
-  --search-color: #ffffff;
-  --search-text-color: #D31720;
-  --search-hover-color: #FFEAED;
-  --search-hover-text: #D31720;
-  --edit-color: #ffffff;
-  --edit-text: :#000000;
-  --edit-hover-color: #ffffff;
-  --edit-hover-text: #000000;
-  --delete-color: #ffff;
-  --delete-text: var(--primary-color);
-  --delete-hover-color: #FFEAED;
-  --delete-hover-text: var(--primary-color);
-  --update-color: var(--primary-color);
-  --update-text-color: #fff;
-  --update-hover-color: var(--primary-hover-color);
-  --update-hover-text: #fff;
-  --font-family: 'Noto Sans JP', sans-serif;
   --surface-0: #ffffff;
   --surface-50: #f8f9fa;
   --surface-100: #e9ecef;
@@ -47,29 +27,58 @@
   --surface-700: #374151;
   --surface-800: #1f2937;
   --surface-900: #111827;
-  --gray-50: #f8f9fa;
-  --gray-100: #e9ecef;
-  --gray-200: #dee2e6;
-  --gray-300: #ced4da;
-  --gray-400: #adb5bd;
-  --gray-500: #6b7280;
-  --gray-600: #495057;
-  --gray-700: #374151;
-  --gray-800: #1f2937;
-  --gray-900: #111827;
-  --content-padding: 1.25rem;
-  --inline-spacing: 0.5rem;
-  --border-radius: 6px;
- --surface-ground: #F2F3F2;
+  --surface-ground: #F2F3F2;
   --surface-section: #ffffff;
   --surface-card: #ffffff;
   --surface-overlay: #ffffff;
   --surface-border: #dfe7ef;
   --surface-hover: #f6f9fc;
+
+  /* 🖋 Text Colors */
+  --text-color: #1f2937;
+  --text-color-secondary: #6b7280;
+  --back-text: var(--primary-color);
+  --font-family: 'Noto Sans JP', sans-serif;
+
+  /* 🟦 General Backgrounds */
+  --back-color: #ffffff;
+  --back-hover-color: #E8EDF9;
+  --back-hover-text: var(--primary-color);
+
+  /* 🔍 Search */
+  --search-color: #ffffff;
+  --search-text-color: var(--primary-color);
+  --search-hover-color: #E8EDF9;
+  --search-hover-text: var(--primary-color);
+
+  /* ✏️ Edit */
+  --edit-color: #ffffff;
+  --edit-text: #0B3D91;
+  --edit-hover-color: #E0EBFF;
+  --edit-hover-text: #0B3D91;
+
+  /* 🗑️ Delete (Red to indicate caution) */
+  --delete-color: #ffffff;
+  --delete-text: #D32F2F;
+  --delete-hover-color: #FFEBEE;
+  --delete-hover-text: #D32F2F;
+
+  /* 🔄 Update */
+  --update-color: var(--primary-color);
+  --update-text-color: #ffffff;
+  --update-hover-color: var(--primary-hover-color);
+  --update-hover-text: #ffffff;
+
+  /* ✨ Highlights & Effects */
+  --highlight-bg: #ECF5FF;
+  --highlight-text-color: #19388B;
   --focus-ring: 0 0 0 0.2rem #C7D2FE;
   --maskbg: rgba(0, 0, 0, 0.4);
-  --highlight-bg: #ecfeff;
-  --highlight-text-color: #4338CA;
+
+  /* Layout Spacing */
+  --content-padding: 1.25rem;
+  --inline-spacing: 0.5rem;
+  --border-radius: 6px;
   color-scheme: light;
    --primary-background: #F2F3F2;
 }

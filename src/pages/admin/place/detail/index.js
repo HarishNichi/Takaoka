@@ -179,7 +179,7 @@ export default function StaffManagementEditPage() {
         )}
       </div>
       {!default_place_id.includes(id) ? (
-        <div className="col-12">
+        <div className="col-12 hidden">
           {tableLoading ? (
             <CardSpinner />
           ) : (

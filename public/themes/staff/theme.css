@@ -4,38 +4,18 @@
   font-variation-settings: normal;
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+ /* 🧿 Field Staff - Ocean Blue */
+  --primary-color: #006DA3;
+  --primary-hover-color: #005A88;
+  --primary-color-text: #ffffff;
+
+  /* ⚪ Surface Layers */
   --surface-a: #ffffff;
   --surface-b: #f8f9fa;
   --surface-c: #e9ecef;
   --surface-d: #dee2e6;
   --surface-e: #ffffff;
   --surface-f: #ffffff;
-  --text-color: #495057;
-  --text-color-secondary: #6c757d;
-  --primary-color: #2B3D51;
-  --primary-hover-color: #3C5069;
-  --back-color: #ffff;
-  --back-text: var(--primary-color);
-  --back-hover-color:#2b3d5117;
-  --back-hover-text: #2B3D51;
-  --primary-color-text: #ffffff;
-  --search-color: #fff;
-  --search-text-color: var(--primary-color);
-  --search-hover-color: #2b3d5117;
-  --search-hover-text: var(--primary-color);
-  --edit-color: #ffffff;
-  --edit-text: : var(--primary-color);
-  --edit-hover-color:  #2b3d5117;
-  --edit-hover-text:#2B3D51;
-  --delete-color: #ffff;
-  --delete-text: var(--primary-color);
-  --delete-hover-color: #DC2626;
-  --delete-hover-text: #ffffff;
-  --update-color: var(--primary-color);
-  --update-text-color: #fff;
-  --update-hover-color: var(--primary-hover-color);
-  --update-hover-text: #fff;
-  --font-family: 'Noto Sans JP', sans-serif;
   --surface-0: #ffffff;
   --surface-50: #f8f9fa;
   --surface-100: #e9ecef;
@@ -47,29 +27,50 @@
   --surface-700: #374151;
   --surface-800: #1f2937;
   --surface-900: #111827;
-  --gray-50: #f8f9fa;
-  --gray-100: #e9ecef;
-  --gray-200: #dee2e6;
-  --gray-300: #ced4da;
-  --gray-400: #adb5bd;
-  --gray-500: #6b7280;
-  --gray-600: #495057;
-  --gray-700: #374151;
-  --gray-800: #1f2937;
-  --gray-900: #111827;
+
+  /* 🖋 Text Colors */
+  --text-color: #333333;
+  --text-color-secondary: #6c757d;
+
+  /* 🔘 Buttons & Actions */
+  --back-color: #ffffff;
+  --back-text: var(--primary-color);
+  --back-hover-color: #E0F0FA;
+  --back-hover-text: var(--primary-color);
+
+  --search-color: #ffffff;
+  --search-text-color: var(--primary-color);
+  --search-hover-color: #E0F0FA;
+  --search-hover-text: var(--primary-color);
+
+  --edit-color: #ffffff;
+  --edit-text: var(--primary-color);
+  --edit-hover-color: #E0F0FA;
+  --edit-hover-text: var(--primary-color);
+
+  --delete-color: #ffffff;
+  --delete-text: var(--primary-color);
+  --delete-hover-color: #DC2626;
+  --delete-hover-text: #ffffff;
+
+  --update-color: var(--primary-color);
+  --update-text-color: #ffffff;
+  --update-hover-color: var(--primary-hover-color);
+  --update-hover-text: #ffffff;
+
+  /* ✨ UI Feedback */
+  --focus-ring: 0 0 0 0.2rem #B3E1FA;
+  --highlight-bg: #E0F0FA;
+  --highlight-text-color: #0081C2;
+  --maskbg: rgba(0, 0, 0, 0.4);
+
+  /* 🖋 Typography */
+  --font-family: 'Noto Sans JP', sans-serif;
+
+  /* 📐 Layout */
   --content-padding: 1.25rem;
   --inline-spacing: 0.5rem;
   --border-radius: 6px;
- --surface-ground: #F2F3F2;
-  --surface-section: #ffffff;
-  --surface-card: #ffffff;
-  --surface-overlay: #ffffff;
-  --surface-border: #dfe7ef;
-  --surface-hover: #f6f9fc;
-  --focus-ring: 0 0 0 0.2rem #C7D2FE;
-  --maskbg: rgba(0, 0, 0, 0.4);
-  --highlight-bg: #ecfeff;
-  --highlight-text-color: #4338CA;
   color-scheme: light;
    --primary-background: #F2F3F2;
 }
