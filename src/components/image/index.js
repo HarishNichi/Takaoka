@@ -37,9 +37,6 @@ export const ImageComponent = (props) => {
         return src;
     };
 
-    const handleImageError = () => {
-        setImageError(true);
-    }
 
     return (
         <div className={`${parentClass}`}>
@@ -49,8 +46,13 @@ export const ImageComponent = (props) => {
                 alt={alt}
                 height={custom ? dimensions.height : height}
                 maxWidth={custom ? maxWidth : ''}
-                onError={handleImageError}
                 loader={imageLoader}
+                onLoadingComplete={(res)=>{
+                    if(res.naturalWidth === 0 || res.naturalHeight === 0) {
+                        setImageError(true);
+                    }
+                    setImageError(false);
+                }}
                 {...restProps}
             />
         </div>
