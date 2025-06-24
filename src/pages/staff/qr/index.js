@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { Input } from "@/components";
+import { Input, ValidationError } from "@/components";
+import { useMemo } from "react";
 
 import {
   Button,
@@ -35,12 +36,17 @@ export default function App() {
     setOpenQrPopup(false);
   };
   const { register, create } = UserQrService;
-  const validationSchema = Yup.object().shape({
-    empId: Yup.string().required(translate(localeJson, "employee_id_required")),
-    empName: Yup.string().required(
-      translate(localeJson, "employee_name_required")
-    ),
-  });
+  const validationSchema = useMemo(() => {
+    return Yup.object().shape({
+      empId: Yup.string().required(
+        translate(localeJson, "employee_id_required")
+      ),
+      empName: Yup.string().required(
+        translate(localeJson, "employee_name_required")
+      ),
+    });
+  }, [localeJson]);
+  
   const qrResult = (res) => {
     let formData = new FormData();
     formData.append("content", res);
@@ -132,7 +138,6 @@ export default function App() {
       <div className="grid flex-1 p-4 md:p-6">
         {/* Left Section */}
         <div className="col-12 md:col-6 flex flex-column justify-content-center align-items-center gap-6 p-4 md:border-right-1 ">
-
           <ButtonRounded
             buttonProps={{
               custom: "userDashboard",
@@ -151,11 +156,11 @@ export default function App() {
 
         {/* Right Section */}
         <div className="col-12 md:col-6 flex flex-column justify-content-center gap-4 p-4">
-
           {/* ⬇️ Employee ID */}
           <Formik
             initialValues={{ empId: "", empName: "" }}
             validationSchema={validationSchema}
+            enableReinitialize={true}
             onSubmit={(values) => {
               const payload = {
                 employee_id: values.empId,
@@ -181,75 +186,84 @@ export default function App() {
               handleSubmit,
               setFieldValue,
             }) => (
+              
               <form
                 onSubmit={handleSubmit}
                 className="col-12 md:col-6 flex flex-column justify-content-center p-4 w-full"
               >
                 <div className="mb-3">
-                {/* Employee ID (名前) */}
-                <Input
-                  inputProps={{
-                    inputParentClassName: `w-full custom_input ${
-                      errors.empId && touched.empId ? "p-invalid" : ""
-                    }`,
-                    labelProps: {
-                      text: translate(localeJson, "employee_id"),
-                      inputLabelClassName: "block",
-                      spanText: "*",
-                      inputLabelSpanClassName: "p-error",
-                      labelMainClassName: "pb-1",
-                    },
-                    inputClassName: "w-full",
-                    id: "empId",
-                    name: "empId",
-                    value: values.empId,
-                    onChange: handleChange,
-                    onBlur: handleBlur,
-                    placeholder: translate(
-                      localeJson,
-                      "placeholder_please_enter_id"
-                    ),
-                    hasIcon: false,
-                    inputRightIconProps: {
-                      display: false,
-                      audio: { display: false },
-                      icon: "",
-                    },
-                  }}
-                />
+                  {/* Employee ID (名前) */}
+                  <Input
+                    inputProps={{
+                      inputParentClassName: `w-full custom_input ${
+                        errors.empId && touched.empId ? "p-invalid" : ""
+                      }`,
+                      labelProps: {
+                        text: translate(localeJson, "employee_id"),
+                        inputLabelClassName: "block",
+                        spanText: "*",
+                        inputLabelSpanClassName: "p-error",
+                        labelMainClassName: "pb-1",
+                      },
+                      inputClassName: "w-full",
+                      id: "empId",
+                      name: "empId",
+                      value: values.empId,
+                      onChange: handleChange,
+                      onBlur: handleBlur,
+                      placeholder: translate(
+                        localeJson,
+                        "placeholder_please_enter_id"
+                      ),
+                      hasIcon: false,
+                      inputRightIconProps: {
+                        display: false,
+                        audio: { display: false },
+                        icon: "",
+                      },
+                    }}
+                  />
+                  <ValidationError
+                    errorBlock={errors.empId && touched.empId && errors.empId}
+                  />
                 </div>
                 {/* Employee Name (世帯番号) */}
                 <div className="mb-3">
-                <Input
-                  inputProps={{
-                    inputParentClassName: `w-full custom_input ${
-                      errors.empName && touched.empName ? "p-invalid" : ""
-                    }`,
-                    labelProps: {
-                      text: translate(localeJson, "employee_name"),
-                      inputLabelClassName: "block",
-                      spanText: "*",
-                      inputLabelSpanClassName: "p-error",
-                      labelMainClassName: "pb-1",
-                    },
-                    inputClassName: "w-full",
-                    id: "empName",
-                    name: "empName",
-                    value: values.empName,
-                    onChange: handleChange,
-                    onBlur: handleBlur,
-                    placeholder: translate(
-                      localeJson,
-                      "placeholder_please_enter_employee_name"
-                    ),
-                    hasIcon: false,
-                    inputRightIconProps: {
-                      display: false,
-                      audio: { display: false },
-                      icon: "",
-                    },
-                  }}
-                />
+                  <Input
+                    inputProps={{
+                      inputParentClassName: `w-full custom_input ${
+                        errors.empName && touched.empName ? "p-invalid" : ""
+                      }`,
+                      labelProps: {
+                        text: translate(localeJson, "employee_name"),
+                        inputLabelClassName: "block",
+                        spanText: "*",
+                        inputLabelSpanClassName: "p-error",
+                        labelMainClassName: "pb-1",
+                      },
+                      inputClassName: "w-full",
+                      id: "empName",
+                      name: "empName",
+                      value: values.empName,
+                      onChange: handleChange,
+                      onBlur: handleBlur,
+                      placeholder: translate(
+                        localeJson,
+                        "placeholder_please_enter_employee_name"
+                      ),
+                      hasIcon: false,
+                      inputRightIconProps: {
+                        display: false,
+                        audio: { display: false },
+                        icon: "",
+                      },
+                    }}
+                  />
+                  <ValidationError
+                    errorBlock={
+                      errors.empName && touched.empName && errors.empName
+                    }
+                  />
                 </div>
                 {/* Search Button */}
                 <Button
@@ -264,7 +278,6 @@ export default function App() {
               </form>
             )}
           </Formik>
-
         </div>
       </div>
     </div>

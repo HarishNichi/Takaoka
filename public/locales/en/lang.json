@@ -1165,6 +1165,8 @@
    "person_in_charge": "Person in Charge",
     "employee_id": "Employee ID",
      "placeholder_please_enter_id": "Please enter employee code",
-      "placeholder_please_enter_employee_name": "Please enter employee name"
+      "placeholder_please_enter_employee_name": "Please enter employee name",
+        "employee_id_required": "Please enter employee ID",
+          "employee_name_required": "Please enter employee name"
 
   }
