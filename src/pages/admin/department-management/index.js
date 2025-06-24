@@ -61,13 +61,7 @@ export default function DepartmentanagementPage() {
     maxWidth: "5rem",
     body: (rowData) => (
       <p
-        className="text-link-class clickable-row"
-        onClick={(e) => {
-          e.preventDefault();
-          setDetailId(rowData.id);
-          setDetailOpen(true);
-          hideOverFlow();
-        }}
+        className="text-link-class "
       >
         {rowData.name}
       </p>
