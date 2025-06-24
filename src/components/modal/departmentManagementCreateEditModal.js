@@ -198,7 +198,7 @@ export default function DepartmentCreateEditModal(props) {
             </div>
           </Dialog>
         </form>
-      )}
+      )
     </Formik>
   );
 }
