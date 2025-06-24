@@ -39,7 +39,7 @@ export default function EmployeeListPage() {
   });
 
   const columns = [
-    { field: 'si_no', header: '#', sortable: false },
+    { field: 'si_no', header: translate(localeJson, "si_no"), sortable: false },
     { field: 'employee_code', header: translate(localeJson, 'employee_code'), sortable: true },
     { field: 'employee_name', header: translate(localeJson, 'employee_name'), sortable: true },
     {
