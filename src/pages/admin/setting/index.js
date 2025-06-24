@@ -8,7 +8,7 @@ import { convertToSingleByte, hideOverFlow, showOverFlow, getValueByKeyRecursive
 import {
   Button,
   CustomHeader,
-  DND,
+  // DND,
   InputFile,
   InputSwitch,
   NormalCheckBox,
@@ -774,7 +774,7 @@ export default function Setting() {
                     </div>
                   </div>
                   <hr />
-                  <div className="">
+                  {/* <div className="">
                     <div className="pb-3">
                       <CustomHeader
                         header={translate(
@@ -817,8 +817,8 @@ export default function Setting() {
                       </div>
                     </div>
                   </div>
-                  <hr />
-                  <div className="">
+                  <hr /> */}
+                  {/* <div className="">
                     <div className="pb-1">
                       <CustomHeader
                         header={translate(localeJson, "stockPile_management")}
@@ -904,7 +904,7 @@ export default function Setting() {
                       </div>
                     </div>
                   </div>
-                  <hr />
+                  <hr /> */}
                   <div className="">
                     <div className="pb-1">
                       <CustomHeader header={translate(localeJson, "logo")} />
@@ -965,7 +965,7 @@ export default function Setting() {
                     </div>
                   </div>
                   <hr />
-                  {window.location.origin != "https://demo.hinan.telenet.co.jp" && (
+                  {/* {window.location.origin != "https://demo.hinan.telenet.co.jp" && (
                   <>
                     <div className="">
                     <div className="pb-2">
@@ -992,7 +992,7 @@ export default function Setting() {
                   </div>
                   <hr />
                   </>
-                  )}
+                  )} */}
                   <div className='flex flex-column mt-3 mb-2 justify-content-center align-items-center' style={{ justifyContent: "center", flexWrap: "wrap" }}>
                     <Button
                       buttonProps={{
