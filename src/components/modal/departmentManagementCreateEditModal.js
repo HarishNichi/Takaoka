@@ -160,9 +160,7 @@ export default function DepartmentCreateEditModal(props) {
                     onBlur: handleBlur,
                   }}
                 />
-                <ValidationError
-                  errorBlock={errors.code && touched.code && errors.code}
-                />
+                <ValidationError errorBlock={errors.code} />
               </div>
 
               <div className="text-center">
