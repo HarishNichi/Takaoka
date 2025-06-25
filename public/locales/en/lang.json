@@ -1167,6 +1167,7 @@
      "placeholder_please_enter_id": "Please enter employee code",
       "placeholder_please_enter_employee_name": "Please enter employee name",
         "employee_id_required": "Please enter employee ID",
-          "employee_name_required": "Please enter employee name"
+          "employee_name_required": "Please enter employee name",
+          "rows_per_page":"Rows per page"
 
   }

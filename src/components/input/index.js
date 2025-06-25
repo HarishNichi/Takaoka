@@ -26,6 +26,7 @@ export const Input = (props) => {
     iconProps,
     float,
     floatLabelProps,
+    ariaLabel,
     ...restProps
   } = props && props.inputProps;
 
@@ -125,7 +126,7 @@ export const Input = (props) => {
   {/* Always render the input */}
   <InputText
     className={`${inputClassName}`}
-    aria-label={labelProps.text||"input-field"}
+    aria-label={ariaLabel || labelProps?.text || "input-field"}
     {...restProps}
     autoComplete={process?.env?.NEXT_PUBLIC_AUTO_COMPLETE}
   />
@@ -165,7 +166,7 @@ export const Input = (props) => {
 ) : (
   <InputText
     className={`${inputClassName}`}
-    aria-label={name}
+    aria-label={ariaLabel || labelProps?.text || "input-field"}
     {...restProps}
     autoComplete={process?.env?.NEXT_PUBLIC_AUTO_COMPLETE}
   />

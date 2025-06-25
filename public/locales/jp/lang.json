@@ -1163,5 +1163,6 @@
   "employee_id_required": "従業員コードは必須項目です",
   "employee_name_required": "従業員名は必須項目です",
    "placeholder_please_enter_id": "従業員コードを入力してください",
-  "placeholder_please_enter_employee_name": "従業員名を入力してください"
+  "placeholder_please_enter_employee_name": "従業員名を入力してください",
+  "rows_per_page":" 1ページあたりの行数"
 }

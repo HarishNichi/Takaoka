@@ -1,10 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect,useContext } from "react";
 import { DataTable as TableData } from "primereact/datatable";
 import { Column } from "primereact/column";
 import _ from "lodash";
 import { Dropdown } from "primereact/dropdown";
 import { Toast } from "primereact/toast";
-
+import { LayoutContext } from "@/layout/context/layoutcontext";
+import { getValueByKeyRecursively as translate } from "@/helper";
 export const NormalTable = (props) => {
   const {
     parentClass,
@@ -48,9 +49,10 @@ export const NormalTable = (props) => {
     onRowEditComplete,
     ...restProps
   } = props;
+  const { locale, localeJson, setLoader } = useContext(LayoutContext);
 
   /** Custom pagination template */
-  const paginatorTemplate = {
+    const paginatorTemplate = {
     layout:
       "RowsPerPageDropdown FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink",
     RowsPerPageDropdown: (options) => {
@@ -60,12 +62,26 @@ export const NormalTable = (props) => {
         { label: `50件`, value: 50 },
       ];
 
+      const INPUT_ID = 'rowsPerPageDropdown';
+
       return (
         <React.Fragment>
+             {/* Invisible label satisfies WCAG “select-name” rule */}
+        <label id={INPUT_ID} htmlFor={INPUT_ID} className="sr-only">
+          {translate(localeJson, "rows_per_page")}
+        </label>
           <Dropdown
+           inputId={INPUT_ID}   
             value={options.value}
             options={dropdownOptions}
             onChange={options.onChange}
+            ariaLabel={translate(localeJson, "rows_per_page")}
+            ariaLabelledBy={translate(localeJson, "rows_per_page")}
+            title={translate(localeJson, "rows_per_page")}
+            placeholder="Rows per page"
+             pt={{
+          select: { 'aria-label': 'Rows per page' } // or role: 'presentation'
+        }}
           />
         </React.Fragment>
       );
@@ -205,6 +221,7 @@ export const RowExpansionTable = (props) => {
     innerTableOnSelectAllChange,
     ...restProps
   } = props;
+  const { locale, localeJson, setLoader } = useContext(LayoutContext);
   const [expandedRows, setExpandedRows] = useState(onRowExpand);
   const toast = useRef(null);
 
@@ -255,7 +272,9 @@ export const RowExpansionTable = (props) => {
           selectionMode={innerTableSelectionMode}
           tableStyle={rowExpansionTableStyle || { minWidth: "20rem" }}
           selection={innerTableSelection}
-          onSelectionChange={(e) => innerTableOnSelectionChange(e, data, val.index)}
+          onSelectionChange={(e) =>
+            innerTableOnSelectionChange(e, data, val.index)
+          }
         >
           {innerColumn.map((column, index) => (
             <Column
@@ -349,12 +368,26 @@ export const RowExpansionTable = (props) => {
         { label: `50件`, value: 50 },
       ];
 
+      const INPUT_ID = 'rowsPerPageDropdown';
+
       return (
         <React.Fragment>
+             {/* Invisible label satisfies WCAG “select-name” rule */}
+        <label id={INPUT_ID} htmlFor={INPUT_ID} className="sr-only">
+          {translate(localeJson, "rows_per_page")}
+        </label>
           <Dropdown
+           inputId={INPUT_ID}   
             value={options.value}
             options={dropdownOptions}
             onChange={options.onChange}
+            ariaLabel={translate(localeJson, "rows_per_page")}
+            ariaLabelledBy={translate(localeJson, "rows_per_page")}
+            title={translate(localeJson, "rows_per_page")}
+            placeholder="Rows per page"
+             pt={{
+          select: { 'aria-label': 'Rows per page' } // or role: 'presentation'
+        }}
           />
         </React.Fragment>
       );
