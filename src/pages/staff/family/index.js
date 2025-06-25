@@ -398,6 +398,7 @@ function StaffFamily() {
                         name: "familyCode",
                         value: familyCode,
                         onChange: (e) => handleFamilyCode(e),
+                        ariaLabel: translate(localeJson, "family_code"),
                       }}
                     />
                     <Input
@@ -414,6 +415,7 @@ function StaffFamily() {
                           "w-full lg:w-13rem md:w-14rem sm:w-10rem",
                         value: refugeeName,
                         onChange: (e) => setRefugeeName(e.target.value),
+                        ariaLabel: translate(localeJson, "refugeeName"),
                       }}
                     />
                     <div className="flex align-items-end">
