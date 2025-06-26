@@ -391,6 +391,7 @@ function StaffFamily() {
                         labelProps: {
                           text: translate(localeJson, "family_code"),
                           inputLabelClassName: "block",
+                          htmlFor: "familyCode", 
                         },
                         inputClassName:
                           "w-full lg:w-13rem md:w-14rem sm:w-10rem",
@@ -410,6 +411,7 @@ function StaffFamily() {
                         labelProps: {
                           text: translate(localeJson, "name"),
                           inputLabelClassName: "block",
+                          htmlFor: "refugeeName", 
                         },
                         inputClassName:
                           "w-full lg:w-13rem md:w-14rem sm:w-10rem",

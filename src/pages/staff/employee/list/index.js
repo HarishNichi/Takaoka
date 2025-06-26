@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState, useEffect, useContext } from "react";
+import { useRouter } from "next/router";
 // import _ from 'lodash';
 
 import {
@@ -8,30 +8,38 @@ import {
   getJapaneseDateDisplayYYYYMMDDFormat,
   getYYYYMMDDHHSSSSDateTimeFormat,
   getValueByKeyRecursively as translate,
-} from '@/helper';
-import { LayoutContext } from '@/layout/context/layoutcontext';
-import { Button, CustomHeader, Input, InputDropdown, NormalTable } from '@/components';
-import { EmployeeServices, StaffManagementService } from '@/services'; // <-- Make sure this service exists
-import _ from 'lodash';
+} from "@/helper";
+import { LayoutContext } from "@/layout/context/layoutcontext";
+import {
+  Button,
+  CustomHeader,
+  Input,
+  InputDropdown,
+  NormalTable,
+} from "@/components";
+import { EmployeeServices, StaffManagementService } from "@/services"; // <-- Make sure this service exists
+import _ from "lodash";
+import { ariaLabel } from "primereact/api";
 
 export default function EmployeeListPage() {
+  const EVAC_SITE_ID = "evacuationSiteDropdown";
   const { locale, localeJson } = useContext(LayoutContext);
   const [employeeList, setEmployeeList] = useState([]);
   const [tableLoading, setTableLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
-  const [searchName, setSearchName] = useState('');
-  const [searchDepartment, setSearchDepartment] = useState('');
-  const [searchInCharge, setSearchInCharge] = useState('');
-  const [searchShelter, setSearchShelter] = useState('');
+  const [searchName, setSearchName] = useState("");
+  const [searchDepartment, setSearchDepartment] = useState("");
+  const [searchInCharge, setSearchInCharge] = useState("");
+  const [searchShelter, setSearchShelter] = useState("");
   const [evacuationPlaceList, setEvacuationPlaceList] = useState([]);
 
   const [getListPayload, setGetListPayload] = useState({
     filters: {
       start: 0,
       limit: 10,
-      sort_by: '',
-      order_by: 'desc',
-      employee_name: '',
+      sort_by: "",
+      order_by: "desc",
+      employee_name: "",
       department: "",
       person_in_charge: "",
       evacuation_shelter: "",
@@ -39,22 +47,41 @@ export default function EmployeeListPage() {
   });
 
   const columns = [
-     { field: 'si_no', header: translate(localeJson, "si_no"), sortable: false },
-    { field: 'employee_code', header: translate(localeJson, 'employee_code'), sortable: true },
-    { field: 'employee_name', header: translate(localeJson, 'employee_name'), sortable: true },
+    { field: "si_no", header: translate(localeJson, "si_no"), sortable: false },
     {
-      field: 'dob',
-      header: translate(localeJson, 'dob'),
+      field: "employee_code",
+      header: translate(localeJson, "employee_code"),
+      sortable: true,
+    },
+    {
+      field: "employee_name",
+      header: translate(localeJson, "employee_name"),
+      sortable: true,
+    },
+    {
+      field: "dob",
+      header: translate(localeJson, "dob"),
       body: (row) =>
-        locale === 'ja'
+        locale === "ja"
           ? getJapaneseDateDisplayYYYYMMDDFormat(row.dob)
           : getEnglishDateDisplayFormat(row.dob),
       sortable: true,
     },
-    { field: 'department', header: translate(localeJson, 'department'), sortable: true },
-    { field: 'person_in_charge', header: translate(localeJson, 'person_in_charge'), sortable: true },
-    { field: 'evacuation_shelter', header: translate(localeJson, 'evacuation_place'), sortable: true },
-
+    {
+      field: "department",
+      header: translate(localeJson, "department"),
+      sortable: true,
+    },
+    {
+      field: "person_in_charge",
+      header: translate(localeJson, "person_in_charge"),
+      sortable: true,
+    },
+    {
+      field: "evacuation_shelter",
+      header: translate(localeJson, "evacuation_place"),
+      sortable: true,
+    },
   ];
 
   const { getEmployeeList, exportEmployeeCSV } = EmployeeServices;
@@ -93,9 +120,10 @@ export default function EmployeeListPage() {
   const handleExport = () => {
     exportEmployeeCSV(getListPayload, (res) => {
       if (res.success) {
-        const downloadLink = document.createElement('a');
+        const downloadLink = document.createElement("a");
         downloadLink.href = res.result.filePath;
-        downloadLink.download = 'Employee_' + getYYYYMMDDHHSSSSDateTimeFormat(new Date()) + '.csv';
+        downloadLink.download =
+          "Employee_" + getYYYYMMDDHHSSSSDateTimeFormat(new Date()) + ".csv";
         downloadLink.click();
       }
     });
@@ -134,7 +162,7 @@ export default function EmployeeListPage() {
       const data = response.data.model.list;
       data.map((obj, i) => {
         let placeDropdownList = {
-          name: response.locale == "ja" ? obj.name : (obj.name_en || obj.name),
+          name: response.locale == "ja" ? obj.name : obj.name_en || obj.name,
           name_en: obj.name_en || obj.name,
           name_ja: obj.name,
           id: obj.id,
@@ -150,20 +178,20 @@ export default function EmployeeListPage() {
       <div className="col-12">
         <div className="card">
           <div className="flex flex-wrap align-items-center justify-content-between">
-            <div className='flex align-items-center gap-2 mb-2'>
+            <div className="flex align-items-center gap-2 mb-2">
               <CustomHeader
                 headerClass="page-header1"
                 customParentClassName="mb-0"
-                header={translate(localeJson, 'employee_list')}
+                header={translate(localeJson, "employee_list")}
               />
             </div>
             <div>
               <Button
                 buttonProps={{
-                  text: translate(localeJson, 'export'),
+                  text: translate(localeJson, "export"),
                   export: true,
                   onClick: handleExport,
-                  buttonClass: 'export-button',
+                  buttonClass: "export-button",
                 }}
                 parentClass="export-button"
               />
@@ -173,74 +201,123 @@ export default function EmployeeListPage() {
           <form>
             <div className="p-fluid formgrid grid">
               <div className="field col-12 md:col-6 lg:col-3">
-                <Input inputProps={{
-                  inputParentClassName: "w-full",
-                  labelProps: {
-                    text: translate(localeJson, 'name'),
-                    inputLabelClassName: "block",
-                  },
-                  inputClassName: "w-full",
-                  value: searchName,
-                  onChange: (e) => setSearchName(e.target.value),
-                }} />
+                <Input
+                  inputProps={{
+                    inputParentClassName: "w-full",
+                    labelProps: {
+                      text: translate(localeJson, "name"),
+                      inputLabelClassName: "block",
+                    },
+                    inputClassName: "w-full",
+                    value: searchName,
+                    onChange: (e) => setSearchName(e.target.value),
+                  }}
+                />
               </div>
 
               <div className="field col-12 md:col-6 lg:col-3">
-                <Input inputProps={{
-                  inputParentClassName: "w-full",
-                  labelProps: {
-                    text: translate(localeJson, 'department'),
-                    inputLabelClassName: "block",
-                  },
-                  inputClassName: "w-full",
-                  value: searchDepartment,
-                  onChange: (e) => setSearchDepartment(e.target.value),
-                }} />
+                <Input
+                  inputProps={{
+                    inputParentClassName: "w-full",
+                    labelProps: {
+                      text: translate(localeJson, "department"),
+                      inputLabelClassName: "block",
+                    },
+                    inputClassName: "w-full",
+                    value: searchDepartment,
+                    onChange: (e) => setSearchDepartment(e.target.value),
+                  }}
+                />
               </div>
 
               <div className="field col-12 md:col-6 lg:col-3">
-                <Input inputProps={{
-                  inputParentClassName: "w-full",
-                  labelProps: {
-                    text: translate(localeJson, 'person_in_charge'),
-                    inputLabelClassName: "block",
-                  },
-                  inputClassName: "w-full",
-                  value: searchInCharge,
-                  onChange: (e) => setSearchInCharge(e.target.value),
-                }} />
+                <Input
+                  inputProps={{
+                    inputParentClassName: "w-full",
+                    labelProps: {
+                      text: translate(localeJson, "person_in_charge"),
+                      inputLabelClassName: "block",
+                    },
+                    inputClassName: "w-full",
+                    value: searchInCharge,
+                    onChange: (e) => setSearchInCharge(e.target.value),
+                  }}
+                />
               </div>
 
               <div className="field col-12 md:col-6 lg:col-3">
-                <InputDropdown inputDropdownProps={{
-                  inputDropdownParentClassName: "w-full lg:w-14rem md:w-14rem sm:w-10rem",
-                  labelProps: {
-                    text: translate(localeJson, 'evacuation_site'),
-                    inputDropdownLabelClassName: "block"
-                  },
-                  inputDropdownClassName: "w-full lg:w-14rem md:w-14rem sm:w-10rem",
-                  customPanelDropdownClassName: "w-10rem",
-                  value: searchShelter,
-                  options: evacuationPlaceList,
-                  optionLabel: "name",
-                  onChange: (e) => setSearchShelter(e.value),
-                  emptyMessage: translate(localeJson, "data_not_found"),
-                }}
+                <label
+                  id={`${EVAC_SITE_ID}`}
+                  htmlFor={EVAC_SITE_ID}
+                  className="sr-only"
+                >
+                  {translate(localeJson, "evacuation_site")}
+                </label>
+                <InputDropdown
+                  inputDropdownProps={{
+                    inputId: EVAC_SITE_ID,
+                    inputDropdownParentClassName:
+                      "w-full lg:w-14rem md:w-14rem sm:w-10rem",
+                    labelProps: {
+                      text: translate(localeJson, "evacuation_site"),
+                      inputDropdownLabelClassName: "block",
+                    },
+                    inputDropdownClassName:
+                      "w-full lg:w-14rem md:w-14rem sm:w-10rem",
+                    customPanelDropdownClassName: "w-10rem",
+                    value: searchShelter,
+                    options: evacuationPlaceList,
+                    optionLabel: "name",
+                    onChange: (e) => setSearchShelter(e.value),
+                    emptyMessage: (
+                      <span
+                        aria-live="polite"
+                        aria-label={translate(localeJson, "data_not_found")}
+                        className="sr-only"
+                      >
+                        {translate(localeJson, "data_not_found")}
+                      </span>
+                    ),
+                    ariaLabel: translate(localeJson, "evacuation_site"),
+                    pt: {
+                      input: {
+                        "aria-label": translate(localeJson, "evacuation_site"),
+                        placeholder: translate(localeJson, "evacuation_site"),
+                        title: translate(localeJson, "evacuation_site"),
+                      },
+                      select: {
+                        "aria-label": translate(localeJson, "evacuation_site"), // ✅ now correct
+                        title: translate(localeJson, "evacuation_site"),
+                      },
+                      trigger: {
+                        "aria-label": translate(localeJson, "evacuation_site"),
+                      },
+                      panel: {
+                        "aria-live": "polite",
+                        "aria-atomic": "true",
+                      },
+                    },
+                  }}
                 />
               </div>
             </div>
 
             {/* 🔘 Search Button - OUTSIDE the grid, aligned right */}
             <div className="flex justify-content-end mt-3">
-              <Button buttonProps={{
-                buttonClass: "w-full lg:w-9rem md:w-9rem sm:w-9rem search-button block text-center p-0",
-                text: translate(localeJson, "filter"),
-                type: "button",
-                onClick: fetchEmployees,
-              }} parentClass={"search-button w-full flex justify-content-end mb-3"} />
+              <Button
+                buttonProps={{
+                  buttonClass:
+                    "w-full lg:w-9rem md:w-9rem sm:w-9rem search-button block text-center p-0",
+                  text: translate(localeJson, "filter"),
+                  type: "button",
+                  onClick: fetchEmployees,
+                }}
+                parentClass={
+                  "search-button w-full flex justify-content-end mb-3"
+                }
+              />
             </div>
           </form>
-
 
           <NormalTable
             lazy
@@ -255,7 +332,7 @@ export default function EmployeeListPage() {
             columns={columns}
             first={getListPayload.filters.start}
             rows={getListPayload.filters.limit}
-            emptyMessage={translate(localeJson, 'data_not_found')}
+            emptyMessage={translate(localeJson, "data_not_found")}
             onPageHandler={handlePagination}
             paginatorLeft={true}
             onSort={(e) =>
@@ -264,7 +341,8 @@ export default function EmployeeListPage() {
                 filters: {
                   ...getListPayload.filters,
                   sort_by: e.sortField,
-                  order_by: getListPayload.filters.order_by === 'desc' ? 'asc' : 'desc',
+                  order_by:
+                    getListPayload.filters.order_by === "desc" ? "asc" : "desc",
                 },
               })
             }
