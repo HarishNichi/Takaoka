@@ -362,12 +362,10 @@ function StaffFamily() {
                   headerClass={"page-header1"}
                   header={translate(localeJson, "list_of_evacuees")}
                   aria-label={translate(localeJson, "list_of_evacuees")}
-                  tabIndex={0}
                 />
                 <span
                   className="page-header1-sub mb-2"
                   aria-live="polite"
-                  tabIndex={0}
                 >{` (${totalCount}${translate(localeJson, "people")})`}</span>
               </div>
               <div className='mb-2 flex align-items-center'>
@@ -379,12 +377,6 @@ function StaffFamily() {
                   text: translate(localeJson, 'export'),
                   onClick: () => downloadEvacueesListCSV(),
                   'aria-label': translate(localeJson, 'export'),
-                  tabIndex: 0,
-                  onKeyDown: (e) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      downloadEvacueesListCSV();
-                    }
-                  }
                 }} parentClass={"mr-1 export-button"} />
               </div>
             </div>
@@ -406,7 +398,7 @@ function StaffFamily() {
                         value: familyCode,
                         onChange: (e) => handleFamilyCode(e),
                         ariaLabel: translate(localeJson, "family_code"),
-                        tabIndex: 0,
+
                       }}
                     />
                     <Input
@@ -423,7 +415,6 @@ function StaffFamily() {
                         value: refugeeName,
                         onChange: (e) => setRefugeeName(e.target.value),
                         ariaLabel: translate(localeJson, "refugeeName"),
-                        tabIndex: 0,
                       }}
                     />
                     <div className="flex align-items-end">
@@ -434,12 +425,6 @@ function StaffFamily() {
                           icon: "pi pi-search",
                           type: "submit",
                           'aria-label': translate(localeJson, "search_text"),
-                          tabIndex: 0,
-                          onKeyDown: (e) => {
-                            if (e.key === "Enter" || e.key === " ") {
-                              searchListWithCriteria();
-                            }
-                          },
                           onClick: (e) => {
                             e.preventDefault();
                             searchListWithCriteria();
@@ -490,7 +475,7 @@ function StaffFamily() {
                   tableProps={{
                     role: "table",
                     'aria-label': translate(localeJson, "list_of_evacuees"),
-                    tabIndex: 0,
+
                   }}
                 />
               </div>
