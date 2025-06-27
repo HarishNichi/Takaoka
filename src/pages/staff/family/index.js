@@ -355,66 +355,63 @@ function StaffFamily() {
     <>
       <div className="grid">
         <div className="col-12">
-          <div className="card">
-            <div
-              className="gap-2 flex justify-content-between"
-            >
+          <div className="card" role="region" aria-label={translate(localeJson, "list_of_evacuees")}>
+            <div className="gap-2 flex justify-content-between">
               <div className="flex gap-2 align-items-center">
                 <CustomHeader
                   headerClass={"page-header1"}
                   header={translate(localeJson, "list_of_evacuees")}
+                  aria-label={translate(localeJson, "list_of_evacuees")}
                 />
-                <span className="page-header1-sub mb-2">{` (${totalCount}${translate(
-                  localeJson,
-                  "people"
-                )})`}</span>
+                <span
+                  className="page-header1-sub mb-2"
+                  aria-live="polite"
+                >{` (${totalCount}${translate(localeJson, "people")})`}</span>
               </div>
               <div className='mb-2 flex align-items-center'>
                 <Button buttonProps={{
-                  type: 'submit',
+                  type: 'button',
                   rounded: "true",
                   export: true,
                   buttonClass: "evacuation_button_height export-button",
                   text: translate(localeJson, 'export'),
-                  onClick: () => downloadEvacueesListCSV()
+                  onClick: () => downloadEvacueesListCSV(),
+                  'aria-label': translate(localeJson, 'export'),
                 }} parentClass={"mr-1 export-button"} />
               </div>
             </div>
             <div>
               <div>
-                <form>
+                <form aria-label={translate(localeJson, "search_form")} role="search">
                   <div className="modal-field-top-space modal-field-bottom-space flex flex-wrap float-right justify-content-end gap-3 lg:gap-2 md:gap-2 sm:gap-2 mobile-input">
                     <Input
                       inputProps={{
-                        inputParentClassName:
-                          "w-full lg:w-13rem md:w-14rem sm:w-10rem",
+                        inputParentClassName: "w-full lg:w-13rem md:w-14rem sm:w-10rem",
                         labelProps: {
                           text: translate(localeJson, "family_code"),
                           inputLabelClassName: "block",
-                          htmlFor: "familyCode", 
+                          htmlFor: "familyCode",
                         },
-                        inputClassName:
-                          "w-full lg:w-13rem md:w-14rem sm:w-10rem",
+                        inputClassName: "w-full lg:w-13rem md:w-14rem sm:w-10rem",
                         id: "familyCode",
                         name: "familyCode",
                         value: familyCode,
                         onChange: (e) => handleFamilyCode(e),
                         ariaLabel: translate(localeJson, "family_code"),
+
                       }}
                     />
                     <Input
                       inputProps={{
-                        id:"refugeeName",
-                        name:"refugeeName",
-                        inputParentClassName:
-                          "w-full lg:w-13rem md:w-14rem sm:w-10rem",
+                        id: "refugeeName",
+                        name: "refugeeName",
+                        inputParentClassName: "w-full lg:w-13rem md:w-14rem sm:w-10rem",
                         labelProps: {
                           text: translate(localeJson, "name"),
                           inputLabelClassName: "block",
-                          htmlFor: "refugeeName", 
+                          htmlFor: "refugeeName",
                         },
-                        inputClassName:
-                          "w-full lg:w-13rem md:w-14rem sm:w-10rem",
+                        inputClassName: "w-full lg:w-13rem md:w-14rem sm:w-10rem",
                         value: refugeeName,
                         onChange: (e) => setRefugeeName(e.target.value),
                         ariaLabel: translate(localeJson, "refugeeName"),
@@ -426,8 +423,12 @@ function StaffFamily() {
                           buttonClass: "w-12 search-button",
                           text: translate(localeJson, "search_text"),
                           icon: "pi pi-search",
-                          type: "button",
-                          onClick: () => searchListWithCriteria(),
+                          type: "submit",
+                          'aria-label': translate(localeJson, "search_text"),
+                          onClick: (e) => {
+                            e.preventDefault();
+                            searchListWithCriteria();
+                          }
                         }}
                         parentClass={"search-button"}
                       />
@@ -435,7 +436,7 @@ function StaffFamily() {
                   </div>
                 </form>
               </div>
-              <div className="mt-3">
+              <div className="mt-3" role="region" aria-label={translate(localeJson, "list_of_evacuees_table")}>
                 <NormalTable
                   lazy
                   totalRecords={totalCount}
@@ -470,6 +471,11 @@ function StaffFamily() {
                     router.push({
                       pathname: "/staff/family/family-detail",
                     });
+                  }}
+                  tableProps={{
+                    role: "table",
+                    'aria-label': translate(localeJson, "list_of_evacuees"),
+
                   }}
                 />
               </div>
