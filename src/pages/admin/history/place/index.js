@@ -13,7 +13,14 @@ import {
   getValueByKeyRecursively as translate,
 } from "@/helper";
 import { LayoutContext } from "@/layout/context/layoutcontext";
-import { Button, CustomHeader, DateTime, NormalTable, InputDropdown, EmailSettings } from "@/components";
+import {
+  Button,
+  CustomHeader,
+  DateTime,
+  NormalTable,
+  InputDropdown,
+  EmailSettings,
+} from "@/components";
 import { MailSettingsOption1 } from "@/utils/constant";
 import { HistoryServices } from "@/services";
 
@@ -267,7 +274,10 @@ export default function AdminHistoryPlacePage() {
               : getEnglishDateTimeDisplayActualFormat(obj.created_at)
             : "",
           prefecture_name: obj.prefecture_name,
-          place_name: locale === "en" && !_.isNull(obj.place_name_en) ? obj.place_name_en : obj.place_name,
+          place_name:
+            locale === "en" && !_.isNull(obj.place_name_en)
+              ? obj.place_name_en
+              : obj.place_name,
           place_name_en: obj.place_name_en,
           place_refugee_name: obj.place_refugee_name,
           place_address: obj.place_address,
@@ -280,20 +290,20 @@ export default function AdminHistoryPlacePage() {
           place_opening_date_time: obj.place_opening_date_time
             ? locale == "ja"
               ? getJapaneseDateTimeDayDisplayActualFormat(
-                obj.place_opening_date_time
-              )
+                  obj.place_opening_date_time
+                )
               : getEnglishDateTimeDisplayActualFormat(
-                obj.place_opening_date_time
-              )
+                  obj.place_opening_date_time
+                )
             : "",
           place_closing_date_time: obj.place_closing_date_time
             ? locale == "ja"
               ? getJapaneseDateTimeDayDisplayActualFormat(
-                obj.place_closing_date_time
-              )
+                  obj.place_closing_date_time
+                )
               : getEnglishDateTimeDisplayActualFormat(
-                obj.place_closing_date_time
-              )
+                  obj.place_closing_date_time
+                )
             : "",
           place_remarks: obj.place_remarks,
         };
@@ -507,40 +517,80 @@ export default function AdminHistoryPlacePage() {
                       callOnActionFlag={true}
                       callOnCancel={() => setSelectedDate(null)}
                       dateTimeProps={{
-                        dateTimeParentClassName:
-                          "w-full lg:w-27rem md:w-27rem",
+                        dateTimeParentClassName: "w-full lg:w-27rem md:w-27rem",
                         labelProps: {
                           text: translate(localeJson, "report_date_time"),
                           inputDropdownLabelClassName: "block",
                           htmlFor: "historyDateSearch",
                         },
                         inputId: "historyDateSearch",
-                        dateTimeClass:
-                          "w-full lg:w-27rem md:w-27rem",
+                        dateTimeClass: "w-full lg:w-27rem md:w-27rem",
                         selectionMode: "range",
                         panelStyle: { marginTop: "0px" },
                         date: getDefaultTodayDateTime,
                         onChange: (e) => setSelectedDate(e.value),
                       }}
                     />
+                    <label htmlFor="shelterPlaceDropdown" className="sr-only">
+                      {translate(localeJson, "shelter_place_name")}
+                    </label>
                     <InputDropdown
                       inputDropdownProps={{
+                        inputId: "shelterPlaceDropdown",
+                        ariaLabel: translate(localeJson, "shelter_place_name"),
                         inputDropdownParentClassName:
                           "w-full lg:w-13rem md:w-14rem",
                         labelProps: {
                           text: translate(localeJson, "shelter_place_name"),
                           inputDropdownLabelClassName: "block",
+                          htmlFor: "shelterPlaceDropdown",
                         },
-                        inputDropdownClassName:
-                          "w-full lg:w-13rem md:w-14rem",
+                        inputDropdownClassName: "w-full lg:w-13rem md:w-14rem",
                         customPanelDropdownClassName: "w-10rem",
                         value: selectedCity,
                         options: historyPlaceDropdown,
                         optionLabel: "name",
                         onChange: (e) => setSelectedCity(e.value),
-                        emptyMessage: translate(localeJson, "data_not_found"),
+                        emptyMessage: (
+                          <span
+                            aria-live="polite"
+                            aria-label={translate(localeJson, "data_not_found")}
+                            className="sr-only"
+                          >
+                            {translate(localeJson, "data_not_found")}
+                          </span>
+                        ),
+                        pt: {
+                          trigger: {
+                            // ✅ Fixes the issue
+                            "aria-label": translate(
+                              localeJson,
+                              "shelter_place_name"
+                            ),
+                            title: translate(localeJson, "shelter_place_name"),
+                          },
+                          input: {
+                            "aria-label": translate(
+                              localeJson,
+                              "shelter_place_name"
+                            ),
+                            title: translate(localeJson, "shelter_place_name"),
+                          },
+                          select: {
+                            "aria-label": translate(
+                              localeJson,
+                              "shelter_place_name"
+                            ),
+                            title: translate(localeJson, "shelter_place_name"),
+                          },
+                          panel: {
+                            "aria-live": "polite",
+                            "aria-atomic": "true",
+                          },
+                        },
                       }}
                     />
+
                     <div className="flex align-items-end">
                       <Button
                         buttonProps={{
