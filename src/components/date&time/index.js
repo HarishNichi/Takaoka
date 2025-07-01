@@ -83,6 +83,7 @@ export const Calendar = (props) => {
 
     const { localeJson } = useContext(LayoutContext);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         setDate(props.calendarProps.date)
     }, [props.calendarProps.date])

@@ -20,6 +20,7 @@ const MapMenuitem = (props) => {
   const menuRef = useRef(null);
   const [isPageLoad, setIsPageLoad] = useState(false)
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // Example logic to update activePosition, replace this with your own logic
     // For demonstration, it's using the first item's position

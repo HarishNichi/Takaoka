@@ -5,6 +5,7 @@ import { GoogleMapComponent } from '@/components';
 const MainDashboard = () => {
   const [currentLatitude, setCurrentLatitude] = useState(0);
   const [currentLongitude, setCurrentLongitude] = useState(0);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     getLocation();
   }, []);

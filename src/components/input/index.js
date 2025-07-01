@@ -52,6 +52,7 @@ export const Input = (props) => {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!inputRightIconProps?.isRecording) {
       setLocalIsRecording(inputRightIconProps?.isRecording);
@@ -319,6 +320,7 @@ export const InputNumber = (props) => {
     inputRightIconProps?.onRecordingStateChange?.(isRecord);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!inputRightIconProps?.isRecording) {
       setLocalIsRecording(inputRightIconProps?.isRecording);

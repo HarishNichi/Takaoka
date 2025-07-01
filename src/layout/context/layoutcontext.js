@@ -75,6 +75,7 @@ export const LayoutProvider = (props) => {
     }
 
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (locale && locale == 'en') {
             localStorage.setItem('locale', 'en');

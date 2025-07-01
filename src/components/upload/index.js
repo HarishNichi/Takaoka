@@ -47,6 +47,7 @@ export const InputFile = (props) => {
         fileInputRef.current.click();
     };
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(()=>{
         if(_.isNull(value)){
             setSelectedFileName('');

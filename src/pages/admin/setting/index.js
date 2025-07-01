@@ -55,6 +55,7 @@ export default function Setting() {
   const { getList, update, bulkDelete } = systemSettingServices;
     const { encryptPassword } = CommonServices;
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const fetchData = async () => {
       await onGetSystemListOnMounting();

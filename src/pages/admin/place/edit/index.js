@@ -85,6 +85,7 @@ export default function PlaceUpdatePage() {
   const { update, details } = PlaceServices;
   const { getAddressFromZipCode } = CommonServices;
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const fetchData = async () => {
       await onGetPlaceDetailsOnMounting();
@@ -92,6 +93,7 @@ export default function PlaceUpdatePage() {
     fetchData();
   }, [locale]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     formikRef.current.validateForm()
   }, [prefCount])

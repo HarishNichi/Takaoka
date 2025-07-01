@@ -92,6 +92,7 @@ export default function StaffFamilyDetail() {
     /* Services */
     const { updateCheckoutDetail } = StaffEvacuationServices;
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         setTableLoading(true);
         const fetchData = async () => {

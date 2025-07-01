@@ -111,6 +111,7 @@ export default function StaffManagementDetailModal(props) {
   // Main Table listing starts
   const { show } = StaffManagementService;
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setTableLoading(true);
     const fetchData = async () => {

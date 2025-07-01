@@ -258,10 +258,12 @@ export default function PlaceCreatePage() {
   const { create } = PlaceServices;
   const { getAddressFromZipCode } = CommonServices
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     getLocation();
   }, [locale]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     formikRef.current.validateForm()
   }, [prefCount])

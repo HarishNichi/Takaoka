@@ -44,6 +44,7 @@ function HQDashboard() {
     /* Services */
     const { getList, updateFullStatus } = DashboardServices;
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         setTableLoading(true);
         const fetchData = async () => {

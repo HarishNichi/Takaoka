@@ -50,6 +50,7 @@ export default function StaffManagementEditPage() {
     fetchData();
   }, [locale]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setLangitude(longitude);
     setLatitude(latitude);

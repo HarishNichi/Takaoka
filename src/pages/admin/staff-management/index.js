@@ -173,6 +173,7 @@ export default function StaffManagementPage() {
 
     const { getList, create, update, exportData } = StaffManagementService;
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         setTableLoading(true);
         const fetchData = async () => {

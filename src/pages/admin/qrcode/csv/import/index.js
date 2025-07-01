@@ -213,6 +213,7 @@ export default function AdminQrCodeCreatePage() {
     setDeleteOpen(false);
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (uploadFile) {
       formRef.current.setTouched({ file: true });
@@ -220,6 +221,7 @@ export default function AdminQrCodeCreatePage() {
     }
   }, [uploadFile]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const interval = setInterval(() => {
       const currentBatchId = localStorage.getItem("batch_id");

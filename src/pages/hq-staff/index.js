@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 export default function HQStaff() {
     const router = useRouter();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         router.push('/hq-staff/dashboard');
     }, []);

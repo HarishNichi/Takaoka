@@ -140,9 +140,11 @@ export default function EmployeeListPage() {
     }));
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchEmployees();
   }, [getListPayload, locale]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     // Fetch evacuation places for dropdown
     onGetHistoryPlaceDropdownListOnMounting();

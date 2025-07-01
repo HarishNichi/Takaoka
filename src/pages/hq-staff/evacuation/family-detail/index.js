@@ -61,6 +61,7 @@ export default function EvacueeFamilyDetail() {
     /* Services */
     const { getFamilyEvacueesDetail } = EvacuationServices;
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         setTableLoading(true);
         const fetchData = async () => {

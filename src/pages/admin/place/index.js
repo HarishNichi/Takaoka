@@ -153,6 +153,7 @@ export default function AdminPlacePage() {
   const { getList, updateStatus, exportData, importData, deletePlace } =
     PlaceServices;
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setTableLoading(true);
     const fetchData = async () => {

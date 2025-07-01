@@ -129,6 +129,7 @@ const withAuth = (WrappedComponent) => {
         /* Services */
         const { getSystemSettingDetails } = CommonServices;
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         useEffect(() => {
             // Load theme
             loadNewTheme(router.asPath); // Load the initial theme on component mount

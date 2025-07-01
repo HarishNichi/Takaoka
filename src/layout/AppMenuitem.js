@@ -26,6 +26,7 @@ const AppMenuitem = (props) => {
     const active = activeMenu === key || activeMenu.startsWith(key + '-');
     const menuRef = useRef(null);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         // Reset active menu status
         setActiveMenu("");

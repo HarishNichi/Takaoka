@@ -308,6 +308,7 @@ const AppTopbar = forwardRef((props, ref) => {
     const { logout } = AuthenticationAuthorizationService;
     const { getdefaultEventData } = TempRegisterServices;
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         layoutUpdate(url);
         router.events.on("routeChangeComplete", (responseUrl) => {
@@ -320,6 +321,7 @@ const AppTopbar = forwardRef((props, ref) => {
         fetchData();
     }, []);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (settings_data) {
             setLayoutInformation(settings_data);
