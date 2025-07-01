@@ -3,7 +3,7 @@ import { Dialog } from "primereact/dialog";
 
 import { Button } from "@/components"; 
 
-const CommonDialog = (props) => {
+const CommonDialog = React.memo(function CommonDialog(props) {
   const {
     open,
     close,
@@ -106,6 +106,6 @@ const CommonDialog = (props) => {
       </Dialog>
     </div>
   );
-};
-
+});
+CommonDialog.displayName = 'CommonDialog';
 export default CommonDialog;

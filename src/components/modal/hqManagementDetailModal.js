@@ -12,7 +12,7 @@ import {
 import { LayoutContext } from "@/layout/context/layoutcontext";
 import { HeadQuarterManagement } from "@/services";
 
-export default function HqManagementDetailModal(props) {
+const HqManagementDetailModal = React.memo(function HqManagementDetailModal(props) {
     const { locale, localeJson } = useContext(LayoutContext);
     const columnNames = [
         { field: 'slno', header: translate(localeJson, 'staff_management_detail_login_history_slno'), headerClassName: "sno_class", textAlign: "center", alignHeader: "center" },
@@ -165,4 +165,6 @@ export default function HqManagementDetailModal(props) {
             </div>
         </React.Fragment>
     );
-}
+});
+HqManagementDetailModal.displayName = 'HqManagementDetailModal';
+export default HqManagementDetailModal;

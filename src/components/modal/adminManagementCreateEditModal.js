@@ -8,7 +8,7 @@ import { convertToSingleByte, getValueByKeyRecursively as translate } from "@/he
 import { LayoutContext } from "@/layout/context/layoutcontext";
 import { AdminManagementServices } from "@/services";
 
-export default function AdminManagementCreateEditModal(props) {
+const AdminManagementCreateEditModal = React.memo(function AdminManagementCreateEditModal(props) {
     const { localeJson } = useContext(LayoutContext);
     const { open, close } = props && props;
     const isEmail = (value) => {
@@ -246,4 +246,6 @@ export default function AdminManagementCreateEditModal(props) {
             </Formik>
         </>
     );
-}
+});
+AdminManagementCreateEditModal.displayName = 'AdminManagementCreateEditModal';
+export default AdminManagementCreateEditModal;
