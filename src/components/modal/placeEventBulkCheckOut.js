@@ -7,7 +7,7 @@ import { getValueByKeyRecursively as translate } from "@/helper";
 import { LayoutContext } from "@/layout/context/layoutcontext";
 import { BulkCheckoutService } from "@/services";
 
-export default function PlaceEventBulkCheckOut(props) {
+const PlaceEventBulkCheckOut = React.memo(function PlaceEventBulkCheckOut(props) {
     const { localeJson, locale } = useContext(LayoutContext);
     const { open, close, modalHeaderText } = props && props;
 
@@ -180,4 +180,6 @@ export default function PlaceEventBulkCheckOut(props) {
             </div>
         </React.Fragment>
     );
-}
+});
+PlaceEventBulkCheckOut.displayName = 'PlaceEventBulkCheckOut';
+export default PlaceEventBulkCheckOut;

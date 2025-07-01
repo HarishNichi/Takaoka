@@ -13,7 +13,7 @@ import { LayoutContext } from "@/layout/context/layoutcontext";
 import { StaffManagementService } from "@/services";
 import { useAppSelector } from "@/redux/hooks";
 
-export default function StaffManagementDetailModal(props) {
+const StaffManagementDetailModal = React.memo(function StaffManagementDetailModal(props) {
   const { localeJson, locale } = useContext(LayoutContext);
   // Getting storage data with help of reducers
   const layoutReducer = useAppSelector((state) => state.layoutReducer);
@@ -335,4 +335,6 @@ export default function StaffManagementDetailModal(props) {
       </div>
     </React.Fragment>
   );
-}
+});
+StaffManagementDetailModal.displayName = 'StaffManagementDetailModal';
+export default StaffManagementDetailModal;

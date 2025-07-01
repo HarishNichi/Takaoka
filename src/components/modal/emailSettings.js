@@ -7,7 +7,7 @@ import { Button, NormalLabel, ValidationError, InputDropdown, TextArea } from "@
 import { getValueByKeyRecursively as translate } from "@/helper";
 import { LayoutContext } from "@/layout/context/layoutcontext";
 
-export default function EmailSettings(props) {
+const EmailSettings = React.memo(function EmailSettings(props) {
     const { localeJson } = useContext(LayoutContext);
     const { open, close, register, intervalFrequency, prefectureList, emailSettingValues } = props && props;
 
@@ -218,4 +218,6 @@ export default function EmailSettings(props) {
             </Formik>
         </>
     );
-}
+});
+EmailSettings.displayName = 'EmailSettings';
+export default EmailSettings;

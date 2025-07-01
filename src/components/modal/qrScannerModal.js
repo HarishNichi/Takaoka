@@ -6,7 +6,7 @@ import { LayoutContext } from "@/layout/context/layoutcontext";
 import { getValueByKeyRecursively as translate } from '@/helper'
 import { Button } from "@/components";
 
-export default function QrScannerModal(props) {
+const QrScannerModal = React.memo(function QrScannerModal(props) {
     const { localeJson } = useContext(LayoutContext);
     const { open, close } = props;
 
@@ -122,4 +122,6 @@ export default function QrScannerModal(props) {
             </Dialog>
         </div>
     );
-}
+});
+QrScannerModal.displayName = 'QrScannerModal';
+export default QrScannerModal;

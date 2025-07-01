@@ -11,7 +11,7 @@ import {
 import { LayoutContext } from "@/layout/context/layoutcontext";
 import { DepartmentManagementServices } from "@/services/dept_management_services";
 
-export default function DepartmentCreateEditModal(props) {
+const DepartmentCreateEditModal = React.memo(function DepartmentCreateEditModal(props) {
   const { localeJson } = useContext(LayoutContext);
   const { open, close, registerModalAction, currentObj, refreshList } = props;
 
@@ -201,4 +201,6 @@ export default function DepartmentCreateEditModal(props) {
       )}
     </Formik>
   );
-}
+});
+DepartmentCreateEditModal.displayName = 'DepartmentCreateEditModal';
+export default DepartmentCreateEditModal;

@@ -11,7 +11,7 @@ import {
 import { LayoutContext } from "@/layout/context/layoutcontext";
 import { HeadQuarterManagement } from "@/services";
 
-export default function HqEditModal(props) {
+const HqEditModal = React.memo(function HqEditModal(props) {
     const { localeJson } = useContext(LayoutContext);
     const { open, close } = props && props;
 
@@ -248,4 +248,6 @@ export default function HqEditModal(props) {
             </Formik>
         </>
     );
-}
+});
+HqEditModal.displayName = 'HqEditModal';
+export default HqEditModal;

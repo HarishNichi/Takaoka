@@ -20,7 +20,7 @@ import { LayoutContext } from "@/layout/context/layoutcontext";
 import { CommonServices, StaffManagementService } from "@/services";
 import { useAppSelector } from "@/redux/hooks";
 
-export default function StaffManagementEditModal(props) {
+const StaffManagementEditModal = React.memo(function StaffManagementEditModal(props) {
   const { localeJson, locale } = useContext(LayoutContext);
   const { open, close, currentEditObj } = props && props;
   // Getting storage data with help of reducers
@@ -540,4 +540,6 @@ export default function StaffManagementEditModal(props) {
       </Formik>
     </>
   );
-}
+});
+StaffManagementEditModal.displayName = 'StaffManagementEditModal';
+export default StaffManagementEditModal;
