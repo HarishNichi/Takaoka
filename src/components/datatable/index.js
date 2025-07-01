@@ -25,7 +25,7 @@ const renderCell = (col, rowData, rowIndex) => {
       style={col.style}
       key={col.field || rowIndex}
       tabIndex={0}
-      aria-label={col.header}
+      aria-label={ rowData[col.field]||col.header}
     >
       {col.body ? col.body(rowData, { rowIndex }) : rowData[col.field]}
     </td>
