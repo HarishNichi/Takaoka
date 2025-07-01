@@ -17,18 +17,11 @@ const renderCell = (col, rowData, rowIndex) => {
       </th>
     );
   }
-  // Ensure aria-label is always a string, fallback to col.header if value is missing
-  const cellValue = col.body ? (col.ariaLabel ? col.ariaLabel(rowData, { rowIndex }) : undefined) : rowData[col.field];
+  else {
   return (
     <td
       className={col.className}
-      aria-label={
-        typeof cellValue === "string"
-          ? cellValue
-          : cellValue != null
-            ? String(cellValue)
-            : col.header || "test"
-      }
+      scope="col"
       style={col.style}
       key={col.field || rowIndex}
       tabIndex={0}
@@ -36,6 +29,7 @@ const renderCell = (col, rowData, rowIndex) => {
       {col.body ? col.body(rowData, { rowIndex }) : rowData[col.field]}
     </td>
   );
+  }
 };
 
 export const NormalTable = React.memo((props) => {
