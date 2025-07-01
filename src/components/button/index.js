@@ -1,6 +1,7 @@
 import { Button as PrimeReactButton } from "primereact/button";
+import React from "react";
 
-export const Button = (props) => {
+export const Button = React.memo((props) => {
   const { parentClass, buttonProps = {} } = props;
   const {
     hoverBg,
@@ -51,9 +52,11 @@ export const Button = (props) => {
       />
     </div>
   );
-};
+});
 
-export const ButtonRounded = (props) => {
+Button.displayName = 'Button';
+
+export const ButtonRounded = React.memo((props) => {
   const { parentClass, buttonProps = {} } = props;
   const { hoverBg, custom, buttonClass, text, icon, bg, ariaLabel, ...restProps } =
     buttonProps;
@@ -70,4 +73,6 @@ export const ButtonRounded = (props) => {
       />
     </div>
   );
-};
+});
+
+ButtonRounded.displayName = 'ButtonRounded';

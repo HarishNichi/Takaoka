@@ -1,5 +1,3 @@
-import axios from "@/utils/api";
-import { toastDisplay } from "@/helper";
 
 export const DepartmentManagementServices = {
   getDeptList: _getDeptList,

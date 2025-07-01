@@ -11,11 +11,9 @@ import {
   AdminManagementImportModal,
   StaffManagementDetailModal,
   StaffManagementEditModal,
-  PersonCountModal,
   HqEditModal,
   HqManagementDetailModal,
   PlaceEventBulkCheckOut,
-  EvacueeTempRegModal,
   QrScannerModal,
   DepartmentCreateEditModal
 } from "@/components/modal";
@@ -71,7 +69,6 @@ export {
   AdminManagementImportModal,
   StaffManagementDetailModal,
   StaffManagementEditModal,
-  PersonCountModal,
   HqEditModal,
   HqManagementDetailModal,
   PlaceEventBulkCheckOut,

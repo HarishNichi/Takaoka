@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useRouter } from "next/router";
 // import _ from 'lodash';
 
 import {
-  convertToSingleByte,
   getEnglishDateDisplayFormat,
   getJapaneseDateDisplayYYYYMMDDFormat,
   getYYYYMMDDHHSSSSDateTimeFormat,

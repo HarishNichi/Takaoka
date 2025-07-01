@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ImageData from 'next/image'
 
-export const ImageComponent = (props) => {
+export const ImageComponent = React.memo((props) => {
     const {
         parentClass,
         parentStyle,
@@ -57,4 +57,5 @@ export const ImageComponent = (props) => {
             />
         </div>
     );
-}
+});
+ImageComponent.displayName = 'ImageComponent';

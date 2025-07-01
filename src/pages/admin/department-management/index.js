@@ -17,7 +17,6 @@ import {
   AdminManagementImportModal,
   DepartmentCreateEditModal,
 } from "@/components";
-import { CommonServices } from "@/services";
 import { useAppSelector } from "@/redux/hooks";
 import { DepartmentManagementServices } from "@/services/dept_management_services";
 export default function DepartmentanagementPage() {

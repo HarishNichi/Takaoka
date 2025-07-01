@@ -8,7 +8,7 @@ import { LayoutContext } from "@/layout/context/layoutcontext";
 
 let tooltipIdCounter = 0; // Counter for generating unique IDs
 
-function AudioRecorder({ onAudioRecorded, onRecordingStateChange, disabled, isRecording, customClass, customStyle, customParentClassName }) {
+const AudioRecorder = React.memo(function AudioRecorder({ onAudioRecorded, onRecordingStateChange, disabled, isRecording, customClass, customStyle, customParentClassName }) {
   const [recording, setRecording] = useState(false);
   const [mediaRecorder, setMediaRecorder] = useState(null);
   const { localeJson } = useContext(LayoutContext);
@@ -68,6 +68,6 @@ function AudioRecorder({ onAudioRecorded, onRecordingStateChange, disabled, isRe
       </i>
     </>
   );
-}
+});
 
 export default AudioRecorder;

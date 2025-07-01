@@ -26,7 +26,6 @@ import { useAppDispatch } from "@/redux/hooks";
 import { getSpecialCareName } from "@/helper";
 import { EvacuationServices } from "@/services";
 import { AdminManagementDeleteModal } from "@/components/modal";
-import { Tooltip } from "primereact/tooltip";
 
 export default function EvacuationPage() {
   const { locale, localeJson } = useContext(LayoutContext);

@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useRouter } from "next/router";
 // import _ from 'lodash';
 
 import {
-  convertToSingleByte,
   getEnglishDateDisplayFormat,
   getJapaneseDateDisplayYYYYMMDDFormat,
   getYYYYMMDDHHSSSSDateTimeFormat,
@@ -19,7 +17,6 @@ import {
 } from "@/components";
 import { EmployeeServices, StaffManagementService } from "@/services"; // <-- Make sure this service exists
 import _ from "lodash";
-import { ariaLabel } from "primereact/api";
 
 export default function EmployeeListPage() {
   const EVAC_SITE_ID = "evacuationSiteDropdown";

@@ -12,7 +12,7 @@ import { AudioRecorder, NormalLabel } from "@/components";
 import { IconField } from "primereact/iconfield";
 import { InputIcon } from "primereact/inputicon";
 
-export const Input = (props) => {
+export const Input = React.memo((props) => {
   const {
     inputParentClassName,
     hasIcon,
@@ -243,9 +243,10 @@ export const Input = (props) => {
 
 
   );
-};
+});
+Input.displayName = 'Input';
 
-export const TextArea = (props) => {
+export const TextArea = React.memo((props) => {
   const {
     textAreaParentClassName,
     textAreaParentStyle,
@@ -291,9 +292,10 @@ export const TextArea = (props) => {
       )}
     </div>
   );
-};
+});
+TextArea.displayName = 'TextArea';
 
-export const InputNumber = (props) => {
+export const InputNumber = React.memo((props) => {
   const {
     inputNumberParentClassName,
     hasIcon,
@@ -473,10 +475,11 @@ export const InputNumber = (props) => {
       </div>
     </>
   );
-};
+});
+InputNumber.displayName = 'InputNumber';
 
 
-export const Password = (props) => {
+export const Password = React.memo((props) => {
   const {
     passwordParentClassName,
     passwordParentStyle,
@@ -524,9 +527,10 @@ export const Password = (props) => {
       )}
     </div>
   );
-}
+});
+Password.displayName = 'Password';
 
-export const InputGroup = (props) => {
+export const InputGroup = React.memo((props) => {
   const {
     inputGroupParentClassName,
     inputGroupParentStyle,
@@ -624,10 +628,11 @@ export const InputGroup = (props) => {
       </div>
     </>
   );
-};
+});
+InputGroup.displayName = 'InputGroup';
 
 
-export const InputDropdown = (props) => {
+export const InputDropdown = React.memo((props) => {
   const {
     inputDropdownParentClassName,
     inputDropdownParentStyle,
@@ -676,14 +681,15 @@ export const InputDropdown = (props) => {
       )}
     </div>
   );
-};
+});
+InputDropdown.displayName = 'InputDropdown';
 
 /**
  *
  * @param {*} props
  * @returns Multi select dropdown component
  */
-export const MultiSelect = (props) => {
+export const MultiSelect = React.memo((props) => {
   const {
     multiSelectParentClassName,
     multiSelectParentStyle,
@@ -800,9 +806,10 @@ export const MultiSelect = (props) => {
       )}
     </div>
   );
-};
+});
+MultiSelect.displayName = 'MultiSelect';
 
-export const DropdownSelect = (props) => {
+export const DropdownSelect = React.memo((props) => {
   const {
     dropDownSelectParentClassName,
     dropDownSelectParentStyle,
@@ -825,9 +832,10 @@ export const DropdownSelect = (props) => {
       </Drp>
     </div>
   );
-};
+});
+DropdownSelect.displayName = 'DropdownSelect';
 
-export const InputGroups = (props) => {
+export const InputGroups = React.memo((props) => {
   const { custom, parentClass, parentStyle, inputGroupProps = {} } = props;
   const {
     leftClass,
@@ -916,4 +924,5 @@ export const InputGroups = (props) => {
       )}
     </div>
   );
-};
+});
+InputGroups.displayName = 'InputGroups';

@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { useRouter } from 'next/router';
-import { MdManageAccounts, MdSettings, MdSpaceDashboard, MdAddCircle } from "react-icons/md";
-import { BiQrScan, BiSolidAddToQueue, BiSolidNotification, BiSolidTime } from "react-icons/bi";
+import { MdManageAccounts, MdSettings } from "react-icons/md";
+import { BiQrScan } from "react-icons/bi";
 import { RiHome5Fill, RiFileHistoryFill, RiFileSettingsFill } from "react-icons/ri";
-import { IoMdListBox, IoIosPaper, IoIosArrowBack, IoIosNotificationsOutline, IoIosNotifications } from "react-icons/io";
-import { PiUserListFill, PiHandTapFill, PiNotification } from "react-icons/pi";
+import { IoMdListBox } from "react-icons/io";
+import { PiUserListFill } from "react-icons/pi";
 import { FaPeopleGroup, FaUsersGear } from "react-icons/fa6";
-import { HiArchiveBoxXMark, HiInformationCircle } from "react-icons/hi2";
-import { FaBoxes, FaChartPie, FaUserTie, FaLuggageCart } from "react-icons/fa"
-import { BsHouseGearFill, BsPeopleFill, BsFillPersonPlusFill } from "react-icons/bs";
+import { HiInformationCircle } from "react-icons/hi2";
+import { FaUserTie } from "react-icons/fa"
+import { BsHouseGearFill, BsPeopleFill } from "react-icons/bs";
 
 import AppMenuitem from '@/layout/AppMenuitem';
 import MapMenuitem from '@/layout/MapmenuItem';
@@ -16,7 +16,6 @@ import { LayoutContext } from '@/layout/context/layoutcontext';
 import { MenuProvider } from '@/layout/context/menucontext';
 import { getValueByKeyRecursively as translate } from '@/helper';
 import { useAppSelector } from "@/redux/hooks";
-import { Button } from '@/components';
 
 const AppMenu = () => {
     const { localeJson } = useContext(LayoutContext);

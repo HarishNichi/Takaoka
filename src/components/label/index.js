@@ -1,6 +1,6 @@
 import React from "react";
 
-export const NormalLabel = (props) => {
+export const NormalLabel = React.memo((props) => {
   const {
     labelClass,
     labelStyle,
@@ -22,4 +22,6 @@ export const NormalLabel = (props) => {
       <span className={spanClass}>{spanText}</span>
     </label>
   );
-};
+});
+
+NormalLabel.displayName = 'NormalLabel';

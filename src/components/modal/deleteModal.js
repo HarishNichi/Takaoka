@@ -5,7 +5,7 @@ import { Button, InputSwitch } from "@/components";
 import { hideOverFlow, showOverFlow, getValueByKeyRecursively as translate } from "@/helper";
 import { LayoutContext } from "@/layout/context/layoutcontext";
 
-const DeleteModal = (props) => {
+const DeleteModal = React.memo((props) => {
   const {
     disabled,
     parentMainClass,
@@ -152,6 +152,6 @@ const DeleteModal = (props) => {
       </Dialog>
     </div>
   );
-};
-
+});
+DeleteModal.displayName = 'DeleteModal';
 export default DeleteModal;

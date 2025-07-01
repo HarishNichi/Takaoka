@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import _ from 'lodash';
 import { FaArrowRightFromBracket } from 'react-icons/fa6';
-import { FiEdit2 } from "react-icons/fi";
 import { IoIosArrowBack } from 'react-icons/io';
 
 import {
@@ -15,13 +14,11 @@ import {
     getSpecialCareName,
     hideOverFlow,
     showOverFlow,
-    mobileCheck,
 } from '@/helper'
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { LayoutContext } from '@/layout/context/layoutcontext';
 import { Button, CommonDialog, NormalTable, CardSpinner, CustomHeader } from '@/components';
 import { prefecturesCombined } from '@/utils/constant';
-import { setOriginalData, setIsEdit } from '@/redux/staff_register';
 import { CommonServices, StaffEvacuationServices } from '@/services';
 
 export default function StaffFamilyDetail() {

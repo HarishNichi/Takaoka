@@ -7,14 +7,12 @@ import {
   OverlayView,
   OverlayViewF,
   DirectionsRenderer,
-  DirectionsService,
-  LoadScript,
 } from "@react-google-maps/api";
 
 import { LayoutContext } from "@/layout/context/layoutcontext";
 import { getValueByKeyRecursively as translate } from "@/helper";
 
-export const GoogleMapComponent = ({
+export const GoogleMapComponent = React.memo(({
   initialPosition,
   height,
   searchResult,
@@ -118,9 +116,10 @@ export const GoogleMapComponent = ({
   ) : (
     <></>
   );
-};
+});
+GoogleMapComponent.displayName = 'GoogleMapComponent';
 
-export const GoogleMapMultiMarkerComponent = ({
+export const GoogleMapMultiMarkerComponent = React.memo(({
   initialPosition,
   height,
   markers,
@@ -407,11 +406,10 @@ export const GoogleMapMultiMarkerComponent = ({
   ) : (
     <></>
   );
-};
+});
+GoogleMapMultiMarkerComponent.displayName = 'GoogleMapMultiMarkerComponent';
 
-
-
-export const MapComponent = ({ destination }) => {
+export const MapComponent = React.memo(({ destination }) => {
   const [currentLocation, setCurrentLocation] = useState(null);
   const [directions, setDirections] = useState(null);
   const { locale, localeJson, setLoader, loader } = useContext(LayoutContext);
@@ -465,5 +463,6 @@ export const MapComponent = ({ destination }) => {
   ) : (
     <></>
   );
-};
+});
+MapComponent.displayName = 'MapComponent';
 

@@ -10,7 +10,6 @@ import {
   getYYYYMMDDHHSSSSDateTimeFormat,
   getValueByKeyRecursively as translate,
   getNumberOfEvacuationDays,
-  hideOverFlow,
   showOverFlow,
   getSpecialCareName,
   convertToSingleByte,

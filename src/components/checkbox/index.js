@@ -3,7 +3,7 @@ import { Checkbox } from "primereact/checkbox";
 
 import { NormalLabel } from "@/components"; 
 
-const NormalCheckBox = (props) => {
+const NormalCheckBox = React.memo((props) => {
     const {
         parentClass,
         custom,
@@ -47,7 +47,8 @@ const NormalCheckBox = (props) => {
 
         </div>
     )
-}
+});
+NormalCheckBox.displayName = 'NormalCheckBox';
 
 export {
     NormalCheckBox

@@ -9,7 +9,7 @@ import {
   getValueByKeyRecursively as translate,
 } from "@/helper";
 import { LayoutContext } from "@/layout/context/layoutcontext";
-import { DepartmentManagementServices } from "@/services";
+import { DepartmentManagementServices } from "@/services/dept_management_services";
 
 export default function DepartmentCreateEditModal(props) {
   const { localeJson } = useContext(LayoutContext);

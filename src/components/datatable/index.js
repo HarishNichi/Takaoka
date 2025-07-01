@@ -23,7 +23,7 @@ const renderCell = (col, rowData, rowIndex) => {
   );
 };
 
-export const NormalTable = (props) => {
+export const NormalTable = React.memo((props) => {
   const {
     parentClass,
     paginator,
@@ -195,9 +195,10 @@ export const NormalTable = (props) => {
       </TableData>
     </div>
   );
-};
+});
+NormalTable.displayName = 'NormalTable';
 
-export const RowExpansionTable = (props) => {
+export const RowExpansionTable = React.memo((props) => {
   const {
     parentClass,
     custom,
@@ -492,4 +493,5 @@ export const RowExpansionTable = (props) => {
       </TableData>
     </div>
   );
-};
+});
+RowExpansionTable.displayName = 'RowExpansionTable';
