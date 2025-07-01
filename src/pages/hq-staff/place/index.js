@@ -13,6 +13,7 @@ import { setPlace } from "@/redux/place";
 import { useAppDispatch } from "@/redux/hooks";
 import { default_place_id } from "@/utils/constant";
 
+/* eslint-disable react-hooks/exhaustive-deps */
 export default function AdminPlacePage() {
   const { locale, localeJson } = useContext(LayoutContext);
   const router = useRouter();

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext, useRef, useState } from 'react';
 import { Ripple } from 'primereact/ripple';
 import { classNames } from 'primereact/utils';

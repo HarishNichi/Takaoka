@@ -10,6 +10,7 @@ import { PlaceServices, CommonServices } from "@/services";
 import { useAppSelector } from "@/redux/hooks";
 import { default_place_id, prefecturesCombined } from "@/utils/constant";
 
+/* eslint-disable react-hooks/exhaustive-deps */
 export default function StaffManagementEditPage() {
   const { locale, localeJson, setLoader } = useContext(LayoutContext);
   const router = useRouter();

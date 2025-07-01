@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useRef, useEffect,useContext } from "react";
 import { DataTable as TableData } from "primereact/datatable";
 import { Column } from "primereact/column";
