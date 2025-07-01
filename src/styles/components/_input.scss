@@ -1,26 +1,27 @@
+@use '../variables.scss' as vars;
 .custom_input {
     .p-inputtext {
-        height: $commonHeight;
-        font-weight: $commonFontWeight;
-        font-size: $commonFontSize;
-        border-radius: $commonRadius;
+        height: vars.$commonHeight;
+        font-weight: vars.$commonFontWeight;
+        font-size: vars.$commonFontSize;
+        border-radius: vars.$commonRadius;
     }
     .p-disabled, .p-component:disabled {
         opacity: 1;
         background-color: #f8f9fa;
     }
     .p-inputgroup-addon {
-        height: $commonHeight;
-        font-weight: $commonFontWeight;
-        font-size: $commonFontSize;
+        height: vars.$commonHeight;
+        font-weight: vars.$commonFontWeight;
+        font-size: vars.$commonFontSize;
     }
 }
 .custom_input_password {
     .p-inputtext {
-        height: $commonHeight;
-        font-weight: $commonFontWeight;
-        font-size: $commonFontSize;
-        border-radius: $commonRadius;
+        height: vars.$commonHeight;
+        font-weight: vars.$commonFontWeight;
+        font-size: vars.$commonFontSize;
+        border-radius: vars.$commonRadius;
         width: 100%;
     }
     .p-disabled, .p-component:disabled {
@@ -28,9 +29,9 @@
         background-color: #f8f9fa;
     }
     .p-inputgroup-addon {
-        height: $commonHeight;
-        font-weight: $commonFontWeight;
-        font-size: $commonFontSize;
+        height: vars.$commonHeight;
+        font-weight: vars.$commonFontWeight;
+        font-size: vars.$commonFontSize;
     }
 }
 .password-form-field{

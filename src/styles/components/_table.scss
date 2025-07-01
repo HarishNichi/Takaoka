@@ -1,3 +1,5 @@
+@use '../variables.scss' as vars;
+
 .p-datatable-thead div {
     display: flex;
     align-items: center;
@@ -26,28 +28,28 @@
 
 .custom-table {
     .p-datatable .p-datatable-thead>tr>th {
-        font-size: $tableHeaderFontSize;
-        font-weight: $tableHeaderFontWeight;
+        font-size: vars.$tableHeaderFontSize;
+        font-weight: vars.$tableHeaderFontWeight;
         background-color: transparent;
     }
 
     .p-datatable .p-datatable-tbody.p-datatable-frozen-tbody>tr>td {
-        font-size: $tableFrozenFontSize;
-        font-weight: $tableFrozenFontWeight;
+        font-size: vars.$tableFrozenFontSize;
+        font-weight: vars.$tableFrozenFontWeight;
         background-color: var(--primary-color);
         color: white;
     }
 
     .p-datatable .p-datatable-tbody.p-datatable-frozen-tbody>tr>td:hover {
-        font-size: $tableFrozenFontSize;
-        font-weight: $tableFrozenFontWeight;
+        font-size: vars.$tableFrozenFontSize;
+        font-weight: vars.$tableFrozenFontWeight;
         background-color: var(--primary-hover-color);
         color: white;
     }
 
     .p-datatable .p-datatable-tbody>tr>td {
-        font-size: $tableDataFontSize;
-        font-weight: $commonFontWeight;
+        font-size: vars.$tableDataFontSize;
+        font-weight: vars.$commonFontWeight;
     }
 
     .p-datatable-frozen-tbody tr {
@@ -176,28 +178,28 @@
 
 .custom-table-questionnaires {
     .p-datatable .p-datatable-thead>tr>th {
-        font-size: $tableHeaderFontSize;
-        font-weight: $tableHeaderFontWeight;
+        font-size: vars.$tableHeaderFontSize;
+        font-weight: vars.$tableHeaderFontWeight;
         background-color: transparent;
     }
 
     .p-datatable .p-datatable-tbody.p-datatable-frozen-tbody>tr>td {
-        font-size: $tableFrozenFontSize;
-        font-weight: $tableFrozenFontWeight;
+        font-size: vars.$tableFrozenFontSize;
+        font-weight: vars.$tableFrozenFontWeight;
         background-color: var(--primary-color);
         color: white;
     }
 
     .p-datatable .p-datatable-tbody.p-datatable-frozen-tbody>tr>td:hover {
-        font-size: $tableFrozenFontSize;
-        font-weight: $tableFrozenFontWeight;
+        font-size: vars.$tableFrozenFontSize;
+        font-weight: vars.$tableFrozenFontWeight;
         background-color: var(--primary-hover-color);
         color: white;
     }
 
     .p-datatable .p-datatable-tbody>tr>td {
-        font-size: $tableDataFontSize;
-        font-weight: $commonFontWeight;
+        font-size: vars.$tableDataFontSize;
+        font-weight: vars.$commonFontWeight;
     }
 
     .p-datatable-frozen-tbody tr {
@@ -259,15 +261,15 @@
 }
 
 .sno_class {
-    min-width: $sNoWidth;
-    max-width: $sNoWidth;
-    width: $sNoWidth;
+    min-width: vars.$sNoWidth;
+    max-width: vars.$sNoWidth;
+    width: vars.$sNoWidth;
 }
 
 .action_class {
-    min-width: $actionEditDeleteWidth;
-    max-width: $actionEditDeleteWidth;
-    width: $actionEditDeleteWidth;
+    min-width: vars.$actionEditDeleteWidth;
+    max-width: vars.$actionEditDeleteWidth;
+    width: vars.$actionEditDeleteWidth;
 }
 
 .external-family-table-border {
@@ -324,28 +326,28 @@
     }
 
     .p-datatable .p-datatable-thead>tr>th {
-        font-size: $tableHeaderFontSize;
-        font-weight: $tableHeaderFontWeight;
+        font-size: vars.$tableHeaderFontSize;
+        font-weight: vars.$tableHeaderFontWeight;
         background-color: transparent;
     }
 
     .p-datatable .p-datatable-tbody.p-datatable-frozen-tbody>tr>td {
-        font-size: $tableFrozenFontSize;
-        font-weight: $tableFrozenFontWeight;
+        font-size: vars.$tableFrozenFontSize;
+        font-weight: vars.$tableFrozenFontWeight;
         background-color: var(--primary-color);
         color: white;
     }
 
     .p-datatable .p-datatable-tbody.p-datatable-frozen-tbody>tr>td:hover {
-        font-size: $tableFrozenFontSize;
-        font-weight: $tableFrozenFontWeight;
+        font-size: vars.$tableFrozenFontSize;
+        font-weight: vars.$tableFrozenFontWeight;
         background-color: var(--primary-hover-color);
         color: white;
     }
 
     .p-datatable .p-datatable-tbody>tr>td {
-        font-size: $tableDataFontSize;
-        font-weight: $commonFontWeight;
+        font-size: vars.$tableDataFontSize;
+        font-weight: vars.$commonFontWeight;
     }
 
     .p-datatable .p-paginator-bottom {
@@ -355,28 +357,28 @@
 
 .custom-table-dashboard {
     .p-datatable .p-datatable-thead>tr>th {
-        font-size: $tableHeaderFontSize;
-        font-weight: $tableHeaderFontWeight;
+        font-size: vars.$tableHeaderFontSize;
+        font-weight: vars.$tableHeaderFontWeight;
         background-color: transparent;
     }
 
     .p-datatable .p-datatable-tbody.p-datatable-frozen-tbody>tr>td {
-        font-size: $tableFrozenFontSize;
-        font-weight: $tableFrozenFontWeight;
+        font-size: vars.$tableFrozenFontSize;
+        font-weight: vars.$tableFrozenFontWeight;
         background-color: var(--primary-color);
         color: white;
     }
 
     .p-datatable .p-datatable-tbody.p-datatable-frozen-tbody>tr>td:hover {
-        font-size: $tableFrozenFontSize;
-        font-weight: $tableFrozenFontWeight;
+        font-size: vars.$tableFrozenFontSize;
+        font-weight: vars.$tableFrozenFontWeight;
         background-color: var(--primary-hover-color);
         color: white;
     }
 
     .p-datatable .p-datatable-tbody>tr>td {
-        font-size: $tableDataFontSize;
-        font-weight: $commonFontWeight;
+        font-size: vars.$tableDataFontSize;
+        font-weight: vars.$commonFontWeight;
     }
 
     .p-datatable-frozen-tbody tr {

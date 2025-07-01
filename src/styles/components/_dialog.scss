@@ -1,9 +1,11 @@
+@use '../variables.scss' as vars;
+
 .custom-modal.p-dialog .p-dialog-header {
-    border-bottom: $commonBorder;
+    border-bottom: vars.$commonBorder;
     border-color: #e9ecef;
-    padding: $commonPadding;
-    border-top-left-radius: $commonRadius;
-    border-top-right-radius: $commonRadius;
+    padding: vars.$commonPadding;
+    border-top-left-radius: vars.$commonRadius;
+    border-top-right-radius: vars.$commonRadius;
 }
 
 .custom-modal.p-dialog .p-dialog-header .p-dialog-title {
@@ -13,27 +15,27 @@
 }
 
 .custom-modal.p-dialog .p-dialog-footer {
-    border-top: $commonBorder ;
+    border-top: vars.$commonBorder ;
     border-color: #e9ecef;
-    padding: 1rem $commonPadding;
-    border-bottom-left-radius: $commonRadius;
-    border-bottom-right-radius: $commonRadius;
+    padding: 1rem vars.$commonPadding;
+    border-bottom-left-radius: vars.$commonRadius;
+    border-bottom-right-radius: vars.$commonRadius;
 }
 
 .custom-modal.p-dialog .p-dialog-content {
-    padding: $commonPadding;
+    padding: vars.$commonPadding;
 }
 
 .custom-modal {
-    border-radius: $commonRadius;
+    border-radius: vars.$commonRadius;
 }
 
 /**new cr modal className **/
 .new-custom-modal.p-dialog .p-dialog-header {
     border-color: #e9ecef;
-    padding: $commonPadding;
-    border-top-left-radius: $headerRadius;
-    border-top-right-radius: $headerRadius;
+    padding: vars.$commonPadding;
+    border-top-left-radius: vars.$headerRadius;
+    border-top-right-radius: vars.$headerRadius;
     background-color: var(--primary-background);
     text-align: center;
 }
@@ -66,7 +68,7 @@
 
 .new-custom-modal {
     width: 480px;
-    border-radius: $commonRadius;
+    border-radius: vars.$commonRadius;
 }
 
 .new-custom-modal .p-tabview-nav-next {
@@ -74,7 +76,7 @@
 }
 
 .modal-content {
-    font-size: $commonFontSize;
+    font-size: vars.$commonFontSize;
 }
 
 /* Block scroll when the dialog is open */
@@ -172,11 +174,11 @@
 
 /**new cr modal className **/
 .new-custom-modal-person.p-dialog .p-dialog-header {
-    border-bottom: $commonBorder;
+    border-bottom: vars.$commonBorder;
     border-color: #e9ecef;
-    padding: $commonPadding;
-    border-top-left-radius: $commonRadius;
-    border-top-right-radius: $commonRadius;
+    padding: vars.$commonPadding;
+    border-top-left-radius: vars.$commonRadius;
+    border-top-right-radius: vars.$commonRadius;
     display: none;
 }
 
@@ -202,7 +204,7 @@
 
 .new-custom-modal-person {
     width: 480px;
-    border-radius: $commonRadius;
+    border-radius: vars.$commonRadius;
 }
 
 

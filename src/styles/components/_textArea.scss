@@ -1,7 +1,9 @@
+@use '../variables.scss' as vars;
+
 .custom-textArea {
     .p-inputtextarea {
-        font-weight: $commonFontWeight;
-        font-size: $commonFontSize;
-        border-radius: $commonRadius;
+        font-weight: vars.$commonFontWeight;
+        font-size: vars.$commonFontSize;
+        border-radius: vars.$commonRadius;
     }
 }

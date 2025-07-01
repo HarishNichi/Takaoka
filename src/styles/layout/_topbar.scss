@@ -1,3 +1,5 @@
+@use '../variables.scss' as vars;
+
 .layout-topbar {
     position: fixed;
     height: 4rem;
@@ -6,7 +8,7 @@
     top: 0;
     width: 100%;
     background-color: var(--primary-color);
-    transition: left $transitionDuration;
+    transition: left vars.$transitionDuration;
     display: flex;
     align-items: center;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, .02), 0px 0px 2px rgba(0, 0, 0, .05), 0px 1px 4px rgba(0, 0, 0, .08);
@@ -34,7 +36,7 @@
 
     .layout-topbar-button {
         color: white;
-        transition: background-color $transitionDuration;
+        transition: background-color vars.$transitionDuration;
         margin-top: .3rem;
 
         i {
@@ -85,8 +87,8 @@
 
             .header-details-first {
                 // width: 50%;
-                font-size: $topHeaderFontSize;
-                font-weight:$topHeaderFontWeight;
+                font-size: vars.$topHeaderFontSize;
+                font-weight:vars.$topHeaderFontWeight;
                 color: white;
                 text-overflow: ellipsis;
                 overflow: hidden;
@@ -100,7 +102,7 @@
 
                 .header-details-second-date-time-picker {
                     color: white;
-                    font-size: $topHeaderFontSize;
+                    font-size: vars.$topHeaderFontSize;
                     font-weight: 500;
                 }
 
@@ -112,7 +114,7 @@
                     display: flex;
                     justify-content: flex-end;
                     max-width: 150px;
-                    font-size: $topHeaderFontSize;
+                    font-size: vars.$topHeaderFontSize;
                     font-weight: 500;
                     color: white;
                     text-overflow: ellipsis;

@@ -1,3 +1,5 @@
+@use '../variables.scss' as vars;
+
 .custom-checkbox{
 .p-checkbox.p-highlight  .p-checkbox-box {
   background: var(--primary-color);

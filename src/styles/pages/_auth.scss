@@ -1,3 +1,5 @@
+@use '../variables.scss' as vars;
+
 .auth-bg {
     background-color: var(--primary-color);
     padding-top: .5rem;
@@ -5,25 +7,25 @@
 }
 
 // Media queries
-@media only screen and (max-width: $mobile) {
+@media only screen and (max-width: vars.$mobile) {
     .auth_view {
         width: 20rem;
     }
 }
 
-@media only screen and (min-width: $tablet) and (max-width: $desktop) and (orientation: portrait) {
+@media only screen and (min-width: vars.$tablet) and (max-width: vars.$desktop) and (orientation: portrait) {
     .auth_view {
         width: 30rem;
     }
 }
 
-@media only screen and (min-width: $tablet) and (max-width: $desktop) and (orientation: landscape) {
+@media only screen and (min-width: vars.$tablet) and (max-width: vars.$desktop) and (orientation: landscape) {
     .auth_view {
         width: 30rem;
     }
 }
 
-@media only screen and (min-width: $desktop) {
+@media only screen and (min-width: vars.$desktop) {
     .auth_view {
         width: 30rem;
     }

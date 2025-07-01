@@ -1,5 +1,7 @@
+@use '../variables.scss' as vars;
+
 .input_file{
-    font-size: $fileUploadFontSize;
+    font-size: vars.$fileUploadFontSize;
 }
 
 .input-parent-file-border{

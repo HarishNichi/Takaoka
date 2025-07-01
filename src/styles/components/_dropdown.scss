@@ -1,3 +1,5 @@
+@use '../variables.scss' as vars;
+
 .p-dropdown:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
@@ -7,18 +9,18 @@
 
 .custom-select {
     .p-dropdown {
-        height: $commonHeight;
-        border-radius: $commonRadius;
-        font-weight: $commonFontWeight;
-        font-size: $commonFontSize;
+        height: vars.$commonHeight;
+        border-radius: vars.$commonRadius;
+        font-weight: vars.$commonFontWeight;
+        font-size: vars.$commonFontSize;
     }
 
     .p-dropdown-trigger {
-        height: $commonHeight;
+        height: vars.$commonHeight;
     }
 
     .p-dropdown-label {
-        font-weight: $commonFontWeight;
+        font-weight: vars.$commonFontWeight;
     }
 
     .p-disabled,
