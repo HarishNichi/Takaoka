@@ -244,6 +244,7 @@ export default function AdminPlacePage() {
           updateCalBackFunction={(rowDataReceived) =>
             getDataFromRenewButtonOnClick(rowDataReceived)
           }
+          ariaLabel={`${translate(localeJson, "toggle_place")}: ${obj.refugee_name}`}
         />
       </div>
     );
