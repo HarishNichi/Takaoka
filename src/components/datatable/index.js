@@ -12,7 +12,7 @@ import { getValueByKeyRecursively as translate } from "@/helper";
 const renderCell = (col, rowData, rowIndex) => {
 
   return (
-    <td
+    <React.Fragment
       className={col.className}
       scope="col"
       style={col.style}
@@ -21,7 +21,7 @@ const renderCell = (col, rowData, rowIndex) => {
       aria-label={ rowData[col.field]||col.header}
     >
       {col.body ? col.body(rowData, { rowIndex }) : rowData[col.field]}
-    </td>
+    </React.Fragment>
   );
 };
 
