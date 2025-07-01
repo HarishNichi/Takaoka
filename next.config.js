@@ -1,5 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 /**
  * Dynamically get all rc-* packages in node_modules
@@ -37,4 +40,5 @@ const nextConfig = {
 //   nextConfig.output = 'export';
 // }
 
-module.exports = nextConfig;
+// Export the config wrapped with bundle analyzer
+module.exports = withBundleAnalyzer(nextConfig);
