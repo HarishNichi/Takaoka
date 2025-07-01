@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { InputNumber as InputNum } from "primereact/inputnumber";

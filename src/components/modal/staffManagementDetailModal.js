@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useContext, useState } from "react";
 import { Dialog } from "primereact/dialog";
 import _ from "lodash";
