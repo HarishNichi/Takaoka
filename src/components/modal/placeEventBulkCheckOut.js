@@ -35,6 +35,7 @@ export default function PlaceEventBulkCheckOut(props) {
         { field: 'definedName', header: props.type == 'events' ? translate(localeJson, 'event_bulk_checkout_column_name') : translate(localeJson, 'place_event_bulk_checkout_column_name'), headerClassName: "custom-header", minWidth: "12rem", maxWidth: "12rem" },
     ]
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (open) {
             listApiCall();

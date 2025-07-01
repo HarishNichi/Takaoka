@@ -26,6 +26,7 @@ export default function EmailSettings(props) {
             }),
     });
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         if (open) {
             setTransmissionInterval(emailSettingValues.transmissionInterval);

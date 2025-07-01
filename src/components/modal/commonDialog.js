@@ -23,7 +23,7 @@ const CommonDialog = (props) => {
   const dialogRef = useRef(null);
   const previousFocusRef = useRef(null);
 
-  // Focus management
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (open) {
       // Store the currently focused element

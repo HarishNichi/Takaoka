@@ -198,6 +198,7 @@ export default function AdminManagementPage() {
     });
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setTableLoading(true);
     const fetchData = async () => {

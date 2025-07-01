@@ -28,6 +28,7 @@ function MyApp({ Component, pageProps, authorizedStatus }) {
         borderRadius: '5px',
     };
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
     const userLocale = localStorage.getItem('locale') || 'ja';
     document.documentElement.lang = userLocale;

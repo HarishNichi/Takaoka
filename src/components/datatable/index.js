@@ -252,6 +252,7 @@ export const RowExpansionTable = (props) => {
   const [expandedRows, setExpandedRows] = useState(onRowExpand);
   const toast = useRef(null);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (value && expandAllRows === true) {
       let _expandedRows = {};

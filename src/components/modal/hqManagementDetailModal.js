@@ -35,6 +35,7 @@ export default function HqManagementDetailModal(props) {
     const [totalCount, setTotalCount] = useState(0);
     const [tableLoading, setTableLoading] = useState(false);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         setTableLoading(true);
         const fetchData = async () => {

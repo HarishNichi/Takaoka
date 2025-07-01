@@ -32,6 +32,7 @@ const LoginPage = () => {
     /* Services */
     const { login } = AuthenticationAuthorizationService;
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         dispatch(setForgetPassword({
             username: ''

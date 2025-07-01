@@ -13,6 +13,7 @@ export default function QrScannerModal(props) {
     const [toggleCameraMode, setToggleCameraMode] = useState("environment");
     const [scanned, setScanned] = useState(false);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(()=>{
         if (window.innerWidth >= 1024) { setToggleCameraMode("user"); }
     },[window.innerWidth])

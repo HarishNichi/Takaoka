@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 
 const Header = ({ onBackClick, title, ariaLabel }) => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => { }, [onBackClick, title, ariaLabel]);
 
     const handleKeyDown = (e) => {

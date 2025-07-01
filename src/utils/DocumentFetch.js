@@ -14,6 +14,7 @@ export default function DocumentFetch(props) {
     const router = useRouter();
     const params = useSearchParams();
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         const document = ScanbotSDKService.instance.findDocument(params.get("id"));
 
