@@ -12,16 +12,22 @@ import { getValueByKeyRecursively as translate } from "@/helper";
 const renderCell = (col, rowData, rowIndex) => {
 
   return (
-    <React.Fragment
+    <td
       className={col.className}
       scope="col"
-      style={col.style}
+      style={{minWidth: col.minWidth && col.minWidth,
+        maxWidth: col.maxWidth && col.maxWidth,
+        width: col.width && col.width,
+        textAlign: col.textAlign && col.textAlign,
+        fontWeight: col.fontWeight && col.fontWeight,
+        display: col.display,
+        wordWrap: "break-word",}}
       key={col.field || rowIndex}
       tabIndex={0}
       aria-label={ rowData[col.field]||col.header}
     >
       {col.body ? col.body(rowData, { rowIndex }) : rowData[col.field]}
-    </React.Fragment>
+    </td>
   );
 };
 
