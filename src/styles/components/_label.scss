@@ -1,9 +1,7 @@
-@use '../variables.scss' as vars;
-
 .custom-label {
-    font-size: vars.$labelFontSize ;
-    font-weight: vars.$labelFontWeight ;
-    line-height: vars.$labelFontSize ;
+    font-size: $labelFontSize ;
+    font-weight: $labelFontWeight ;
+    line-height: $labelFontSize ;
 }
 
 .custom-align-label {
@@ -23,7 +21,7 @@
     .p-float-label .p-tooltip-target-wrapper~label {
         top: -0.75rem;
         left: 0;
-        font-size: vars.$commonFloatLabelFontSize;
+        font-size: $commonFloatLabelFontSize;
     }
 }
 
@@ -46,6 +44,6 @@
     .p-float-label .p-tooltip-target-wrapper~label {
         top: -0.75rem;
         left: 0;
-        font-size: vars.$commonFloatLabelFontSize;
+        font-size: $commonFloatLabelFontSize;
     }
 }
