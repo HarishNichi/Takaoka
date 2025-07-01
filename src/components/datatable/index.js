@@ -10,14 +10,7 @@ import { getValueByKeyRecursively as translate } from "@/helper";
 
 // Utility to render a cell as th if rowHeader is set
 const renderCell = (col, rowData, rowIndex) => {
-  if (col.rowHeader) {
-    return (
-      <th scope="row" tabIndex={0} aria-label={col.header} className={col.className} style={col.style} key={col.field || rowIndex}>
-        {col.body ? col.body(rowData, { rowIndex }) : rowData[col.field]}
-      </th>
-    );
-  }
-  else {
+
   return (
     <td
       className={col.className}
@@ -30,7 +23,6 @@ const renderCell = (col, rowData, rowIndex) => {
       {col.body ? col.body(rowData, { rowIndex }) : rowData[col.field]}
     </td>
   );
-  }
 };
 
 export const NormalTable = React.memo((props) => {
@@ -168,7 +160,7 @@ export const NormalTable = React.memo((props) => {
               rowEditor={colWithRowHeader.rowEditor}
               editor={colWithRowHeader.editor}
               header={
-                <span>
+                <span tabIndex={0} aria-label={colWithRowHeader.header}>
                   {colWithRowHeader.header}
                   {colWithRowHeader.required && <span className="p-error">*</span>}
                 </span>
