@@ -19,7 +19,7 @@ const renderCell = (col, rowData, rowIndex) => {
   }
   else {
   return (
-    <td
+    <th
       className={col.className}
       scope="col"
       style={col.style}
@@ -27,7 +27,7 @@ const renderCell = (col, rowData, rowIndex) => {
       tabIndex={0}
     >
       {col.body ? col.body(rowData, { rowIndex }) : rowData[col.field]}
-    </td>
+    </th>
   );
   }
 };
