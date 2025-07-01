@@ -27,10 +27,11 @@ const renderCell = (col, rowData, rowIndex) => {
           ? cellValue
           : cellValue != null
             ? String(cellValue)
-            : col.header || ""
+            : col.header || "test"
       }
       style={col.style}
       key={col.field || rowIndex}
+      tabIndex={0}
     >
       {col.body ? col.body(rowData, { rowIndex }) : rowData[col.field]}
     </td>
