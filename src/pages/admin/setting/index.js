@@ -4,7 +4,12 @@ import * as Yup from "yup";
 import { AiOutlineDrag } from "react-icons/ai";
 
 import { LayoutContext } from "@/layout/context/layoutcontext";
-import { convertToSingleByte, hideOverFlow, showOverFlow, getValueByKeyRecursively as translate } from "@/helper";
+import {
+  convertToSingleByte,
+  hideOverFlow,
+  showOverFlow,
+  getValueByKeyRecursively as translate,
+} from "@/helper";
 import {
   Button,
   CustomHeader,
@@ -30,7 +35,7 @@ export default function Setting() {
 
   const [response, setResponse] = useState({});
   const [data, setData] = useState([]);
-    const [deleteOpen, setDeleteOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
   const [initialValues, setInitialValues] = useState({
     map_scale: "",
     footer: "",
@@ -49,11 +54,10 @@ export default function Setting() {
     logo_name: "",
     stockpile_management_status: false,
     line_management_status: false,
-  }
-  );
+  });
 
   const { getList, update, bulkDelete } = systemSettingServices;
-    const { encryptPassword } = CommonServices;
+  const { encryptPassword } = CommonServices;
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -106,49 +110,49 @@ export default function Setting() {
       .max(
         200,
         translate(localeJson, "footer_display") +
-        translate(localeJson, "max_length_200")
+          translate(localeJson, "max_length_200")
       ),
     type_name_ja: Yup.string()
       .required(translate(localeJson, "type_name_jp_required"))
       .max(
         200,
         translate(localeJson, "type_name") +
-        translate(localeJson, "max_length_200")
+          translate(localeJson, "max_length_200")
       ),
     system_name_ja: Yup.string()
       .required(translate(localeJson, "system_name_jp_required"))
       .max(
         200,
         translate(localeJson, "system_name") +
-        translate(localeJson, "max_length_200")
+          translate(localeJson, "max_length_200")
       ),
     disclosure_info_ja: Yup.string()
       .nullable()
       .max(
         255,
         translate(localeJson, "disclosure_information") +
-        translate(localeJson, "max_length_255")
+          translate(localeJson, "max_length_255")
       ),
     type_name_en: Yup.string()
       .required(translate(localeJson, "type_name_en_required"))
       .max(
         200,
         translate(localeJson, "type_name") +
-        translate(localeJson, "max_length_200")
+          translate(localeJson, "max_length_200")
       ),
     system_name_en: Yup.string()
       .required(translate(localeJson, "system_name_en_required"))
       .max(
         200,
         translate(localeJson, "system_name") +
-        translate(localeJson, "max_length_200")
+          translate(localeJson, "max_length_200")
       ),
     disclosure_info_en: Yup.string()
       .nullable()
       .max(
         255,
         translate(localeJson, "disclosure_information") +
-        translate(localeJson, "max_length_255")
+          translate(localeJson, "max_length_255")
       ),
     latitude: Yup.number().required(translate(localeJson, "latitude_required")),
     default_shelf_life: Yup.string()
@@ -170,7 +174,7 @@ export default function Setting() {
           const allowedExtensions = ["jpg", "jpeg", "png"];
           if (allowedExtensions.includes(fileExtension)) {
             // Check image size not exceeding 3MB
-            return true
+            return true;
           }
           return false; // Return false for invalid input.
         }
@@ -189,7 +193,7 @@ export default function Setting() {
               return true; // Pass validation
             } else {
               // Custom error message for image size exceeded
-              return false
+              return false;
             }
           }
           return false; // Return false for invalid input.
@@ -245,13 +249,14 @@ export default function Setting() {
       initialValuesPayload.longitude = data?.longitude || "";
       initialValuesPayload.initial_load_status =
         data?.initial_load_status == "1" ? true : false || "";
-      initialValuesPayload.stockpile_management_status = 
-      data?.stockpile_management_status == "1" ? true : false || "";
-      (initialValuesPayload.default_shelf_life = data?.default_shelf_life || ""),
+      initialValuesPayload.stockpile_management_status =
+        data?.stockpile_management_status == "1" ? true : false || "";
+      (initialValuesPayload.default_shelf_life =
+        data?.default_shelf_life || ""),
         (initialValuesPayload.scheduler_option =
           data?.scheduler_option == "1" ? true : false || "");
-      (initialValuesPayload.line_management_status =
-      data?.line_management_status == "1" ? true : false || "");
+      initialValuesPayload.line_management_status =
+        data?.line_management_status == "1" ? true : false || "";
       setInitialValues(initialValuesPayload);
       setLoader(false);
       let public_data = data?.public_display_order || public_display_order_data;
@@ -309,52 +314,55 @@ export default function Setting() {
     setLoader(false);
   };
 
-      const onConfirmDeleteRegisteredEvacuees = async (key) => {
-        setLoader(true);
-        let payload = {
-          SECRET_KEY: encryptPassword(key, process.env.NEXT_PUBLIC_PASSWORD_ENCRYPTION_KEY),
-        };
-          bulkDelete(payload,(res) => {
-              if (res) {
-                  setLoader(false);
-                  getList(fetchData);
-              }
-              else {
-                  setLoader(false);
-              }
-  
-          });
+  const onConfirmDeleteRegisteredEvacuees = async (key) => {
+    setLoader(true);
+    let payload = {
+      SECRET_KEY: encryptPassword(
+        key,
+        process.env.NEXT_PUBLIC_PASSWORD_ENCRYPTION_KEY
+      ),
+    };
+    bulkDelete(payload, (res) => {
+      if (res) {
+        setLoader(false);
+        getList(fetchData);
+      } else {
+        setLoader(false);
       }
-    
-    const openDeleteDialog = () => {
-          setDeleteOpen(true);
-          hideOverFlow();
-      }
-  
-      const onDeleteClose = (status = '',secretKey = '') => {
-          if (status == 'confirm') {
-              onConfirmDeleteRegisteredEvacuees(secretKey);
-          }
-          setDeleteOpen(false);
-          showOverFlow();
-      };
-  
+    });
+  };
+
+  const openDeleteDialog = () => {
+    setDeleteOpen(true);
+    hideOverFlow();
+  };
+
+  const onDeleteClose = (status = "", secretKey = "") => {
+    if (status == "confirm") {
+      onConfirmDeleteRegisteredEvacuees(secretKey);
+    }
+    setDeleteOpen(false);
+    showOverFlow();
+  };
 
   return (
     <>
-     <DbResetModal
-                    open={deleteOpen}
-                    close={onDeleteClose}
-                />
+      <DbResetModal open={deleteOpen} close={onDeleteClose} />
       <Formik
         validationSchema={schema}
         initialValues={initialValues}
         enableReinitialize={true}
         onSubmit={(values, actions) => {
           setLoader(true);
-          values.default_shelf_life = convertToSingleByte(values.default_shelf_life);
-          values.disclosure_info_ja = values.disclosure_info_ja ? values.disclosure_info_ja : null;
-          values.disclosure_info_en = values.disclosure_info_en ? values.disclosure_info_en : null;
+          values.default_shelf_life = convertToSingleByte(
+            values.default_shelf_life
+          );
+          values.disclosure_info_ja = values.disclosure_info_ja
+            ? values.disclosure_info_ja
+            : null;
+          values.disclosure_info_en = values.disclosure_info_en
+            ? values.disclosure_info_en
+            : null;
           const formData = new FormData();
           // Assuming values.initial_load_status and values.scheduler_option are boolean
           formData.append(
@@ -364,12 +372,15 @@ export default function Setting() {
           formData.append(
             "stockpile_management_status",
             values.stockpile_management_status ? "1" : "0"
-          );  
+          );
           formData.append(
             "scheduler_option",
             values.scheduler_option ? "1" : "0"
           );
-          formData.append("line_management_status", values.line_management_status ? "1" : "0");
+          formData.append(
+            "line_management_status",
+            values.line_management_status ? "1" : "0"
+          );
           formData.append(
             "disclosure_info_ja",
             values.disclosure_info_ja ? values.disclosure_info_ja : ""
@@ -422,20 +433,23 @@ export default function Setting() {
             <div className="col-12">
               <div className="card">
                 <div className="flex flex-wrap justify-content-between align-items-center mb-2">
-                <CustomHeader
-                  headerClass={"page-header1"}
-                  header={translate(localeJson, "setting_systems")}
-                />
-                     <Button buttonProps={{
-                                                                type: "button",
-                                                                rounded: "true",
-                                                                delete: true,
-                                                                buttonClass: "w-12rem update-button",
-                                                                text: translate(localeJson, 'data_reset'),
-                                                                severity: "primary",
-                                                                onClick: () => openDeleteDialog()
-                                                            }} parentClass={"inline  update-button"} />
-                                                            </div>
+                  <CustomHeader
+                    headerClass={"page-header1"}
+                    header={translate(localeJson, "setting_systems")}
+                  />
+                  <Button
+                    buttonProps={{
+                      type: "button",
+                      rounded: "true",
+                      delete: true,
+                      buttonClass: "w-12rem update-button",
+                      text: translate(localeJson, "data_reset"),
+                      severity: "primary",
+                      onClick: () => openDeleteDialog(),
+                    }}
+                    parentClass={"inline  update-button"}
+                  />
+                </div>
                 <form onSubmit={handleSubmit}>
                   <div className="">
                     <div className="pb-1 pt-2">
@@ -445,16 +459,23 @@ export default function Setting() {
                       <div>
                         <InputDropdown
                           inputDropdownProps={{
-                            inputDropdownParentClassName: `w-full ${errors.map_scale &&
+                            inputId: "overallMapSizeSetting",
+                            ariaLabel: translate(
+                              localeJson,
+                              "overall_map_size_setting"
+                            ),
+                            inputDropdownParentClassName: `w-full ${
+                              errors.map_scale &&
                               touched.map_scale &&
                               "p-invalid pb-1"
-                              }`,
+                            }`,
                             labelProps: {
                               text: translate(
                                 localeJson,
                                 "overall_map_size_setting"
                               ),
                               inputDropdownLabelClassName: "block",
+                              htmlFor: "overallMapSizeSetting",
                             },
                             inputDropdownClassName: "w-full",
                             id: "map_scale",
@@ -466,10 +487,55 @@ export default function Setting() {
                               setFieldValue("map_scale", e.value || "");
                             },
                             onBlur: handleBlur,
-                            emptyMessage: translate(
-                              localeJson,
-                              "data_not_found"
+                            emptyMessage: (
+                              <span
+                                aria-live="polite"
+                                aria-label={translate(
+                                  localeJson,
+                                  "data_not_found"
+                                )}
+                                className="sr-only"
+                              >
+                                {translate(localeJson, "data_not_found")}
+                              </span>
                             ),
+                            pt: {
+                              trigger: {
+                                // ✅ Fixes the issue
+                                "aria-label": translate(
+                                  localeJson,
+                                  "shelter_place_name"
+                                ),
+                                title: translate(
+                                  localeJson,
+                                  "shelter_place_name"
+                                ),
+                              },
+                              input: {
+                                "aria-label": translate(
+                                  localeJson,
+                                  "shelter_place_name"
+                                ),
+                                title: translate(
+                                  localeJson,
+                                  "shelter_place_name"
+                                ),
+                              },
+                              select: {
+                                "aria-label": translate(
+                                  localeJson,
+                                  "shelter_place_name"
+                                ),
+                                title: translate(
+                                  localeJson,
+                                  "shelter_place_name"
+                                ),
+                              },
+                              panel: {
+                                "aria-live": "polite",
+                                "aria-atomic": "true",
+                              },
+                            },
                           }}
                         />
                         <ValidationError
@@ -483,10 +549,11 @@ export default function Setting() {
                       <div className="modal-field-top-space modal-field-bottom-space">
                         <Input
                           inputProps={{
-                            inputParentClassName: `w-full ${errors.footer &&
+                            inputParentClassName: `w-full ${
+                              errors.footer &&
                               touched.footer &&
                               "p-invalid pb-1"
-                              }`,
+                            }`,
                             labelProps: {
                               text: translate(localeJson, "footer_display"),
                               inputLabelClassName: "block",
@@ -495,7 +562,7 @@ export default function Setting() {
                             value: values.footer,
                             onChange: handleChange,
                             onBlur: handleBlur,
-                            id:"footer",
+                            id: "footer",
                             name: "footer",
                           }}
                         />
@@ -518,10 +585,11 @@ export default function Setting() {
                       <div className="">
                         <Input
                           inputProps={{
-                            inputParentClassName: `w-full ${errors.type_name_ja &&
+                            inputParentClassName: `w-full ${
+                              errors.type_name_ja &&
                               touched.type_name_ja &&
                               "p-invalid pb-1"
-                              }`,
+                            }`,
                             labelProps: {
                               text: translate(localeJson, "type_name"),
                               inputLabelClassName: "block",
@@ -529,7 +597,7 @@ export default function Setting() {
                             inputClassName: "w-full",
                             onChange: handleChange,
                             onBlur: handleBlur,
-                            id:"type_name_ja",
+                            id: "type_name_ja",
                             name: "type_name_ja",
                             value: values.type_name_ja,
                           }}
@@ -545,10 +613,11 @@ export default function Setting() {
                       <div className="modal-field-top-space modal-field-bottom-space">
                         <Input
                           inputProps={{
-                            inputParentClassName: `w-full ${errors.system_name_ja &&
+                            inputParentClassName: `w-full ${
+                              errors.system_name_ja &&
                               touched.system_name_ja &&
                               "p-invalid pb-1"
-                              }`,
+                            }`,
                             labelProps: {
                               text: translate(localeJson, "system_name"),
                               inputLabelClassName: "block",
@@ -556,7 +625,7 @@ export default function Setting() {
                             inputClassName: "w-full",
                             onChange: handleChange,
                             onBlur: handleBlur,
-                            id:"system_name_ja",
+                            id: "system_name_ja",
                             name: "system_name_ja",
                             value: values.system_name_ja,
                           }}
@@ -572,10 +641,11 @@ export default function Setting() {
                       <div className="modal-field-top-space modal-field-bottom-space">
                         <Input
                           inputProps={{
-                            inputParentClassName: `w-full ${errors.disclosure_info_ja &&
+                            inputParentClassName: `w-full ${
+                              errors.disclosure_info_ja &&
                               touched.disclosure_info_ja &&
                               "p-invalid pb-1"
-                              }`,
+                            }`,
                             labelProps: {
                               text: translate(
                                 localeJson,
@@ -586,7 +656,7 @@ export default function Setting() {
                             inputClassName: "w-full",
                             onChange: handleChange,
                             onBlur: handleBlur,
-                            id:"disclosure_info_ja",
+                            id: "disclosure_info_ja",
                             name: "disclosure_info_ja",
                             value: values.disclosure_info_ja,
                           }}
@@ -612,10 +682,11 @@ export default function Setting() {
                       <div>
                         <Input
                           inputProps={{
-                            inputParentClassName: `w-full ${errors.type_name_en &&
+                            inputParentClassName: `w-full ${
+                              errors.type_name_en &&
                               touched.type_name_en &&
                               "p-invalid pb-1"
-                              }`,
+                            }`,
                             labelProps: {
                               text: translate(localeJson, "type_name"),
                               inputLabelClassName: "block",
@@ -623,7 +694,7 @@ export default function Setting() {
                             inputClassName: "w-full",
                             onChange: handleChange,
                             onBlur: handleBlur,
-                            id:"type_name_en",
+                            id: "type_name_en",
                             name: "type_name_en",
                             value: values.type_name_en,
                           }}
@@ -639,10 +710,11 @@ export default function Setting() {
                       <div className="modal-field-top-space modal-field-bottom-space">
                         <Input
                           inputProps={{
-                            inputParentClassName: `w-full ${errors.system_name_en &&
+                            inputParentClassName: `w-full ${
+                              errors.system_name_en &&
                               touched.system_name_en &&
                               "p-invalid pb-1"
-                              }`,
+                            }`,
                             labelProps: {
                               text: translate(localeJson, "system_name"),
                               inputLabelClassName: "block",
@@ -650,7 +722,7 @@ export default function Setting() {
                             inputClassName: "w-full",
                             onChange: handleChange,
                             onBlur: handleBlur,
-                            id:"system_name_en",
+                            id: "system_name_en",
                             name: "system_name_en",
                             value: values.system_name_en,
                           }}
@@ -666,10 +738,11 @@ export default function Setting() {
                       <div className="modal-field-top-space modal-field-bottom-space">
                         <Input
                           inputProps={{
-                            inputParentClassName: `w-full ${errors.disclosure_info_en &&
+                            inputParentClassName: `w-full ${
+                              errors.disclosure_info_en &&
                               touched.disclosure_info_en &&
                               "p-invalid pb-1"
-                              }`,
+                            }`,
                             labelProps: {
                               text: translate(
                                 localeJson,
@@ -680,7 +753,7 @@ export default function Setting() {
                             inputClassName: "w-full",
                             onChange: handleChange,
                             onBlur: handleBlur,
-                            id:"disclosure_info_en",
+                            id: "disclosure_info_en",
                             name: "disclosure_info_en",
                             value: values.disclosure_info_en,
                           }}
@@ -706,10 +779,11 @@ export default function Setting() {
                       <div>
                         <InputNumber
                           inputNumberProps={{
-                            inputNumberParentClassName: ` ${errors.latitude &&
+                            inputNumberParentClassName: ` ${
+                              errors.latitude &&
                               touched.latitude &&
                               "p-invalid pb-1"
-                              }`,
+                            }`,
                             labelProps: {
                               text: translate(localeJson, "latitude"),
                               inputNumberLabelClassName: "block",
@@ -740,10 +814,11 @@ export default function Setting() {
                       <div className="modal-field-top-space modal-field-bottom-space">
                         <InputNumber
                           inputNumberProps={{
-                            inputNumberParentClassName: ` ${errors.longitude &&
+                            inputNumberParentClassName: ` ${
+                              errors.longitude &&
                               touched.longitude &&
                               "p-invalid pb-1"
-                              }`,
+                            }`,
                             labelProps: {
                               text: translate(localeJson, "longitude"),
                               inputNumberLabelClassName: "block",
@@ -917,8 +992,12 @@ export default function Setting() {
                         />
                       </div>
                       <div>
+                        <label htmlFor="logo_file_input" className="sr-only">
+                          {translate(localeJson, "logo_image")}
+                        </label>
                         <InputFile
                           inputFileProps={{
+                            id: "logo_file_input",
                             onChange: (event) => {
                               setFieldValue(
                                 "logo",
@@ -928,10 +1007,11 @@ export default function Setting() {
                             name: "logo",
                             accept: ".jpg,.png,.jpeg",
                             onBlur: handleBlur,
-                            placeholder: values.logo_name
+                            placeholder: values.logo_name,
                           }}
-                          parentClass={`${errors.logo && touched.logo && "p-invalid mb-1"
-                            }`}
+                          parentClass={`${
+                            errors.logo && touched.logo && "p-invalid mb-1"
+                          }`}
                         />
                         <ValidationError
                           errorBlock={
@@ -953,12 +1033,27 @@ export default function Setting() {
                     </div>
                     <div className="w-8 modal-field-top-space modal-field-bottom-space pl-5">
                       <div>
+                        <label
+                          htmlFor="scheduler_option_switch"
+                          className="sr-only"
+                        >
+                          {translate(localeJson, "evacuation_history_download")}
+                        </label>
                         <InputSwitch
                           inputSwitchProps={{
+                            id: "scheduler_option_switch",
                             name: "scheduler_option",
                             checked: values.scheduler_option,
                             onChange: handleChange,
                             switchClass: "",
+                            "aria-label": translate(
+                              localeJson,
+                              "evacuation_history_download"
+                            ),
+                            title: translate(
+                              localeJson,
+                              "evacuation_history_download"
+                            ),
                           }}
                           parentClass={"custom-switch"}
                         />
@@ -994,7 +1089,10 @@ export default function Setting() {
                   <hr />
                   </>
                   )} */}
-                  <div className='flex flex-column mt-3 mb-2 justify-content-center align-items-center' style={{ justifyContent: "center", flexWrap: "wrap" }}>
+                  <div
+                    className="flex flex-column mt-3 mb-2 justify-content-center align-items-center"
+                    style={{ justifyContent: "center", flexWrap: "wrap" }}
+                  >
                     <Button
                       buttonProps={{
                         buttonClass: "w-10rem update-button",
@@ -1003,7 +1101,6 @@ export default function Setting() {
                       }}
                       parentClass={"inline update-button"}
                     />
-                
                   </div>
                 </form>
               </div>
