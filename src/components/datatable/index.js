@@ -19,15 +19,16 @@ const renderCell = (col, rowData, rowIndex) => {
   }
   else {
   return (
-    <th
+    <td
       className={col.className}
       scope="col"
       style={col.style}
       key={col.field || rowIndex}
       tabIndex={0}
+      aria-label={col.header}
     >
       {col.body ? col.body(rowData, { rowIndex }) : rowData[col.field]}
-    </th>
+    </td>
   );
   }
 };
@@ -194,11 +195,7 @@ export const NormalTable = React.memo((props) => {
                 wordWrap: "break-word",
               }}
               body={(rowData, options) =>
-                colWithRowHeader.rowHeader
-                  ? renderCell(colWithRowHeader, rowData, options.rowIndex)
-                  : colWithRowHeader.body
-                    ? colWithRowHeader.body(rowData, options)
-                    : rowData[colWithRowHeader.field]
+                renderCell(colWithRowHeader, rowData, options.rowIndex)
               }
             />
           );
