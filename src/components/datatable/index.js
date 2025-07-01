@@ -146,8 +146,8 @@ export const NormalTable = (props) => {
         {...restProps}
       >
         {columns.map((col, index) => {
-          // Default rowHeader to true unless explicitly set to false
-          const colWithRowHeader = { ...col, rowHeader: col.rowHeader !== false };
+          // Only the first column is rowHeader by default, others are not
+          const colWithRowHeader = { ...col, rowHeader: col.rowHeader !== undefined ? col.rowHeader : index === 0 };
           return (
             <Column
               key={index}
@@ -452,8 +452,8 @@ export const RowExpansionTable = (props) => {
         {...restProps}
       >
         {outerColumn.map((col, index) => {
-          // Default rowHeader to true unless explicitly set to false
-          const colWithRowHeader = { ...col, rowHeader: col.rowHeader !== false };
+          // Only the first column is rowHeader by default, others are not
+          const colWithRowHeader = { ...col, rowHeader: col.rowHeader !== undefined ? col.rowHeader : index === 0 };
           return (
             <Column
               key={index}
