@@ -17,8 +17,21 @@ const renderCell = (col, rowData, rowIndex) => {
       </th>
     );
   }
+  // Ensure aria-label is always a string, fallback to col.header if value is missing
+  const cellValue = col.body ? (col.ariaLabel ? col.ariaLabel(rowData, { rowIndex }) : undefined) : rowData[col.field];
   return (
-    <td className={col.className} aria-label={rowData[col.field]} style={col.style} key={col.field || rowIndex}>
+    <td
+      className={col.className}
+      aria-label={
+        typeof cellValue === "string"
+          ? cellValue
+          : cellValue != null
+            ? String(cellValue)
+            : col.header || ""
+      }
+      style={col.style}
+      key={col.field || rowIndex}
+    >
       {col.body ? col.body(rowData, { rowIndex }) : rowData[col.field]}
     </td>
   );
@@ -152,6 +165,8 @@ export const NormalTable = React.memo((props) => {
           return (
             <Column
               key={index}
+              aria-label={typeof colWithRowHeader.value === 'string' ? colWithRowHeader.value : colWithRowHeader.header || ''}
+              tabIndex={index}
               field={colWithRowHeader.field}
               selectionMode={colWithRowHeader.selectionMode}
               rowEditor={colWithRowHeader.rowEditor}
