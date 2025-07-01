@@ -18,7 +18,7 @@ const renderCell = (col, rowData, rowIndex) => {
     );
   }
   return (
-    <td className={col.className} style={col.style} key={col.field || rowIndex}>
+    <td className={col.className} aria-label={rowData[col.field]} style={col.style} key={col.field || rowIndex}>
       {col.body ? col.body(rowData, { rowIndex }) : rowData[col.field]}
     </td>
   );
