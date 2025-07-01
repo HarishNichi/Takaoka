@@ -6,6 +6,23 @@ import { Dropdown } from "primereact/dropdown";
 import { Toast } from "primereact/toast";
 import { LayoutContext } from "@/layout/context/layoutcontext";
 import { getValueByKeyRecursively as translate } from "@/helper";
+
+// Utility to render a cell as th if rowHeader is set
+const renderCell = (col, rowData, rowIndex) => {
+  if (col.rowHeader) {
+    return (
+      <th scope="row" tabIndex={0} aria-label={col.header} className={col.className} style={col.style} key={col.field || rowIndex}>
+        {col.body ? col.body(rowData, { rowIndex }) : rowData[col.field]}
+      </th>
+    );
+  }
+  return (
+    <td className={col.className} style={col.style} key={col.field || rowIndex}>
+      {col.body ? col.body(rowData, { rowIndex }) : rowData[col.field]}
+    </td>
+  );
+};
+
 export const NormalTable = (props) => {
   const {
     parentClass,
@@ -66,7 +83,7 @@ export const NormalTable = (props) => {
 
       return (
         <React.Fragment>
-             {/* Invisible label satisfies WCAG “select-name” rule */}
+             {/* Invisible label satisfies WCAG "select-name" rule */}
         <label id={INPUT_ID} htmlFor={INPUT_ID} className="sr-only">
           {translate(localeJson, "rows_per_page")}
         </label>
@@ -128,43 +145,53 @@ export const NormalTable = (props) => {
         onPage={_.isFunction(onPageHandler) ? (e) => onPageHandler(e) : false}
         {...restProps}
       >
-        {columns.map((col, index) => (
-          <Column
-            key={index}
-            field={col.field}
-            selectionMode={col.selectionMode}
-            rowEditor={col.rowEditor}
-            editor={col.editor}
-            header={
-              <span>
-                {col.header}
-                {col.required && <span className="p-error">*</span>}
-              </span>
-            }
-            sortable={col.sortable}
-            headerStyle={col.headerStyle}
-            alignHeader={col.alignHeader}
-            className={col.className}
-            headerClassName={col.headerClassName}
-            footer={
-              frozenValue &&
-              Object.prototype.hasOwnProperty.call(combinedData, col.field) && (
-                <span>{combinedData[col.field]}</span>
-              )
-            }
-            style={{
-              minWidth: col.minWidth && col.minWidth,
-              maxWidth: col.maxWidth && col.maxWidth,
-              width: col.width && col.width,
-              ...columnStyle,
-              textAlign: col.textAlign && col.textAlign,
-              fontWeight: col.fontWeight && col.fontWeight,
-              display: col.display,
-              wordWrap: "break-word",
-            }}
-            body={col.field === customActionsField ? col.body : col.body}
-          />
-        ))}
+        {columns.map((col, index) => {
+          // Default rowHeader to true unless explicitly set to false
+          const colWithRowHeader = { ...col, rowHeader: col.rowHeader !== false };
+          return (
+            <Column
+              key={index}
+              field={colWithRowHeader.field}
+              selectionMode={colWithRowHeader.selectionMode}
+              rowEditor={colWithRowHeader.rowEditor}
+              editor={colWithRowHeader.editor}
+              header={
+                <span>
+                  {colWithRowHeader.header}
+                  {colWithRowHeader.required && <span className="p-error">*</span>}
+                </span>
+              }
+              sortable={colWithRowHeader.sortable}
+              headerStyle={colWithRowHeader.headerStyle}
+              alignHeader={colWithRowHeader.alignHeader}
+              className={colWithRowHeader.className}
+              headerClassName={colWithRowHeader.headerClassName}
+              footer={
+                frozenValue &&
+                Object.prototype.hasOwnProperty.call(combinedData, colWithRowHeader.field) && (
+                  <span>{combinedData[colWithRowHeader.field]}</span>
+                )
+              }
+              style={{
+                minWidth: colWithRowHeader.minWidth && colWithRowHeader.minWidth,
+                maxWidth: colWithRowHeader.maxWidth && colWithRowHeader.maxWidth,
+                width: colWithRowHeader.width && colWithRowHeader.width,
+                ...columnStyle,
+                textAlign: colWithRowHeader.textAlign && colWithRowHeader.textAlign,
+                fontWeight: colWithRowHeader.fontWeight && colWithRowHeader.fontWeight,
+                display: colWithRowHeader.display,
+                wordWrap: "break-word",
+              }}
+              body={(rowData, options) =>
+                colWithRowHeader.rowHeader
+                  ? renderCell(colWithRowHeader, rowData, options.rowIndex)
+                  : colWithRowHeader.body
+                    ? colWithRowHeader.body(rowData, options)
+                    : rowData[colWithRowHeader.field]
+              }
+            />
+          );
+        })}
       </TableData>
     </div>
   );
@@ -372,7 +399,7 @@ export const RowExpansionTable = (props) => {
 
       return (
         <React.Fragment>
-             {/* Invisible label satisfies WCAG “select-name” rule */}
+             {/* Invisible label satisfies WCAG "select-name" rule */}
         <label id={INPUT_ID} htmlFor={INPUT_ID} className="sr-only">
           {translate(localeJson, "rows_per_page")}
         </label>
@@ -424,34 +451,38 @@ export const RowExpansionTable = (props) => {
         tableStyle={tableStyle || { minWidth: "50rem" }}
         {...restProps}
       >
-        {outerColumn.map((col, index) => (
-          <Column
-            key={index}
-            field={col.field}
-            header={
-              <span>
-                {col.header}
-                {col.required && <span className="p-error">*</span>}
-              </span>
-            }
-            sortable={col.sortable}
-            expander={col.expander}
-            className={col.className}
-            alignHeader={col.alignHeader}
-            headerStyle={col.headerStyle}
-            headerClassName={col.headerClassName}
-            style={{
-              minWidth: col.minWidth && col.minWidth,
-              maxWidth: col.maxWidth && col.maxWidth,
-              display: col.display,
-              textAlign: col.textAlign && col.textAlign,
-              paddingLeft: col.paddingLeft,
-              wordWrap: "break-word",
-              ...columnStyle,
-            }}
-            body={col.field === props.customActionsField ? col.body : col.body}
-          />
-        ))}
+        {outerColumn.map((col, index) => {
+          // Default rowHeader to true unless explicitly set to false
+          const colWithRowHeader = { ...col, rowHeader: col.rowHeader !== false };
+          return (
+            <Column
+              key={index}
+              field={colWithRowHeader.field}
+              header={
+                <span>
+                  {colWithRowHeader.header}
+                  {colWithRowHeader.required && <span className="p-error">*</span>}
+                </span>
+              }
+              sortable={colWithRowHeader.sortable}
+              expander={colWithRowHeader.expander}
+              className={colWithRowHeader.className}
+              alignHeader={colWithRowHeader.alignHeader}
+              headerStyle={colWithRowHeader.headerStyle}
+              headerClassName={colWithRowHeader.headerClassName}
+              style={{
+                minWidth: colWithRowHeader.minWidth && colWithRowHeader.minWidth,
+                maxWidth: colWithRowHeader.maxWidth && colWithRowHeader.maxWidth,
+                display: colWithRowHeader.display,
+                textAlign: colWithRowHeader.textAlign && colWithRowHeader.textAlign,
+                paddingLeft: colWithRowHeader.paddingLeft,
+                wordWrap: "break-word",
+                ...columnStyle,
+              }}
+              body={colWithRowHeader.field === props.customActionsField ? colWithRowHeader.body : colWithRowHeader.body}
+            />
+          );
+        })}
         <Column
           expander={defaultIndex ? allowQuesExpansion : allowExpansion}
           headerStyle={iconHeaderStyle}
