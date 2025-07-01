@@ -1,5 +1,7 @@
+@import '../variables.scss';
 @use '../variables' as *;
-@use './_mixins' as *;
+@use '../variables.scss' as vars;
+@import './_mixins.scss';
 @use './_main' as *;
 @use './_topbar' as *;
 @use './_menu' as *;

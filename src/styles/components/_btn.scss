@@ -1,24 +1,24 @@
-@use '../variables.scss' as vars;
+@import '../variables.scss';
 
 .custom-button {
-    height: vars.$commonHeight;
-    // border-radius: vars.$commonRadius;
+    height: $commonHeight;
+    // border-radius: $commonRadius;
 
     .p-button-icon {
-        font-size: vars.$commonFontSize;
+        font-size: $commonFontSize;
     }
 
     .p-button-label {
-        font-weight: vars.$buttonFontWeight;
-        font-size: vars.$commonFontSize;
+        font-weight: $buttonFontWeight;
+        font-size: $commonFontSize;
     }
 }
 
 .search-button {
     .p-button {
-        background-color: vars.$searchButtonBgColor;
-        color: vars.$searchButtonTextColor;
-        border: 2px solid vars.$searchButtonTextColor;
+        background-color: $searchButtonBgColor;
+        color: $searchButtonTextColor;
+        border: 2px solid $searchButtonTextColor;
     }
 
     .p-button-label {
@@ -32,17 +32,17 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background-color: vars.$searchButtonHoverBgColor;
-        color: vars.$searchButtonHoverTextColor;
-        border: 2px solid vars.$searchButtonTextColor;
+        background-color: $searchButtonHoverBgColor;
+        color: $searchButtonHoverTextColor;
+        border: 2px solid $searchButtonTextColor;
     }
 }
 
 .import-button-white-bg {
     .p-button {
-        background-color: vars.$searchButtonBgColor;
-        color: vars.$searchButtonTextColor;
-        border: 2px solid vars.$searchButtonTextColor;
+        background-color: $searchButtonBgColor;
+        color: $searchButtonTextColor;
+        border: 2px solid $searchButtonTextColor;
     }
 
     .p-button-label {
@@ -56,17 +56,17 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background-color: vars.$searchButtonHoverBgColor;
-        color: vars.$searchButtonHoverTextColor;
-        border: 2px solid vars.$searchButtonTextColor;
+        background-color: $searchButtonHoverBgColor;
+        color: $searchButtonHoverTextColor;
+        border: 2px solid $searchButtonTextColor;
     }
 }
 
 .export-button-white-bg {
     .p-button {
-        background-color: vars.$searchButtonBgColor;
-        color: vars.$searchButtonTextColor;
-        border: 2px solid vars.$searchButtonTextColor;
+        background-color: $searchButtonBgColor;
+        color: $searchButtonTextColor;
+        border: 2px solid $searchButtonTextColor;
     }
 
     .p-button-label {
@@ -80,17 +80,17 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background-color: vars.$searchButtonHoverBgColor;
-        color: vars.$searchButtonHoverTextColor;
-        border: 2px solid vars.$searchButtonTextColor;
+        background-color: $searchButtonHoverBgColor;
+        color: $searchButtonHoverTextColor;
+        border: 2px solid $searchButtonTextColor;
     }
 }
 
 .create-button-primary-bg {
     .p-button {
-        background-color: vars.$exportButtonBgColor;
-        color: vars.$exportButtonTextColor;
-        border-color: vars.$exportButtonBgColor;
+        background-color: $exportButtonBgColor;
+        color: $exportButtonTextColor;
+        border-color: $exportButtonBgColor;
     }
 
     .p-button-label {
@@ -104,17 +104,17 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background-color: vars.$exportButtonHoverBgColor;
-        color: vars.$exportButtonTextColor;
-        border-color: vars.$exportButtonHoverBgColor;
+        background-color: $exportButtonHoverBgColor;
+        color: $exportButtonTextColor;
+        border-color: $exportButtonHoverBgColor;
     }
 }
 
 .delete-button {
     .p-button {
-        background-color: vars.$deleteButtonBgColor;
-        color: vars.$deleteButtonTextColor;
-        border-color: vars.$deleteButtonTextColor;
+        background-color: $deleteButtonBgColor;
+        color: $deleteButtonTextColor;
+        border-color: $deleteButtonTextColor;
     }
 }
 
@@ -122,17 +122,17 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background-color: vars.$deleteButtonHoverBgColor;
-        color: vars.$deleteButtonHoverTextColor;
-        border-color: vars.$deleteButtonHoverTextColor;
+        background-color: $deleteButtonHoverBgColor;
+        color: $deleteButtonHoverTextColor;
+        border-color: $deleteButtonHoverTextColor;
     }
 }
 
 .delete-button-user {
     .p-button {
-        background-color: vars.$deleteButtonBgColorUser;
-        color: vars.$deleteButtonTextColorUser;
-        border-color: vars.$deleteButtonTextColorUser;
+        background-color: $deleteButtonBgColorUser;
+        color: $deleteButtonTextColorUser;
+        border-color: $deleteButtonTextColorUser;
     }
 }
 
@@ -140,18 +140,18 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background-color: vars.$deleteButtonHoverBgColorUser;
-        color: vars.$deleteButtonHoverTextColorUser;
-        border-color: vars.$deleteButtonHoverTextColorUser;
+        background-color: $deleteButtonHoverBgColorUser;
+        color: $deleteButtonHoverTextColorUser;
+        border-color: $deleteButtonHoverTextColorUser;
     }
 }
 
 /*Edit btn*/
 .edit-button-user {
     .p-button {
-        background-color: vars.$editButtonBgColor;
-        color: vars.$editButtonTextColor;
-        border-color: vars.$editButtonTextColor;
+        background-color: $editButtonBgColor;
+        color: $editButtonTextColor;
+        border-color: $editButtonTextColor;
     }
 }
 
@@ -159,19 +159,19 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background-color: vars.$editButtonHoverBgColor;
-        color: vars.$editButtonHoverTextColor;
-        border-color: vars.$editButtonHoverTextColor;
+        background-color: $editButtonHoverBgColor;
+        color: $editButtonHoverTextColor;
+        border-color: $editButtonHoverTextColor;
     }
 }
 
 .custom-icon-button {
-    font-size: vars.$commonFontSize;
-    height: vars.$commonHeight;
-    border-radius: vars.$commonRadius;
+    font-size: $commonFontSize;
+    height: $commonHeight;
+    border-radius: $commonRadius;
 
     .p-button-label {
-        font-weight: vars.$buttonFontWeight;
+        font-weight: $buttonFontWeight;
         flex: none;
         margin-left: 10px;
     }
@@ -186,7 +186,7 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background: vars.$customWhiteHoverBgColor !important;
+        background: $customWhiteHoverBgColor !important;
         border-color: #2B3D51;
         color: #2B3D51;
         border-radius: 1.5rem;
@@ -204,7 +204,7 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background: vars.$customWhiteRegHoverBgColor !important;
+        background: $customWhiteRegHoverBgColor !important;
         border-color: #2B3D51;
         color: #2B3D51;
         border-radius: 1.5rem;
@@ -213,22 +213,22 @@
 
 .h_custom_reg_button {
     color: #fff;
-    border-color: vars.$customWhiteHoverBgColor !important;
-    background-color: vars.$customWhiteHoverBgColor !important;
+    border-color: $customWhiteHoverBgColor !important;
+    background-color: $customWhiteHoverBgColor !important;
 }
 
 .h_custom_reg_button:hover {
     color: white;
-    border-color: vars.$customRegHoverBgColor !important;
-    background-color: vars.$customRegHoverBgColor !important;
+    border-color: $customRegHoverBgColor !important;
+    background-color: $customRegHoverBgColor !important;
 }
 
 /*Import btn*/
 .import-button {
     .p-button {
-        background-color: vars.$importButtonBgColor;
-        color: vars.$importButtonTextColor;
-        border-color: vars.$importButtonBgColor;
+        background-color: $importButtonBgColor;
+        color: $importButtonTextColor;
+        border-color: $importButtonBgColor;
     }
 
     .p-button-label {
@@ -241,18 +241,18 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background-color: vars.$importButtonHoverBgColor;
-        color: vars.$importButtonHoverTextColor;
-        border-color: vars.$importButtonHoverBgColor;
+        background-color: $importButtonHoverBgColor;
+        color: $importButtonHoverTextColor;
+        border-color: $importButtonHoverBgColor;
     }
 }
 
 /*Export btn*/
 .export-button {
     .p-button {
-        background-color: vars.$exportButtonBgColor;
-        color: vars.$exportButtonTextColor;
-        border-color: vars.$exportButtonBgColor;
+        background-color: $exportButtonBgColor;
+        color: $exportButtonTextColor;
+        border-color: $exportButtonBgColor;
     }
 
     .p-button-label {
@@ -265,18 +265,18 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background-color: vars.$exportButtonHoverBgColor;
-        color: vars.$exportButtonTextColor;
-        border-color: vars.$exportButtonHoverBgColor;
+        background-color: $exportButtonHoverBgColor;
+        color: $exportButtonTextColor;
+        border-color: $exportButtonHoverBgColor;
     }
 }
 
 /*Create btn*/
 .create-button {
     .p-button {
-        background-color: vars.$createButtonBgColor;
-        color: vars.$createButtonTextColor;
-        border-color: vars.$createButtonBgColor;
+        background-color: $createButtonBgColor;
+        color: $createButtonTextColor;
+        border-color: $createButtonBgColor;
     }
 
     .p-button-label {
@@ -289,18 +289,18 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background-color: vars.$createButtonHoverBgColor;
-        color: vars.$createButtonHoverTextColor;
-        border-color: vars.$createButtonHoverBgColor;
+        background-color: $createButtonHoverBgColor;
+        color: $createButtonHoverTextColor;
+        border-color: $createButtonHoverBgColor;
     }
 }
 
 /*create-button-questionnaire*/
 .create-button-questionnaire {
     .p-button {
-        background-color: vars.$createButtonBgColor;
-        color: vars.$createButtonTextColor;
-        border: 2px solid vars.$createButtonTextColor;
+        background-color: $createButtonBgColor;
+        color: $createButtonTextColor;
+        border: 2px solid $createButtonTextColor;
     }
 
 }
@@ -309,30 +309,30 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background-color: vars.$createButtonHoverBgColor;
-        color: vars.$createButtonHoverTextColor;
-        border: 2px solid vars.$createButtonHoverBgColor;
+        background-color: $createButtonHoverBgColor;
+        color: $createButtonHoverTextColor;
+        border: 2px solid $createButtonHoverBgColor;
     }
 }
 
 .p-dialog .p-dialog-footer button.back-button {
-    background-color: vars.$backButtonBgColor;
-    color: vars.$backButtonTextColor;
-    border-color: 2px solid vars.$backButtonTextColor;
+    background-color: $backButtonBgColor;
+    color: $backButtonTextColor;
+    border-color: 2px solid $backButtonTextColor;
 }
 
 .p-dialog .p-dialog-footer button.back-button:enabled:hover {
-    background-color: vars.$backButtonHoverBgColor;
-    color: vars.$backButtonHoverTextColor;
-    border-color: 2px solid vars.$backButtonTextColor;
+    background-color: $backButtonHoverBgColor;
+    color: $backButtonHoverTextColor;
+    border-color: 2px solid $backButtonTextColor;
 }
 
 /*Back or Cancel btn*/
 .back-button {
     .p-button {
-        background-color: vars.$backButtonBgColor;
-        color: vars.$backButtonTextColor;
-        border: 2px solid vars.$backButtonTextColor;
+        background-color: $backButtonBgColor;
+        color: $backButtonTextColor;
+        border: 2px solid $backButtonTextColor;
     }
 }
 
@@ -340,9 +340,9 @@
 
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background-color: vars.$backButtonHoverBgColor;
-        color: vars.$backButtonHoverTextColor;
-        border: 2px solid vars.$backButtonTextColor;
+        background-color: $backButtonHoverBgColor;
+        color: $backButtonHoverTextColor;
+        border: 2px solid $backButtonTextColor;
     }
 }
 
@@ -368,16 +368,15 @@
 /*Update ,Save or Submit btn*/
 .update-button {
     .p-button {
-        background-color: vars.$updateButtonBgColor;
-        color: vars.$updateButtonTextColor;
-        border: 2px solid vars.$updateButtonBgColor;
+        background-color: $updateButtonBgColor;
+        color: $updateButtonTextColor;
+        border: 2px solid $updateButtonBgColor;
     }
 }
 
 /*primary button*/
 .primary-button {
     .p-button {
-        background-color: vars.$primaryButtonBgColor;
         background-color: $primaryButtonBgColor;
         color: $primaryButtonTextColor;
         border: 2px solid $primaryButtonBgColor;
@@ -488,27 +487,27 @@
     width: 50px;
 
     .p-button-icon {
-        font-size: vars.$commonFontSize;
+        font-size: $commonFontSize;
     }
 
     .p-button-label {
-        font-weight: vars.$buttonFontWeight;
+        font-weight: $buttonFontWeight;
         font-size: 24px;
     }
 }
 
 .external-selector-button {
-    height: vars.$commonHeight;
-    border-radius: vars.$commonRadius;
+    height: $commonHeight;
+    border-radius: $commonRadius;
     text-overflow: ellipsis;
     max-height: 80px;
 
     .p-button-icon {
-        font-size: vars.$commonFontSize;
+        font-size: $commonFontSize;
     }
 
     .p-button-label {
-        font-weight: vars.$buttonFontWeight;
+        font-weight: $buttonFontWeight;
         font-size: 16px;
     }
 }
@@ -570,9 +569,9 @@
 
 .qr-button {
     .p-button {
-        background-color: vars.$exportButtonBgColor;
-        color: vars.$exportButtonTextColor;
-        border-color: vars.$exportButtonBgColor;
+        background-color: $exportButtonBgColor;
+        color: $exportButtonTextColor;
+        border-color: $exportButtonBgColor;
     }
     .p-button-label {
         padding-left: 5px;
@@ -585,9 +584,9 @@
 .qr-button {
     .p-button:enabled:hover,
     .p-button:not(button):not(a):not(.p-disabled):hover {
-        background-color: vars.$exportButtonHoverBgColor;
-        color: vars.$exportButtonTextColor;
-        border-color: vars.$exportButtonHoverBgColor;
+        background-color: $exportButtonHoverBgColor;
+        color: $exportButtonTextColor;
+        border-color: $exportButtonHoverBgColor;
     }
 }
 .display-inline{
