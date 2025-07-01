@@ -1,6 +1,16 @@
+import React from "react";
 import Link from "next/link";
 
-export default function FloatingActionButton(props) {
+const FloatingActionButton = (props) => {
+    const { onClick, icon, className, style, ariaLabel } = props;
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onClick(e);
+        }
+    };
+
     return (
         <Link
             href={props.onClick ? "" : props.href}
@@ -18,9 +28,22 @@ export default function FloatingActionButton(props) {
                 display: 'flex',
             }}
             onClick={props.onClick}
+            onKeyDown={handleKeyDown}
+            aria-label={props.ariaLabel || "Floating action button"}
+            role="button"
+            tabIndex={0}
         >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img color="white" width={30} height={30} src={`/${props.icon}`} alt="icon" />
+            <img 
+                color="white" 
+                width={30} 
+                height={30} 
+                src={`/${props.icon}`} 
+                alt={props.ariaLabel || "Action button icon"} 
+                aria-hidden="true"
+            />
         </Link>
     );
-}
+};
+
+export default FloatingActionButton;

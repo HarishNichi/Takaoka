@@ -27,10 +27,15 @@ export const Input = (props) => {
     float,
     floatLabelProps,
     ariaLabel,
+    id,
+    name,
+    required,
+    placeholder,
     ...restProps
   } = props && props.inputProps;
 
   const [localIsRecording, setLocalIsRecording] = useState(false);
+  const [inputId] = useState(id || `input-${Math.random().toString(36).substr(2, 9)}`);
 
   const handleAudioRecorded = (audioBlob) => {
     inputRightIconProps?.onRecordValueChange(audioBlob);
@@ -41,11 +46,28 @@ export const Input = (props) => {
     inputRightIconProps?.onRecordingStateChange(isRecord);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && inputRightIconProps?.onEnter) {
+      inputRightIconProps.onEnter(e);
+    }
+  };
+
   useEffect(() => {
     if (!inputRightIconProps?.isRecording) {
       setLocalIsRecording(inputRightIconProps?.isRecording);
     }
   }, [inputRightIconProps?.isRecording]);
+
+  // Generate meaningful aria-label
+  const generateAriaLabel = () => {
+    if (ariaLabel) return ariaLabel;
+    if (labelProps?.text) return labelProps.text;
+    if (name) return name.replace(/([A-Z])/g, ' $1').toLowerCase();
+    if (placeholder) return placeholder;
+    return "Input field";
+  };
+
+  const ariaLabelText = generateAriaLabel();
 
   return (
    <>
@@ -57,6 +79,7 @@ export const Input = (props) => {
         labelStyle={labelProps.parentStyle}
         spanText={labelProps.spanText}
         spanClass={labelProps.inputLabelSpanClassName}
+        htmlFor={inputId}
       />
     </div>
   )}
@@ -76,6 +99,7 @@ export const Input = (props) => {
           labelStyle={labelProps.parentStyle}
           spanText={labelProps.spanText}
           spanClass={labelProps.inputLabelSpanClassName}
+          htmlFor={inputId}
         />
       </div>
     )}
@@ -91,13 +115,13 @@ export const Input = (props) => {
   <InputIcon className={localIsRecording||isLoading?'w-full':''}>
 
     {localIsRecording && (
-      <i className="flex justify-content-center w-full">
+      <i className="flex justify-content-center w-full" aria-hidden="true">
         <i className="pi pi-spin pi-spinner pl-0" />
       </i>
     )}
 
     {isLoading && (
-      <i className="flex justify-content-center w-full">
+      <i className="flex justify-content-center w-full" aria-hidden="true">
         <i className="pi pi-spin pi-spinner pt-2 pb-2" />
       </i>
     )}
@@ -116,17 +140,22 @@ export const Input = (props) => {
           isRecording={localIsRecording}
           customClass={inputLeftIconProps.audioCustomClass}
           customStyle={inputLeftIconProps.audioCustomStyle}
+          aria-label={`Record audio for ${ariaLabelText}`}
         />
       ) : (
-        inputLeftIconProps?.icon || <></>
+        <span aria-hidden="true">{inputLeftIconProps?.icon || <></>}</span>
       )
     ) : <></>}
   </InputIcon>
 
   {/* Always render the input */}
   <InputText
+    id={inputId}
     className={`${inputClassName}`}
-    aria-label={ariaLabel || labelProps?.text || "input-field"}
+    aria-label={ariaLabelText}
+    aria-required={required}
+    aria-describedby={restProps['aria-describedby']}
+    onKeyDown={handleKeyDown}
     {...restProps}
     autoComplete={process?.env?.NEXT_PUBLIC_AUTO_COMPLETE}
   />
@@ -140,6 +169,15 @@ export const Input = (props) => {
             <i
               className={inputRightIconProps?.password?.className}
               onClick={inputRightIconProps?.password?.onClick}
+              role="button"
+              tabIndex={0}
+              aria-label="Toggle password visibility"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  inputRightIconProps?.password?.onClick(e);
+                }
+              }}
             />
           )}
           <AudioRecorder
@@ -155,18 +193,23 @@ export const Input = (props) => {
             }
             customClass={inputRightIconProps.audioCustomClass}
             customStyle={inputRightIconProps.audioCustomStyle}
+            aria-label={`Record audio for ${ariaLabelText}`}
           />
         </i>
       ) : (
-        inputRightIconProps?.icon || <></>
+        <span aria-hidden="true">{inputRightIconProps?.icon || <></>}</span>
       )
     ) : <></>}
   </InputIcon>
 </IconField>
 ) : (
   <InputText
+    id={inputId}
     className={`${inputClassName}`}
-    aria-label={ariaLabel || labelProps?.text || "input-field"}
+    aria-label={ariaLabelText}
+    aria-required={required}
+    aria-describedby={restProps['aria-describedby']}
+    onKeyDown={handleKeyDown}
     {...restProps}
     autoComplete={process?.env?.NEXT_PUBLIC_AUTO_COMPLETE}
   />

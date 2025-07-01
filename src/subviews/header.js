@@ -1,11 +1,19 @@
 "use client";
 
+import React from "react";
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect } from 'react';
 
-export default function Header(props) {
-    useEffect(() => { }, [props, props.backPath]);
+const Header = ({ onBackClick, title, ariaLabel }) => {
+    useEffect(() => { }, [onBackClick, title, ariaLabel]);
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onBackClick(e);
+        }
+    };
 
     return (
         <div style={{
@@ -18,23 +26,28 @@ export default function Header(props) {
             fontSize: "20px",
             fontWeight: "200",
         }}>
-            <Link
-                style={{
-                    position: "absolute",
-                    left: 5,
-                    width: 50,
-                    height: 50,
-                    visibility: props.backPath ? "visible" : "hidden",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    display: "flex",
-                }}
-                href={props.backPath ?? ""}>
-                <Image color="white" width={40} height={30} src="/arrow_back.svg" alt="<" />
-            </Link>
-            <div style={{ marginLeft: "-10px", fontWeight: 500 }}>Scanbot</div>
+            <button
+                onClick={onBackClick}
+                onKeyDown={handleKeyDown}
+                className="back-button"
+                aria-label={ariaLabel || "Go back"}
+                role="button"
+                tabIndex={0}
+            >
+                <Image 
+                    color="white" 
+                    width={40} 
+                    height={30} 
+                    src="/arrow_back.svg" 
+                    alt="Back arrow" 
+                    aria-hidden="true"
+                />
+            </button>
+            <div style={{ marginLeft: "-10px", fontWeight: 500 }}>{title}</div>
             <div style={{ padding: "0 5px 0 5px" }}> Web</div>
             <div style={{ fontWeight: 500 }}>SDK</div>
         </div>
     );
-}
+};
+
+export default Header;

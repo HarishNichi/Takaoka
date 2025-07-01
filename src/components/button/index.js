@@ -15,17 +15,25 @@ export const Button = (props) => {
     create: isCreate,
     import: isImport,
     delete: isDelete,
+    ariaLabel,
     ...restProps
   } = buttonProps;
+  
   let updatedIcon = icon;
+  let buttonAriaLabel = ariaLabel;
+  
   if (isExport) {
     updatedIcon = "pi pi-download";
+    buttonAriaLabel = buttonAriaLabel || "Export data";
   } else if (isCreate) {
     updatedIcon = "pi pi-plus";
+    buttonAriaLabel = buttonAriaLabel || "Create new item";
   } else if (isImport) {
     updatedIcon = "pi pi-upload";
+    buttonAriaLabel = buttonAriaLabel || "Import data";
   } else if (isDelete) {
     updatedIcon = "pi pi-trash";
+    buttonAriaLabel = buttonAriaLabel || "Delete item";
   }
 
   return (
@@ -37,6 +45,8 @@ export const Button = (props) => {
         rounded={"true"}
         icon={isLoading ? "pi pi-spin pi-spinner" : icon || updatedIcon}
         disabled={isLoading ? isLoading : false}
+        aria-label={buttonAriaLabel}
+        aria-busy={isLoading}
         {...restProps}
       />
     </div>
@@ -45,7 +55,7 @@ export const Button = (props) => {
 
 export const ButtonRounded = (props) => {
   const { parentClass, buttonProps = {} } = props;
-  const { hoverBg, custom, buttonClass, text, icon, bg, ...restProps } =
+  const { hoverBg, custom, buttonClass, text, icon, bg, ariaLabel, ...restProps } =
     buttonProps;
 
   return (
@@ -55,6 +65,7 @@ export const ButtonRounded = (props) => {
           } ${buttonClass} font-medium border-round-3xl`}
         label={text}
         icon={icon}
+        aria-label={ariaLabel}
         {...restProps}
       />
     </div>

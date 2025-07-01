@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { OpenCvProvider } from 'opencv-react';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Toaster } from 'react-hot-toast';
@@ -6,6 +6,7 @@ import { Toaster } from 'react-hot-toast';
 import { persistor } from '@/redux/store';
 import { Providers } from "@/redux/provider";
 import { LayoutProvider } from '../layout/context/layoutcontext';
+import { AccessibilityProvider } from '../context/AccessibilityContext';
 import Layout from '../layout/layout';
 import withAuth from '@/middleware/withAuth';
 
@@ -27,40 +28,47 @@ function MyApp({ Component, pageProps, authorizedStatus }) {
         borderRadius: '5px',
     };
 
+    useEffect(() => {
+    const userLocale = localStorage.getItem('locale') || 'ja';
+    document.documentElement.lang = userLocale;
+  }, [])
+
     return (
         <OpenCvProvider>
             <Providers>
                 <PersistGate loading={null} persistor={persistor}>
-                    <LayoutProvider>
-                        <Toaster
-                            reverseOrder={true}
-                            toastOptions={{
-                                duration: 5000,
-                                style: toastStyle
-                            }}
-                        />
-                        {authorizedStatus ? (
-                            Component.getLayout ? (
-                                <>
-                                    {Component.getLayout(<Component {...pageProps} />)}
-                                </>
+                    <AccessibilityProvider>
+                        <LayoutProvider>
+                            <Toaster
+                                reverseOrder={true}
+                                toastOptions={{
+                                    duration: 5000,
+                                    style: toastStyle
+                                }}
+                            />
+                            {authorizedStatus ? (
+                                Component.getLayout ? (
+                                    <>
+                                        {Component.getLayout(<Component {...pageProps} />)}
+                                    </>
+                                ) : (
+                                    <Layout>
+                                        <Component {...pageProps} />
+                                    </Layout>
+                                )
                             ) : (
-                                <Layout>
-                                    <Component {...pageProps} />
-                                </Layout>
-                            )
-                        ) : (
-                            <div style={{
-                                height: '100vh',
-                                width: '100%',
-                                display: 'flex',
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>
-                                {"Loading..."}
-                            </div>
-                        )}
-                    </LayoutProvider>
+                                <div style={{
+                                    height: '100vh',
+                                    width: '100%',
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
+                                }}>
+                                    {"Loading..."}
+                                </div>
+                            )}
+                        </LayoutProvider>
+                    </AccessibilityProvider>
                 </PersistGate>
             </Providers>
         </OpenCvProvider>

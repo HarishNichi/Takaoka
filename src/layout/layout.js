@@ -379,7 +379,7 @@ const Layout = (props) => {
             <div className={containerClass}>
                 <AppTopbar ref={topbarRef} />
                 {!URLS.includes(path) && (
-                    <div className="layout-sidebar">
+                    <div className="layout-sidebar" id="main-navigation" role="navigation" aria-label="Main navigation">
                         <div ref={sidebarRef} className={`layout_sidebar_scroll ${windowURL.startsWith('/admin') && "layout_admin_sidebar_scroll"}`} style={{
                             height: (windowURL.startsWith('/staff')) && "calc(100vh - 7rem)",
                         }}>
@@ -387,18 +387,18 @@ const Layout = (props) => {
                         </div>
                     </div>
                 )}
-                <div className="layout-main-container">
-                    <div className="layout-main">
+                <div className="layout-main-container" lang={locale}>
+                    <main className="layout-main" id="main-content" role="main">
                         {props.children}
                          <Analytics />
                           <SpeedInsights />
-                    </div>
+                    </main>
                     {!URLS.includes(path) && (
                         <AppFooter />
                     )}
                 </div>
                 {loader && (
-                    <div className="layout-mask-loader">
+                    <div className="layout-mask-loader" role="status" aria-live="polite" aria-label="Loading content">
                         <ProgressSpinner className='progress-spinner' strokeWidth="8" fill="transparent" animationDuration=".5s" />
                     </div>
                 )}

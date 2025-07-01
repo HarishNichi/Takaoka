@@ -39,6 +39,7 @@
     "next": "^15",
     "nprogress": "^0.2.0",
     "opencv-react": "^0.0.6",
+    "pa11y-ci": "^3.1.0",
     "postcss": "8.4.23",
     "primeflex": "3.3.0",
     "primeicons": "^6.0.1",

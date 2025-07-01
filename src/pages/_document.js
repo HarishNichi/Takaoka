@@ -8,7 +8,7 @@ class MyDocument extends Document {
 
     render() {
         return (
-            <Html lang={"en"}>
+            <Html lang="en">
                 <Head>
                     <title>Telenet</title>
                     <meta charSet="UTF-8" />
@@ -24,8 +24,36 @@ class MyDocument extends Document {
                     <meta property="og:ttl" content="604800"></meta> */}
                    
                     <link id="theme-css" href={`/themes/default/theme.css`} rel="stylesheet"></link>
+                    
+                    {/* Skip Links for Accessibility */}
+                    <style dangerouslySetInnerHTML={{
+                        __html: `
+                            .skip-link {
+                                position: absolute;
+                                top: -40px;
+                                left: 6px;
+                                background: #000;
+                                color: white;
+                                padding: 8px;
+                                text-decoration: none;
+                                border-radius: 4px;
+                                z-index: 10000;
+                            }
+                            .skip-link:focus {
+                                top: 6px;
+                            }
+                        `
+                    }} />
                 </Head>
                 <body>
+                    {/* Skip Links */}
+                    <a href="#main-content" className="skip-link">
+                        Skip to main content
+                    </a>
+                    <a href="#main-navigation" className="skip-link">
+                        Skip to navigation
+                    </a>
+                    
                     <Main />
                     <NextScript />
                 </body>

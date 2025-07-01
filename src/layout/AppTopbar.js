@@ -443,11 +443,11 @@ const AppTopbar = forwardRef((props, ref) => {
      */
     const topBarRight = (
         <div ref={topbarmenuRef} className="header-details-second">
-        <div className='header-details-second-date-time-picker mr-3'>
+        <div tabIndex={0} className='header-details-second-date-time-picker mr-3'>
             <DateTimeDisplay/>
             </div>
             {userName && (
-                <div title={userName} className="header-dropdown-name">
+                <div title={userName} className="header-dropdown-name" tabIndex={0} aria-label={`User: ${userName}`} aria-live="polite">
                     <label className="text-base font-bold white-space-nowrap overflow-hidden text-overflow-ellipsis">
                         {userName}
                     </label>
@@ -459,6 +459,9 @@ const AppTopbar = forwardRef((props, ref) => {
                         icon={<i className="pi pi-bars" />}
                         items={settingView}
                         name="topbar-menu"
+                        aria-haspopup="menu" // Set to true when open, if possible
+                        aria-label="Open topbar menu"
+                        tabIndex="0"
                     />
                 </div>
             )}
@@ -469,6 +472,9 @@ const AppTopbar = forwardRef((props, ref) => {
                     <DropdownSelect
                         icon={<i className="pi pi-cog" />}
                         items={settingView}
+                        aria-haspopup="menu" // Set to true when open, if possible
+                        aria-label="Open topbar menu"
+                        tabIndex="0"
                     />
                 </div>
             ) : !userName && allowedUserIconPaths.includes(currentPath) ? (
@@ -477,6 +483,9 @@ const AppTopbar = forwardRef((props, ref) => {
                         icon={<i className="pi pi-bars" />}
                         items={settingView}
                         name="topbar-menu"
+                        aria-haspopup="menu" // Set to true when open, if possible
+                        aria-label="Open topbar menu"
+                        tabIndex="0"
                     />
                 </div>
             ) : (
@@ -516,6 +525,7 @@ const AppTopbar = forwardRef((props, ref) => {
                                         height: 45,
                                         alt: "logo",
                                         text:"テレネット",
+                                        "aria-label": "Telenet Logo",
                                         onClick: () => {
                                             if (
                                                 url.startsWith("/staff") 
@@ -569,6 +579,12 @@ const AppTopbar = forwardRef((props, ref) => {
                             >
                                 <div
                                     className={`text-base white-space-nowrap overflow-hidden text-overflow-ellipsis cursor-pointer`}
+                                    aria-label={
+                                    locale == "ja"
+                                        ? settings_data?.system_name_ja
+                                        : settings_data?.system_name_en
+                                }
+                                aria-live="polite"
                                     // onClick={checkAndRedirectToEntranceExitScreen}
                                 >
                                     {locale === "ja"
@@ -585,6 +601,13 @@ const AppTopbar = forwardRef((props, ref) => {
                                         : defaultEventData.topBarTitle_en
                                 }
                                 className="header-details-first"
+                                aria-label={(locale == "ja"
+                                            ? defaultEventData.topBarTitle
+                                            : defaultEventData.topBarTitle_en) +
+                                            (windowURLSplitted[2] == "pre-register"
+                                                ? " " + translate(localeJson, "pre_registration")
+                                                : "")}
+                                aria-live="polite"
                             >
                                 {window.location.pathname.startsWith("/privacy") ? (
                                     <>
