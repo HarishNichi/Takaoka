@@ -38,9 +38,14 @@ class MyDocument extends Document {
                                 text-decoration: none;
                                 border-radius: 4px;
                                 z-index: 10000;
+                                opacity: 0;
+                                visibility: hidden;
+                                transition: opacity 0.3s, visibility 0.3s;
                             }
                             .skip-link:focus {
                                 top: 6px;
+                                opacity: 1;
+                                visibility: visible;
                             }
                         `
                     }} />
