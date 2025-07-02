@@ -666,7 +666,24 @@ export const InputDropdown = React.memo((props) => {
       <Dropdown
         className={`${inputDropdownClassName}`}
         panelClassName={`custom_dropdownPanel ${inputPanelDropdownClassName} ${customPanelDropdownClassName}`}
-        aria-label={restProps.name}
+        pt={{
+          trigger: {
+            'aria-label': restProps.ariaLabel || restProps.name,
+            title: restProps.ariaLabel || restProps.name,
+          },
+          input: {
+            'aria-label': restProps.ariaLabel || restProps.name,
+            title: restProps.ariaLabel || restProps.name,
+          },
+          select: {
+            'aria-label': restProps.ariaLabel || restProps.name,
+            title: restProps.ariaLabel || restProps.name,
+          },
+          panel: {
+            'aria-live': 'polite',
+            'aria-atomic': 'true',
+          },
+        }}
         {...restProps}
       />
       {floatLabelProps?.text && (
