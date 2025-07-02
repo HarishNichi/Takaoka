@@ -291,6 +291,12 @@
         color: $createButtonHoverTextColor;
         border-color: $createButtonHoverBgColor;
     }
+
+    .p-button:focus {
+        outline: 3px solid #15803D;
+        outline-offset: 2px;
+        box-shadow: 0 0 0 3px rgba(21,128,61,0.3);
+    }
 }
 
 /*create-button-questionnaire*/
