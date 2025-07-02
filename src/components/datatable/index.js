@@ -118,7 +118,7 @@ export const NormalTable = React.memo((props) => {
   return (
     <div className={`${parentClass || "custom-table w-full"}`}>
       {/* Visually hidden caption for accessibility */}
-      <caption style={{ position: 'absolute', width: 1, height: 1, margin: -1, padding: 0, overflow: 'hidden', clip: 'rect(0 0 0 0)', border: 0 }}>
+      <caption className="visually-hidden">
         {translate(localeJson, "evacuation_status_list")}
       </caption>
       <TableData
