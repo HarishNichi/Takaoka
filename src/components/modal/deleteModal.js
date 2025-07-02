@@ -121,7 +121,6 @@ const DeleteModal = React.memo((props) => {
                 setCheckedValue && setCheckedValue(evt.target.value);
                 hideOverFlow();
               },
-              'aria-label': restProps["ariaLabel"] || translate(localeJson, "toggle_place"),
             }}
           />
         </>
