@@ -92,7 +92,7 @@ export const NormalTable = React.memo((props) => {
       return (
         <React.Fragment>
              {/* Invisible label satisfies WCAG "select-name" rule */}
-        <label id={INPUT_ID} htmlFor={INPUT_ID} className="sr-only">
+        <label id={INPUT_ID + '-label'} htmlFor={INPUT_ID} className="sr-only">
           {translate(localeJson, "rows_per_page")}
         </label>
           <Dropdown
@@ -100,8 +100,8 @@ export const NormalTable = React.memo((props) => {
             value={options.value}
             options={dropdownOptions}
             onChange={options.onChange}
-            ariaLabel={translate(localeJson, "rows_per_page")}
-            ariaLabelledBy={translate(localeJson, "rows_per_page")}
+            aria-labelledby={INPUT_ID + '-label'}
+            aria-haspopup="listbox"
             title={translate(localeJson, "rows_per_page")}
             placeholder="Rows per page"
              pt={{
@@ -117,6 +117,10 @@ export const NormalTable = React.memo((props) => {
 
   return (
     <div className={`${parentClass || "custom-table w-full"}`}>
+      {/* Visually hidden caption for accessibility */}
+      <caption style={{ position: 'absolute', width: 1, height: 1, margin: -1, padding: 0, overflow: 'hidden', clip: 'rect(0 0 0 0)', border: 0 }}>
+        {translate(localeJson, "evacuation_status_list")}
+      </caption>
       <TableData
         id={id}
         value={value}
@@ -160,7 +164,7 @@ export const NormalTable = React.memo((props) => {
             <Column
               key={index}
               aria-label={typeof colWithRowHeader.value === 'string' ? colWithRowHeader.value : colWithRowHeader.header || ''}
-              tabIndex={index}
+              tabIndex={0}
               field={colWithRowHeader.field}
               selectionMode={colWithRowHeader.selectionMode}
               rowEditor={colWithRowHeader.rowEditor}
@@ -408,7 +412,7 @@ export const RowExpansionTable = React.memo((props) => {
       return (
         <React.Fragment>
              {/* Invisible label satisfies WCAG "select-name" rule */}
-        <label id={INPUT_ID} htmlFor={INPUT_ID} className="sr-only">
+        <label id={INPUT_ID + '-label'} htmlFor={INPUT_ID} className="sr-only">
           {translate(localeJson, "rows_per_page")}
         </label>
           <Dropdown
@@ -416,8 +420,8 @@ export const RowExpansionTable = React.memo((props) => {
             value={options.value}
             options={dropdownOptions}
             onChange={options.onChange}
-            ariaLabel={translate(localeJson, "rows_per_page")}
-            ariaLabelledBy={translate(localeJson, "rows_per_page")}
+            aria-labelledby={INPUT_ID + '-label'}
+            aria-haspopup="listbox"
             title={translate(localeJson, "rows_per_page")}
             placeholder="Rows per page"
              pt={{
