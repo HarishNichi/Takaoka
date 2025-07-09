@@ -25,39 +25,9 @@ class MyDocument extends Document {
                    
                     <link id="theme-css" href={`/themes/default/theme.css`} rel="stylesheet"></link>
                     
-                    {/* Skip Links for Accessibility */}
-                    <style dangerouslySetInnerHTML={{
-                        __html: `
-                            .skip-link {
-                                position: absolute;
-                                top: -40px;
-                                left: 6px;
-                                background: #000;
-                                color: white;
-                                padding: 8px;
-                                text-decoration: none;
-                                border-radius: 4px;
-                                z-index: 10000;
-                                opacity: 0;
-                                visibility: hidden;
-                                transition: opacity 0.3s, visibility 0.3s;
-                            }
-                            .skip-link:focus {
-                                top: 6px;
-                                opacity: 1;
-                                visibility: visible;
-                            }
-                        `
-                    }} />
                 </Head>
                 <body>
-                    {/* Skip Links */}
-                    <a href="#main-content" className="skip-link">
-                        Skip to main content
-                    </a>
-                    <a href="#main-navigation" className="skip-link">
-                        Skip to navigation
-                    </a>
+                   
                     
                     <Main />
                     <NextScript />

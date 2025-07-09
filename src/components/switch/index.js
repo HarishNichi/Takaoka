@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { InputSwitch as InputSwitcher } from 'primereact/inputswitch';
 import { ToggleButton } from 'primereact/togglebutton';
+import { getValueByKeyRecursively as translate } from "@/helper";
+import { LayoutContext } from '@/layout/context/layoutcontext';
 
 export const InputSwitch = (props) => {
+    const { localeJson } = useContext(LayoutContext);
     const {
         parentClass,
         custom,
@@ -23,11 +26,14 @@ export const InputSwitch = (props) => {
         <div className={`${parentClass} ${custom || 'custom-switch'} `}>
             <InputSwitcher className={` ${switchClass}`}
                 checked={checked}
-                id={id}
+                id={restProps["ariaLabel"] || translate(localeJson, "toggle_place")}
                 onChange={onChange}
                 readOnly={readOnly}
                 disabled={disabled}
+                tabIndex={0}
+                aria-label={restProps["ariaLabel"] || translate(localeJson, "toggle_place")}
                 onBlur={onBlur}
+                pt={{root: { tabIndex: 0,"aria-readonly":true}, input: { tabIndex: 0, role: "switch" } }}
                 {...restProps}
             />
         </div>
@@ -60,6 +66,7 @@ export const ToggleSwitch = (props) => {
                 offIcon={offIcon}
                 checked={checked}
                 onChange={onChange}
+                tabIndex={0}
                 disabled={disabled}
                 {...restProps}
             />

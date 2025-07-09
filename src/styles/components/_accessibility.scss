@@ -28,24 +28,6 @@
   outline-offset: 2px !important;
 }
 
-// Skip links
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: #000;
-  color: white;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-radius: 4px;
-  z-index: 10000;
-  font-weight: bold;
-  font-size: 25px;
-
-  &:focus {
-    top: 6px;
-  }
-}
 
 // Focus trap indicator
 .focus-trap {
@@ -128,10 +110,6 @@
 
 // Dark mode support
 @media (prefers-color-scheme: dark) {
-  .skip-link {
-    background: #fff;
-    color: #000;
-  }
 
   .focus-visible {
     outline-color: #fff !important;
@@ -140,7 +118,6 @@
 
 // Print styles
 @media print {
-  .skip-link,
   .sr-only {
     display: none !important;
   }

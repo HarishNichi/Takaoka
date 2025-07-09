@@ -131,7 +131,9 @@ const EmailSettings = React.memo(function EmailSettings(props) {
                                                         textAreaLabelSpanClassName: "p-error",
                                                         spanText: "*",
                                                         textAreaLabelClassName: "block",
-                                                        labelMainClassName: "modal-label-field-space"
+                                                        labelMainClassName: "modal-label-field-space",
+                                                        id: "notification-email-id-label",
+                                                        htmlFor: "notification-email-id"
                                                     },
                                                     textAreaClass: "w-full",
                                                     onChange: handleChange,
@@ -140,12 +142,16 @@ const EmailSettings = React.memo(function EmailSettings(props) {
                                                     cols: 40,
                                                     name: 'email',
                                                     value: values.email,
+                                                    id: "notification-email-id",
+                                                    placeholder: translate(localeJson, 'notification_email_id'),
+                                                    'aria-label': translate(localeJson, 'notification_email_id'),
                                                 }} />
                                                 <ValidationError errorBlock={errors.email && touched.email && errors.email} />
                                             </div>
                                             <div className='modal-field-top-space modal-field-bottom-space'>
                                                 <InputDropdown inputDropdownProps={{
                                                     inputDropdownParentClassName: "w-full",
+                                                    ariaLabel: translate(localeJson, 'transmission_interval'),
                                                     labelProps: {
                                                         text: translate(localeJson, 'transmission_interval'),
                                                         inputDropdownLabelClassName: "block",
@@ -163,6 +169,7 @@ const EmailSettings = React.memo(function EmailSettings(props) {
                                             <div className=''>
                                                 <InputDropdown inputDropdownProps={{
                                                     inputDropdownParentClassName: "w-full",
+                                                    ariaLabel: translate(localeJson, 'output_target_area'),
                                                     labelProps: {
                                                         text: translate(localeJson, 'output_target_area'),
                                                         inputDropdownLabelClassName: "block",

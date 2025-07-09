@@ -39,7 +39,7 @@ function AdminDashboard() {
         { field: 'others_count', header: translate(localeJson, 'others_count'), minWidth: "10rem", headerClassName: "custom-header", textAlign: "center", alignHeader: "center" },
         { field: 'remaining_number_people', header: translate(localeJson, 'remaining_number_people'), minWidth: "7rem", headerClassName: "custom-header", textAlign: "center", alignHeader: "center" },
         { field: 'food_assistance', header: translate(localeJson, 'food_assistance'), minWidth: "12rem", headerClassName: "custom-header", textAlign: "center", alignHeader: "center" },
-        { field: 'switch_to_full', header: translate(localeJson, 'switch_to_full'), minWidth: "7rem", headerClassName: "custom-header", textAlign: 'center', alignHeader: "center" },
+        { field: 'switch_to_full', header: translate(localeJson, 'switch_to_full'), minWidth: "7rem", headerClassName: "custom-header", textAlign: 'center', alignHeader: "center"},
     ]
 
     /* Services */
