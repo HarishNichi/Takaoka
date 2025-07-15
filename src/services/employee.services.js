@@ -1,7 +1,11 @@
 
+import axios from '@/utils/api';
+import { toastDisplay } from '@/helper';
 export const EmployeeServices = {
   getEmployeeList: _getEmployeeList,
   exportEmployeeCSV: _exportEmployeeCSV,
+  importData: _importData,
+  updateEmployee: _updateEmployee,
 };
 
 /**
@@ -10,47 +14,9 @@ export const EmployeeServices = {
  * @param {*} callBackFun
  */
 function _getEmployeeList(payload, callBackFun) {
-  // ✅ MOCK RESPONSE
-  setTimeout(() => {
-    const mockData = {
-      success: true,
-      data: {
-        total: 3,
-        list: [
-          {
-            code: "EMP001",
-            name: "Tanaka Ichiro",
-            dob: "1990-01-01",
-            department: "HR",
-              person_in_charge: "Sanji",
-  evacuation_shelter: "Tokyo Shelter A",
-          },
-          {
-            code: "EMP002",
-            name: "Sato Yuki",
-            dob: "1985-06-12",
-            department: "Finance",
-              person_in_charge: "Kaido",
-  evacuation_shelter: "Tokyo Shelter B",
-          },
-          {
-            code: "EMP003",
-            name: "Kobayashi Hana",
-            dob: "1992-03-25",
-            department: "IT",
-              person_in_charge: "luffy",
-  evacuation_shelter: "Tokyo Shelter C",
-          },
-        ],
-      },
-    };
-    callBackFun(mockData);
-  }, 500);
 
-  // 📝 REAL API (Uncomment when backend is ready)
-  /*
   axios
-    .post("/employee/list", payload)
+    .post("/admin/employee/list", payload)
     .then((response) => {
       if (response && response.data) {
         callBackFun(response.data);
@@ -59,7 +25,6 @@ function _getEmployeeList(payload, callBackFun) {
     .catch((error) => {
       toastDisplay(error?.response);
     });
-  */
 }
 
 /**
@@ -68,21 +33,9 @@ function _getEmployeeList(payload, callBackFun) {
  * @param {*} callBackFun
  */
 function _exportEmployeeCSV(payload, callBackFun) {
-  // ✅ MOCK RESPONSE
-  setTimeout(() => {
-    const mockResponse = {
-      success: true,
-      result: {
-        filePath: "/mock/csv/EmployeeList.csv",
-      },
-    };
-    callBackFun(mockResponse);
-  }, 500);
-
   // 📝 REAL API (Uncomment when backend is ready)
-  /*
   axios
-    .post("/employee/export", payload)
+    .post("/admin/employee/export", payload)
     .then((response) => {
       if (response && response.data) {
         callBackFun(response.data);
@@ -91,5 +44,42 @@ function _exportEmployeeCSV(payload, callBackFun) {
     .catch((error) => {
       toastDisplay(error?.response);
     });
-  */
+  
+}
+
+/**
+ * Import place data
+ * @param {*} payload
+ * @param {*} callBackFun
+ */
+function _importData(payload, callBackFun) {
+  axios
+    .post("/admin/employee/bulk/import", payload)
+    .then((response) => {
+      callBackFun(response);
+      toastDisplay(response, 'import');
+    })
+    .catch((error) => {
+      callBackFun(false);
+      toastDisplay(error.response, 'import');
+    });
+}
+
+/**
+ * Update Employee
+ * @param {*} payload
+ * @param {*} callBackFun
+ */
+function _updateEmployee(payload, callBackFun) {
+  axios
+    .post("/admin/employee/edit", payload)
+    .then((response) => {
+      if (response && response.data) {
+        callBackFun(response.data);
+      }
+    })
+    .catch((error) => {
+      toastDisplay(error?.response);
+      callBackFun(false);
+    });
 }

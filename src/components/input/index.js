@@ -64,7 +64,7 @@ export const Input = React.memo((props) => {
   const generateAriaLabel = () => {
     if (ariaLabel) return ariaLabel;
     if (labelProps?.text) return labelProps.text;
-    if (name) return name.replace(/([A-Z])/g, ' $1').toLowerCase();
+    if (name) return name
     if (placeholder) return placeholder;
     return "Input field";
   };
@@ -153,6 +153,7 @@ export const Input = React.memo((props) => {
   {/* Always render the input */}
   <InputText
     id={inputId}
+    name={name}
     className={`${inputClassName}`}
     aria-label={ariaLabelText}
     aria-required={required}
@@ -207,6 +208,7 @@ export const Input = React.memo((props) => {
 ) : (
   <InputText
     id={inputId}
+    name={name}
     className={`${inputClassName}`}
     aria-label={ariaLabelText}
     aria-required={required}

@@ -69,13 +69,16 @@ export default function EvacuationPage() {
       headerClassName: "sno_class",
       textAlign: "center",
       alignHeader: "left",
+      minWidth: "4rem",
+      maxWidth: "6rem",
     },
     {
       field: "person_refugee_name",
       header: translate(localeJson, "name_public_evacuee"),
       sortable: true,
       alignHeader: "left",
-      maxWidth: "4rem",
+      minWidth: "10rem",
+      maxWidth: "16rem",
       body: (rowData) => {
         return (
           <div className="flex flex-column">
@@ -90,8 +93,8 @@ export default function EvacuationPage() {
       header: translate(localeJson, "status_furigana"),
       sortable: true,
       alignHeader: "left",
-      minWidth: "3rem",
-      maxWidth: "4rem",
+      minWidth: "8rem",
+      maxWidth: "12rem",
     },
     {
       field: "place_name",
@@ -99,8 +102,8 @@ export default function EvacuationPage() {
       sortable: false,
       textAlign: "center",
       alignHeader: "center",
-      minWidth: "3rem",
-      maxWidth: "3rem",
+      minWidth: "10rem",
+      maxWidth: "14rem",
     },
     {
       field: "family_code",
@@ -108,8 +111,8 @@ export default function EvacuationPage() {
       sortable: true,
       textAlign: "center",
       alignHeader: "center",
-      minWidth: "3rem",
-      maxWidth: "4rem",
+      minWidth: "8rem",
+      maxWidth: "12rem",
     },
     {
       field: "family_count",
@@ -117,8 +120,8 @@ export default function EvacuationPage() {
       sortable: false,
       textAlign: "center",
       alignHeader: "center",
-      minWidth: "3rem",
-      maxWidth: "3rem",
+      minWidth: "4rem",
+      maxWidth: "6rem",
     },
     {
       field: "person_dob",
@@ -126,8 +129,8 @@ export default function EvacuationPage() {
       sortable: true,
       textAlign: "left",
       alignHeader: "left",
-      minWidth: "3rem",
-      maxWidth: "4rem",
+      minWidth: "10rem",
+      maxWidth: "14rem",
     },
     {
       field: "person_age",
@@ -135,8 +138,8 @@ export default function EvacuationPage() {
       sortable: true,
       textAlign: "center",
       alignHeader: "center",
-      minWidth: "3rem",
-      maxWidth: "3rem",
+      minWidth: "6rem",
+      maxWidth: "8rem",
     },
     {
       field: "person_gender",
@@ -144,8 +147,8 @@ export default function EvacuationPage() {
       sortable: true,
       textAlign: "left",
       alignHeader: "left",
-      minWidth: "3rem",
-      maxWidth: "3rem",
+      minWidth: "8rem",
+      maxWidth: "12rem",
     },
     {
       field: "special_care_name",
@@ -153,8 +156,8 @@ export default function EvacuationPage() {
       sortable: false,
       textAlign: "left",
       alignHeader: "left",
-      minWidth: "3rem",
-      maxWidth: "3rem",
+      minWidth: "10rem",
+      maxWidth: "14rem",
     },
   ];
 
@@ -234,13 +237,13 @@ export default function EvacuationPage() {
       let siNo = getListPayload.filters.start + 1;
       if (questionnaire && questionnaire?.length > 0) {
         questionnaire.map((ques, num) => {
-          let column = {
+          evacuationColumns.push({
             field: "question_" + ques.id,
             header: locale == "ja" ? ques.title : ques.title_en,
             minWidth: "10rem",
+            maxWidth: "16rem",
             display: "none",
-          };
-          evacuationColumns.push(column);
+          });
         });
       }
       evacuationColumns.push({
@@ -249,8 +252,8 @@ export default function EvacuationPage() {
         sortable: true,
         textAlign: "left",
         alignHeader: "left",
-        minWidth: "3.5rem",
-        maxWidth: "3.5rem",
+        minWidth: "8rem",
+        maxWidth: "12rem",
       });
       let placeIdObj = {};
       places.map((place) => {
@@ -338,8 +341,8 @@ export default function EvacuationPage() {
         sortable: true,
         textAlign: "left",
         alignHeader: "left",
-        minWidth: "3.5rem",
-        maxWidth: "3.5rem",
+        minWidth: "8rem",
+        maxWidth: "12rem",
       });
     }
     setTableLoading(false);
@@ -581,23 +584,21 @@ export default function EvacuationPage() {
               </div>
             </div>
             <div>
-              <div>
-                <form>
-                  <div className="modal-field-top-space modal-field-bottom-space flex flex-wrap float-right justify-content-end gap-3 lg:gap-2 md:gap-2 sm:gap-2 mobile-input">
+              <form>
+                <div className="p-fluid formgrid grid mt-3">
+                  <div className="field col-12 md:col-3 lg:col-3">
                     <InputDropdown
                       inputDropdownProps={{
                         inputId: "statusDropdown",
                         ariaLabel: translate(localeJson, "status_furigana"),
-                        inputDropdownParentClassName:
-                          "w-full lg:w-14rem md:w-14rem sm:w-10rem",
+                        inputDropdownParentClassName: "",
                         labelProps: {
                           text: translate(localeJson, "status_furigana"),
                           inputDropdownLabelClassName: "block",
                           htmlFor: "statusDropdown",
                         },
-                        inputDropdownClassName:
-                          "w-full lg:w-14rem md:w-14rem sm:w-10rem",
-                        customPanelDropdownClassName: "w-10rem",
+                        inputDropdownClassName: "",
+                        customPanelDropdownClassName: "",
                         value: selectedStatusOption,
                         options: getOptions(locale),
                         optionLabel: "label",
@@ -613,24 +614,15 @@ export default function EvacuationPage() {
                         ),
                         pt: {
                           trigger: {
-                            "aria-label": translate(
-                              localeJson,
-                              "status_furigana"
-                            ),
+                            "aria-label": translate(localeJson, "status_furigana"),
                             title: translate(localeJson, "status_furigana"),
                           },
                           input: {
-                            "aria-label": translate(
-                              localeJson,
-                              "status_furigana"
-                            ),
+                            "aria-label": translate(localeJson, "status_furigana"),
                             title: translate(localeJson, "status_furigana"),
                           },
                           select: {
-                            "aria-label": translate(
-                              localeJson,
-                              "status_furigana"
-                            ),
+                            "aria-label": translate(localeJson, "status_furigana"),
                             title: translate(localeJson, "status_furigana"),
                           },
                           panel: {
@@ -640,21 +632,20 @@ export default function EvacuationPage() {
                         },
                       }}
                     />
-
+                  </div>
+                  <div className="field col-12 md:col-3 lg:col-3">
                     <InputDropdown
                       inputDropdownProps={{
                         inputId: "evacuationSiteDropdown",
                         ariaLabel: translate(localeJson, "evacuation_site"),
-                        inputDropdownParentClassName:
-                          "w-full lg:w-14rem md:w-14rem sm:w-10rem",
+                        inputDropdownParentClassName: "",
                         labelProps: {
                           text: translate(localeJson, "evacuation_site"),
                           inputDropdownLabelClassName: "block",
                           htmlFor: "evacuationSiteDropdown",
                         },
-                        inputDropdownClassName:
-                          "w-full lg:w-14rem md:w-14rem sm:w-10rem",
-                        customPanelDropdownClassName: "w-10rem",
+                        inputDropdownClassName: "",
+                        customPanelDropdownClassName: "",
                         value: selectedOption,
                         options: evacuationPlaceList,
                         optionLabel: "name",
@@ -670,24 +661,15 @@ export default function EvacuationPage() {
                         ),
                         pt: {
                           trigger: {
-                            "aria-label": translate(
-                              localeJson,
-                              "evacuation_site"
-                            ),
+                            "aria-label": translate(localeJson, "evacuation_site"),
                             title: translate(localeJson, "evacuation_site"),
                           },
                           input: {
-                            "aria-label": translate(
-                              localeJson,
-                              "evacuation_site"
-                            ),
+                            "aria-label": translate(localeJson, "evacuation_site"),
                             title: translate(localeJson, "evacuation_site"),
                           },
                           select: {
-                            "aria-label": translate(
-                              localeJson,
-                              "evacuation_site"
-                            ),
+                            "aria-label": translate(localeJson, "evacuation_site"),
                             title: translate(localeJson, "evacuation_site"),
                           },
                           panel: {
@@ -697,54 +679,57 @@ export default function EvacuationPage() {
                         },
                       }}
                     />
-
+                  </div>
+                  <div className="field col-12 md:col-3 lg:col-3">
                     <Input
                       inputProps={{
                         name: "household_number",
                         id: "household_number",
-                        inputParentClassName:
-                          "w-full lg:w-13rem md:w-14rem sm:w-10rem",
+                        inputParentClassName: "w-full",
                         labelProps: {
                           text: translate(localeJson, "household_number"),
                           inputLabelClassName: "block",
                         },
-                        inputClassName:
-                          "w-full lg:w-13rem md:w-14rem sm:w-10rem",
+                        inputClassName: "",
                         value: familyCode,
                         onChange: (e) => handleFamilyCode(e),
                       }}
                     />
+                  </div>
+                  <div className="field col-12 md:col-3 lg:col-3">
                     <Input
                       inputProps={{
                         id: "refugee_name",
                         name: "refugee_name",
-                        inputParentClassName:
-                          "w-full lg:w-13rem md:w-14rem sm:w-10rem",
+                        inputParentClassName: "w-full",
                         labelProps: {
                           text: translate(localeJson, "name"),
                           inputLabelClassName: "block",
                         },
-                        inputClassName:
-                          "w-full lg:w-13rem md:w-14rem sm:w-10rem",
+                        inputClassName: "",
                         value: refugeeName,
                         onChange: (e) => setRefugeeName(e.target.value),
                       }}
                     />
-                    <div className="flex align-items-end">
-                      <Button
-                        buttonProps={{
-                          buttonClass: "w-12 search-button",
-                          text: translate(localeJson, "search_text"),
-                          icon: "pi pi-search",
-                          type: "button",
-                          onClick: () => searchListWithCriteria(),
-                        }}
-                        parentClass={"search-button"}
-                      />
-                    </div>
                   </div>
-                </form>
-              </div>
+                </div>
+                {/* Search Button - OUTSIDE the grid, aligned right */}
+                <div className="flex justify-content-end mt-3">
+                  <Button
+                    buttonProps={{
+                      buttonClass:
+                        "w-full lg:w-9rem md:w-9rem sm:w-9rem search-button block text-center p-0",
+                      text: translate(localeJson, "search_text"),
+                      icon: "pi pi-search",
+                      type: "button",
+                      onClick: () => searchListWithCriteria(),
+                    }}
+                    parentClass={
+                      "search-button w-full flex justify-content-end mb-3"
+                    }
+                  />
+                </div>
+              </form>
               <div className="hidden flex justify-content-between">
                 <div>
                   <p className="pt-4 page-header2 font-bold">

@@ -24,18 +24,18 @@ function _getDeptList(payload, callBackFun) {
         list: [
           {
             id: 1,
-            name: "Human Resources",
-            code: "HR001",
+            name: "Department 1",
+            code: "DEP001",
           },
           {
             id: 2,
-            name: "Finance",
-            code: "FIN002",
+            name: "Department 2",
+            code: "DEP002",
           },
           {
             id: 3,
-            name: "IT Department",
-            code: "IT003",
+            name: "Department 3",
+            code: "DEP003",
           },
         ],
       },

@@ -9,6 +9,7 @@ export const AdminManagementImportModal = dynamic(() => import('@/components/mod
 export const StaffManagementDetailModal = dynamic(() => import('@/components/modal/staffManagementDetailModal'), { ssr: false });
 export const StaffManagementEditModal = dynamic(() => import('@/components/modal/StaffManagementEditModal'), { ssr: false });
 export const CommonDialog = dynamic(() => import('@/components/modal/commonDialog'), { ssr: false });
+export const ExternalModal = dynamic(() => import('@/components/modal/externalModal'), { ssr: false });
 export const HqEditModal = dynamic(() => import('@/components/modal/headquartersManagementEditModal'), { ssr: false });
 export const HqManagementDetailModal = dynamic(() => import('@/components/modal/hqManagementDetailModal'), { ssr: false });
 export const PlaceEventBulkCheckOut = dynamic(() => import('@/components/modal/placeEventBulkCheckOut'), { ssr: false });

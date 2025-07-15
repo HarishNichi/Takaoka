@@ -53,12 +53,14 @@ export default function DepartmentanagementPage() {
     header: translate(localeJson, "header_slno"),
     headerClassName: "sno_class",
     textAlign: "center",
+    minWidth: "4rem",
+    maxWidth: "6rem",
   },
   {
     field: "name",
     header: translate(localeJson, "name"),
-    minWidth: "5rem",
-    maxWidth: "5rem",
+    minWidth: "10rem",
+    maxWidth: "14rem",
     body: (rowData) => (
       <p
         className="text-link-class "
@@ -70,8 +72,8 @@ export default function DepartmentanagementPage() {
   {
     field: "code",
     header: translate(localeJson, "department_id"),
-    minWidth: "5rem",
-    maxWidth: "5rem",
+    minWidth: "10rem",
+    maxWidth: "14rem",
   },
   {
     field: "actions",
@@ -79,6 +81,8 @@ export default function DepartmentanagementPage() {
     textAlign: "center",
     alignHeader: "center",
     className: "action_class",
+    minWidth: "8rem",
+    maxWidth: "12rem",
     body: (rowData) => (
       <div>
         <Button

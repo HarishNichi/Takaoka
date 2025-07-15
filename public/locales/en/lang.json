@@ -1210,5 +1210,6 @@
   "on": "on",
   "off": "off",
   "toggle_status": "Toggle status",
-  "switch_description": "Toggle the status of this place"
+  "switch_description": "Toggle the status of this place",
+  "edit_employee": "Edit Employee"
 }

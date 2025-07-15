@@ -156,10 +156,10 @@ export default function Setting() {
           translate(localeJson, "max_length_255")
       ),
     latitude: Yup.number().required(translate(localeJson, "latitude_required")),
-    default_shelf_life: Yup.string()
-      .required(translate(localeJson, "default_shell_life_days_required"))
-      .min(1, translate(localeJson, "default_shelf_life_min_length"))
-      .max(3, translate(localeJson, "default_shelf_life_max_length")),
+    // default_shelf_life: Yup.string()
+    //   .required(translate(localeJson, "default_shell_life_days_required"))
+    //   .min(1, translate(localeJson, "default_shelf_life_min_length"))
+    //   .max(3, translate(localeJson, "default_shelf_life_max_length")),
     longitude: Yup.number().required(
       translate(localeJson, "longitude_required")
     ),
@@ -354,10 +354,11 @@ export default function Setting() {
         initialValues={initialValues}
         enableReinitialize={true}
         onSubmit={(values, actions) => {
+          console.log("values", values);
           setLoader(true);
-          values.default_shelf_life = convertToSingleByte(
-            values.default_shelf_life
-          );
+          // values.default_shelf_life = convertToSingleByte(
+          //   values.default_shelf_life||1
+          // );
           values.disclosure_info_ja = values.disclosure_info_ja
             ? values.disclosure_info_ja
             : null;
@@ -366,22 +367,22 @@ export default function Setting() {
             : null;
           const formData = new FormData();
           // Assuming values.initial_load_status and values.scheduler_option are boolean
-          formData.append(
-            "initial_load_status",
-            values.initial_load_status ? "1" : "0"
-          );
-          formData.append(
-            "stockpile_management_status",
-            values.stockpile_management_status ? "1" : "0"
-          );
-          formData.append(
-            "scheduler_option",
-            values.scheduler_option ? "1" : "0"
-          );
-          formData.append(
-            "line_management_status",
-            values.line_management_status ? "1" : "0"
-          );
+          // formData.append(
+          //   "initial_load_status",
+          //   values.initial_load_status ? "1" : "0"
+          // );
+          // formData.append(
+          //   "stockpile_management_status",
+          //   values.stockpile_management_status ? "1" : "0"
+          // );
+          // formData.append(
+          //   "scheduler_option",
+          //   values.scheduler_option ? "1" : "0"
+          // );
+          // formData.append(
+          //   "line_management_status",
+          //   values.line_management_status ? "1" : "0"
+          // );
           formData.append(
             "disclosure_info_ja",
             values.disclosure_info_ja ? values.disclosure_info_ja : ""
@@ -409,12 +410,12 @@ export default function Setting() {
           data.forEach((item, index) => {
             for (const key in item) {
               item.is_visible = item.is_visible == true ? "1" : "0";
-              if (key !== "title") {
-                formData.append(
-                  `public_display_order[${index}][${key}]`,
-                  item[key]
-                );
-              }
+              // if (key !== "title") {
+              //   formData.append(
+              //     `public_display_order[${index}][${key}]`,
+              //     item[key]
+              //   );
+              // }
             }
           });
 

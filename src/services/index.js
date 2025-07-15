@@ -6,6 +6,7 @@ export * from "./bulkCheckout.service";
 export * from "./check_in_out.services";
 export * from "./common.services";
 export * from "./dashboard.services";
+export * from "./dept_management_services";
 export * from "./evacuation.services";
 export * from "./event_questionnaire.services";
 export * from "./external_evacuation.services";

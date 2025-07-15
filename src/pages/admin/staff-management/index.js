@@ -18,7 +18,7 @@ export default function StaffManagementPage() {
     const [createStaffOpen, setCreateStaffOpen] = useState(false);
     const [searchName, setSearchName] = useState("");
     const [registerModalAction, setRegisterModalAction] = useState('');
-    let blankStaffObj = { username: "", tel: "", name: "", password: "", event_id: "", place_id: "" };
+    let blankStaffObj = { username: "", tel: "", name: "", password: "", event_id: "", place_id: "",dept_id:"",employee_code_id:""};
     const [currentEditObj, setCurrentEditObj] = useState(blankStaffObj);
     const [deleteId, setDeleteId] = useState(null);
     const [deleteObj, setDeleteObj] = useState(null);
@@ -73,9 +73,9 @@ export default function StaffManagementPage() {
     };
 
     const columnsData = [
-        { field: 'slno', header: translate(localeJson, 'header_slno'), headerClassName: "sno_class", textAlign: "center" },
+        { field: 'slno', header: translate(localeJson, 'header_slno'), headerClassName: "sno_class", textAlign: "center", minWidth: "4rem", maxWidth: "6rem" },
         {
-            field: 'name', header: translate(localeJson, 'name'), minWidth: "5rem", maxWidth: "5rem",
+            field: 'name', header: translate(localeJson, 'name'), minWidth: "10rem", maxWidth: "14rem",
             body: (rowData) => (
                 <p className='text-link-class clickable-row' onClick={() => {
                     setStaff(rowData.id);
@@ -86,14 +86,14 @@ export default function StaffManagementPage() {
                 </p>
             )
         },
-        { field: 'username', header: translate(localeJson, 'userId'), minWidth: "5rem", maxWidth: "5rem" },
+        { field: 'username', header: translate(localeJson, 'userId'), minWidth: "10rem", maxWidth: "14rem" },
         {
             field: 'password',
             header: translate(localeJson, 'password'),
             body: (rowData) => {
                 return <PasswordColumn rowData={rowData} />
             },
-            minWidth: "5rem", maxWidth: "5rem"
+            minWidth: "10rem", maxWidth: "14rem"
         },
         {
             field: 'actions',
@@ -101,6 +101,8 @@ export default function StaffManagementPage() {
             textAlign: "center",
             alignHeader: "center",
             className: "action_class",
+            minWidth: "8rem",
+            maxWidth: "12rem",
             body: (rowData) => (
                 <div>
                     <Button
@@ -110,15 +112,13 @@ export default function StaffManagementPage() {
                             onClick: () => {
                                 setRegisterModalAction("edit")
                                 // Keys to extract
-                                const keysToExtract = ["id", "username", "tel", "name", "password", "event_id", "place_id"];
+                                const keysToExtract = ["id", "username", "dept_id","tel","employee_code_id" ,"name", "password", "event_id", "place_id"];
 
                                 // Creating a new object with only the desired keys
                                 const extractedData = keysToExtract.reduce((acc, key) => {
                                     acc[key] = rowData[key];
                                     return acc;
                                 }, {});
-
-                                // Assuming setRegisterModalAction and setCurrentEditObj are functions
                                 setRegisterModalAction("edit");
                                 setCurrentEditObj(extractedData);
                                 setEditStaffOpen(true)
@@ -208,6 +208,8 @@ export default function StaffManagementPage() {
                         prefecture_id: obj.prefecture_id ?? "",
                         address: obj.address ?? "",
                         first_login: obj.first_login ?? "",
+                        employee_code_id: obj.employee_code_id ?? "",
+                        dept_id: obj.dept_id ?? "",
                     }
                     preparedList.push(preparedObj);
                 })

@@ -1206,5 +1206,6 @@
   "on": "オン",
   "off": "オフ",
   "toggle_status": "ステータスを切り替え",
-  "switch_description": "この避難所のステータスを切り替えます"
+  "switch_description": "この避難所のステータスを切り替えます",
+  "edit_employee": "従業員情報を編集"
 }

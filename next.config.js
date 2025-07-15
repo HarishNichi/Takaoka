@@ -35,10 +35,10 @@ const nextConfig = {
   ],
 };
 
-// Conditionally add 'output: export' if the API URL matches
-// if (apiUrl === 'https://rakurakuapi.nichi.in/api') {
-//   nextConfig.output = 'export';
-// }
+//onditionally add 'output: export' if the API URL matches
+if (apiUrl === 'https://takaoka-api.nichi.in/api') {
+  nextConfig.output = 'export';
+}
 
 // Export the config wrapped with bundle analyzer
 module.exports = withBundleAnalyzer(nextConfig);

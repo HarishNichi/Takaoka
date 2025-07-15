@@ -72,12 +72,14 @@ export default function AdminManagementPage() {
     header: translate(localeJson, "header_slno"),
     headerClassName: "sno_class",
     textAlign: "center",
+    minWidth: "4rem",
+    maxWidth: "6rem",
   },
   {
     field: "name",
     header: translate(localeJson, "name"),
-    minWidth: "5rem",
-    maxWidth: "5rem",
+    minWidth: "10rem",
+    maxWidth: "14rem",
     body: (rowData) => (
       <p
         className="text-link-class clickable-row"
@@ -95,15 +97,15 @@ export default function AdminManagementPage() {
   {
     field: "username",
     header: translate(localeJson, "userId"),
-    minWidth: "5rem",
-    maxWidth: "5rem",
+    minWidth: "10rem",
+    maxWidth: "14rem",
   },
   {
     field: "password",
     header: translate(localeJson, "password"),
     body: (rowData) => <PasswordColumn rowData={rowData} />,
-    minWidth: "5rem",
-    maxWidth: "5rem",
+    minWidth: "10rem",
+    maxWidth: "14rem",
   },
   {
     field: "actions",
@@ -111,6 +113,8 @@ export default function AdminManagementPage() {
     textAlign: "center",
     alignHeader: "center",
     className: "action_class",
+    minWidth: "8rem",
+    maxWidth: "12rem",
     body: (rowData) => (
       <div>
         <Button

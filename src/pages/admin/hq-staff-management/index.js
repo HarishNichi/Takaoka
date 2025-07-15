@@ -48,9 +48,9 @@ export default function HeadQuartersPage() {
     };
 
     const columnNames = [
-        { field: 'slno', header: translate(localeJson, 'header_slno'), headerClassName: "sno_class", textAlign: "center" },
+        { field: 'slno', header: translate(localeJson, 'header_slno'), headerClassName: "sno_class", textAlign: "center", minWidth: "4rem", maxWidth: "4rem" },
         {
-            field: 'name', header: translate(localeJson, 'name'), minWidth: "5rem", maxWidth: "5rem",
+            field: 'name', header: translate(localeJson, 'name'), minWidth: "8rem", maxWidth: "12rem",
             body: (rowData) => (
                 <p className='text-link-class clickable-row' onClick={(e) => {
                     e.preventDefault();
@@ -62,14 +62,14 @@ export default function HeadQuartersPage() {
                 </p>
             )
         },
-        { field: 'username', header: translate(localeJson, 'userId'), minWidth: "5rem", maxWidth: "5rem" },
+        { field: 'username', header: translate(localeJson, 'userId'), minWidth: "8rem", maxWidth: "12rem" },
         {
             field: 'password',
             header: translate(localeJson, 'password'),
             body: (rowData) => {
                 return <PasswordColumn rowData={rowData} />
             },
-            minWidth: "5rem", maxWidth: "5rem"
+            minWidth: "8rem", maxWidth: "12rem"
         },
         {
             field: 'actions',

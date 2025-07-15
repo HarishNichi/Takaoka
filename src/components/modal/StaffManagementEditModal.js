@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Dialog } from "primereact/dialog";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import _ from "lodash";
+import _, { set } from "lodash";
 import { TabView, TabPanel } from "primereact/tabview";
 import { DepartmentManagementServices } from "@/services/dept_management_services";
 import {
@@ -12,13 +12,14 @@ import {
   Input,
   Password,
   ValidationError,
+  InputDropdown,
 } from "@/components";
 import {
   convertToSingleByte,
   getValueByKeyRecursively as translate,
 } from "@/helper";
 import { LayoutContext } from "@/layout/context/layoutcontext";
-import { CommonServices, StaffManagementService } from "@/services";
+import { CommonServices, StaffManagementService,EmployeeServices } from "@/services";
 import { useAppSelector } from "@/redux/hooks";
 
 const StaffManagementEditModal = React.memo(function StaffManagementEditModal(props) {
@@ -63,6 +64,8 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
   ];
   const [tableLoading, setTableLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
+  const [employeeList, setEmployeeList] = useState([]);
+  const [departmentList, setDepartmentList] = useState([]);
   const [columns, setColumns] = useState([]);
   const [columns1, setColumns1] = useState([]);
   const [eventList, setEventList] = useState([]);
@@ -79,6 +82,19 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
   const [rowClick, setRowClick] = useState(true);
   const [selectedEvents, setSelectedEvents] = useState(null);
   const [selectedPlaces, setSelectedPlaces] = useState(null);
+  const [filterLoading,setFilterLoading] = useState(false);
+   const [getListPayload, setGetListPayload] = useState({
+      filters: {
+        start: 0,
+        limit: 100,
+        sort_by: "",
+        order_by: "desc",
+        employee_name: "",
+        department: "",
+        person_in_charge: "",
+        evacuation_shelter: "",
+      },
+    });
   const isEmail = (value) => {
     // Check if the value includes '@' and matches the email pattern
     return (
@@ -92,8 +108,7 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
       .max(100, translate(localeJson, "user_id_max_100"))
       .test("is-email", translate(localeJson, "user_id_email"), isEmail),
     name: Yup.string()
-      .required(translate(localeJson, "staff_name_required"))
-      .max(100, translate(localeJson, "staff_name_max_required")),
+      .required(translate(localeJson, "staff_name_required")),
     tel: Yup.string()
       .nullable()
       .test(
@@ -128,6 +143,7 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
   /** Services */
   const { getStaffEventListWithActiveStatus } = CommonServices;
   const { getActivePlaceList } = StaffManagementService;
+  const { getEmployeeList } = EmployeeServices;
 
   useEffect(() => {
     setSelectedEvents(currentEditObj?.event_id);
@@ -135,8 +151,20 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
   }, [locale, props]);
 
   useEffect(() => {
-    fetchData();
+     const payload = {
+      filters: {
+        ...getListPayload.filters,
+        refugee_name: "",
+        department: "",
+        person_in_charge: "",
+        evacuation_shelter: "",
+      },
+    };
+      getEmployeeList(payload,onGetEmployeeDropdownList);
+      fetchData();
+      onGetDepartmentDropdownListOnMounting();
   }, [locale, props]);
+
 
   useEffect(() => {
     if (props.currentEditObj?.event_id) {
@@ -241,6 +269,117 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
     };
   };
 
+  const onGetEmployeeDropdownList = (response) => {
+  let employeeDropdownList = [
+    {
+      name: "--",
+      id: null,
+    },
+  ];
+
+  if (response.success && !_.isEmpty(response.data)) {
+    const data = response.data.list;
+    data.forEach((employee) => {
+      const dropdownItem = {
+        name:
+          response.locale === "ja"
+            ? employee.person_name
+            : employee.person_refugee_name || employee.person_name,
+        id: employee.employee_code_id,
+      };
+      employeeDropdownList.push(dropdownItem);
+    });
+    setEmployeeList(employeeDropdownList); // You need to define `employeeList` state
+  }
+};
+
+  // Fake API call function — replace with your real API function
+   const fetchEmployeeList = async (searchValue) => {
+    const payload = {
+        filters: {
+            ...getListPayload.filters,
+            refugee_name: searchValue,
+            department: "",
+            person_in_charge: "",
+            evacuation_shelter: "",
+        },
+    };
+    setFilterLoading(true);
+    await getEmployeeList(payload, (response) => {
+        const data = response?.data?.list || [];
+
+        // Build new employees from API response
+        const newEmployees = data.map((employee) => ({
+            name:
+                response.locale === "ja"
+                    ? employee.person_name
+                    : employee.person_refugee_name || employee.person_name,
+            id: employee.employee_code_id,
+        }));
+
+        // Combine old list (excluding default "--" option) + new employees
+        const combined = [...employeeList.filter(e => e.id !== null), ...newEmployees];
+
+        // Remove duplicates by 'id'
+        const uniqueEmployees = _.uniqBy(combined, 'id');
+
+        // Final list with "--" option at top
+        setEmployeeList([{ name: "--", id: null }, ...uniqueEmployees]);
+        setFilterLoading(false);
+    });
+    setFilterLoading(false);
+};
+
+
+    // Debounced version to avoid spamming API
+    const debouncedFetch = _.debounce((value) => {
+        console.log("Debounced fetch called with value:", value);
+        if (value && value.length >= 2) {
+            fetchEmployeeList(value);
+        }
+    }, 500); // wait 500ms after typing stops
+
+    const onFilterSearch = (event) => {
+        console.log("onFilterSearch", event);
+        debouncedFetch(event.filter);
+    };
+
+      const onGetDepartmentDropdownListOnMounting = () => {
+        const payload = {
+          filters: {
+            start: 0,
+            limit: 100, // Get all departments
+            sort_by: "name",
+            order_by: "asc",
+          },
+        };
+        DepartmentManagementServices.getDeptList(
+          payload,
+          onGetDepartmentDropdownList
+        );
+      };
+    
+      const onGetDepartmentDropdownList = (response) => {
+        let departmentDropdownList = [
+          {
+            name: "--",
+            id: null,
+          },
+        ];
+        if (response?.success && !_.isEmpty(response.data?.list)) {
+          const data = response.data.list;
+          data.forEach((obj) => {
+            let departmentItem = {
+              name: locale === "ja" ? obj.name : obj.name_en || obj.name,
+              id: obj.id,
+            };
+            departmentDropdownList.push(departmentItem);
+          });
+          setDepartmentList(departmentDropdownList);
+        }
+      };
+
+
   return (
     <>
       <Formik
@@ -276,6 +415,7 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
           handleBlur,
           handleSubmit,
           resetForm,
+          setFieldValue
         }) => (
           <div>
             <form onSubmit={handleSubmit}>
@@ -339,7 +479,7 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
                     >
                       <div className="">
                         <div className="modal-field-bottom-space">
-                          <Input
+                          {/* <Input
                             inputProps={{
                               inputParentClassName: `${
                                 errors.name && touched.name && "p-invalid pb-1"
@@ -358,7 +498,82 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
                               onChange: handleChange,
                               onBlur: handleBlur,
                             }}
-                          />
+                          /> */}
+                           <InputDropdown
+                                              inputDropdownProps={{
+                                                inputId: "employeeDropdown",
+                                                ariaLabel: translate(localeJson, "name"),
+                                                filter: true,
+                                                // 🔗 Used with label htmlFor
+                                                inputDropdownParentClassName:
+                                                  "w-full",
+                                                inputDropdownClassName:
+                                                  "w-full",
+                                                customPanelDropdownClassName: "w-10rem",
+                          
+                                                // ✅ Main fallback aria-label
+                          
+                                                // ✅ Proper label
+                                                labelProps: {
+                                                  text: translate(localeJson, "name"),
+                                                  inputDropdownLabelClassName: "block",
+                                                  htmlFor: "evacuationDropdown",
+                                                },
+                          
+                                                // ✅ Value and options
+                                                value: values && values.employee_code_id,
+                                                options: employeeList,
+                                                optionLabel: "name",
+                                                optionValue: "id",
+                                               onChange: (e)=>{
+                                               const selected = employeeList.find(emp => emp.id === e.value);
+                                                setFieldValue("name", selected.name);
+                                                setFieldValue("employee_code_id", e.value);
+                                               },
+                                               onBlur: handleBlur,
+                                               onFilter:onFilterSearch,
+                                               loading: filterLoading,
+                          
+                                                // ✅ Accessible message for no options
+                                                emptyMessage: (
+                                                  <span
+                                                    aria-live="polite"
+                                                    aria-label={translate(localeJson, "data_not_found")}
+                                                    className="sr-only"
+                                                  >
+                                                    {translate(localeJson, "data_not_found")}
+                                                  </span>
+                                                ),
+                                                pt: {
+                                                  trigger: {
+                                                    // ✅ Fixes the issue
+                                                    "aria-label": translate(
+                                                      localeJson,
+                                                      "name"
+                                                    ),
+                                                    title: translate(localeJson, "name"),
+                                                  },
+                                                  input: {
+                                                    "aria-label": translate(
+                                                      localeJson,
+                                                      "name"
+                                                    ),
+                                                    title: translate(localeJson, "name"),
+                                                  },
+                                                  select: {
+                                                    "aria-label": translate(
+                                                      localeJson,
+                                                      "name"
+                                                    ),
+                                                    title: translate(localeJson, "name"),
+                                                  },
+                                                  panel: {
+                                                    "aria-live": "polite",
+                                                    "aria-atomic": "true",
+                                                  },
+                                                },
+                                              }}
+                                            />
                           <ValidationError
                             errorBlock={
                               errors.name && touched.name && errors.name
@@ -449,6 +664,61 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
                           <ValidationError
                             errorBlock={errors.tel && touched.tel && errors.tel}
                           />
+                        </div>
+                        <div className="modal-field-bottom-space">
+                           <InputDropdown
+                                              inputDropdownProps={{
+                                                inputId: "departmentDropdown",
+                                                ariaLabel: translate(localeJson, "department"),
+                                                inputDropdownParentClassName:
+                                                  "w-full",
+                                                inputDropdownClassName:
+                                                  "w-full",
+                                                customPanelDropdownClassName: "w-10rem",
+                          
+                                                labelProps: {
+                                                  text: translate(localeJson, "department"),
+                                                  inputDropdownLabelClassName: "block",
+                                                  htmlFor: "departmentDropdown",
+                                                },
+                          
+                                                value: values && values.dept_id,
+                                                options: departmentList,
+                                                optionLabel: "name",
+                                                optionValue: "id",
+                                                onChange: (e) => {
+                                                  setFieldValue("dept_id", e.value); // <-- Store department ID
+                                                },
+                          
+                                                emptyMessage: (
+                                                  <span
+                                                    aria-live="polite"
+                                                    aria-label={translate(localeJson, "data_not_found")}
+                                                    className="sr-only"
+                                                  >
+                                                    {translate(localeJson, "data_not_found")}
+                                                  </span>
+                                                ),
+                                                pt: {
+                                                  trigger: {
+                                                    "aria-label": translate(localeJson, "department"),
+                                                    title: translate(localeJson, "department"),
+                                                  },
+                                                  input: {
+                                                    "aria-label": translate(localeJson, "department"),
+                                                    title: translate(localeJson, "department"),
+                                                  },
+                                                  select: {
+                                                    "aria-label": translate(localeJson, "department"),
+                                                    title: translate(localeJson, "department"),
+                                                  },
+                                                  panel: {
+                                                    "aria-live": "polite",
+                                                    "aria-atomic": "true",
+                                                  },
+                                                },
+                                              }}
+                                            />
                         </div>
                       </div>
                     </TabPanel>
