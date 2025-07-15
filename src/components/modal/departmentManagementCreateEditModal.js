@@ -34,29 +34,12 @@ const DepartmentCreateEditModal = React.memo(function DepartmentCreateEditModal(
           name: convertToSingleByte(values.name),
           code: convertToSingleByte(values.code),
         };
-        props.onRegister(payload);
 
-        if (registerModalAction === "create") {
-          DepartmentManagementServices.addDepartment(payload, (res) => {
-            if (res.success) {
-              refreshList();
-              resetForm();
-              close();
-            }
-          });
-        } else if (registerModalAction === "edit") {
-          DepartmentManagementServices.updateDepartment(
-            currentObj.id,
-            payload,
-            (res) => {
-              if (res.success) {
-                refreshList();
-                resetForm();
-                close();
-              }
-            }
-          );
-        }
+       if (registerModalAction === "create") {
+    props.onRegister(payload);
+  } else if (registerModalAction === "edit") {
+    props.onRegister({ ...payload, id: currentObj.id });
+  }
       }}
     >
       {({

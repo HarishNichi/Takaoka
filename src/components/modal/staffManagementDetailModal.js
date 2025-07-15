@@ -26,8 +26,6 @@ const StaffManagementDetailModal = React.memo(function StaffManagementDetailModa
     {
       field: "tel",
       header: translate(localeJson, "tel"),
-      textAlign: "center",
-      alignHeader: "center",
     },
   ];
   const columnsData = [
@@ -48,6 +46,8 @@ const StaffManagementDetailModal = React.memo(function StaffManagementDetailModa
         "staff_management_detail_login_history_name"
       ),
       maxWidth: "2rem",
+      textAlign: "center",
+      alignHeader: "center",
     },
     {
       field: "login_datetime",
@@ -56,11 +56,15 @@ const StaffManagementDetailModal = React.memo(function StaffManagementDetailModa
         "staff_management_detail_login_history_login_datetime"
       ),
       maxWidth: "2rem",
+      textAlign: "center",
+      alignHeader: "center",
     },
     {
       field: "logout_datetime",
       header: translate(localeJson, "logout_dateTime"),
       maxWidth: "2rem",
+      textAlign: "center",
+      alignHeader: "center",
     },
   ];
   const columnsPlaceData = [
@@ -82,6 +86,8 @@ const StaffManagementDetailModal = React.memo(function StaffManagementDetailModa
       ),
       minWidth: "4rem",
       maxWidth: "4rem",
+      textAlign: "center",
+      alignHeader: "center",
     },
     {
       field: "login_datetime",
@@ -89,10 +95,14 @@ const StaffManagementDetailModal = React.memo(function StaffManagementDetailModa
         localeJson,
         "staff_management_detail_login_history_login_datetime"
       ),
+      textAlign: "center",
+      alignHeader: "center",
     },
     {
       field: "logout_datetime",
       header: translate(localeJson, "logout_dateTime"),
+      textAlign: "center",
+      alignHeader: "center",
     },
   ];
   const [getListPayload, setGetListPayload] = useState({

@@ -126,12 +126,7 @@ export default function DepartmentanagementPage() {
     if (registerModalAction === "create") {
       DepartmentManagementServices.addDepartment(formData, (res) => {
         if (res.success) {
-          const newEntry = {
-            ...res.data,
-            slno: columnValues.length + 1, // or calculate based on pagination
-          };
-          setColumnValues((prev) => [...prev, newEntry]);
-          setTotalCount((prev) => prev + 1);
+          listApiCall();
           setEditStaffOpen(false);
           showOverFlow();
         }
@@ -139,14 +134,10 @@ export default function DepartmentanagementPage() {
       });
     } else if (registerModalAction === "edit") {
       DepartmentManagementServices.updateDepartment(
-        currentObj.id,
         formData,
         (res) => {
           if (res.success) {
-            const updatedList = columnValues.map((item) =>
-              item.id === currentObj.id ? { ...item, ...res.data } : item
-            );
-            setColumnValues(updatedList);
+            listApiCall();
             setEditStaffOpen(false);
             showOverFlow();
           }
@@ -155,24 +146,11 @@ export default function DepartmentanagementPage() {
       );
     }
   };
-  const importFileApi = (file) => {
-    const formData = new FormData();
-    formData.append("file", file);
-    setLoader(true); // Show loading while import is processing
-    DepartmentManagementServices.importDepartmentCSV(formData, (res) => {
-      if (res?.success) {
-        setTableLoading(true);
-        listApiCall(); // Refresh table data
-      }
-      onImportModalClose(); // Close modal
-      setLoader(false); // Hide loader
-    });
-  };
   const listApiCall = () => {
     setTableLoading(true);
     DepartmentManagementServices.getDeptList(listPayload, (res) => {
-      const rows = res?.data?.list || [];
-      const total = res?.data?.total || 0;
+      const rows = res?.data?.model?.list || [];
+      const total = res?.data?.model?.total || 0;
       const tempList = rows.map((row, idx) => ({
         ...row,
         slno: idx + Number(listPayload.filters.start) + 1,
@@ -225,11 +203,9 @@ export default function DepartmentanagementPage() {
     if (status == "confirm") {
       DepartmentManagementServices.deleteDepartment(deleteId, (res) => {
         if (res.success) {
-          // Remove from local table instantly or re–fetch:
-          setColumnValues((prev) =>
-            prev.filter((item) => item.id !== deleteId)
-          );
-          setTotalCount((prev) => prev - 1);
+          listApiCall();
+          setDeleteOpen(false);
+          showOverFlow();
         }
       });
     }
@@ -238,12 +214,7 @@ export default function DepartmentanagementPage() {
   };
   return (
     <React.Fragment>
-      <AdminManagementImportModal
-        open={importModalOpen}
-        close={onImportModalClose}
-        importFile={importFileApi}
-        modalHeaderText={translate(localeJson, "department_management_import")}
-      />
+      
       <AdminManagementDeleteModal
         open={deleteOpen}
         close={onDeleteClose}
@@ -278,7 +249,7 @@ export default function DepartmentanagementPage() {
             />
             <div>
               <div className="flex justify-content-end flex-wrap">
-                <Button
+                {/* <Button
                   buttonProps={{
                     type: "submit",
                     rounded: "true",
@@ -291,7 +262,7 @@ export default function DepartmentanagementPage() {
                     text: translate(localeJson, "import"),
                   }}
                   parentClass={"mr-1 mt-1 import-button"}
-                />
+                /> */}
                 <Button
                   buttonProps={{
                     type: "submit",
