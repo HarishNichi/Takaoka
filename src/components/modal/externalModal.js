@@ -99,34 +99,41 @@ export default function External(props) {
   const [departmentList, setDepartmentList] = useState([]);
 
   useEffect(() => {
-    console.log("editObj", editObj);  
     // Fetch department list for dropdown
-    const payload = {
-      filters: {
-        start: 0,
-        limit: 100,
-        sort_by: "name",
-        order_by: "asc",
-      },
-    };
-    DepartmentManagementServices.getDeptList(payload, (response) => {
+    const payload = {};
+    DepartmentManagementServices.getUserDepartmentDropdown(payload, (response) => {
       let departmentDropdownList = [
         {
           name: "--",
           id: null,
         },
       ];
-      if (response?.success && response.data?.list) {
-        response.data.list.forEach((obj) => {
-          departmentDropdownList.push({
-            name: obj.name,
-            id: String(obj.id),
-          });
+      let departments = Array.isArray(response.data) ? response.data : response.data?.list || [];
+      departments.forEach((obj) => {
+        departmentDropdownList.push({
+          name: obj.name,
+          id: String(obj.id), // Ensure id is string
         });
-      }
+      });
       setDepartmentList(departmentDropdownList);
     });
   }, [editObj]);
+
+  // Ensure department field is set after departmentList loads (for edit mode)
+  useEffect(() => {
+    if (registerModalAction === "edit" && editObj && formikRef.current && departmentList.length > 0) {
+      // Find the correct department id as string
+      const deptId = editObj.department?.id
+        ? String(editObj.department.id)
+        : (editObj.department
+            ? String(editObj.department)
+            : (editObj.person_dept_id ? String(editObj.person_dept_id) : ""));
+      // Only set if not already set or if not matching
+      if (formikRef.current.values.department !== deptId) {
+        formikRef.current.setFieldValue("department", deptId);
+      }
+    }
+  }, [departmentList, editObj, registerModalAction]);
 
   // Initial values mapping
   const initialValues =
@@ -252,7 +259,6 @@ export default function External(props) {
         initialValues={initialValues}
         enableReinitialize
         onSubmit={(values, actions) => {
-          console.log("Form submitted with values:", values);
           // Transform values to match what parent component expects
           const transformedValues = {
             ...values,
@@ -263,7 +269,6 @@ export default function External(props) {
             // Remove the dob object since parent expects separate fields
             dob: undefined
           };
-          console.log("Transformed values:", transformedValues);
           setEvacueeValues(transformedValues);
           close();
           actions.resetForm({ values: initialValues });
@@ -279,14 +284,9 @@ export default function External(props) {
           resetForm,
           setFieldValue,
         }) => {
-          // Debug: Log any validation errors
-          if (Object.keys(errors).length > 0) {
-            console.log("Form validation errors:", errors);
-          }
           return (
           <div id="external">
             <form onSubmit={(e) => {
-              console.log("Form onSubmit triggered");
               handleSubmit(e);
             }}>
               <Dialog
@@ -881,7 +881,6 @@ export default function External(props) {
                                         ? true
                                         : false,
                                     onChange: (evt) => {
-                                      console.log("evt", evt);
                                       const { value, name } = evt.target;
                                       const month = convertToSingleByte(values.dob.month);
                                       const year = convertToSingleByte(values.dob.year);
@@ -1026,9 +1025,6 @@ export default function External(props) {
                           type: "submit",
                           text: buttonText,
                           onClick: (e) => {
-                            console.log("Submit button clicked");
-                            console.log("Current form values:", values);
-                            console.log("Current form errors:", errors);
                             handleSubmit(e);
                           },
                         }}

@@ -116,7 +116,7 @@ export default function StaffManagementPage() {
 
                                 // Creating a new object with only the desired keys
                                 const extractedData = keysToExtract.reduce((acc, key) => {
-                                    acc[key] = rowData[key];
+                                    acc[key] = key === "dept_id" ? Number(rowData[key]) : rowData[key];
                                     return acc;
                                 }, {});
                                 setRegisterModalAction("edit");

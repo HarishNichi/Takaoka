@@ -123,7 +123,15 @@ export default function EmployeeListPage() {
               text: translate(localeJson, "edit"),
               buttonClass: "edit-button",
               onClick: () => {
-                setCurrentEmployee(rowData);
+                // Find the department id by name (robust match)
+                const dept = departmentList.find(
+                  (d) => d.name && rowData.person_dept_id &&
+                    d.name.trim().toLowerCase() === rowData.person_dept_id.trim().toLowerCase()
+                );
+                setCurrentEmployee({
+                  ...rowData,
+                  department: dept ? String(dept.id) : "",
+                });
                 setEditModalOpen(true);
                 hideOverFlow();
               },
@@ -152,7 +160,6 @@ export default function EmployeeListPage() {
   };
 
   const handleResponse = (res) => {
-    console.log("Employee List Response:", res);
     if (res?.success) {
       const rows = res.data.list.map((emp, i) => ({
         si_no: i + getListPayload.filters.start + 1,
@@ -170,7 +177,8 @@ export default function EmployeeListPage() {
         address: emp.person_address,
         gender: emp.person_gender ? String(emp.person_gender) : "",
         dob: emp.person_dob,
-        department: 1||emp.person_dept_id,
+        department: emp.person_dept_id, // for display (optional)
+        person_dept_id: emp.person_dept_id, // <-- ensure this is present for modal matching
       }));
       setEmployeeList(rows);
       setTotalCount(res.data.total);
@@ -239,15 +247,8 @@ export default function EmployeeListPage() {
   };
 
   const onGetDepartmentDropdownListOnMounting = () => {
-    const payload = {
-      filters: {
-        start: 0,
-        limit: 100, // Get all departments
-        sort_by: "name",
-        order_by: "asc",
-      },
-    };
-    DepartmentManagementServices.getDeptList(
+    const payload = {};
+    DepartmentManagementServices.getUserDepartmentDropdown(
       payload,
       onGetDepartmentDropdownList
     );
@@ -260,19 +261,15 @@ export default function EmployeeListPage() {
         id: null,
       },
     ];
-    if (response?.success && !_.isEmpty(response.data?.list)) {
-      const data = response.data.list;
-      data.forEach((obj) => {
-        let departmentItem = {
-          name: locale === "ja" ? obj.name : obj.name_en || obj.name,
-          name_en: obj.name_en || obj.name,
-          name_ja: obj.name,
-          id: obj.id,
-        };
-        departmentDropdownList.push(departmentItem);
-      });
-      setDepartmentList(departmentDropdownList);
-    }
+    let departments = Array.isArray(response.data) ? response.data : response.data?.list || [];
+    departments.forEach((obj) => {
+      let departmentItem = {
+        name: obj.name,
+        id: obj.id,
+      };
+      departmentDropdownList.push(departmentItem);
+    });
+    setDepartmentList(departmentDropdownList);
   };
 
   const onStaffImportClose = () => {

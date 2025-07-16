@@ -345,15 +345,8 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
     };
 
       const onGetDepartmentDropdownListOnMounting = () => {
-        const payload = {
-          filters: {
-            start: 0,
-            limit: 100, // Get all departments
-            sort_by: "name",
-            order_by: "asc",
-          },
-        };
-        DepartmentManagementServices.getDeptList(
+        const payload = {};
+        DepartmentManagementServices.getUserDepartmentDropdown(
           payload,
           onGetDepartmentDropdownList
         );
@@ -366,17 +359,15 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
             id: null,
           },
         ];
-        if (response?.success && !_.isEmpty(response.data?.list)) {
-          const data = response.data.list;
-          data.forEach((obj) => {
-            let departmentItem = {
-              name: locale === "ja" ? obj.name : obj.name_en || obj.name,
-              id: obj.id,
-            };
-            departmentDropdownList.push(departmentItem);
-          });
-          setDepartmentList(departmentDropdownList);
-        }
+        let departments = Array.isArray(response.data) ? response.data : response.data?.list || [];
+        departments.forEach((obj) => {
+          let departmentItem = {
+            name: obj.name,
+            id: Number(obj.id), // Ensure id is a number
+          };
+          departmentDropdownList.push(departmentItem);
+        });
+        setDepartmentList(departmentDropdownList);
       };
 
 
@@ -682,7 +673,7 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
                                                   htmlFor: "departmentDropdown",
                                                 },
                           
-                                                value: values && values.dept_id,
+                                                value: values && (values.dept_id !== null && values.dept_id !== undefined ? Number(values.dept_id) : null),
                                                 options: departmentList,
                                                 optionLabel: "name",
                                                 optionValue: "id",

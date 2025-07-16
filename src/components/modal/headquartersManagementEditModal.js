@@ -173,15 +173,8 @@ const HqEditModal = React.memo(function HqEditModal(props) {
 
   // Department dropdown functions
   const onGetDepartmentDropdownListOnMounting = () => {
-    const payload = {
-      filters: {
-        start: 0,
-        limit: 100, // Get all departments
-        sort_by: "name",
-        order_by: "asc",
-      },
-    };
-    DepartmentManagementServices.getDeptList(
+    const payload = {};
+    DepartmentManagementServices.getUserDepartmentDropdown(
       payload,
       onGetDepartmentDropdownList
     );
@@ -194,17 +187,15 @@ const HqEditModal = React.memo(function HqEditModal(props) {
         id: null,
       },
     ];
-    if (response?.success && !_.isEmpty(response.data?.list)) {
-      const data = response.data.list;
-      data.forEach((obj) => {
-        let departmentItem = {
-          name: locale === "ja" ? obj.name : obj.name_en || obj.name,
-          id: obj.id,
-        };
-        departmentDropdownList.push(departmentItem);
-      });
-      setDepartmentList(departmentDropdownList);
-    }
+    let departments = Array.isArray(response.data) ? response.data : response.data?.list || [];
+    departments.forEach((obj) => {
+      let departmentItem = {
+        name: obj.name,
+        id: obj.id,
+      };
+      departmentDropdownList.push(departmentItem);
+    });
+    setDepartmentList(departmentDropdownList);
   };
 
   // Initialize data on mount
@@ -329,7 +320,7 @@ const HqEditModal = React.memo(function HqEditModal(props) {
                             inputDropdownLabelClassName: "block",
                             htmlFor: "employeeDropdown",
                             spanText: "*",
-                            inputLabelSpanClassName: "p-error",
+                            inputDropdownLabelSpanClassName: "p-error",
                             labelMainClassName: "modal-label-field-space",
                           },
                           value: values && values.employee_code_id,
@@ -449,7 +440,7 @@ const HqEditModal = React.memo(function HqEditModal(props) {
                           customPanelDropdownClassName: "w-10rem",
                           labelProps: {
                             text: translate(localeJson, "department"),
-                            inputDropdownLabelClassName: "block",
+                            inputDropdownLabelSpanClassName: "block",
                             htmlFor: "departmentDropdown",
                             labelMainClassName: "modal-label-field-space",
                           },

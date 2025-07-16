@@ -8,7 +8,7 @@ export const DepartmentManagementServices = {
   addDepartment: _addDepartment,
   updateDepartment: _updateDepartment,
   deleteDepartment: _deleteDepartment,
-
+  getUserDepartmentDropdown: _getUserDepartmentDropdown,
 };
 
 /**
@@ -87,3 +87,22 @@ function _deleteDepartment(payload, callBackFun) {
             toastDisplay(error?.response);
         });
 }
+
+/**
+ * Get department dropdown for user (new API)
+ * @param {*} payload
+ * @param {*} callBackFun
+ */
+function _getUserDepartmentDropdown(payload, callBackFun) {
+  axios.post('user/department/dropdown', payload)
+    .then((response) => {
+      if (response && response.data) {
+        callBackFun(response.data);
+      }
+    })
+    .catch((error) => {
+      toastDisplay(error?.response);
+    });
+}
+
+DepartmentManagementServices.getUserDepartmentDropdown = _getUserDepartmentDropdown;
