@@ -657,59 +657,7 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
                           />
                         </div>
                         <div className="modal-field-bottom-space">
-                           <InputDropdown
-                                              inputDropdownProps={{
-                                                inputId: "departmentDropdown",
-                                                ariaLabel: translate(localeJson, "department"),
-                                                inputDropdownParentClassName:
-                                                  "w-full",
-                                                inputDropdownClassName:
-                                                  "w-full",
-                                                customPanelDropdownClassName: "w-10rem",
-                          
-                                                labelProps: {
-                                                  text: translate(localeJson, "department"),
-                                                  inputDropdownLabelClassName: "block",
-                                                  htmlFor: "departmentDropdown",
-                                                },
-                          
-                                                value: values && (values.dept_id !== null && values.dept_id !== undefined ? Number(values.dept_id) : null),
-                                                options: departmentList,
-                                                optionLabel: "name",
-                                                optionValue: "id",
-                                                onChange: (e) => {
-                                                  setFieldValue("dept_id", e.value); // <-- Store department ID
-                                                },
-                          
-                                                emptyMessage: (
-                                                  <span
-                                                    aria-live="polite"
-                                                    aria-label={translate(localeJson, "data_not_found")}
-                                                    className="sr-only"
-                                                  >
-                                                    {translate(localeJson, "data_not_found")}
-                                                  </span>
-                                                ),
-                                                pt: {
-                                                  trigger: {
-                                                    "aria-label": translate(localeJson, "department"),
-                                                    title: translate(localeJson, "department"),
-                                                  },
-                                                  input: {
-                                                    "aria-label": translate(localeJson, "department"),
-                                                    title: translate(localeJson, "department"),
-                                                  },
-                                                  select: {
-                                                    "aria-label": translate(localeJson, "department"),
-                                                    title: translate(localeJson, "department"),
-                                                  },
-                                                  panel: {
-                                                    "aria-live": "polite",
-                                                    "aria-atomic": "true",
-                                                  },
-                                                },
-                                              }}
-                                            />
+                           {/* Department dropdown removed as per request */}
                         </div>
                       </div>
                     </TabPanel>

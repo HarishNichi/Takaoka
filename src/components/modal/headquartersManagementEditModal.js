@@ -431,58 +431,7 @@ const HqEditModal = React.memo(function HqEditModal(props) {
                       />
                     </div>
                     <div className="modal-field-bottom-space">
-                      <InputDropdown
-                        inputDropdownProps={{
-                          inputId: "departmentDropdown",
-                          ariaLabel: translate(localeJson, "department"),
-                          inputDropdownParentClassName: "w-full",
-                          inputDropdownClassName: "w-full",
-                          customPanelDropdownClassName: "w-10rem",
-                          labelProps: {
-                            text: translate(localeJson, "department"),
-                            inputDropdownLabelSpanClassName: "block",
-                            htmlFor: "departmentDropdown",
-                            labelMainClassName: "modal-label-field-space",
-                          },
-                          value: values && values.dept_id,
-                          options: departmentList,
-                          optionLabel: "name",
-                          optionValue: "id",
-                          onChange: (e) => {
-                            setFieldValue("dept_id", e.value);
-                          },
-                          emptyMessage: (
-                            <span
-                              aria-live="polite"
-                              aria-label={translate(
-                                localeJson,
-                                "data_not_found"
-                              )}
-                              className="sr-only"
-                            >
-                              {translate(localeJson, "data_not_found")}
-                            </span>
-                          ),
-                          pt: {
-                            trigger: {
-                              "aria-label": translate(localeJson, "department"),
-                              title: translate(localeJson, "department"),
-                            },
-                            input: {
-                              "aria-label": translate(localeJson, "department"),
-                              title: translate(localeJson, "department"),
-                            },
-                            select: {
-                              "aria-label": translate(localeJson, "department"),
-                              title: translate(localeJson, "department"),
-                            },
-                            panel: {
-                              "aria-live": "polite",
-                              "aria-atomic": "true",
-                            },
-                          },
-                        }}
-                      />
+                      {/* Department dropdown removed as per request */}
                     </div>
                     <div className="">
                       <Input
