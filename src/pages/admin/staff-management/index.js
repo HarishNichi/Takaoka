@@ -19,7 +19,7 @@ export default function StaffManagementPage() {
     const [searchName, setSearchName] = useState("");
     const [registerModalAction, setRegisterModalAction] = useState('');
     let blankStaffObj = { username: "", tel: "", name: "", password: "", event_id: "", place_id: "",dept_id:"",employee_code_id:""};
-    const [currentEditObj, setCurrentEditObj] = useState(blankStaffObj);
+    const [currentEditObj, setCurrentEditObj] = useState({});
     const [deleteId, setDeleteId] = useState(null);
     const [deleteObj, setDeleteObj] = useState(null);
     const [list, setList] = useState([]);
@@ -112,15 +112,15 @@ export default function StaffManagementPage() {
                             onClick: () => {
                                 setRegisterModalAction("edit")
                                 // Keys to extract
-                                const keysToExtract = ["id", "username", "dept_id","tel","employee_code_id" ,"name", "password", "event_id", "place_id"];
+                                // const keysToExtract = ["id", "username", "dept_id","tel","employee_code_id" ,"name", "password", "event_id", "place_id"];
 
                                 // Creating a new object with only the desired keys
-                                const extractedData = keysToExtract.reduce((acc, key) => {
-                                    acc[key] = key === "dept_id" ? Number(rowData[key]) : rowData[key];
-                                    return acc;
-                                }, {});
+                                // const extractedData = keysToExtract.reduce((acc, key) => {
+                                //     acc[key] = key === "dept_id" ? Number(rowData[key]) : rowData[key];
+                                //     return acc;
+                                // }, {});
                                 setRegisterModalAction("edit");
-                                setCurrentEditObj(extractedData);
+                                setCurrentEditObj(rowData);
                                 setEditStaffOpen(true)
                                 hideOverFlow();
                             }
@@ -284,7 +284,7 @@ export default function StaffManagementPage() {
                     open={editStaffOpen}
                     close={onStaffEditClose}
                     register={onRegister}
-                    currentEditObj={{ ...currentEditObj }}
+                    currentEditObj={currentEditObj}
                     refreshList={getStaffList}
                     registerModalAction={registerModalAction}
                 />

@@ -86,7 +86,7 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
    const [getListPayload, setGetListPayload] = useState({
       filters: {
         start: 0,
-        limit: 100,
+        limit: 10,
         sort_by: "",
         order_by: "desc",
         employee_name: "",
@@ -154,7 +154,7 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
      const payload = {
       filters: {
         ...getListPayload.filters,
-        refugee_name: "",
+        refugee_name: props.currentEditObj?.name || "",
         department: "",
         person_in_charge: "",
         evacuation_shelter: "",
@@ -162,7 +162,7 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
     };
       getEmployeeList(payload,onGetEmployeeDropdownList);
       fetchData();
-      onGetDepartmentDropdownListOnMounting();
+      // onGetDepartmentDropdownListOnMounting();
   }, [locale, props]);
 
 
@@ -182,7 +182,6 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
     }
   }, [eventList, placeList, props]);
   const resetAndCloseForm = (callback) => {
-    close();
     callback();
     props.refreshList();
   };
@@ -196,31 +195,6 @@ const StaffManagementEditModal = React.memo(function StaffManagementEditModal(pr
             limit: 10,
         },
     };
-
-    // ✅ Replace with original getDeptList event fetch
-    DepartmentManagementServices.getDeptList(payload, (response) => {
-        if (response?.success && response.data?.list?.length) {
-            const data = response.data.list;
-            const sortedData = data.sort((a, b) => b.is_active - a.is_active);
-
-            const preparedList = sortedData.map((obj, i) => ({
-                index: payload.filters.start + i + 1,
-                id: obj.id,
-                name: locale === "en" && obj.name_en ? obj.name_en : obj.name,
-                code: obj.code,
-                is_active: obj.is_active,
-            }));
-
-            setEventList(preparedList);
-            setColumns([...columnsData]);
-            setTotalCount(response.data.total);
-        } else {
-            setEventList([]);
-            setTotalCount(0);
-        }
-
-        setTableLoading(false);
-    });
 
     // ✅ Keep place list fetch unchanged
     getActivePlaceList((response) => {

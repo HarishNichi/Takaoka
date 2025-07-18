@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 // import _ from 'lodash';
 
 import {
@@ -56,7 +56,7 @@ export default function EmployeeListPage() {
     },
   });
 
-  const columns = [
+  const columns = useMemo(() => [
     { field: "si_no", header: translate(localeJson, "si_no"), sortable: false, minWidth: "4rem", maxWidth: "6rem" },
     {
       field: "employee_code",
@@ -109,6 +109,13 @@ export default function EmployeeListPage() {
       maxWidth: "12rem",
     },
     {
+      field: "language",
+      header: translate(localeJson, "language"),
+      minWidth: "6rem",
+      maxWidth: "8rem",
+      body: (row) => row.language,
+    },
+    {
       field: "actions",
       header: translate(localeJson, "common_action"),
       textAlign: "center",
@@ -141,7 +148,7 @@ export default function EmployeeListPage() {
         </div>
       ),
     },
-  ];
+  ], [locale]);
 
   const { getEmployeeList, exportEmployeeCSV, importData } = EmployeeServices;
 
@@ -179,6 +186,7 @@ export default function EmployeeListPage() {
         dob: emp.person_dob,
         department: emp.person_dept_id, // for display (optional)
         person_dept_id: emp.person_dept_id, // <-- ensure this is present for modal matching
+        language: locale, // <-- add language property
       }));
       setEmployeeList(rows);
       setTotalCount(res.data.total);
@@ -547,6 +555,7 @@ export default function EmployeeListPage() {
             </form>
 
             <NormalTable
+            key={locale}
               lazy
               id="employee-list"
               totalRecords={totalCount}
