@@ -6,6 +6,7 @@ export const EmployeeServices = {
   exportEmployeeCSV: _exportEmployeeCSV,
   importData: _importData,
   updateEmployee: _updateEmployee,
+  callBatchDownload: _callBatchDownload,
 };
 
 /**
@@ -82,4 +83,21 @@ function _updateEmployee(payload, callBackFun) {
       toastDisplay(error?.response);
       callBackFun(false);
     });
+}
+
+function _callBatchDownload(payload, callBackFun) {
+  axios
+    .post("/admin/employee/check-batch-status", payload)
+      .then((response) => {
+            if (response && response.data) {
+                callBackFun(response);
+                // response.data.data?.download_link && toastDisplay(response);
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+            localStorage.setItem('batch_ids','');
+            callBackFun(false);
+            toastDisplay(error?.response);  
+        });
 }

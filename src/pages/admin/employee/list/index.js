@@ -28,7 +28,7 @@ import { DepartmentManagementServices } from "@/services/dept_management_service
 import _ from "lodash";
 
 export default function EmployeeListPage() {
-  const { locale, localeJson } = useContext(LayoutContext);
+  const { locale, localeJson,setLoader } = useContext(LayoutContext);
   const [employeeList, setEmployeeList] = useState([]);
   const [tableLoading, setTableLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
@@ -107,13 +107,6 @@ export default function EmployeeListPage() {
       sortable: true,
       minWidth: "8rem",
       maxWidth: "12rem",
-    },
-    {
-      field: "language",
-      header: translate(localeJson, "language"),
-      minWidth: "6rem",
-      maxWidth: "8rem",
-      body: (row) => row.language,
     },
     {
       field: "actions",
@@ -195,6 +188,7 @@ export default function EmployeeListPage() {
   };
 
   const handleExport = () => {
+    setLoader(true);
     exportEmployeeCSV(getListPayload, (res) => {
       if (res.success) {
         const downloadLink = document.createElement("a");
@@ -202,6 +196,10 @@ export default function EmployeeListPage() {
         downloadLink.download =
           "Employee_" + getYYYYMMDDHHSSSSDateTimeFormat(new Date()) + ".csv";
         downloadLink.click();
+        setLoader(false);
+      }
+      else {
+        setLoader(false);
       }
     });
   };
@@ -286,11 +284,15 @@ export default function EmployeeListPage() {
   };
 
   const importFileApi = (file) => {
+    setLoader(true);
     const formData = new FormData();
     formData.append("csv_file", file);
     importData(formData, (file) => {
       if (file) {
-        fetchEmployees();
+        onImportSuccess(file);
+      }
+      else {
+        setLoader(false);
       }
     });
     setImportPlaceOpen(false);
@@ -326,6 +328,17 @@ export default function EmployeeListPage() {
     });
   };
 
+  /**
+     * Import on success callback function
+     * @param {*} response 
+     */
+    const onImportSuccess = (response) => {
+         if (response) {
+        // Store as JSON string
+        localStorage.setItem('batch_ids', JSON.stringify(response.data.data.batchIds));
+    }
+        setLoader(false);
+    }
   return (
     <>
       {" "}

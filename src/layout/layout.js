@@ -11,7 +11,7 @@ import AppSidebar from '@/layout/AppSidebar';
 import AppTopbar from '@/layout/AppTopbar';
 import { LayoutContext } from '@/layout/context/layoutcontext';
 import { zipDownloadWithURL, getValueByKeyRecursively as translate, } from '@/helper';
-import { QRCodeCreateServices } from '@/services';
+import { EmployeeServices, QRCodeCreateServices } from '@/services';
 import toast from 'react-hot-toast';
 import Head from 'next/head'; // Import Head for SEO-friendly title updates
 import { Analytics } from "@vercel/analytics/next"
@@ -324,6 +324,33 @@ const Layout = (props) => {
 
     }, [localStorage.getItem("batch_id")]);
 
+    useEffect(() => {
+
+        const interval = setInterval(() => {
+          const batchIdsStr = localStorage.getItem("batch_ids");
+        const currentValue = batchIdsStr ? JSON.parse(batchIdsStr) : "";
+
+            if (currentValue) {
+                const payload = { batchIds: currentValue };
+
+                // Call the service to download the zip file
+                EmployeeServices.callBatchDownload(payload, (res) => {
+                    console.log("Batch download response:", res.data);
+                    if(res && res.data.code === 200) {
+                        toast.success(res.data.message, {
+                            position: "top-right",
+                        });
+                        localStorage.setItem('batch_ids', '');
+                    }
+                });
+            }
+        }, 15000); // 15000 ms = 15 seconds
+
+        // Cleanup interval on component unmount
+        return () => clearInterval(interval);
+
+    }, [localStorage.getItem("batch_id")]);
+
 
 
     useUnmountEffect(() => {
@@ -338,6 +365,7 @@ const Layout = (props) => {
             });
             await zipDownloadWithURL(response.data.data.download_link);
             localStorage.setItem('batch_id', '');
+            localStorage.setItem('batch_ids', '');
         }
     };
 

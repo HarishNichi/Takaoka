@@ -104,21 +104,12 @@ export default function StaffManagementPage() {
             minWidth: "8rem",
             maxWidth: "12rem",
             body: (rowData) => (
-                <div>
+                <div style={{ display: 'flex', flexDirection: 'row', gap: '8px', justifyContent: 'center', alignItems: 'center' }}>
                     <Button
                         buttonProps={{
                             text: translate(localeJson, 'edit'),
                             buttonClass: "edit-button",
                             onClick: () => {
-                                setRegisterModalAction("edit")
-                                // Keys to extract
-                                // const keysToExtract = ["id", "username", "dept_id","tel","employee_code_id" ,"name", "password", "event_id", "place_id"];
-
-                                // Creating a new object with only the desired keys
-                                // const extractedData = keysToExtract.reduce((acc, key) => {
-                                //     acc[key] = key === "dept_id" ? Number(rowData[key]) : rowData[key];
-                                //     return acc;
-                                // }, {});
                                 setRegisterModalAction("edit");
                                 setCurrentEditObj(rowData);
                                 setEditStaffOpen(true)
@@ -210,6 +201,7 @@ export default function StaffManagementPage() {
                         first_login: obj.first_login ?? "",
                         employee_code_id: obj.employee_code_id ?? "",
                         dept_id: obj.dept_id ?? "",
+                        language: locale, // Add language property
                     }
                     preparedList.push(preparedObj);
                 })
