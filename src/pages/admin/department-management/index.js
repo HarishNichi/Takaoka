@@ -84,7 +84,7 @@ export default function DepartmentanagementPage() {
     minWidth: "8rem",
     maxWidth: "12rem",
     body: (rowData) => (
-      <div>
+      <div style={{ display: 'flex', flexDirection: 'row', gap: '8px', justifyContent: 'center', alignItems: 'center' }}>
         <Button
           buttonProps={{
             text: translate(localeJson, "edit"),
@@ -154,6 +154,7 @@ export default function DepartmentanagementPage() {
       const tempList = rows.map((row, idx) => ({
         ...row,
         slno: idx + Number(listPayload.filters.start) + 1,
+        language: locale,
       }));
       setColumnValues(tempList);
       setTotalCount(total);

@@ -107,13 +107,6 @@ export default function EmployeeListPage() {
       maxWidth: "12rem",
     },
     {
-      field: "language",
-      header: translate(localeJson, "language"),
-      minWidth: "6rem",
-      maxWidth: "8rem",
-      body: (row) => row.language,
-    },
-    {
       field: "actions",
       header: translate(localeJson, "common_action"),
       textAlign: "center",

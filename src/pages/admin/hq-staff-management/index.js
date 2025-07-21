@@ -141,7 +141,7 @@ export default function HeadQuartersPage() {
                 actualList.forEach((element, index) => {
                     let key = process.env.NEXT_PUBLIC_PASSWORD_ENCRYPTION_KEY;
                     let decryptedData = decryptPassword(element.passwordfe, key);
-                    let tempObj = { ...element, password: decryptedData, slno: index + parseInt(listPayload.filters.start) + 1 };
+                    let tempObj = { ...element, password: decryptedData, slno: index + parseInt(listPayload.filters.start) + 1, language: locale };
                     tempList.push(tempObj);
                 });
                 listTotalCount = response.data.total;
