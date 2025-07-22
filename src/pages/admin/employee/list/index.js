@@ -61,14 +61,14 @@ export default function EmployeeListPage() {
     {
       field: "employee_code",
       header: translate(localeJson, "employee_code"),
-      sortable: true,
+      sortable: false,
       minWidth: "10rem",
       maxWidth: "14rem",
     },
     {
       field: "employee_name",
       header: translate(localeJson, "employee_name"),
-      sortable: true,
+      sortable: false,
       minWidth: "10rem",
       maxWidth: "14rem",
     },
@@ -79,14 +79,14 @@ export default function EmployeeListPage() {
         locale === "ja"
           ? getJapaneseDateDisplayYYYYMMDDFormat(row.dob)
           : getEnglishDateDisplayFormat(row.dob),
-      sortable: true,
+      sortable: false,
       minWidth: "10rem",
       maxWidth: "14rem",
     },
     {
       field: "department",
       header: translate(localeJson, "department"),
-      sortable: true,
+      sortable: false,
       minWidth: "10rem",
       maxWidth: "14rem",
       body: (row) => {
@@ -97,14 +97,14 @@ export default function EmployeeListPage() {
     {
       field: "person_in_charge",
       header: translate(localeJson, "person_in_charge"),
-      sortable: true,
+      sortable: false,
       minWidth: "10rem",
       maxWidth: "14rem",
     },
     {
       field: "evacuation_shelter",
       header: translate(localeJson, "evacuation_place"),
-      sortable: true,
+      sortable: false,
       minWidth: "8rem",
       maxWidth: "12rem",
     },
