@@ -1,16 +1,31 @@
-import React, { useContext } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Dialog } from 'primereact/dialog';
 import { Formik } from "formik";
 import * as Yup from "yup";
 
-import { Input, Button, Password, ValidationError } from "@/components";
+import { Input, Button, Password, ValidationError, InputDropdown } from "@/components";
 import { convertToSingleByte, getValueByKeyRecursively as translate } from "@/helper";
 import { LayoutContext } from "@/layout/context/layoutcontext";
-import { AdminManagementServices } from "@/services";
+import { AdminManagementServices, EmployeeServices } from "@/services";
+import _ from "lodash";
 
 const AdminManagementCreateEditModal = React.memo(function AdminManagementCreateEditModal(props) {
-    const { localeJson } = useContext(LayoutContext);
+    const { localeJson,locale } = useContext(LayoutContext);
     const { open, close } = props && props;
+    const [employeeList, setEmployeeList] = useState([]);
+     const [filterLoading, setFilterLoading] = useState(false);
+    const [getListPayload, setGetListPayload] = useState({
+        filters: {
+          start: 0,
+          limit: 100,
+          sort_by: "",
+          order_by: "desc",
+          employee_name: "",
+          department: "",
+          person_in_charge: "",
+          evacuation_shelter: "",
+        },
+      });
     const isEmail = (value) => {
         // Check if the value includes '@' and matches the email pattern
         return !value.includes('@') || /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(value);
@@ -61,6 +76,96 @@ const AdminManagementCreateEditModal = React.memo(function AdminManagementCreate
         props.refreshList();
     }
 
+    const onGetEmployeeDropdownList = (response) => {
+        let employeeDropdownList = [
+          {
+            name: "--",
+            id: null,
+          },
+        ];
+    
+        if (response.success && !_.isEmpty(response.data)) {
+          const data = response.data.list;
+          data.forEach((employee) => {
+            const dropdownItem = {
+              name:
+                response.locale === "ja"
+                  ? employee.person_name
+                  : employee.person_refugee_name || employee.person_name,
+              id: employee.employee_code_id,
+            };
+            employeeDropdownList.push(dropdownItem);
+          });
+          setEmployeeList(employeeDropdownList);
+        }
+      };
+
+        const fetchEmployeeList = async (searchValue) => {
+          const payload = {
+            filters: {
+              ...getListPayload.filters,
+              refugee_name: searchValue,
+              department: "",
+              person_in_charge: "",
+              evacuation_shelter: "",
+            },
+          };
+          setFilterLoading(true);
+          await EmployeeServices.getEmployeeList(payload, (response) => {
+            const data = response?.data?.list || [];
+      
+            // Build new employees from API response
+            const newEmployees = data.map((employee) => ({
+              name:
+                response.locale === "ja"
+                  ? employee.person_name
+                  : employee.person_refugee_name || employee.person_name,
+              id: employee.employee_code_id,
+            }));
+      
+            // Combine old list (excluding default "--" option) + new employees
+            const combined = [
+              ...employeeList.filter((e) => e.id !== null),
+              ...newEmployees,
+            ];
+      
+            // Remove duplicates by 'id'
+            const uniqueEmployees = _.uniqBy(combined, "id");
+      
+            // Final list with "--" option at top
+            setEmployeeList([{ name: "--", id: null }, ...uniqueEmployees]);
+            setFilterLoading(false);
+          });
+          setFilterLoading(false);
+        };
+      
+        // Debounced version to avoid spamming API
+        const debouncedFetch = _.debounce((value) => {
+          console.log("Debounced fetch called with value:", value);
+          if (value && value.length >= 2) {
+            fetchEmployeeList(value);
+          }
+        }, 500); // wait 500ms after typing stops
+      
+        const onFilterSearch = (event) => {
+          console.log("onFilterSearch", event);
+          debouncedFetch(event.filter);
+        };
+
+      // Initialize data on mount
+        useEffect(() => {
+          const payload = {
+            filters: {
+              ...getListPayload.filters,
+              refugee_name: "",
+              department: "",
+              person_in_charge: "",
+              evacuation_shelter: "",
+            },
+          };
+          EmployeeServices.getEmployeeList(payload, onGetEmployeeDropdownList);
+        }, [locale, props]);
+
     return (
         <>
             <Formik
@@ -91,7 +196,8 @@ const AdminManagementCreateEditModal = React.memo(function AdminManagementCreate
                     handleChange,
                     handleBlur,
                     handleSubmit,
-                    resetForm
+                    resetForm,
+                    setFieldValue
                 }) => (
                     <div>
                         <form onSubmit={handleSubmit}>
@@ -132,27 +238,73 @@ const AdminManagementCreateEditModal = React.memo(function AdminManagementCreate
                                         <div className="modal-header">
                                             {props.registerModalAction == 'create' ? translate(localeJson, 'add_admin_management') : translate(localeJson, 'edit_admin_management')}
                                         </div>
-                                        <div className="modal-field-bottom-space">
-                                            <Input
-                                                inputProps={{
-                                                    inputParentClassName: `${errors.name && touched.name && 'p-invalid pb-1'}`,
-                                                    labelProps: {
-                                                        text: translate(localeJson, 'name'),
-                                                        inputLabelClassName: "block",
-                                                        spanText: "*",
-                                                        inputLabelSpanClassName: "p-error",
-                                                        labelMainClassName: "modal-label-field-space"
-                                                    },
-                                                    inputClassName: "w-full",
-                                                    id: "name",
-                                                    name: "name",
-                                                    value: values && values.name,
-                                                    onChange: handleChange,
-                                                    onBlur: handleBlur,
-                                                }}
-                                            />
-                                            <ValidationError errorBlock={errors.name && touched.name && errors.name} />
-                                        </div>
+                                         <div className="modal-field-bottom-space">
+                                                              <InputDropdown
+                                                                inputDropdownProps={{
+                                                                  inputId: "employeeDropdown",
+                                                                  ariaLabel: translate(localeJson, "name"),
+                                                                  filter: true,
+                                                                  inputDropdownParentClassName: "w-full",
+                                                                  inputDropdownClassName: "w-full",
+                                                                  customPanelDropdownClassName: "w-10rem",
+                                                                  labelProps: {
+                                                                    text: translate(localeJson, "name"),
+                                                                    inputDropdownLabelClassName: "block",
+                                                                    htmlFor: "employeeDropdown",
+                                                                    spanText: "*",
+                                                                    inputDropdownLabelSpanClassName: "p-error",
+                                                                    labelMainClassName: "modal-label-field-space",
+                                                                  },
+                                                                  value: values && values.employee_code_id,
+                                                                  options: employeeList,
+                                                                  optionLabel: "name",
+                                                                  optionValue: "id",
+                                                                  onChange: (e) => {
+                                                                    const selected = employeeList.find(
+                                                                      (emp) => emp.id === e.value
+                                                                    );
+                                                                    setFieldValue("name", selected.name);
+                                                                    setFieldValue("employee_code_id", e.value);
+                                                                  },
+                                                                  onBlur: handleBlur,
+                                                                  onFilter: onFilterSearch,
+                                                                  loading: filterLoading,
+                                                                  emptyMessage: (
+                                                                    <span
+                                                                      aria-live="polite"
+                                                                      aria-label={translate(
+                                                                        localeJson,
+                                                                        "data_not_found"
+                                                                      )}
+                                                                      className="sr-only"
+                                                                    >
+                                                                      {translate(localeJson, "data_not_found")}
+                                                                    </span>
+                                                                  ),
+                                                                  pt: {
+                                                                    trigger: {
+                                                                      "aria-label": translate(localeJson, "name"),
+                                                                      title: translate(localeJson, "name"),
+                                                                    },
+                                                                    input: {
+                                                                      "aria-label": translate(localeJson, "name"),
+                                                                      title: translate(localeJson, "name"),
+                                                                    },
+                                                                    select: {
+                                                                      "aria-label": translate(localeJson, "name"),
+                                                                      title: translate(localeJson, "name"),
+                                                                    },
+                                                                    panel: {
+                                                                      "aria-live": "polite",
+                                                                      "aria-atomic": "true",
+                                                                    },
+                                                                  },
+                                                                }}
+                                                              />
+                                                              <ValidationError
+                                                                errorBlock={errors.name && touched.name && errors.name}
+                                                              />
+                                                            </div>
                                         <div className="modal-field-bottom-space">
                                             <Input
                                                 inputProps={{
