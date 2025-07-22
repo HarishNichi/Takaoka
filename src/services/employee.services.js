@@ -25,6 +25,7 @@ function _getEmployeeList(payload, callBackFun) {
       }
     })
     .catch((error) => {
+      callBackFun(false);
       toastDisplay(error?.response);
     });
 }
