@@ -117,23 +117,19 @@ export default function External(props) {
       });
       setDepartmentList(departmentDropdownList);
     });
-  }, [editObj]);
+  }, []);
 
   // Ensure department field is set after departmentList loads (for edit mode)
   useEffect(() => {
     if (registerModalAction === "edit" && editObj && formikRef.current && departmentList.length > 0) {
       // Find the correct department id as string
-      const deptId = editObj.department?.id
-        ? String(editObj.department.id)
-        : (editObj.department
-            ? String(editObj.department)
-            : (editObj.person_dept_id ? String(editObj.person_dept_id) : ""));
+      const deptId = editObj.department
       // Only set if not already set or if not matching
       if (formikRef.current.values.department !== deptId) {
         formikRef.current.setFieldValue("department", deptId);
       }
     }
-  }, [departmentList, editObj, registerModalAction]);
+  }, [editObj]);
 
   // Initial values mapping
   const initialValues =
@@ -152,11 +148,8 @@ export default function External(props) {
             date: editObj.dob ? new Date(editObj.dob).getDate().toString().padStart(2, '0') : '',
           },
           gender: editObj.gender || editObj.person_gender || '',
-          department: editObj.department?.id
-            ? String(editObj.department.id)
-            : (editObj.department
-                ? String(editObj.department)
-                : (editObj.person_dept_id ? String(editObj.person_dept_id) : '')),
+          department: editObj.department || ""
+
         }
       : {
           id: '',
@@ -661,64 +654,6 @@ export default function External(props) {
                           errors.address && touched.address && errors.address
                         }
                       />
-                      {/* <Input
-                        inputProps={{
-                          inputParentClassName: `w-full custom_input ${errors.address2 && touched.address2 && "p-invalid"
-                            }`,
-                          labelProps: {
-                            spanText: "*",
-                            inputLabelClassName: "block font-bold",
-                            inputLabelSpanClassName: "p-error",
-                            labelMainClassName: "pb-2",
-                          },
-                          inputClassName: "w-full",
-                          id: "address2",
-                          name: "address2",
-                          value: values.address2,
-                          disabled:
-                            values?.family_register_from == "0" ||
-                              isMRecording || values.addressAsRep
-                              ? true
-                              : false,
-                          placeholder: translate(
-                            localeJson,
-                            "house_name_number"
-                          ),
-                          onChange: (evt) => {
-                            setFieldValue("address2", evt.target.value)
-                          },
-                          onBlur: handleBlur,
-                          inputRightIconProps: {
-                            display: true,
-                            audio: {
-                              display: props.registerModalAction == 'create' ? true : (values?.family_register_from == "0" ? false : true),
-                            },
-                            icon: "",
-                            isRecording: isMRecording,
-                            onRecordValueChange: (rec) => {
-                              const fromData = new FormData();
-                              fromData.append("audio_sample", rec);
-                              getText(fromData, (res) => {
-                                if (res?.data?.content) {
-                                  setFieldValue(
-                                    "address2",
-                                    res?.data?.content
-                                  );
-                                }
-                              });
-                            },
-                            onRecordingStateChange:
-                              handleRecordingStateChange,
-                          },
-                        }}
-                      />
-                      <ValidationError
-                        errorBlock={
-                          errors.address2 &&
-                          touched.address2 &&
-                          errors.address2
-                        }
-                      /> */}
                     </div>
                     {/* DOB fields */}
                     <div className="mt-4">

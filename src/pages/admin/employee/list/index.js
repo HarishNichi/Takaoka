@@ -125,8 +125,9 @@ export default function EmployeeListPage() {
               onClick: () => {
                 // Find the department id by name (robust match)
                 const dept = departmentList.find(
-                  (d) => d.name && rowData.person_dept_id &&
-                    d.name.trim().toLowerCase() === rowData.person_dept_id.trim().toLowerCase()
+                  (d) => {
+                    return d.name.trim().toLowerCase() == rowData.department.trim().toLowerCase();
+                  }
                 );
                 setCurrentEmployee({
                   ...rowData,
@@ -141,7 +142,7 @@ export default function EmployeeListPage() {
         </div>
       ),
     },
-  ], [locale]);
+  ], [locale,departmentList]);
 
   const { getEmployeeList, exportEmployeeCSV, importData } = EmployeeServices;
 
@@ -267,7 +268,7 @@ export default function EmployeeListPage() {
         id: null,
       },
     ];
-    let departments = Array.isArray(response.data) ? response.data : response.data?.list || [];
+    let departments = response.data || [];
     departments.forEach((obj) => {
       let departmentItem = {
         name: obj.name,
