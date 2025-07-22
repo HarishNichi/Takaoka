@@ -15,7 +15,7 @@ import {
 import { LayoutContext } from "@/layout/context/layoutcontext";
 
 // Assume getAddressFromZipCode is available in helper or service
-import { getAddressFromZipCode } from "@/helper";
+
 import { CommonServices } from "@/services/common.services";
 import { DepartmentManagementServices } from "@/services/dept_management_services";
 
@@ -196,21 +196,18 @@ export default function External(props) {
           }
         }
       ),
-    postalCode: Yup.string()
-      .required(translate(localeJson, "postal_code_required"))
-      .test("postal-code-format", translate(localeJson, "postal_code_length"), function (value) {
-        if (!value) return false;
-        // Allow both formats: 1234567 and 123-4567
-        const cleanValue = value.replace(/-/g, '');
-        return /^[0-9]{7}$/.test(cleanValue);
-      })
-      .test("testPostalCode", translate(localeJson, "zip_code_mis_match"), function (value) {
-        const { prefecture_id } = this.parent;
-        if (postalCodePrefectureId && prefecture_id) {
-          return postalCodePrefectureId === prefecture_id;
+      postalCode: Yup.string().nullable()
+      .test("testPostalCode", translate(localeJson, "zip_code_mis_match"), 
+        (value, context) => {
+        const { prefecture_id } = context.parent;
+        if (postalCodePrefectureId && prefecture_id && postalCodePrefectureId != null && prefecture_id != null) {
+          return postalCodePrefectureId == prefecture_id
         }
-        return true;
-      }),
+        else return true
+      
+    })
+        .min(7, translate(localeJson, "postal_code_length"))
+        .max(7, translate(localeJson, "postal_code_length")),
     prefecture_id: Yup.string().required(translate(localeJson, "c_required")),
     address: Yup.string()
       .required(translate(localeJson, "c_address_is_required"))
@@ -242,7 +239,7 @@ export default function External(props) {
     department: Yup.string().required(translate(localeJson, "department_name_required")),
   });
 
-  const { getText } = CommonServices;
+  const { getText,getAddressFromZipCode } = CommonServices;
 
   return (
     <>

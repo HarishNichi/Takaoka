@@ -7,6 +7,7 @@ export const EmployeeServices = {
   importData: _importData,
   updateEmployee: _updateEmployee,
   callBatchDownload: _callBatchDownload,
+  qrImport: _qrImportData, // Assuming qrImport is the same as importData
 };
 
 /**
@@ -37,6 +38,21 @@ function _exportEmployeeCSV(payload, callBackFun) {
   // 📝 REAL API (Uncomment when backend is ready)
   axios
     .post("/admin/employee/export", payload)
+    .then((response) => {
+      if (response && response.data) {
+        callBackFun(response.data);
+      }
+    })
+    .catch((error) => {
+      toastDisplay(error?.response);
+    });
+  
+}
+
+function _qrImportData(payload, callBackFun) {
+  // 📝 REAL API (Uncomment when backend is ready)
+   axios
+    .post("/api/admin/qrcreate/import", payload)
     .then((response) => {
       if (response && response.data) {
         callBackFun(response.data);

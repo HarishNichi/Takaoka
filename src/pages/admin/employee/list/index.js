@@ -144,7 +144,7 @@ export default function EmployeeListPage() {
     },
   ], [locale,departmentList]);
 
-  const { getEmployeeList, exportEmployeeCSV, importData } = EmployeeServices;
+  const { getEmployeeList, exportEmployeeCSV, importData,qrImport } = EmployeeServices;
 
   const fetchEmployees = async () => {
     setTableLoading(true);
@@ -340,6 +340,13 @@ export default function EmployeeListPage() {
     }
         setLoader(false);
     }
+
+    const handleQrResponse = (response) => {
+      if (response) {
+         localStorage.setItem('batch_id', JSON.stringify(response.data.data.batchIds));
+      }
+      setLoader(false);
+    }
   return (
     <>
       {" "}
@@ -373,6 +380,27 @@ export default function EmployeeListPage() {
                 className="flex align-items-center gap-2"
                 style={{ justifyContent: "flex-end", flexWrap: "wrap" }}
               >
+                <Button
+                  buttonProps={{
+                    rounded: "true",
+                    buttonClass: "evacuation_button_height export-button",
+                    text: translate(localeJson, "qr_create"),
+                    export: true,
+                    onClick: () => {
+                      const payload = {
+                        filters: {
+                          ...getListPayload.filters,
+                          refugee_name: searchName,
+                          department: searchDepartmentId, // <-- Use department ID instead of name
+                          person_in_charge: searchInCharge,
+                          evacuation_shelter: searchShelter,
+                        },
+                      };
+                      qrImport(payload, handleQrResponse);
+                    },
+                  }}
+                  parentClass="evacuation_button_height export-button"
+                />
                 <Button
                   buttonProps={{
                     rounded: "true",

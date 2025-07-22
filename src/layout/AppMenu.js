@@ -61,12 +61,6 @@ const AppMenu = () => {
             icon: <MdManageAccounts size={16} />,
             items: [
                 {
-                    label: translate(localeJson, 'qr_code_create'),
-                    icon: <BiQrScan size={16} />,
-                    to: '/admin/qrcode/csv/import',
-                    active: router.pathname.startsWith('/admin/qrcode/csv/import')
-                },
-                {
                     label: translate(localeJson, 'staff_management'),
                     icon: <FaUsersGear size={16} />,
                     to: '/admin/staff-management',
