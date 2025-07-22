@@ -375,10 +375,10 @@ export default function Setting() {
           //   "stockpile_management_status",
           //   values.stockpile_management_status ? "1" : "0"
           // );
-          // formData.append(
-          //   "scheduler_option",
-          //   values.scheduler_option ? "1" : "0"
-          // );
+          formData.append(
+            "scheduler_option",
+            values.scheduler_option ? "1" : "0"
+          );
           // formData.append(
           //   "line_management_status",
           //   values.line_management_status ? "1" : "0"
