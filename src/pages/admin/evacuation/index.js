@@ -43,7 +43,6 @@ export default function EvacuationPage() {
   const [evacuationPlaceList, setEvacuationPlaceList] = useState([]);
   const [tableLoading, setTableLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
-  const [familyCode, setFamilyCode] = useState(null);
   const [refugeeName, setRefugeeName] = useState(null);
   const [evacuationTableFields, setEvacuationTableFields] = useState([]);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -55,7 +54,6 @@ export default function EvacuationPage() {
       sort_by: "",
       order_by: "desc",
       place_id: "",
-      family_code: "",
       refugee_name: "",
       checkout_flg: "",
     },
@@ -106,24 +104,6 @@ export default function EvacuationPage() {
       maxWidth: "14rem",
     },
     {
-      field: "family_code",
-      header: translate(localeJson, "family_code"),
-      sortable: true,
-      textAlign: "center",
-      alignHeader: "center",
-      minWidth: "8rem",
-      maxWidth: "12rem",
-    },
-    {
-      field: "family_count",
-      header: translate(localeJson, "family_count"),
-      sortable: false,
-      textAlign: "center",
-      alignHeader: "center",
-      minWidth: "4rem",
-      maxWidth: "6rem",
-    },
-    {
       field: "person_dob",
       header: translate(localeJson, "dob"),
       sortable: true,
@@ -133,15 +113,6 @@ export default function EvacuationPage() {
       maxWidth: "14rem",
     },
     {
-      field: "person_age",
-      header: translate(localeJson, "age"),
-      sortable: true,
-      textAlign: "center",
-      alignHeader: "center",
-      minWidth: "6rem",
-      maxWidth: "8rem",
-    },
-    {
       field: "person_gender",
       header: translate(localeJson, "gender"),
       sortable: true,
@@ -149,15 +120,6 @@ export default function EvacuationPage() {
       alignHeader: "left",
       minWidth: "8rem",
       maxWidth: "12rem",
-    },
-    {
-      field: "special_care_name",
-      header: translate(localeJson, "c_special_care"),
-      sortable: false,
-      textAlign: "left",
-      alignHeader: "left",
-      minWidth: "10rem",
-      maxWidth: "14rem",
     },
   ];
 
@@ -172,7 +134,6 @@ export default function EvacuationPage() {
         sort_by: getListPayload.filters.sort_by,
         order_by: getListPayload.filters.order_by,
         place_id: getListPayload.filters.place_id,
-        family_code: getListPayload.filters.family_code,
         refugee_name: getListPayload.filters.refugee_name,
         checkout_flg: getListPayload.filters.checkout_flg,
       },
@@ -231,30 +192,9 @@ export default function EvacuationPage() {
       response.data.list.length > 0
     ) {
       const data = response.data.list;
-      const questionnaire = response.data?.person_questionnaire;
       const places = response.places;
       let previousItem = null;
       let siNo = getListPayload.filters.start + 1;
-      if (questionnaire && questionnaire?.length > 0) {
-        questionnaire.map((ques, num) => {
-          evacuationColumns.push({
-            field: "question_" + ques.id,
-            header: locale == "ja" ? ques.title : ques.title_en,
-            minWidth: "10rem",
-            maxWidth: "16rem",
-            display: "none",
-          });
-        });
-      }
-      evacuationColumns.push({
-        field: "person_is_owner",
-        header: translate(localeJson, "representative"),
-        sortable: true,
-        textAlign: "left",
-        alignHeader: "left",
-        minWidth: "8rem",
-        maxWidth: "12rem",
-      });
       let placeIdObj = {};
       places.map((place) => {
         let placeData = {
@@ -280,12 +220,6 @@ export default function EvacuationPage() {
           si_no: i + parseInt(getListPayload.filters.start) + 1,
           id: item.f_id,
           place_name: placeIdObj[item.place_id] ?? "",
-          family_count: item.persons_count,
-          family_code: item.family_code,
-          person_is_owner:
-            item.person_is_owner == 0
-              ? translate(localeJson, "representative")
-              : "",
           person_refugee_name: (
             <div className={"clickable-row"}>{item.person_refugee_name}</div>
           ),
@@ -301,9 +235,6 @@ export default function EvacuationPage() {
               : getEnglishDateDisplayFormat(item.person_dob),
           person_age: item.person_age,
           age_month: item.person_month,
-          special_care_name: item.person_special_cares
-            ? getSpecialCareName(item.person_special_cares, locale)
-            : "-",
           remarks: item.person_note,
           place: item.place_id ? getPlaceName(item.place_id) : "",
           connecting_code: item.person_connecting_code,
@@ -315,35 +246,12 @@ export default function EvacuationPage() {
               ? translate(localeJson, "check_in")
               : translate(localeJson, "exit"),
         };
-        let personAnswers = item.person_answers ? item.person_answers : [];
-        if (personAnswers.length > 0) {
-          personAnswers.map((ques) => {
-            evacuees[`question_${ques.question_id}`] =
-              locale == "ja"
-                ? ques.answer.length > 0
-                  ? getAnswerData(ques.answer)
-                  : ""
-                : ques.answer_en.length > 0
-                ? getAnswerData(ques.answer_en)
-                : "";
-          });
-        }
         previousItem = evacuees;
         evacueesList.push(evacuees);
         siNo = siNo + 1;
       });
       totalFamilyCount = response.data.total_family;
       listTotalCount = response.data.total;
-    } else {
-      evacuationColumns.push({
-        field: "person_is_owner",
-        header: translate(localeJson, "representative"),
-        sortable: true,
-        textAlign: "left",
-        alignHeader: "left",
-        minWidth: "8rem",
-        maxWidth: "12rem",
-      });
     }
     setTableLoading(false);
     setEvacuationTableFields(evacuationColumns);
@@ -400,7 +308,6 @@ export default function EvacuationPage() {
         order_by: "desc",
         place_id:
           selectedOption && selectedOption.id != 0 ? selectedOption.id : "",
-        family_code: convertToSingleByte(familyCode),
         refugee_name: refugeeName,
         checkout_flg: selectedStatusOption,
       },
@@ -409,31 +316,6 @@ export default function EvacuationPage() {
     setGetListPayload(payload);
   };
 
-  const handleFamilyCode = (e) => {
-    const re = /^[0-9-]+$/;
-    if (e.target.value.length <= 0) {
-      setFamilyCode("");
-      return;
-    }
-    if (re.test(convertToSingleByte(e.target.value))) {
-      if (e.target.value.length == 4) {
-        const newValue = e.target.value;
-        if (newValue.indexOf("-") !== -1) {
-          setFamilyCode(e.target.value);
-        } else {
-          setFamilyCode(newValue);
-        }
-      } else if (e.target.value.length == 3) {
-        const newValue = e.target.value;
-        const formattedValue = newValue.substring(0, 3);
-        setFamilyCode(formattedValue);
-      } else {
-        setFamilyCode(e.target.value);
-      }
-    } else {
-      setFamilyCode("");
-    }
-  };
 
   const downloadEvacueesListCSV = () => {
     exportEvacueesCSVList(getListPayload, exportEvacueesCSV);
@@ -494,7 +376,6 @@ export default function EvacuationPage() {
   const showOnlyRegisteredEvacuees = async () => {
     setShowRegisteredEvacuees(!showRegisteredEvacuees);
     setSelectedOption("");
-    setFamilyCode("");
     setRefugeeName("");
     setSelectedStatusOption(!showRegisteredEvacuees ? 1 : "");
     setTableLoading(true);
@@ -504,7 +385,6 @@ export default function EvacuationPage() {
         ...prevState.filters,
         checkout_flg: showRegisteredEvacuees ? "" : 1,
         place_id: "",
-        family_code: "",
         refugee_name: "",
         start: 0,
       },
@@ -677,22 +557,6 @@ export default function EvacuationPage() {
                             "aria-atomic": "true",
                           },
                         },
-                      }}
-                    />
-                  </div>
-                  <div className="field col-12 md:col-3 lg:col-3">
-                    <Input
-                      inputProps={{
-                        name: "household_number",
-                        id: "household_number",
-                        inputParentClassName: "w-full",
-                        labelProps: {
-                          text: translate(localeJson, "household_number"),
-                          inputLabelClassName: "block",
-                        },
-                        inputClassName: "",
-                        value: familyCode,
-                        onChange: (e) => handleFamilyCode(e),
                       }}
                     />
                   </div>

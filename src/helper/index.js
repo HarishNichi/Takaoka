@@ -316,6 +316,22 @@ export const zipDownloadWithURL = async(zipURL) => {
  
 };
 
+/**
+ * Zip download functionality
+ * @param zipURL
+ */
+export const zipFileDownloadWithURL = (zipURL) => {
+    if (zipURL) {
+        // Create a temporary anchor element for the download
+        let date = getYYYYMMDDHHSSSSDateTimeFormat(new Date())
+        const link = document.createElement('a');
+        link.href = zipURL;
+        const fileName = `Sample_${date}.zip`;
+        link.setAttribute('download', fileName); // Specify the file name you want to give to the downloaded file
+        link.click();
+    }
+}
+
 
 /**
  * Function help to display error messages on toast

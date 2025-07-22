@@ -53,7 +53,7 @@ function _exportEmployeeCSV(payload, callBackFun) {
 function _qrImportData(payload, callBackFun) {
   // 📝 REAL API (Uncomment when backend is ready)
    axios
-    .post("/api/admin/qrcreate/import", payload)
+    .post("/admin/qrcreate/import", payload)
     .then((response) => {
       if (response && response.data) {
         callBackFun(response.data);

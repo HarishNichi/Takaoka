@@ -1,5 +1,6 @@
 import axios from '@/utils/api';
 import { toastDisplay } from '@/helper';
+import { TbManualGearbox } from 'react-icons/tb';
 
 /* Identity and Access management (IAM) */
 export const StaffEvacuationServices = {
@@ -12,6 +13,7 @@ export const StaffEvacuationServices = {
     getStaffAttendeesList: _getStaffAttendeesList,
     getStaffFamilyEvacueesDetail: _getStaffFamilyEvacueesDetail,
     exportStaffFamilyEvacueesCSVList: _exportStaffFamilyEvacueesCSVList,
+    manualCheckIn: _manualCheckIn,
 };
 
 /**
@@ -169,6 +171,24 @@ function _getStaffAttendeesList(payload, callBackFun) {
  */
 function _exportStaffFamilyEvacueesCSVList(payload, callBackFun) {
     axios.post('/staff/evacuees/export', payload)
+        .then((response) => {
+            if (response && response.data) {
+                callBackFun(response.data);
+            }
+        })
+        .catch((error) => {
+            callBackFun(false);
+            toastDisplay(error?.response);
+        });
+}
+
+/**
+ * Manual Check In
+ * @param {*} payload 
+ * @param {*} callBackFun 
+ */
+function _manualCheckIn(payload, callBackFun) {
+    axios.post('/staff/evacuees/checkin', payload)
         .then((response) => {
             if (response && response.data) {
                 callBackFun(response.data);

@@ -86,13 +86,16 @@ function _callZipDownload(callBackFun) {
 function _callBatchDownload(payload,callBackFun) {
     axios.post('/admin/qrcreate/check-batch-status',payload)
         .then((response) => {
-            if (response && response.data) {
-                callBackFun(response);
-                // response.data.data?.download_link && toastDisplay(response);
-            }
+               if (response.data.code === 200) {
+            callBackFun(response);
+        } else {
+            // Handle non-200 codes here
+            callBackFun(false);
+            // Optionally clear batch_id here if needed
+        }
         })
         .catch((error) => {
-            console.log(error);
+            console.log("LL");
             localStorage.setItem('batch_id','');
             callBackFun(false);
             toastDisplay(error?.response);  

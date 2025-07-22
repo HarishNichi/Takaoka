@@ -10,7 +10,7 @@ import AppFooter from '@/layout/AppFooter';
 import AppSidebar from '@/layout/AppSidebar';
 import AppTopbar from '@/layout/AppTopbar';
 import { LayoutContext } from '@/layout/context/layoutcontext';
-import { zipDownloadWithURL, getValueByKeyRecursively as translate, } from '@/helper';
+import { zipDownloadWithURL, getValueByKeyRecursively as translate, zipFileDownloadWithURL, } from '@/helper';
 import { EmployeeServices, QRCodeCreateServices } from '@/services';
 import toast from 'react-hot-toast';
 import Head from 'next/head'; // Import Head for SEO-friendly title updates
@@ -309,10 +309,11 @@ const Layout = (props) => {
     useEffect(() => {
 
         const interval = setInterval(() => {
-            const currentValue = localStorage.getItem("batch_id") || "";
+           const batchIdsStr = localStorage.getItem("batch_id");
+          const currentValue = batchIdsStr ? JSON.parse(batchIdsStr) : "";
 
             if (currentValue) {
-                const payload = { batch_id: currentValue };
+                const payload = { batchIds: currentValue };
 
                 // Call the service to download the zip file
                 QRCodeCreateServices.callBatchDownload(payload, onZipDownloadSuccess);
@@ -349,7 +350,7 @@ const Layout = (props) => {
         // Cleanup interval on component unmount
         return () => clearInterval(interval);
 
-    }, [localStorage.getItem("batch_id")]);
+    }, [localStorage.getItem("batch_ids")]);
 
 
 
@@ -359,14 +360,17 @@ const Layout = (props) => {
     });
 
     const onZipDownloadSuccess = async (response) => {
-        if (response && response.data.data.download_link) {
+        if (response && response?.data?.code === 200) {
+            console.log("Zip download response:", response.data);
             toast.success(translate(localeJson, 'qr_success'), {
                 position: "top-right",
             });
-            await zipDownloadWithURL(response.data.data.download_link);
+            await zipFileDownloadWithURL(response.data.data.download_link);
             localStorage.setItem('batch_id', '');
-            localStorage.setItem('batch_ids', '');
         }
+        else {
+        console.log('Not clearing batch_id, code:', response?.data?.code);
+    }
     };
 
     const containerClass = classNames('layout-wrapper', {

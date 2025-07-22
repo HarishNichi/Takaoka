@@ -41,7 +41,6 @@ function StaffFamily() {
   const [familyCount, setFamilyCount] = useState(0);
   const [tableLoading, setTableLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
-  const [familyCode, setFamilyCode] = useState(null);
   const [refugeeName, setRefugeeName] = useState(null);
   const [columnValues, setColumnValues] = useState([]);
   const [staffFamilyDialogVisible, setStaffFamilyDialogVisible] =
@@ -58,31 +57,7 @@ function StaffFamily() {
     place_id: placeID,
   });
 
-  const handleFamilyCode = (e) => {
-    const re = /^[0-9-]+$/;
-    if (e.target.value.length <= 0) {
-      setFamilyCode("");
-      return;
-    }
-    if (re.test(convertToSingleByte(e.target.value))) {
-      if (e.target.value.length == 4) {
-        const newValue = e.target.value;
-        if (newValue.indexOf("-") !== -1) {
-          setFamilyCode(e.target.value);
-        } else {
-          setFamilyCode(newValue);
-        }
-      } else if (e.target.value.length == 3) {
-        const newValue = e.target.value;
-        const formattedValue = newValue.substring(0, 3);
-        setFamilyCode(formattedValue);
-      } else {
-        setFamilyCode(e.target.value);
-      }
-    } else {
-      setFamilyCode("");
-    }
-  };
+
 
   /**
    * Pagination handler
@@ -119,7 +94,8 @@ function StaffFamily() {
       header: translate(localeJson, "name_public_evacuee"),
       sortable: true,
       alignHeader: "left",
-      maxWidth: "3rem",
+      minWidth: "10rem",
+      maxWidth: "16rem",
       body: (rowData) => {
         return (
           <div className="flex flex-column">
@@ -129,27 +105,14 @@ function StaffFamily() {
         );
       },
     },
-
     {
-      field: "family_code",
-      header: translate(localeJson, "family_code"),
-      headerClassName: "custom-header",
-      sortable: true,
-      textAlign: "left",
-      alignHeader: "left",
-      minWidth: "3rem",
-      maxWidth: "4rem",
-    },
-    {
-      field: "family_count",
-      header: translate(localeJson, "family_count"),
-      headerClassName: "custom-header",
-      sortable: false,
-      textAlign: "left",
-      alignHeader: "left",
-      minWidth: "3rem",
-      maxWidth: "3rem",
-    },
+          field: "family_is_registered",
+          header: translate(localeJson, "status_furigana"),
+          sortable: true,
+          alignHeader: "left",
+          minWidth: "8rem",
+          maxWidth: "12rem",
+        },
     {
       field: "person_dob",
       header: translate(localeJson, "dob"),
@@ -157,18 +120,8 @@ function StaffFamily() {
       sortable: true,
       textAlign: "left",
       alignHeader: "left",
-      minWidth: "2rem",
-      maxWidth: "5rem",
-    },
-    {
-      field: "person_age",
-      header: translate(localeJson, "age"),
-      headerClassName: "custom-header",
-      sortable: true,
-      textAlign: "left",
-      alignHeader: "left",
-      minWidth: "2rem",
-      maxWidth: "3rem",
+      minWidth: "10rem",
+      maxWidth: "10rem",
     },
     {
       field: "person_gender",
@@ -177,27 +130,10 @@ function StaffFamily() {
       sortable: true,
       textAlign: "left",
       alignHeader: "left",
-      minWidth: "3rem",
-      maxWidth: "3rem",
+      minWidth: "8rem",
+      maxWidth: "8rem",
     },
-    {
-      field: "special_care_name",
-      header: translate(localeJson, "c_special_care"),
-      sortable: false,
-      textAlign: "left",
-      alignHeader: "left",
-      minWidth: "3rem",
-      maxWidth: "3rem",
-    },
-    {
-      field: "person_is_owner",
-      header: translate(localeJson, "representative"),
-      sortable: true,
-      textAlign: "left",
-      alignHeader: "left",
-      minWidth: "3.5rem",
-      maxWidth: "3.5rem",
-    },
+
   ];
 
   /**
@@ -226,7 +162,6 @@ function StaffFamily() {
         limit: listPayload.filters.limit,
         sort_by: "",
         order_by: "desc",
-        family_code: familyCode,
         refugee_name: refugeeName,
       },
       place_id: listPayload.place_id,
@@ -254,7 +189,6 @@ function StaffFamily() {
         limit: listPayload.filters.limit,
         sort_by: listPayload.filters.sort_by,
         order_by: listPayload.filters.order_by,
-        family_code: listPayload.filters.family_code,
         refugee_name: listPayload.filters.refugee_name,
       },
       place_id: listPayload.place_id,
@@ -292,10 +226,7 @@ function StaffFamily() {
           let evacuation_days = element.family_join_date
             ? getNumberOfEvacuationDays(element.family_join_date)
             : "";
-          let person_is_owner =
-            element.person_is_owner == 0
-              ? translate(localeJson, "representative")
-              : "";
+
 
           let tempObj = {
             ...element,
@@ -305,13 +236,8 @@ function StaffFamily() {
             family_count: element.persons_count,
             person_dob: date_of_birth,
             person_gender: gender_val,
-            person_is_owner: person_is_owner,
             family_join_date: admisssion_dt,
             evacuation_days: evacuation_days,
-            special_care_name: getSpecialCareName(
-              element.person_special_cares,
-              locale
-            ),
           };
           previousItem = tempObj;
           tempList.push(tempObj);
@@ -385,23 +311,6 @@ function StaffFamily() {
               <div>
                 <form aria-label={translate(localeJson, "search_form")} role="search">
                   <div className="modal-field-top-space modal-field-bottom-space flex flex-wrap float-right justify-content-end gap-3 lg:gap-2 md:gap-2 sm:gap-2 mobile-input">
-                    <Input
-                      inputProps={{
-                        inputParentClassName: "w-full lg:w-13rem md:w-14rem sm:w-10rem",
-                        labelProps: {
-                          text: translate(localeJson, "family_code"),
-                          inputLabelClassName: "block",
-                          htmlFor: "familyCode",
-                        },
-                        inputClassName: "w-full lg:w-13rem md:w-14rem sm:w-10rem",
-                        id: "familyCode",
-                        name: "familyCode",
-                        value: familyCode,
-                        onChange: (e) => handleFamilyCode(e),
-                        ariaLabel: translate(localeJson, "family_code"),
-
-                      }}
-                    />
                     <Input
                       inputProps={{
                         id: "refugeeName",

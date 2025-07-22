@@ -8,7 +8,7 @@ import {
   getEnglishDateDisplayFormat,
   getGeneralDateTimeSlashDisplayFormat,
   getJapaneseDateDisplayYYYYMMDDFormat,
-  getSpecialCareName,
+  getYYYYMMDDHHSSSSDateTimeFormat,
   getValueByKeyRecursively as translate,
   hideOverFlow,
   showOverFlow,
@@ -17,13 +17,14 @@ import { LayoutContext } from "@/layout/context/layoutcontext";
 import {
   Button,
   CustomHeader,
-  NormalTable,
   Input,
   InputDropdown,
+  NormalTable,
   InputSwitch,
 } from "@/components";
 import { setFamily } from "@/redux/family";
 import { useAppDispatch } from "@/redux/hooks";
+import { getSpecialCareName } from "@/helper";
 import { EvacuationServices } from "@/services";
 import { AdminManagementDeleteModal } from "@/components/modal";
 
@@ -42,7 +43,6 @@ export default function HQEvacuationPage() {
   const [evacuationPlaceList, setEvacuationPlaceList] = useState([]);
   const [tableLoading, setTableLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
-  const [familyCode, setFamilyCode] = useState(null);
   const [refugeeName, setRefugeeName] = useState(null);
   const [evacuationTableFields, setEvacuationTableFields] = useState([]);
   const [deleteOpen, setDeleteOpen] = useState(false);
@@ -54,7 +54,6 @@ export default function HQEvacuationPage() {
       sort_by: "",
       order_by: "desc",
       place_id: "",
-      family_code: "",
       refugee_name: "",
       checkout_flg: "",
     },
@@ -68,13 +67,16 @@ export default function HQEvacuationPage() {
       headerClassName: "sno_class",
       textAlign: "center",
       alignHeader: "left",
+      minWidth: "4rem",
+      maxWidth: "6rem",
     },
     {
       field: "person_refugee_name",
       header: translate(localeJson, "name_public_evacuee"),
       sortable: true,
       alignHeader: "left",
-      maxWidth: "4rem",
+      minWidth: "10rem",
+      maxWidth: "16rem",
       body: (rowData) => {
         return (
           <div className="flex flex-column">
@@ -86,11 +88,11 @@ export default function HQEvacuationPage() {
     },
     {
       field: "family_is_registered",
-      header: translate(localeJson, "status"),
+      header: translate(localeJson, "status_furigana"),
       sortable: true,
       alignHeader: "left",
-      minWidth: "3rem",
-      maxWidth: "3rem",
+      minWidth: "8rem",
+      maxWidth: "12rem",
     },
     {
       field: "place_name",
@@ -98,26 +100,8 @@ export default function HQEvacuationPage() {
       sortable: false,
       textAlign: "center",
       alignHeader: "center",
-      minWidth: "3rem",
-      maxWidth: "3rem",
-    },
-    {
-      field: "family_code",
-      header: translate(localeJson, "family_code"),
-      sortable: true,
-      textAlign: "center",
-      alignHeader: "center",
-      minWidth: "3rem",
-      maxWidth: "3rem",
-    },
-    {
-      field: "family_count",
-      header: translate(localeJson, "family_count"),
-      sortable: false,
-      textAlign: "center",
-      alignHeader: "center",
-      minWidth: "3rem",
-      maxWidth: "3rem",
+      minWidth: "10rem",
+      maxWidth: "14rem",
     },
     {
       field: "person_dob",
@@ -125,17 +109,8 @@ export default function HQEvacuationPage() {
       sortable: true,
       textAlign: "left",
       alignHeader: "left",
-      minWidth: "3rem",
-      maxWidth: "3rem",
-    },
-    {
-      field: "person_age",
-      header: translate(localeJson, "age"),
-      sortable: true,
-      textAlign: "center",
-      alignHeader: "center",
-      minWidth: "3rem",
-      maxWidth: "3rem",
+      minWidth: "10rem",
+      maxWidth: "14rem",
     },
     {
       field: "person_gender",
@@ -143,26 +118,8 @@ export default function HQEvacuationPage() {
       sortable: true,
       textAlign: "left",
       alignHeader: "left",
-      minWidth: "3rem",
-      maxWidth: "3rem",
-    },
-    {
-      field: "special_care_name",
-      header: translate(localeJson, "c_special_care"),
-      sortable: false,
-      textAlign: "left",
-      alignHeader: "left",
-      minWidth: "3rem",
-      maxWidth: "3rem",
-    },
-    {
-      field: "yapple_id",
-      header: translate(localeJson, "yapple_id"),
-      sortable: true,
-      textAlign: "left",
-      alignHeader: "left",
-      minWidth: "3rem",
-      maxWidth: "3rem",
+      minWidth: "8rem",
+      maxWidth: "12rem",
     },
   ];
 
@@ -177,7 +134,6 @@ export default function HQEvacuationPage() {
         sort_by: getListPayload.filters.sort_by,
         order_by: getListPayload.filters.order_by,
         place_id: getListPayload.filters.place_id,
-        family_code: getListPayload.filters.family_code,
         refugee_name: getListPayload.filters.refugee_name,
         checkout_flg: getListPayload.filters.checkout_flg,
       },
@@ -195,6 +151,14 @@ export default function HQEvacuationPage() {
     }
   };
 
+  const getPlaceName = (id) => {
+    let data = evacuationPlaceList.find((obj) => obj.id == id);
+    if (data) {
+      return data.name;
+    }
+    return "";
+  };
+
   const getOptions = (locale) => {
     if (locale === "ja") {
       return [
@@ -209,14 +173,6 @@ export default function HQEvacuationPage() {
         { label: "Check-out", value: 1 },
       ];
     }
-  };
-
-  const getPlaceName = (id) => {
-    let data = evacuationPlaceList.find((obj) => obj.id == id);
-    if (data) {
-      return data.name;
-    }
-    return "";
   };
 
   const onGetEvacueesList = (response) => {
@@ -236,30 +192,9 @@ export default function HQEvacuationPage() {
       response.data.list.length > 0
     ) {
       const data = response.data.list;
-      const questionnaire = response.data?.person_questionnaire;
       const places = response.places;
       let previousItem = null;
       let siNo = getListPayload.filters.start + 1;
-      if (questionnaire && questionnaire?.length > 0) {
-        questionnaire.map((ques, num) => {
-          let column = {
-            field: "question_" + ques.id,
-            header: locale == "ja" ? ques.title : ques.title_en,
-            minWidth: "10rem",
-            display: "none",
-          };
-          evacuationColumns.push(column);
-        });
-      }
-      evacuationColumns.push({
-        field: "person_is_owner",
-        header: translate(localeJson, "representative"),
-        sortable: true,
-        textAlign: "left",
-        alignHeader: "left",
-        minWidth: "3.5rem",
-        maxWidth: "3.5rem",
-      });
       let placeIdObj = {};
       places.map((place) => {
         let placeData = {
@@ -285,12 +220,6 @@ export default function HQEvacuationPage() {
           si_no: i + parseInt(getListPayload.filters.start) + 1,
           id: item.f_id,
           place_name: placeIdObj[item.place_id] ?? "",
-          family_count: item.persons_count,
-          family_code: item.family_code,
-          person_is_owner:
-            item.person_is_owner == 0
-              ? translate(localeJson, "representative")
-              : "",
           person_refugee_name: (
             <div className={"clickable-row"}>{item.person_refugee_name}</div>
           ),
@@ -306,9 +235,6 @@ export default function HQEvacuationPage() {
               : getEnglishDateDisplayFormat(item.person_dob),
           person_age: item.person_age,
           age_month: item.person_month,
-          special_care_name: item.person_special_cares
-            ? getSpecialCareName(item.person_special_cares, locale)
-            : "-",
           remarks: item.person_note,
           place: item.place_id ? getPlaceName(item.place_id) : "",
           connecting_code: item.person_connecting_code,
@@ -319,37 +245,13 @@ export default function HQEvacuationPage() {
             item.family_is_registered == 1
               ? translate(localeJson, "check_in")
               : translate(localeJson, "exit"),
-          yapple_id: item.yapple_id,
         };
-        let personAnswers = item.person_answers ? item.person_answers : [];
-        if (personAnswers.length > 0) {
-          personAnswers.map((ques) => {
-            evacuees[`question_${ques.question_id}`] =
-              locale == "ja"
-                ? ques.answer.length > 0
-                  ? getAnswerData(ques.answer)
-                  : ""
-                : ques.answer_en.length > 0
-                ? getAnswerData(ques.answer_en)
-                : "";
-          });
-        }
         previousItem = evacuees;
         evacueesList.push(evacuees);
         siNo = siNo + 1;
       });
       totalFamilyCount = response.data.total_family;
       listTotalCount = response.data.total;
-    } else {
-      evacuationColumns.push({
-        field: "person_is_owner",
-        header: translate(localeJson, "representative"),
-        sortable: true,
-        textAlign: "left",
-        alignHeader: "left",
-        minWidth: "3.5rem",
-        maxWidth: "3.5rem",
-      });
     }
     setTableLoading(false);
     setEvacuationTableFields(evacuationColumns);
@@ -369,7 +271,6 @@ export default function HQEvacuationPage() {
   /* Services */
   const { getList, bulkDelete } = EvacuationServices;
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setTableLoading(true);
     const fetchData = async () => {
@@ -407,7 +308,6 @@ export default function HQEvacuationPage() {
         order_by: "desc",
         place_id:
           selectedOption && selectedOption.id != 0 ? selectedOption.id : "",
-        family_code: convertToSingleByte(familyCode),
         refugee_name: refugeeName,
         checkout_flg: selectedStatusOption,
       },
@@ -416,31 +316,6 @@ export default function HQEvacuationPage() {
     setGetListPayload(payload);
   };
 
-  const handleFamilyCode = (e) => {
-    const re = /^[0-9-]+$/;
-    if (e.target.value.length <= 0) {
-      setFamilyCode("");
-      return;
-    }
-    if (re.test(convertToSingleByte(e.target.value))) {
-      if (e.target.value.length == 4) {
-        const newValue = e.target.value;
-        if (newValue.indexOf("-") !== -1) {
-          setFamilyCode(e.target.value);
-        } else {
-          setFamilyCode(newValue);
-        }
-      } else if (e.target.value.length == 3) {
-        const newValue = e.target.value;
-        const formattedValue = newValue.substring(0, 3);
-        setFamilyCode(formattedValue);
-      } else {
-        setFamilyCode(e.target.value);
-      }
-    } else {
-      setFamilyCode("");
-    }
-  };
 
   /**
    * Delete modal open handler
@@ -487,7 +362,6 @@ export default function HQEvacuationPage() {
     setShowRegisteredEvacuees(!showRegisteredEvacuees);
     setShowRegisteredEvacuees(!showRegisteredEvacuees);
     setSelectedOption("");
-    setFamilyCode("");
     setRefugeeName("");
     setSelectedStatusOption(!showRegisteredEvacuees ? 1 : "");
     setTableLoading(true);
@@ -497,8 +371,8 @@ export default function HQEvacuationPage() {
         ...prevState.filters,
         checkout_flg: showRegisteredEvacuees ? "" : 1,
         place_id: "",
-        family_code: "",
         refugee_name: "",
+        start: 0,
       },
     }));
   };
@@ -670,22 +544,6 @@ export default function HQEvacuationPage() {
                             "aria-atomic": "true",
                           },
                         },
-                      }}
-                    />
-                    <Input
-                      inputProps={{
-                        id: "familyCode",
-                        name: "familyCode",
-                        inputParentClassName:
-                          "w-full lg:w-13rem md:w-14rem sm:w-10rem",
-                        labelProps: {
-                          text: translate(localeJson, "household_number"),
-                          inputLabelClassName: "block",
-                        },
-                        inputClassName:
-                          "w-full lg:w-13rem md:w-14rem sm:w-10rem",
-                        value: familyCode,
-                        onChange: (e) => handleFamilyCode(e),
                       }}
                     />
                     <Input

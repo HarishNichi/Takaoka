@@ -343,7 +343,8 @@ export default function EmployeeListPage() {
 
     const handleQrResponse = (response) => {
       if (response) {
-         localStorage.setItem('batch_id', JSON.stringify(response.data.data.batchIds));
+        console.log("QR Code Response:", response);
+         localStorage.setItem('batch_id', JSON.stringify(response.data.batchIds));
       }
       setLoader(false);
     }
@@ -387,6 +388,7 @@ export default function EmployeeListPage() {
                     text: translate(localeJson, "qr_create"),
                     export: true,
                     onClick: () => {
+                      setLoader(true);
                       const payload = {
                         filters: {
                           ...getListPayload.filters,

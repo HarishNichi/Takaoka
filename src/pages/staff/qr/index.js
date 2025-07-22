@@ -12,7 +12,7 @@ import {
 } from "@/components";
 import { getValueByKeyRecursively as translate } from "@/helper";
 import { LayoutContext } from "@/layout/context/layoutcontext";
-import { UserQrService } from "@/services";
+import { UserQrService,StaffEvacuationServices } from "@/services";
 import { setCheckInData } from "@/redux/qr_app";
 import QrAppConfirmDialog from "@/components/modal/qrAppConfirmationModal";
 import { Formik } from "formik";
@@ -40,9 +40,6 @@ export default function App() {
     return Yup.object().shape({
       empId: Yup.string().required(
         translate(localeJson, "employee_id_required")
-      ),
-      empName: Yup.string().required(
-        translate(localeJson, "employee_name_required")
       ),
     });
   }, [localeJson]);
@@ -158,22 +155,17 @@ export default function App() {
         <div className="col-12 md:col-6 flex flex-column justify-content-center gap-4 p-4">
           {/* ⬇️ Employee ID */}
           <Formik
-            initialValues={{ empId: "", empName: "" }}
+            initialValues={{ empId: ""}}
             validationSchema={validationSchema}
             enableReinitialize={true}
             onSubmit={(values) => {
               const payload = {
-                employee_id: values.empId,
-                employee_name: values.empName,
+                employee_code_id: values.empId,
                 place_id: placeId,
               };
               setLoader(true);
-              create(payload, (res) => {
+              StaffEvacuationServices.manualCheckIn(payload, (res) => {
                 setLoader(false);
-                if (res) {
-                  dispatch(setCheckInData(res.data?.data));
-                  router.push("/user/qr/app/register");
-                }
               });
             }}
           >
@@ -228,7 +220,7 @@ export default function App() {
                   />
                 </div>
                 {/* Employee Name (世帯番号) */}
-                <div className="mb-3">
+                {/* <div className="mb-3">
                   <Input
                     inputProps={{
                       inputParentClassName: `w-full custom_input ${
@@ -264,14 +256,14 @@ export default function App() {
                       errors.empName && touched.empName && errors.empName
                     }
                   />
-                </div>
+                </div> */}
                 {/* Search Button */}
                 <Button
                   parentClass="w-full mt-2"
                   buttonProps={{
                     type: "submit",
                     rounded: true,
-                    text: translate(localeJson, "search"),
+                    text: translate(localeJson, "check_in"),
                     buttonClass: "w-full py-3 border-none text-lg font-bold",
                   }}
                 />
