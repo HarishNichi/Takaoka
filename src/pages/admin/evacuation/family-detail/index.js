@@ -116,6 +116,7 @@ export default function EvacueeFamilyDetail() {
                         tel: person?.person_tel && person.person_tel != "00000000000" ? person.person_tel : "",
                         evacuation_date_time: person.family_join_date ? ((locale == "ja" ? getJapaneseDateTimeDayDisplayActualFormat(person.family_join_date) : getEnglishDateTimeDisplayActualFormat(person.family_join_date))) : "",
                         place_id: person.place_id,
+                        employee_code_id: person.employee_code_id,
                         family_is_registered: person.family_is_registered,
                     };
                     familyDataList.push(familyData);
@@ -190,7 +191,7 @@ export default function EvacueeFamilyDetail() {
                             buttonClass: "w-full del_ok-button",
                             text: translate(localeJson, 'de_register'),
                             onClick: () => {
-                                let preparedParam = { ...param, place_id: familyDetailData.length > 0 && familyDetailData[0].place_id };
+                                let preparedParam = {employee_code_id: familyDetailData.length > 0 && familyDetailData[0].employee_code_id, place_id: familyDetailData.length > 0 && familyDetailData[0].place_id };
                                 EvacuationServices.evacuationCheckout(preparedParam, (response) => {
                                     setCheckoutVisible(false);
                                     showOverFlow();

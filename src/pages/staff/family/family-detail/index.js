@@ -135,7 +135,7 @@ export default function StaffFamilyDetail() {
      */
     const onClickOkButton = () => {
         let preparedParam = {
-            family_id: lgwan_family_id_from_store,
+            employee_code_id: lgwan_family_id_from_store,
             place_id: familyBasicDetail.length > 0 && familyBasicDetail[0].place_id
         };
         updateCheckoutDetail(preparedParam, (response) => {

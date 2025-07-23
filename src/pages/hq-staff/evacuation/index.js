@@ -451,6 +451,7 @@ export default function HQEvacuationPage() {
                         value: selectedStatusOption,
                         options: getOptions(locale),
                         optionLabel: "label",
+                        optionValue: "value",
                         onChange: (e) => setSelectedStatusOption(e.value),
                         emptyMessage: (
                           <span

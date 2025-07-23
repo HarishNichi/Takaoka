@@ -464,136 +464,151 @@ export default function EvacuationPage() {
               </div>
             </div>
             <div>
-              <form>
-                <div className="p-fluid formgrid grid mt-3">
-                  <div className="field col-12 md:col-3 lg:col-3">
-                    <InputDropdown
-                      inputDropdownProps={{
-                        inputId: "statusDropdown",
-                        ariaLabel: translate(localeJson, "status_furigana"),
-                        inputDropdownParentClassName: "",
-                        labelProps: {
-                          text: translate(localeJson, "status_furigana"),
-                          inputDropdownLabelClassName: "block",
-                          htmlFor: "statusDropdown",
-                        },
-                        inputDropdownClassName: "",
-                        customPanelDropdownClassName: "",
-                        value: selectedStatusOption,
-                        options: getOptions(locale),
-                        optionLabel: "label",
-                        onChange: (e) => setSelectedStatusOption(e.value),
-                        emptyMessage: (
-                          <span
-                            aria-live="polite"
-                            aria-label={translate(localeJson, "data_not_found")}
-                            className="sr-only"
-                          >
-                            {translate(localeJson, "data_not_found")}
-                          </span>
-                        ),
-                        pt: {
-                          trigger: {
-                            "aria-label": translate(localeJson, "status_furigana"),
-                            title: translate(localeJson, "status_furigana"),
-                          },
-                          input: {
-                            "aria-label": translate(localeJson, "status_furigana"),
-                            title: translate(localeJson, "status_furigana"),
-                          },
-                          select: {
-                            "aria-label": translate(localeJson, "status_furigana"),
-                            title: translate(localeJson, "status_furigana"),
-                          },
-                          panel: {
-                            "aria-live": "polite",
-                            "aria-atomic": "true",
-                          },
-                        },
-                      }}
-                    />
-                  </div>
-                  <div className="field col-12 md:col-3 lg:col-3">
-                    <InputDropdown
-                      inputDropdownProps={{
-                        inputId: "evacuationSiteDropdown",
-                        ariaLabel: translate(localeJson, "evacuation_site"),
-                        inputDropdownParentClassName: "",
-                        labelProps: {
-                          text: translate(localeJson, "evacuation_site"),
-                          inputDropdownLabelClassName: "block",
-                          htmlFor: "evacuationSiteDropdown",
-                        },
-                        inputDropdownClassName: "",
-                        customPanelDropdownClassName: "",
-                        value: selectedOption,
-                        options: evacuationPlaceList,
-                        optionLabel: "name",
-                        onChange: (e) => setSelectedOption(e.value),
-                        emptyMessage: (
-                          <span
-                            aria-live="polite"
-                            aria-label={translate(localeJson, "data_not_found")}
-                            className="sr-only"
-                          >
-                            {translate(localeJson, "data_not_found")}
-                          </span>
-                        ),
-                        pt: {
-                          trigger: {
-                            "aria-label": translate(localeJson, "evacuation_site"),
-                            title: translate(localeJson, "evacuation_site"),
-                          },
-                          input: {
-                            "aria-label": translate(localeJson, "evacuation_site"),
-                            title: translate(localeJson, "evacuation_site"),
-                          },
-                          select: {
-                            "aria-label": translate(localeJson, "evacuation_site"),
-                            title: translate(localeJson, "evacuation_site"),
-                          },
-                          panel: {
-                            "aria-live": "polite",
-                            "aria-atomic": "true",
-                          },
-                        },
-                      }}
-                    />
-                  </div>
-                  <div className="field col-12 md:col-3 lg:col-3">
-                    <Input
-                      inputProps={{
-                        id: "refugee_name",
-                        name: "refugee_name",
-                        inputParentClassName: "w-full",
-                        labelProps: {
-                          text: translate(localeJson, "name"),
-                          inputLabelClassName: "block",
-                        },
-                        inputClassName: "",
-                        value: refugeeName,
-                        onChange: (e) => setRefugeeName(e.target.value),
-                      }}
-                    />
-                  </div>
-                </div>
-                {/* Search Button - OUTSIDE the grid, aligned right */}
-                <div className="flex justify-content-end mt-3">
-                  <Button
-                    buttonProps={{
-                      buttonClass:
-                        "w-full lg:w-9rem md:w-9rem sm:w-9rem search-button block text-center p-0",
-                      text: translate(localeJson, "search_text"),
-                      icon: "pi pi-search",
-                      type: "button",
-                      onClick: () => searchListWithCriteria(),
-                    }}
-                    parentClass={
-                      "search-button w-full flex justify-content-end mb-3"
-                    }
-                  />
-                </div>
-              </form>
+               <form>
+                                <div className="modal-field-top-space modal-field-bottom-space flex flex-wrap float-right justify-content-end gap-3 lg:gap-2 md:gap-2 sm:gap-2 mobile-input">
+                                  <InputDropdown
+                                    inputDropdownProps={{
+                                      inputDropdownParentClassName:
+                                        "w-full lg:w-14rem md:w-14rem sm:w-10rem",
+                                          inputId: "statusDropdown",
+                                      ariaLabel: translate(localeJson, "status_furigana"),
+                                      labelProps: {
+                                        text: translate(localeJson, "status_furigana"),
+                                        inputDropdownLabelClassName: "block",
+                                        htmlFor: "statusDropdown",
+                                      },
+                                      inputDropdownClassName:
+                                        "w-full lg:w-14rem md:w-14rem sm:w-10rem",
+                                      customPanelDropdownClassName: "w-10rem",
+                                      value: selectedStatusOption,
+                                      options: getOptions(locale),
+                                      optionLabel: "label",
+                                      optionValue: "value",
+                                      onChange: (e) => setSelectedStatusOption(e.value),
+                                      emptyMessage: (
+                                        <span
+                                          aria-live="polite"
+                                          aria-label={translate(localeJson, "data_not_found")}
+                                          className="sr-only"
+                                        >
+                                          {translate(localeJson, "data_not_found")}
+                                        </span>
+                                      ),
+                                      pt: {
+                                        trigger: {
+                                          "aria-label": translate(
+                                            localeJson,
+                                            "status_furigana"
+                                          ),
+                                          title: translate(localeJson, "status_furigana"),
+                                        },
+                                        input: {
+                                          "aria-label": translate(
+                                            localeJson,
+                                            "status_furigana"
+                                          ),
+                                          title: translate(localeJson, "status_furigana"),
+                                        },
+                                        select: {
+                                          "aria-label": translate(
+                                            localeJson,
+                                            "status_furigana"
+                                          ),
+                                          title: translate(localeJson, "status_furigana"),
+                                        },
+                                        panel: {
+                                          "aria-live": "polite",
+                                          "aria-atomic": "true",
+                                        },
+                                      },
+                                    }}
+                                  />
+                                  <InputDropdown
+                                    inputDropdownProps={{
+                                      inputDropdownParentClassName:
+                                        "w-full lg:w-14rem md:w-14rem sm:w-10rem",
+                                        inputId: "evacuationSiteDropdown",
+                                      ariaLabel: translate(localeJson, "evacuation_site"),
+                                      labelProps: {
+                                        text: translate(localeJson, "evacuation_site"),
+                                        inputDropdownLabelClassName: "block",
+                                        htmlFor: "evacuationSiteDropdown",
+                                      },
+                                      inputDropdownClassName:
+                                        "w-full lg:w-14rem md:w-14rem sm:w-10rem",
+                                      customPanelDropdownClassName: "w-10rem",
+                                      value: selectedOption,
+                                      options: evacuationPlaceList,
+                                      optionLabel: "name",
+                                      onChange: (e) => setSelectedOption(e.value),
+                                      emptyMessage: (
+                                        <span
+                                          aria-live="polite"
+                                          aria-label={translate(localeJson, "data_not_found")}
+                                          className="sr-only"
+                                        >
+                                          {translate(localeJson, "data_not_found")}
+                                        </span>
+                                      ),
+                                      pt: {
+                                        trigger: {
+                                          "aria-label": translate(
+                                            localeJson,
+                                            "evacuation_site"
+                                          ),
+                                          title: translate(localeJson, "evacuation_site"),
+                                        },
+                                        input: {
+                                          "aria-label": translate(
+                                            localeJson,
+                                            "evacuation_site"
+                                          ),
+                                          title: translate(localeJson, "evacuation_site"),
+                                        },
+                                        select: {
+                                          "aria-label": translate(
+                                            localeJson,
+                                            "evacuation_site"
+                                          ),
+                                          title: translate(localeJson, "evacuation_site"),
+                                        },
+                                        panel: {
+                                          "aria-live": "polite",
+                                          "aria-atomic": "true",
+                                        },
+                                      },
+                                    }}
+                                  />
+                                  <Input
+                                    inputProps={{
+                                      id: "refugeeName",
+                                      name: "refugeeName",
+                                      inputParentClassName:
+                                        "w-full lg:w-13rem md:w-14rem sm:w-10rem",
+                                      labelProps: {
+                                        text: translate(localeJson, "name"),
+                                        inputLabelClassName: "block",
+                                      },
+                                      inputClassName:
+                                        "w-full lg:w-13rem md:w-14rem sm:w-10rem",
+                                      value: refugeeName,
+                                      onChange: (e) => setRefugeeName(e.target.value),
+                                    }}
+                                  />
+                                  <div className="flex align-items-end">
+                                    <Button
+                                      buttonProps={{
+                                        buttonClass: "w-12 search-button",
+                                        text: translate(localeJson, "search_text"),
+                                        icon: "pi pi-search",
+                                        type: "button",
+                                        onClick: () => searchListWithCriteria(),
+                                      }}
+                                      parentClass={"search-button"}
+                                    />
+                                  </div>
+                                </div>
+                              </form>
               <div className="hidden flex justify-content-between">
                 <div>
                   <p className="pt-4 page-header2 font-bold">
