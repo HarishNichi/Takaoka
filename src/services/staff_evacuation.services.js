@@ -193,6 +193,7 @@ function _manualCheckIn(payload, callBackFun) {
             if (response && response.data) {
                 callBackFun(response.data);
             }
+             toastDisplay(response);
         })
         .catch((error) => {
             callBackFun(false);

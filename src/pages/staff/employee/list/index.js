@@ -59,14 +59,14 @@ export default function EmployeeListPage() {
     {
       field: "employee_code",
       header: translate(localeJson, "employee_code"),
-      sortable: true,
+      sortable: false,
       minWidth: "10rem",
       maxWidth: "14rem",
     },
     {
       field: "employee_name",
       header: translate(localeJson, "employee_name"),
-      sortable: true,
+      sortable: false,
       minWidth: "10rem",
       maxWidth: "14rem",
     },
@@ -77,14 +77,14 @@ export default function EmployeeListPage() {
         locale === "ja"
           ? getJapaneseDateDisplayYYYYMMDDFormat(row.dob)
           : getEnglishDateDisplayFormat(row.dob),
-      sortable: true,
+      sortable: false,
       minWidth: "10rem",
       maxWidth: "14rem",
     },
     {
       field: "department",
       header: translate(localeJson, "department"),
-      sortable: true,
+      sortable: false,
       minWidth: "10rem",
       maxWidth: "14rem",
       body: (row) => {
@@ -95,50 +95,50 @@ export default function EmployeeListPage() {
     {
       field: "person_in_charge",
       header: translate(localeJson, "person_in_charge"),
-      sortable: true,
+      sortable: false,
       minWidth: "10rem",
       maxWidth: "14rem",
     },
     {
       field: "evacuation_shelter",
       header: translate(localeJson, "evacuation_place"),
-      sortable: true,
+      sortable: false,
       minWidth: "8rem",
       maxWidth: "12rem",
     },
-    {
-      field: "actions",
-      header: translate(localeJson, "common_action"),
-      textAlign: "center",
-      alignHeader: "center",
-      className: "action_class",
-      minWidth: "8rem",
-      maxWidth: "12rem",
-      body: (rowData) => (
-        <div>
-          <Button
-            buttonProps={{
-              text: translate(localeJson, "edit"),
-              buttonClass: "edit-button",
-              onClick: () => {
-                // Find the department id by name (robust match)
-                const dept = departmentList.find(
-                  (d) => d.name && rowData.person_dept_id &&
-                    d.name.trim().toLowerCase() === rowData.person_dept_id.trim().toLowerCase()
-                );
-                setCurrentEmployee({
-                  ...rowData,
-                  department: dept ? String(dept.id) : "",
-                });
-                setEditModalOpen(true);
-                hideOverFlow();
-              },
-            }}
-            parentClass="edit-button inline"
-          />
-        </div>
-      ),
-    },
+    // {
+    //   field: "actions",
+    //   header: translate(localeJson, "common_action"),
+    //   textAlign: "center",
+    //   alignHeader: "center",
+    //   className: "action_class",
+    //   minWidth: "8rem",
+    //   maxWidth: "12rem",
+    //   body: (rowData) => (
+    //     <div>
+    //       <Button
+    //         buttonProps={{
+    //           text: translate(localeJson, "edit"),
+    //           buttonClass: "edit-button",
+    //           onClick: () => {
+    //             // Find the department id by name (robust match)
+    //             const dept = departmentList.find(
+    //               (d) => d.name && rowData.person_dept_id &&
+    //                 d.name.trim().toLowerCase() === rowData.person_dept_id.trim().toLowerCase()
+    //             );
+    //             setCurrentEmployee({
+    //               ...rowData,
+    //               department: dept ? String(dept.id) : "",
+    //             });
+    //             setEditModalOpen(true);
+    //             hideOverFlow();
+    //           },
+    //         }}
+    //         parentClass="edit-button inline"
+    //       />
+    //     </div>
+    //   ),
+    // },
   ], [locale]);
 
   const { getEmployeeList, exportEmployeeCSV, importData } = EmployeeServices;

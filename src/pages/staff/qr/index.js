@@ -27,9 +27,6 @@ export default function App() {
   const placeName = localStorage.getItem("evacuationPlaceName");
   const placeName_En = localStorage.getItem("evacuationPlaceNameEnglish");
   const [openQrPopup, setOpenQrPopup] = useState(false);
-  const [openBarcodeConfirmDialog, setOpenBarcodeConfirmDialog] =
-    useState(false);
-  const [regData, setRegData] = useState([]);
   const [empId, setEmpId] = useState("");
   const [empName, setEmpName] = useState("");
   const closeQrPopup = () => {
@@ -47,55 +44,14 @@ export default function App() {
   const qrResult = (res) => {
     let formData = new FormData();
     formData.append("content", res);
-    register(formData, (result) => {
-      if (result) {
-        let place_id = result.data?.data[0]?.place_id;
-        if (place_id != placeId) {
-          closeQrPopup();
-          let data = result.data?.data;
-          data[0].place_id = placeId;
-          data[0].place_name = placeName;
-          setRegData(data);
-          setOpenBarcodeConfirmDialog(true);
-          return;
-        }
-        let family_id = result.data?.data[0]?.family_id;
-        let payload = {
-          family_id: family_id,
-          place_id: place_id,
-        };
-        setLoader(true);
-        create(payload, (result) => {
-          if (result) {
-            setLoader(false);
-            closeQrPopup();
-          }
-        });
-        // dispatch(setCheckInData(result.data?.data))
-        // router.push('/user/qr/app/register')
-      } else {
-        closeQrPopup();
-      }
-    });
+    formData.append("place_id", placeId);
+     setOpenQrPopup(false);
+              setLoader(true);
+              StaffEvacuationServices.manualCheckIn(formData, (res) => {
+                setLoader(false);
+              });
   };
-  const handleSearch = () => {
-    if (!empId || !empName) return;
 
-    setLoader(true);
-    const payload = {
-      employee_id: empId,
-      employee_name: empName,
-      place_id: placeId,
-    };
-
-    create(payload, (res) => {
-      setLoader(false);
-      if (res) {
-        dispatch(setCheckInData(res.data?.data));
-        router.push("/user/qr/app/register");
-      }
-    });
-  };
 
   return (
     <div className="">
@@ -105,24 +61,6 @@ export default function App() {
         callback={qrResult}
       />
 
-      <QrAppConfirmDialog
-        header={translate(localeJson, "confirmation")}
-        visible={openBarcodeConfirmDialog}
-        setVisible={setOpenBarcodeConfirmDialog}
-        doAutoCheckout={() => {
-          let payload = {
-            family_id: regData[0].family_id,
-            place_id: placeId,
-          };
-          setLoader(true);
-          create(payload, (result) => {
-            if (result) {
-              setLoader(false);
-              setOpenBarcodeConfirmDialog(true);
-            }
-          });
-        }}
-      />
       {/* Top Title Bar */}
       <div className="flex justify-content-between align-items-center">
         <CustomHeader
