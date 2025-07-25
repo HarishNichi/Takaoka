@@ -99,7 +99,7 @@ export default function App() {
             enableReinitialize={true}
             onSubmit={(values, { resetForm }) => {
               const payload = {
-                employee_code_id: values.empId,
+                employee_code: values.empId,
                 place_id: placeId,
               };
               setLoader(true);
