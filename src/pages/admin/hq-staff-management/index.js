@@ -48,7 +48,9 @@ export default function HeadQuartersPage() {
     };
 
     const columnNames = [
-        { field: 'slno', header: translate(localeJson, 'header_slno'), headerClassName: "sno_class", textAlign: "center", minWidth: "4rem", maxWidth: "4rem" },
+        { field: 'slno', header: translate(localeJson, 'header_slno'), headerClassName: "sno_class",
+    textAlign: "left",
+    alignHeader: "left",minWidth: "4rem", maxWidth: "4rem" },
         {
             field: 'name', header: translate(localeJson, 'name'), minWidth: "8rem", maxWidth: "12rem",
             body: (rowData) => (

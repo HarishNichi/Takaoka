@@ -17,7 +17,9 @@ export default function AdminManagementDetailModal(props) {
     const { open, close } = props && props;
 
     const columnNames = [
-        { field: 'slno', header: translate(localeJson, 'staff_management_detail_login_history_slno'), headerClassName: "sno_class", textAlign: "center", alignHeader: "center" },
+        { field: 'slno', header: translate(localeJson, 'staff_management_detail_login_history_slno'), headerClassName: "sno_class",
+    textAlign: "left",
+    alignHeader: "left", minWidth: "4rem", maxWidth: "4rem" },
         { field: 'f_login_datetime', header: translate(localeJson, 'staff_management_detail_login_history_login_datetime'), minWidth: "6rem", maxWidth: "6rem" },
         { field: 'f_logout_datetime', header: translate(localeJson, 'logout_dateTime'), maxWidth: "6rem" },
 
