@@ -27,7 +27,9 @@ function HQDashboard() {
     });
 
     const columnsData = [
-        { field: 'number', header: translate(localeJson, 'number'), headerClassName: "custom-header sno_class", className: "sno_class", textAlign: 'center', alignHeader: "center" },
+        { field: 'number', header: translate(localeJson, 'number'),headerClassName: "sno_class",
+    textAlign: "left",
+    alignHeader: "left", },
         { field: 'evacuation_place', header: translate(localeJson, 'evacuation_place'), minWidth: '15rem', maxWidth: "15rem", headerClassName: "custom-header" },
         { field: 'max_capacity', header: translate(localeJson, 'max_capacity'), minWidth: '10rem', headerClassName: "custom-header", textAlign: "center", alignHeader: "center" },
         { field: 'number_of_evacuees', header: translate(localeJson, 'number_of_evacuees_admin_dashboard'), minWidth: '10rem', headerClassName: "custom-header", fontWeight: "bold", textAlign: "center", alignHeader: "center" },
