@@ -70,8 +70,9 @@ export default function AdminManagementPage() {
   {
     field: "slno",
     header: translate(localeJson, "header_slno"),
-    headerClassName: "sno_class",
-    textAlign: "center",
+     headerClassName: "sno_class",
+    textAlign: "left",
+    alignHeader: "left",
     minWidth: "4rem",
     maxWidth: "6rem",
   },

@@ -55,7 +55,9 @@ export default function EmployeeListPage() {
   });
 
   const columns = useMemo(() => [
-    { field: "si_no", header: translate(localeJson, "si_no"), sortable: false, minWidth: "4rem", maxWidth: "6rem" },
+    { field: "si_no", header: translate(localeJson, "si_no"), sortable: false, minWidth: "4rem", maxWidth: "6rem",headerClassName: "sno_class",
+      textAlign: "left",
+      alignHeader: "left", },
     {
       field: "employee_code",
       header: translate(localeJson, "employee_code"),

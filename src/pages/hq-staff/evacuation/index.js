@@ -65,7 +65,7 @@ export default function HQEvacuationPage() {
       header: translate(localeJson, "si_no"),
       sortable: false,
       headerClassName: "sno_class",
-      textAlign: "center",
+      textAlign: "left",
       alignHeader: "left",
       minWidth: "4rem",
       maxWidth: "6rem",

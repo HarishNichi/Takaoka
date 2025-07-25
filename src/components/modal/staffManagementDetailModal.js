@@ -35,9 +35,9 @@ const StaffManagementDetailModal = React.memo(function StaffManagementDetailModa
         localeJson,
         "staff_management_detail_login_history_slno"
       ),
-      headerClassName: "sno_class",
-      textAlign: "center",
-      alignHeader: "center",
+       headerClassName: "sno_class",
+      textAlign: "left",
+      alignHeader: "left",
     },
     {
       field: "name",
@@ -75,8 +75,8 @@ const StaffManagementDetailModal = React.memo(function StaffManagementDetailModa
         "staff_management_detail_login_history_slno"
       ),
       headerClassName: "sno_class",
-      textAlign: "center",
-      alignHeader: "center",
+      textAlign: "left",
+      alignHeader: "left",
     },
     {
       field: "name",

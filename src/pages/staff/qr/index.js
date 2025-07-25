@@ -17,6 +17,7 @@ import { setCheckInData } from "@/redux/qr_app";
 import QrAppConfirmDialog from "@/components/modal/qrAppConfirmationModal";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { reset } from "@/redux/layout";
 // import _ from "lodash";
 
 export default function App() {
@@ -96,7 +97,7 @@ export default function App() {
             initialValues={{ empId: ""}}
             validationSchema={validationSchema}
             enableReinitialize={true}
-            onSubmit={(values) => {
+            onSubmit={(values, { resetForm }) => {
               const payload = {
                 employee_code_id: values.empId,
                 place_id: placeId,
@@ -104,6 +105,7 @@ export default function App() {
               setLoader(true);
               StaffEvacuationServices.manualCheckIn(payload, (res) => {
                 setLoader(false);
+                resetForm();
               });
             }}
           >
@@ -114,6 +116,7 @@ export default function App() {
               handleChange,
               handleBlur,
               handleSubmit,
+              resetForm,
               setFieldValue,
             }) => (
               

@@ -55,8 +55,9 @@ export default function HQHistoryPlacePage() {
       field: "si_no",
       header: translate(localeJson, "si_no"),
       sortable: false,
-      textAlign: "center",
       headerClassName: "sno_class",
+      textAlign: "left",
+      alignHeader: "left",
     },
     {
       field: "created_at",
