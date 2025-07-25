@@ -106,14 +106,6 @@ function StaffFamily() {
       },
     },
     {
-          field: "family_is_registered",
-          header: translate(localeJson, "status_furigana"),
-          sortable: true,
-          alignHeader: "left",
-          minWidth: "8rem",
-          maxWidth: "12rem",
-        },
-    {
       field: "person_dob",
       header: translate(localeJson, "dob"),
       headerClassName: "custom-header",
@@ -133,6 +125,23 @@ function StaffFamily() {
       minWidth: "8rem",
       maxWidth: "8rem",
     },
+     {
+          field: "person_dept_id",
+          header: translate(localeJson, "department"),
+          sortable: false,
+          minWidth: "10rem",
+          maxWidth: "14rem",
+          body: (row) => {
+            return row.person_dept;
+          },
+        },
+        {
+              field: "place_name",
+              header: translate(localeJson, "evacuation_place"),
+              sortable: false,
+              minWidth: "8rem",
+              maxWidth: "12rem",
+            },
 
   ];
 
@@ -231,13 +240,15 @@ function StaffFamily() {
           let tempObj = {
             ...element,
             si_no: siNo,
-            place_name: placeIdObj[element.place_id] ?? "",
             id: element.f_id,
             family_count: element.persons_count,
             person_dob: date_of_birth,
             person_gender: gender_val,
             family_join_date: admisssion_dt,
             evacuation_days: evacuation_days,
+            place_name:locale == "ja" ? element.place_name : element.place_name_en ?? element.place_name,
+            person_dept:element.person_dept_id
+
           };
           previousItem = tempObj;
           tempList.push(tempObj);

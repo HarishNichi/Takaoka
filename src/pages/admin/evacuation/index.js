@@ -121,6 +121,16 @@ export default function EvacuationPage() {
       minWidth: "8rem",
       maxWidth: "12rem",
     },
+     {
+              field: "person_dept_id",
+              header: translate(localeJson, "department"),
+              sortable: false,
+              minWidth: "10rem",
+              maxWidth: "14rem",
+              body: (row) => {
+                return row.person_dept;
+              },
+            },
   ];
 
   /**
@@ -219,7 +229,6 @@ export default function EvacuationPage() {
         let evacuees = {
           si_no: i + parseInt(getListPayload.filters.start) + 1,
           id: item.f_id,
-          place_name: placeIdObj[item.place_id] ?? "",
           person_refugee_name: (
             <div className={"clickable-row"}>{item.person_refugee_name}</div>
           ),
@@ -236,6 +245,8 @@ export default function EvacuationPage() {
           person_age: item.person_age,
           age_month: item.person_month,
           remarks: item.person_note,
+           place_name:locale == "ja" ? item.place_name : item.place_name_en ?? item.place_name,
+            person_dept:item.person_dept_id,
           place: item.place_id ? getPlaceName(item.place_id) : "",
           connecting_code: item.person_connecting_code,
           out_date: item.family_out_date

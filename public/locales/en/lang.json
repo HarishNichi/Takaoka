@@ -1212,5 +1212,6 @@
   "toggle_status": "Toggle status",
   "switch_description": "Toggle the status of this place",
   "edit_employee": "Edit Employee",
-  "qr_create": "Create QR Code"
+  "qr_create": "Create QR Code",
+  "employee_information": "Employee Information"
 }

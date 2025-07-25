@@ -97,6 +97,7 @@ export default function StaffFamilyDetail() {
                         evacuation_date_time: locale == "ja" ? getJapaneseDateDisplayYYYYMMDDFormat(tempObj.family_join_date) : getEnglishDateDisplayFormat(tempObj.family_join_date),
                         tel: tempObj?.person_tel && tempObj.person_tel != "00000000000" ? tempObj.person_tel : "",
                         remarks: tempObj.person_note,
+                        departMent: tempObj.person_dept_id ? tempObj.person_dept_id : "",
                     }
                     tempList.push(newObj);
                 });
@@ -197,7 +198,7 @@ export default function StaffFamilyDetail() {
                             icon: <div className='mt-1'><i><IoIosArrowBack size={25} /></i></div>,
                             onClick: () => router.push('/staff/family/'),
                         }} parentClass={"inline back-button-transparent"} />
-                        <CustomHeader headerClass={"page-header1"} header={translate(localeJson, "house_hold_information_details")} />
+                        <CustomHeader headerClass={"page-header1"} header={translate(localeJson, "employee_information")} />
                         <div>
                             <div className='mb-2'>
                             </div>
@@ -242,6 +243,12 @@ export default function StaffFamilyDetail() {
                                             <div className='details-text-overflow'>
                                                 <span className='page-header3'>{translate(localeJson, "address")}:</span>
                                                 <span className='page-header3-sub ml-1'>{person.address}</span>
+                                            </div>
+                                        </div>
+                                        <div className='flex align-items-center'>
+                                            <div className='details-text-overflow'>
+                                                <span className='page-header3'>{translate(localeJson, "department")}:</span>
+                                                <span className='page-header3-sub ml-1'>{person.departMent}</span>
                                             </div>
                                         </div>
                                         <div className='hidden align-items-center'>

@@ -3,6 +3,7 @@ import axios from '@/utils/api';
 import { toastDisplay } from '@/helper';
 export const EmployeeServices = {
   getEmployeeList: _getEmployeeList,
+  getStaffEmployeeList:_getStaffEmployeeList,
   exportEmployeeCSV: _exportEmployeeCSV,
   importData: _importData,
   updateEmployee: _updateEmployee,
@@ -19,6 +20,20 @@ function _getEmployeeList(payload, callBackFun) {
 
   axios
     .post("/admin/employee/list", payload)
+    .then((response) => {
+      if (response && response.data) {
+        callBackFun(response.data);
+      }
+    })
+    .catch((error) => {
+      callBackFun(false);
+      toastDisplay(error?.response);
+    });
+}
+
+function _getStaffEmployeeList(payload, callBackFun) {
+  axios
+    .post("/staff/employee/list", payload)
     .then((response) => {
       if (response && response.data) {
         callBackFun(response.data);

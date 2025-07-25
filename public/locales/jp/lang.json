@@ -1208,5 +1208,6 @@
   "toggle_status": "ステータスを切り替え",
   "switch_description": "この避難所のステータスを切り替えます",
   "edit_employee": "従業員情報を編集",
-  "qr_create": "QRコードを作成"
+  "qr_create": "QRコードを作成",
+  "employee_information": "従業員情報"
 }

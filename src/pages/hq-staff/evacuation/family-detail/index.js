@@ -78,6 +78,8 @@ export default function EvacueeFamilyDetail() {
                         place_id: person.place_id,
                         employee_code_id: person.employee_code_id,
                         family_is_registered: person.family_is_registered,
+                        department: person.person_dept_id ? person.person_dept_id : "",
+                        place_name: locale == "ja" ? person.place_name : person.place_name_en ?? person.place_name,
                     };
 
                     familyDataList.push(familyData);
@@ -118,6 +120,8 @@ export default function EvacueeFamilyDetail() {
         "gender",
         "tel",
         "address",
+        "department",
+        "place_name",
     ];
 
     return (
@@ -177,7 +181,7 @@ export default function EvacueeFamilyDetail() {
                             icon: <div className='mt-1'><i><IoIosArrowBack size={25} /></i></div>,
                             onClick: () => router.push('/hq-staff/evacuation/'),
                         }} parentClass={"inline back-button-transparent"} />
-                        <CustomHeader headerClass={"page-header1"} header={translate(localeJson, "house_hold_information")} />
+                        <CustomHeader headerClass={"page-header1"} header={translate(localeJson, "employee_information")} />
                         {tableLoading ? (
                             <CardSpinner />
                         ) : familyDetailData && familyDetailData.map((val, i) => (

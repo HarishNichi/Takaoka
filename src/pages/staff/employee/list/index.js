@@ -27,7 +27,7 @@ import { DepartmentManagementServices } from "@/services/dept_management_service
 import _ from "lodash";
 
 export default function EmployeeListPage() {
-  const { locale, localeJson } = useContext(LayoutContext);
+  const { locale, localeJson, setLoader } = useContext(LayoutContext);
   const [employeeList, setEmployeeList] = useState([]);
   const [tableLoading, setTableLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(0);
@@ -141,7 +141,7 @@ export default function EmployeeListPage() {
     // },
   ], [locale]);
 
-  const { getEmployeeList, exportEmployeeCSV, importData } = EmployeeServices;
+  const { getEmployeeList,getStaffEmployeeList, exportEmployeeCSV, importData } = EmployeeServices;
 
   const fetchEmployees = async () => {
     setTableLoading(true);
@@ -154,7 +154,7 @@ export default function EmployeeListPage() {
         evacuation_shelter: searchShelter,
       },
     };
-    getEmployeeList(payload, handleResponse);
+    getStaffEmployeeList(payload, handleResponse);
   };
 
   const handleResponse = (res) => {
@@ -186,6 +186,7 @@ export default function EmployeeListPage() {
   };
 
   const handleExport = () => {
+    setLoader(true);
     exportEmployeeCSV(getListPayload, (res) => {
       if (res.success) {
         const downloadLink = document.createElement("a");
@@ -193,8 +194,13 @@ export default function EmployeeListPage() {
         downloadLink.download =
           "Employee_" + getYYYYMMDDHHSSSSDateTimeFormat(new Date()) + ".csv";
         downloadLink.click();
+        setLoader(false);
+      }
+      else {
+        setLoader(false);
       }
     });
+ 
   };
 
   const handlePagination = (e) => {
