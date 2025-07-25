@@ -5,6 +5,7 @@ export const EmployeeServices = {
   getEmployeeList: _getEmployeeList,
   getStaffEmployeeList:_getStaffEmployeeList,
   exportEmployeeCSV: _exportEmployeeCSV,
+  exportStaffEmployee: _exportStaffEmployeeCSV,
   importData: _importData,
   updateEmployee: _updateEmployee,
   callBatchDownload: _callBatchDownload,
@@ -54,6 +55,26 @@ function _exportEmployeeCSV(payload, callBackFun) {
   // 📝 REAL API (Uncomment when backend is ready)
   axios
     .post("/admin/employee/export", payload)
+    .then((response) => {
+      if (response && response.data) {
+        callBackFun(response.data);
+      }
+    })
+    .catch((error) => {
+      toastDisplay(error?.response);
+    });
+  
+}
+
+/**
+ * Export Employee List to CSV
+ * @param {*} payload
+ * @param {*} callBackFun
+ */
+function _exportStaffEmployeeCSV(payload, callBackFun) {
+  // 📝 REAL API (Uncomment when backend is ready)
+  axios
+    .post("/staff/employee/export", payload)
     .then((response) => {
       if (response && response.data) {
         callBackFun(response.data);

@@ -143,7 +143,7 @@ export default function EmployeeListPage() {
     // },
   ], [locale]);
 
-  const { getEmployeeList,getStaffEmployeeList, exportEmployeeCSV, importData } = EmployeeServices;
+  const { getStaffEmployeeList, exportStaffEmployee } = EmployeeServices;
 
   const fetchEmployees = async () => {
     setTableLoading(true);
@@ -189,7 +189,7 @@ export default function EmployeeListPage() {
 
   const handleExport = () => {
     setLoader(true);
-    exportEmployeeCSV(getListPayload, (res) => {
+    exportStaffEmployee(getListPayload, (res) => {
       if (res.success) {
         const downloadLink = document.createElement("a");
         downloadLink.href = res.result.filePath;
