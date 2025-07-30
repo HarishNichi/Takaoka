@@ -229,7 +229,12 @@ const HqEditModal = React.memo(function HqEditModal(props) {
             values.tel = convertToSingleByte(values.tel);
             HeadQuarterManagement.update(
               props.currentObj.id,
-              { id: props.currentObj.id, ...values },
+              { id: props.currentObj.id, username: values.username,
+    name: values.name,
+    employee_code_id: values.employee_code_id,
+    tel: values.tel,
+    password: values.password,
+    dept_id: values.dept_id },
               () => {
                 resetAndCloseForm(resetForm);
               }
