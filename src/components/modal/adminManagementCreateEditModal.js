@@ -180,7 +180,7 @@ const AdminManagementCreateEditModal = React.memo(function AdminManagementCreate
                         })
                     } else if (props.registerModalAction == "edit") {
                         values.tel = convertToSingleByte(values.tel);
-                        AdminManagementServices.update(props.currentObj.id, { id: props.currentObj.id, ...values },
+                        AdminManagementServices.update(props.currentObj.id, { id: props.currentObj.id, username: values.username, name: values.name, employee_code_id: values.employee_code_id, tel: values.tel, password: values.password, dept_id: values.dept_id },
                             () => {
                                 resetAndCloseForm(resetForm)
                             });
