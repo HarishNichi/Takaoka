@@ -156,6 +156,7 @@ export default function DepartmentanagementPage() {
         ...row,
         slno: idx + Number(listPayload.filters.start) + 1,
         language: locale,
+        employee_code_id: row.incharge_user_id ? row.incharge_user_id : "",
       }));
       setColumnValues(tempList);
       setTotalCount(total);
@@ -303,6 +304,7 @@ export default function DepartmentanagementPage() {
                     text: translate(localeJson, "create_department"),
                     onClick: () => {
                       setCurrentObj({
+                        employee_code_id:"",
                         username: "",
                         name: "",
                         password: "",

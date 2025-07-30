@@ -459,6 +459,7 @@
   "external_popup_name_kanji": "The name must not be greater than 100 characters.",
   "admin_name_required": "Admin name is required.",
   "department_name_required": "Department name is required.",
+  "employee_required": "Employee is required.",
   "opening_required_when_closing_available": "Opening date is required when closing date is selected",
   "staff_name_required": "Staff name is required.",
   "head_staff_name_required": "Head staff name is required.",

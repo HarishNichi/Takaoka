@@ -10,7 +10,7 @@ class MyDocument extends Document {
         return (
             <Html lang="en">
                 <Head>
-                    <title>Telenet</title>
+                    <title>Takaoka</title>
                     <meta charSet="UTF-8" />
                     <meta name="description" content="The ultimate collection of design-agnostic, flexible and accessible React UI Components." />
                     <meta name="robots" content="index, follow" />

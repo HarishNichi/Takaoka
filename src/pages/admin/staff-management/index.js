@@ -147,7 +147,17 @@ export default function StaffManagementPage() {
 
     const onRegister = (values) => {
         if ("id" in values) {
-            update(values, (res) => {
+     let payload = {
+    id: values.id,
+    username: values.username,
+    tel: values.tel,
+    name: values.name,
+    password: values.password,
+    place_id: values.place_id,
+    dept_id: values.dept_id,
+    employee_code_id: values.employee_code_id
+};
+            update(payload, (res) => {
                 if (res) {
                     setTableLoading(true);
                     getStaffList()
@@ -273,7 +283,6 @@ export default function StaffManagementPage() {
                     deleteObj={deleteObj}
                 />
             }
-            {editStaffOpen &&
                 <StaffManagementEditModal
                     open={editStaffOpen}
                     close={onStaffEditClose}
@@ -282,7 +291,7 @@ export default function StaffManagementPage() {
                     refreshList={getStaffList}
                     registerModalAction={registerModalAction}
                 />
-            }
+
             <div className="grid">
                 <div className="col-12">
                     <div className='card'>
