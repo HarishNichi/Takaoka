@@ -143,12 +143,15 @@ const DepartmentCreateEditModal = React.memo(function DepartmentCreateEditModal(
         const payload = {
           name: convertToSingleByte(values.name),
           code: convertToSingleByte(values.code),
+          employee_code_id: values.employee_code_id
         };
 
        if (registerModalAction === "create") {
     props.onRegister(payload);
+    resetForm();
   } else if (registerModalAction === "edit") {
     props.onRegister({ ...payload, id: currentObj.id });
+    resetForm();
   }
       }}
     >
