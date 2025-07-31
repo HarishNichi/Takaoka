@@ -19,8 +19,8 @@ const HqManagementDetailModal = React.memo(function HqManagementDetailModal(prop
         { field: 'slno', header: translate(localeJson, 'staff_management_detail_login_history_slno'), headerClassName: "sno_class",
     textAlign: "left",
     alignHeader: "left", minWidth: "4rem", maxWidth: "4rem" },
-        { field: 'f_login_datetime', header: translate(localeJson, 'staff_management_detail_login_history_login_datetime'), maxWidth: "2rem" },
-        { field: 'f_logout_datetime', header: translate(localeJson, 'logout_dateTime'), maxWidth: "2rem" },
+        { field: 'f_login_datetime', header: translate(localeJson, 'staff_management_detail_login_history_login_datetime'), minWidth: "2rem" },
+        { field: 'f_logout_datetime', header: translate(localeJson, 'logout_dateTime'), minWidth: "2rem" },
     ];
     const [columnValues, setColumnValues] = useState([]);
     const columns = [

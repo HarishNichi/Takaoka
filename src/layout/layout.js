@@ -407,7 +407,7 @@ const Layout = (props) => {
     return (
         <React.Fragment>
                 <Head>
-                    <title>{locale == "ja" ? (pageTitles_ja[path.replace(/\/$/, '')] || 'テレネット') : pageTitles_en[path.replace(/\/$/, '')] || 'Telenet'}</title>
+                    <title>{locale == "ja" ? (pageTitles_ja[path.replace(/\/$/, '')] || 'テレネット') : pageTitles_en[path.replace(/\/$/, '')] || 'Takaoka'}</title>
                      <link rel="icon" href={`/layout/images/favicon.ico`} type="image/x-icon"></link>
                 </Head>
             <div className={containerClass}>
