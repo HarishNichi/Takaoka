@@ -165,7 +165,7 @@ export default function EmployeeListPage() {
         si_no: i + getListPayload.filters.start + 1,
         employee_code: emp.employee_code,
         employee_name: emp.person_name,
-        person_in_charge: "",
+        person_in_charge: emp.person_in_charge || "", // Add department in-charge from API response
         evacuation_shelter: locale == "ja" ? emp.place_name : emp.place_name_en || emp.place_name,
         // For edit modal:
         id: emp.person_id,
